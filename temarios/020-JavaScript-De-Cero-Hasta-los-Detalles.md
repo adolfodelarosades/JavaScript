@@ -9,131 +9,80 @@
 
 ## Contenido del curso 							57 clases
 
-### Empezar aquí
+### 01. Empezar aquí
 
-Introducción
+* Introducción
+* ¿Qué es JavaScript?
+* Mi primer código de JavaScript
+* Explicación visual de lo que hace JavaScript con los objetos y variables
+* Comprendiendo la consola
+* Undefined
+* JavaScript es Asíncrono? ¿Qué es Asíncrono?
+* Orden de las importaciones
 
-¿Qué es JavaScript?
+### 02. Variables, Objetos, Typeof y Condicionales
 
-Mi primer código de JavaScript
+* Escritura dinámica - Tipos Primitivos
+* Por valor y por Referencia
+* Notación de punto y corchetes
+* Funciones
+* Parámetros para las funciones
+* El retorno de las funciones
+* Funciones de primera clase
+* Métodos y el objeto THIS
+* La palabra reservada... new
+* El señor de los anillos :: The JavaScript Game
+* Prototipos: prototype
+* Funciones Anónimas
+* Funciones typeof e instanceof... interesante
 
-Explicación visual de lo que hace JavaScript con los objetos y variables
+### 03. Profundizando objetos
 
-Comprendiendo la consola
+* Arreglos
+* Arreglos - Parte 2
+* Argumentos - arguments
+* Sobre carga de operadores en JavaScript
+* Polimorfismo en JavaScript
+* Cuidado con las funciones y su contexto
+* Objeto Number
+* Objeto Booleano
+* Objetos String
+* Objeto Fecha (Date)
+* Operaciones con Fechas
+* Objeto Math
+* Expresiones Regulares
+* Expresiones regulares - Segunda Parte
 
-Undefined
+### 04. Interpretación, palabras reservadas, decisiones, escape y cookies
 
-JavaScript es Asíncrono? ¿Qué es Asíncrono?
+* El ";" (punto y coma) es opcional?
+* Comentarios en JavaScript y espaciado.
+* Palabras reservadas de JavaScript
+* Manejo de errores en JavaScript
+* Cookies - Instalación de node.js en Mac OSX
+* Cookies - Instalación de node.js en Windows
+* escape, unescape y cookies
+* Funciones especiales: Call(), Apply() y Bind()
+* IF... ELSE....
+* Switch... condicional múltiple
+* JSON y breve historia
 
-Orden de las importaciones
+### 05. Ciclos en JavaScript: Loops
 
-### Variables, Objetos, Typeof y Condicionales
+* Ciclo While y Do While
+* Ciclo For y For in - Reflejo
+* Rotulando los ciclos
+* Funciones de tiempo en JavaScript
 
-Escritura dinámica - Tipos Primitivos
+### 06. Eventos
 
-Por valor y por Referencia
+* Eventos 101
+* Bloqueando el click derecho de la página.
+* Evento "on submit" y parámetros URL
+* Cajas de dialogo
+* JavaScript - "use strict" - Modo estricto
 
-Notación de punto y corchetes
-
-Funciones
-
-Parámetros para las funciones
-
-El retorno de las funciones
-
-Funciones de primera clase
-
-Métodos y el objeto THIS
-
-La palabra reservada... new
-
-El señor de los anillos :: The JavaScript Game
-
-Prototipos: prototype
-
-Funciones Anónimas
-
-Funciones typeof e instanceof... interesante
-
-### Profundizando objetos
-
-Arreglos
-
-Arreglos - Parte 2
-
-Argumentos - arguments
-
-Sobre carga de operadores en JavaScript
-
-Polimorfismo en JavaScript
-
-Cuidado con las funciones y su contexto
-
-Objeto Number
-
-Objeto Booleano
-
-Objetos String
-
-Objeto Fecha (Date)
-
-Operaciones con Fechas
-
-Objeto Math
-
-Expresiones Regulares
-
-Expresiones regulares - Segunda Parte
-
-### Interpretación, palabras reservadas, decisiones, escape y cookies
-
-El ";" (punto y coma) es opcional?
-
-Comentarios en JavaScript y espaciado.
-
-Palabras reservadas de JavaScript
-
-Manejo de errores en JavaScript
-
-Cookies - Instalación de node.js en Mac OSX
-
-Cookies - Instalación de node.js en Windows
-
-escape, unescape y cookies
-
-Funciones especiales: Call(), Apply() y Bind()
-
-IF... ELSE....
-
-Switch... condicional múltiple
-
-JSON y breve historia
-
-### Ciclos en JavaScript: Loops
-
-Ciclo While y Do While
-
-Ciclo For y For in - Reflejo
-
-Rotulando los ciclos
-
-Funciones de tiempo en JavaScript
-
-### Eventos
-
-Eventos 101
-
-Bloqueando el click derecho de la página.
-
-Evento "on submit" y parámetros URL
-
-Cajas de dialogo
-
-JavaScript - "use strict" - Modo estricto
-
-### Despedida
-
-
+### 07. Despedida
 
 
 ## Requisitos
