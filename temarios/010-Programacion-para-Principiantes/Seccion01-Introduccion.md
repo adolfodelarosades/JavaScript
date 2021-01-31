@@ -1,13 +1,13 @@
 # Introducción al curso									
 
-Introducción
+## Introducción
 
 :+1:
 
-¿Cómo funcionará este curso?
+## ¿Cómo funcionará este curso?
 
 :+1:
 
-¿Cómo realizar preguntas?
+## ¿Cómo realizar preguntas?
 
 :+1:
