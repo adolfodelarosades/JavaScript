@@ -1,4 +1,4 @@
-# 08 Ejercicios de programación – lógica
+# 07 Ejercicios de programación – lógica
 
 ## Introducción a la sección
 
