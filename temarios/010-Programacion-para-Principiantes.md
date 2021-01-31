@@ -13,7 +13,7 @@ Fundamentos de la programación de cero y desarrolla tu lógica para resolver pr
 
 ## Contenido del curso 							75 clases
 
-### 01 Introducción al Curso									
+### [01 Introducción al Curso](010-Programacion-para-Principiantes/Seccion01-Introduccion.md)
 
 * Introducción
 * ¿Cómo funcionará este curso?
