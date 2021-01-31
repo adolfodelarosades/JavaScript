@@ -19,7 +19,7 @@ Fundamentos de la programación de cero y desarrolla tu lógica para resolver pr
 * ¿Cómo funcionará este curso?
 * ¿Cómo realizar preguntas?
 
-### 02 Introducción a las Ciencias Computacionales
+### [02 Introducción a las Ciencias Computacionales](010-Programacion-para-Principiantes/Seccion02-IntroduccionALasCienciasComputacionales.md)
 
 * Introducción a la sección
 * Conocimientos fundamentales sobre las computadoras
@@ -28,7 +28,7 @@ Fundamentos de la programación de cero y desarrolla tu lógica para resolver pr
 * Lenguajes y frameworks
 * Intérpretes y Compiladores
 
-### 03 Primeros Pasos en Lógica y Corriendo Nuestro Primer Programa
+### [03 Primeros Pasos en Lógica y Corriendo Nuestro Primer Programa](010-Programacion-para-Principiantes/Seccion03-PrimerosPasosEnLogica.md)
 
 * Introducción a la sección
 * Lógica para resolver problemas
@@ -39,7 +39,7 @@ Fundamentos de la programación de cero y desarrolla tu lógica para resolver pr
 * Problema: Convertir de grados Fahrenheit a Celsius
 * Tarea y resolución de la conversión
 
-### 04 Tipos de Datos y Flujo de Control
+### [04 Tipos de Datos y Flujo de Control](010-Programacion-para-Principiantes/Seccion04-TiposDeDatosYFlujoDeControl.md)
 
 * Introducción a la sección
 * Reglas para nombrar variables y constantes
@@ -54,7 +54,7 @@ Fundamentos de la programación de cero y desarrolla tu lógica para resolver pr
 * Ejercicio práctico - ciclo for
 * Código fuente de la sección
 
-### 05 Funciones y Arreglos
+### [05 Funciones y Arreglos](010-Programacion-para-Principiantes/Seccion05-FuncionesYArreglos.md)
 
 * Introducción a la sección
 * Explicación sobre las funciones
@@ -66,7 +66,7 @@ Fundamentos de la programación de cero y desarrolla tu lógica para resolver pr
 * Ejercicio sobre arreglos #2
 * Códigos fuente hasta el momento
 
-### 06 Objetos y Clases
+### [06 Objetos y Clases](010-Programacion-para-Principiantes/Seccion06-ObjetosYClases.md)
 
 * Introducción a la sección
 * Explicación sobre objetos
@@ -77,7 +77,7 @@ Fundamentos de la programación de cero y desarrolla tu lógica para resolver pr
 * Métodos de clase
 * Código fuente de la sección
 
-### 07 Ejercicios de Programación – Lógica
+### [07 Ejercicios de Programación – Lógica](010-Programacion-para-Principiantes/Seccion07-EjerciciosDeProgramacion–Logica.md)
 
 * Introducción a la sección
 * Material de la sección
