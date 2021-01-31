@@ -67,7 +67,7 @@
 * Switch... condicional múltiple
 * JSON y breve historia
 
-### [05. Ciclos en JavaScript: Loops](020-JavaScript-De-Cero-Hasta-los-Detalles/Seccion05-CiclosEnJavaScript-Loops.md
+### [05. Ciclos en JavaScript: Loops](020-JavaScript-De-Cero-Hasta-los-Detalles/Seccion05-CiclosEnJavaScript-Loops.md)
 
 * Ciclo While y Do While
 * Ciclo For y For in - Reflejo
