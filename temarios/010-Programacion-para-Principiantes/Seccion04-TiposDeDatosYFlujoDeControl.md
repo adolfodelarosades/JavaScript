@@ -1,10 +1,10 @@
 # 04 Tipos de datos y flujo de control
 
-## Introducción a la sección
+## Introducción a la Sección
 
 :+1:
 
-## Reglas para nombrar variables y constantes
+## Reglas para Nombrar Variables y Constantes
 
 1. No podemos darle el nombre a una variable o constante, igual a una palabra reservada del lenguaje de programación.
 
@@ -44,25 +44,25 @@ let año; //incorrecto
 
 * Los nombres de las variables y constantes, deben de tener un nombre significativo de lo que almacenán.
 
-* Usar notación CamelCase:
+* Usar notación **CamelCase**:
 
    ```js
    let nombreCompleto;
    let direccionCasa;
    ```
 
-Existe dos tipos de CamelCase:
+Existe dos tipos de **CamelCase**:
 
 * **lowerCamelCase**, para nombres de variables
 * **UpperCamelCase**, para nombres de clases.
 
-## Tipos de datos
+## Tipos de Datos
 
 * **Number**
 
    ```js
    let promedioNotas = 85;
-   let promedioNotas : number = 85;
+   let promedioNotas : number = 85;  //TypeScript
    ```
 
 * **String**
@@ -70,7 +70,7 @@ Existe dos tipos de CamelCase:
    ```js
    let nombre = 'Pepito el de los cuentos';
    let nombre = "Pepito el de los cuentos";
-   let nombre : string = "Pepito el de los cuentos";
+   let nombre : string = "Pepito el de los cuentos"; //TypeScript
    ```
 
 * **Boolean**
@@ -78,13 +78,34 @@ Existe dos tipos de CamelCase:
    ```js
    let activo = true;
    let enfermo = false;
-   let trabajador : boolean = true;
-   let noActivo = false;	// No se lee muy bien
+   let trabajador : boolean = true; //TypeScript
+   
+   let noActivo = false; // No se lee muy bien
    ```		
 
 **Recomendación**: El nombre para una variable de tipo booleana debe de leerse en positivo.
 
-## Ejemplo práctico de tipos de datos
+## Ejemplo Práctico de Tipos de Datos
+
+`01-TipoDeDatos.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>01-TipoDeDatos.html</title>
+</head>
+<body>
+   <h1>Ejemplos de Tipos de Datos</h1>
+   <p>Vea la consola para resultado (F12)</p>
+   <script src="01-TipoDeDatos.js"></script> 
+</body>
+</html>
+```
+
+`01-TipoDeDatos.js`
 
 ```js
 let nombre = 'Adolfo';
@@ -115,7 +136,9 @@ let despedido1 = false;
 console.log(activo1 + despedido1); // Imprime truefalse
 ```
 
-## Estructuras de control - decisiones
+![04-01](images/04-01.png)
+
+## Estructuras de Control - Decisiones
 
 **Estructuras de Control**: Nos permiten poder decirle a la computadora, que acción tomar y qué camino seguir dependiendo de condiciones y/o decisiones.
 
@@ -152,13 +175,15 @@ El if y else se pueden anidar, es decir en una condición if podemos realizar ot
          'Hoy empieza el fin de semana...' 
    ```
 
-## Ejemplo práctico de estructuras de control - IF
+## Ejemplo Práctico de Estructuras de Control - IF
 
 ```js
 /*
 Crear un programa que, basado en la calificación de un alumno,
 imprima si aprueba o no la materia.
-Aprueba a partir de 60, si tiene nota menor de 50, imprimir el mensaje "Por favor estudie más"
+* Aprueba a partir de 60, 
+* Si tiene nota menor de 60 pero mayor de 50 diga "el alumno NO aprueba la asignatura"  
+* Si tiene nota menor de 50, imprimir el mensaje "Por favor estudie más"
 */
 
 let nota = 40;
@@ -172,8 +197,30 @@ if(nota >= 60) {
 }
 ```
 
-## If Else anidado
+![04-02](images/04-02.png)
 
+## If Else Anidado
+
+`03-EstructuraDeControl-IF-ELSE-Anidado.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>03-EstructuraDeControl-IF-ELSE-Anidado</title>
+</head>
+<body>
+   <h1>Ejemplos de Estructura De Control IF ELSE Anidado</h1>
+   <p>Vea la consola para resultado (F12)</p>
+   <script src="03-EstructuraDeControl-IF-ELSE-Anidado.js"></script>
+    
+</body>
+</html>
+```
+
+`03-EstructuraDeControl-IF-ELSE-Anidado.js`
 
 ```js
 /*
@@ -192,36 +239,57 @@ let nota = 90;
 let notaLetra = '';
 
 if(nota >= 90 && nota <= 100) {
-  notaLetra = 'A';
+   notaLetra = 'A';
 } else if(nota >= 80 && nota <= 89) {
-  notaLetra = 'B';
+   notaLetra = 'B';
 } else if(nota >= 70 && nota <= 79) {
-  notaLetra = 'C';
+   notaLetra = 'C';
 } else if(nota >= 60 && nota <= 69) {
-  notaLetra = 'D';
+   notaLetra = 'D';
 } else {
-  notaLetra = 'F';
+   notaLetra = 'F';
 }
 
 console.log('La nota es ' + nota + ', equivale a una ' + notaLetra);
 
-
 // Otra forma más reducida es
 if(nota >= 90) {
-  notaLetra = 'A';
+   notaLetra = 'A';
 } else if(nota >= 80) {
-  notaLetra = 'B';
+   notaLetra = 'B';
 } else if(nota >= 70) {
-  notaLetra = 'C';
+   notaLetra = 'C';
 } else if(nota >= 60) {
-  notaLetra = 'D';
+   notaLetra = 'D';
 } else {
-  notaLetra = 'F';
+   notaLetra = 'F';
 }
 console.log('La nota es ' + nota + ', equivale a una ' + notaLetra);
 ```
 
+![04-03](images/04-03.png)
+
 ## Switch
+
+`04-EstructuraDeControl-Switch.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>04-EstructuraDeControl-Switch</title>
+</head>
+<body>
+   <h1>Ejemplos de Estructura De Control Switch</h1>
+   <p>Vea la consola para resultado (F12)</p>
+   <script src="04-EstructuraDeControl-Switch.js"></script>
+</body>
+</html>
+```
+
+`04-EstructuraDeControl-Switch.js`
 
 ```js
 let dia = 5; // 0=domingo, 1=lunes, 2=martes...
@@ -245,13 +313,15 @@ switch ( dia ){
    case 5:
       console.log('Es viernes');
       break;
-  case 6:
+   case 6:
       console.log('Es sabado');
       break;
-  default:
+   default:
       console.log('Día indeterminado....');
 }
 ```
+
+![04-04](images/04-04.png)
 
 ## Ciclos o Loops
 
