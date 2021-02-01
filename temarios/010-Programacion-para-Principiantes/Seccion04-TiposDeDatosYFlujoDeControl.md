@@ -8,26 +8,26 @@
 
 1. No podemos darle el nombre a una variable o constante, igual a una palabra reservada del lenguaje de programación.
 
-```js
-let let = 20;  //error
-let letra = 20; //correcto
-```
+   ```js
+   let let = 20;  //error
+   let letra = 20; //correcto
+   ```
 
 2. Puedes usar letras, números y guión bajo para definir tus variables y constantes. El nombre debe iniciar con una letra o guión bajo, el nombre de la variable no puede iniciar con un número.
 
-```js
-let nombre1; //correcto
-let nombre1_; //correcto
-let _nombre1; //correcto
-let 1nombre; //incorrecto
-let nombre@; //incorrecto
-let _; //correcto
-```
+   ```js
+   let nombre1; //correcto
+   let nombre1_; //correcto
+   let _nombre1; //correcto
+   let 1nombre; //incorrecto
+   let nombre@; //incorrecto
+   let _; //correcto
+   ```
 3. No puede contener caracteres especiales como:
 
-```sh
-@ 	( 	~	# 	á	é	í	ó	ú	ñ	...
-```
+   ```sh
+   @ 	( 	~	# 	á	é	í	ó	ú	ñ	...
+   ```
 
 El **signo de dolar ($)** es permitido en el nombre de una variable.
 
@@ -46,10 +46,10 @@ let año; //incorrecto
 
 * Usar notación CamelCase:
 
-```js
-let nombreCompleto;
-let direccionCasa;
-```
+   ```js
+   let nombreCompleto;
+   let direccionCasa;
+   ```
 
 Existe dos tipos de CamelCase:
 
@@ -60,27 +60,27 @@ Existe dos tipos de CamelCase:
 
 * **Number**
 
-```js
-let promedioNotas = 85;
-let promedioNotas : number = 85;
-```
+   ```js
+   let promedioNotas = 85;
+   let promedioNotas : number = 85;
+   ```
 
 * **String**
 
-```js
-let nombre = 'Pepito el de los cuentos';
-let nombre = "Pepito el de los cuentos";
-let nombre : string = "Pepito el de los cuentos";
-```
+   ```js
+   let nombre = 'Pepito el de los cuentos';
+   let nombre = "Pepito el de los cuentos";
+   let nombre : string = "Pepito el de los cuentos";
+   ```
 
 * **Boolean**
 
-```js
-let activo = true;
-let enfermo = false;
-let trabajador : boolean = true;
-let noActivo = false;	// No se lee muy bien
-```		
+   ```js
+   let activo = true;
+   let enfermo = false;
+   let trabajador : boolean = true;
+   let noActivo = false;	// No se lee muy bien
+   ```		
 
 **Recomendación**: El nombre para una variable de tipo booleana debe de leerse en positivo.
 
@@ -121,32 +121,36 @@ console.log(activo1 + despedido1); // Imprime truefalse
 
 1. **IF**, si se cumple una condición realiza ciertas tareas y si no se cumple puede realizar otras tareas diferentes:
 
-```js
-IF (CONDICON){
+   ```js
+   IF (CONDICON){
 	.....
-}
+   }
 
-IF (CONDICON){
+   IF (CONDICON){
 	.....
-} ELSE {
+   } ELSE {
 	.....
-}
-```
+   }
+   ```
 
 El if y else se pueden anidar, es decir en una condición if podemos realizar otro if else y así sucesivamente sin límite.
 
 2. **SWITCH**, permite realizar múltiples decisiones de forma limpia y eficiente:
 
-```js
-SWITCH(VARIABLE O EXPRESIÓN A EVALUAR)
-	CASE 1: 'Hoy es lunes';
-		BREAK;
-	CASE 2: 'Hoy es martes';
-		BREAK;
-	CASE 3: 'Hoy es miércoles';
-		BREAK;
-	DEFAULT: 'Hoy empieza el fin de semana...' 
-```
+   ```js
+   SWITCH(VARIABLE O EXPRESIÓN A EVALUAR)
+      CASE 1: 
+         'Hoy es lunes';
+         BREAK;
+      CASE 2: 
+         'Hoy es martes';
+         BREAK;
+      CASE 3: 
+         'Hoy es miércoles';
+         BREAK;
+      DEFAULT: 
+         'Hoy empieza el fin de semana...' 
+   ```
 
 ## Ejemplo práctico de estructuras de control - IF
 
@@ -168,7 +172,7 @@ if(nota >= 60) {
 }
 ```
 
-## If else anidado
+## If Else anidado
 
 
 ```js
@@ -223,22 +227,22 @@ console.log('La nota es ' + nota + ', equivale a una ' + notaLetra);
 let dia = 5; // 0=domingo, 1=lunes, 2=martes...
 
 switch ( dia ){
-  case 0:
-        console.log('Es domingo');
-        break;
-  case 1:
+   case 0:
+      console.log('Es domingo');
+      break;
+   case 1:
       console.log('Es lunes');
       break;
-  case 2:
+   case 2:
       console.log('Es martes');
       break;
-  case 3:
+   case 3:
       console.log('Es miércoles');
       break;
-  case 4:
+   case 4:
       console.log('Es jueves');
       break;
-  case 5:
+   case 5:
       console.log('Es viernes');
       break;
   case 6:
@@ -249,29 +253,29 @@ switch ( dia ){
 }
 ```
 
-## Ciclos o loops
+## Ciclos o Loops
 
 Nos permiten ejecutar las mismas líneas de código una y otra vez de forma consecutiva.
 
 1. **WHILE**: Muy útil cuando no sabemos exactamente la cantidad de veces que necesitamos ejecutar el código.
 
-```js
-while(CONDICION){
+   ```js
+   while(CONDICION){
 	.....
-}
-```
+   }
+   ```
 
 2. **FOR**: Muy útil cuando sabemos exactamente la cantidad de veces que necesitamos ejecutar el código.
 
-```js
-for(let variable = valorInicial; condición; incrementar variable){
+   ```js
+   for(let variable = valorInicial; condición; incrementar variable){
 	.....
-}
+   }
 
-for( let variable=1; variable <= 10; variable++){
+   for( let variable=1; variable <= 10; variable++){
 	..... (SE EJECUTA 10 VECES)
-}
-```
+   }
+   ```
 
 
 ## Ejercicio práctico - ciclo while
@@ -280,10 +284,10 @@ for( let variable=1; variable <= 10; variable++){
 let gasolina = 100;
 
 while (gasolina > 0){
-  console.log('Gasolina restante: ' + gasolina);
+   console.log('Gasolina restante: ' + gasolina);
 
-  //gasolina = gasolina - 1;
-  gasolina--;
+   //gasolina = gasolina - 1;
+   gasolina--;
 }
 
 console.log('Tanque vacío!!!');
@@ -299,10 +303,9 @@ let base= 9;
 let limite = 5;
 
 for (let i = 1; i <= limite; i++){
-  let resultado = 2 *i;
-  console.log(base + ' X ' + i + " = " + base * i);
+   let resultado = 2 *i;
+   console.log(base + ' X ' + i + " = " + base * i);
 }
-
 ```
 
 ## Código fuente de la sección
