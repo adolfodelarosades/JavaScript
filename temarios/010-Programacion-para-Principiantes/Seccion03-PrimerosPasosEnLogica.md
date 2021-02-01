@@ -1,10 +1,10 @@
 # 03 Primeros pasos en lógica y corriendo nuestro primer programa
 
-## Introducción a la sección
+## Introducción a la Sección
 
 :+1:
 
-## Lógica para resolver problemas
+## Lógica para Resolver Problemas
 
 **Algoritmo**: Es un proceso ordenado y secuencial para resolver un problema.
 
@@ -16,7 +16,7 @@ a = a + 10; //El valor de a es 20
 console.log( a );
 ```
 
-## Instalaciones necesarias para seguir el curso
+## Instalaciones Necesarias para Seguir el Curso
 
 Instalar Google Chrome
 
@@ -34,7 +34,7 @@ Comprobar versión:
 
 `npm install -g typescript`
 
-## Ejecutando nuestro primer programa
+## Ejecutando Nuestro Primer Programa
 
 Abrir **Google Chrome** y presionar **F12** para abrir las **Herramientas del Desarrollador**.
 
@@ -66,6 +66,8 @@ Usando VSC, vamos a crear la carpeta **Seccion03** y dentro el archivo **app.js*
 
 Ya tenemos nuestro archivo JS, para ejecutarlo existen varias formas, en este caso lo ejecutaremos en la consola.
 
+### Ejecutando Archivo JS con NODE.
+
 Usando la consola de VSC, Git Bash o la consola de Windows y estando dentro de la carpeta **Seccion03** ejecutamos el comando:
 
 ```sh
@@ -76,8 +78,10 @@ Hola Mundo!
 Obsérvese que no es necesario poner la extensión **.js**
 
 Nos aparece en la consola el mensaje que codificamos. Si tuviéramos un error se mostrara en la consola para que lo solucionemos.
+
+![03-02](images/03-02.png)
  
-## Ejecutar nuestro hola mundo en una página web
+## Ejecutar Nuestro Hola Mundo en una Página Web
 
 En nuestra carpeta **Seccion03** vamos a crear el archivo **index.html** con el siguiente código:
 
@@ -107,6 +111,8 @@ Si también quisiera ver el mensaje en la consola del navegador tengo que hacer 
    </body>
 </html>
 ```
+
+![03-03](images/03-03.png)
 
 ## Problema: Convertir de grados Fahrenheit a Celsius
 
@@ -149,3 +155,5 @@ celcius = (fahrenheit - 32 ) * ( 5 / 9);
 
 console.log(fahrenheit + " grados fahrenheit equivalen a " + celcius + " grados celcius.");
 ```
+
+![03-04](images/03-04.png)
