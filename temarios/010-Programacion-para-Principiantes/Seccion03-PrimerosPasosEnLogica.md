@@ -52,9 +52,11 @@ console.log(a);
 undefined
 ```
 
-NOTA: Cuando yo no inicializo el valor de una variable JS le asigna **undefined** (Aquí en la consola no sé por qué sale undefined)
+**NOTA**: Cuando yo no inicializo el valor de una variable JS le asigna **undefined** (Aquí en la consola no sé por qué sale undefined)
 
 La consola nos permite introducir código JS mientras vamos viendo lo que nos responde.
+
+![03-01](images/03-01.png)
 
 ## Hola Mundo en JavaScript
 
@@ -92,7 +94,7 @@ En nuestra carpeta **Seccion03** vamos a crear el archivo **index.html** con el 
 
 Y abrimos el archivo **index.html** con **Google Chrome**, vemos nuestro mensaje en el navegador.
 
-Si también quisiera ver el mensaje en la consola del navegador tengo que hacer que se ejecute el js desde mi html y esto lo hago así:
+Si también quisiera ver el mensaje en la consola del navegador tengo que hacer que se ejecute el JS desde mi HTML y esto lo hago así:
 
 ```html
 <html>
