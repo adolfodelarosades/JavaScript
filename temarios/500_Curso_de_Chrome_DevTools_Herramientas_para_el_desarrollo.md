@@ -13,7 +13,7 @@ Con este curso aprenderás a utilizar las herramientas que Chrome ofrece para an
 
 ## Contenidos
 
-### 01. Introducción 32m
+### [01. Introducción](500_Curso_de_Chrome_DevTools_Herramientas_para_el_desarrollo/01_Introduccion.md) 32m
 
 * 01.- Presentación 2:21 
 * 02.- ¿Cómo mostrar las Chrome Developer Tools? 5:31 
