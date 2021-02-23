@@ -1,4 +1,6 @@
-# 500 Curso de Chrome DevTools: Herramientas para el Desarrollo  :clock1: 2:53:30
+# 500 Curso de Chrome DevTools: Herramientas para el Desarrollo  
+
+### :clock1: 2:53:30
 
 Con este curso aprenderás a utilizar las herramientas que Chrome ofrece para analizar y modificar una página web y sus estilos, además de aprender a usar su potente consola JavaScript para depurar los scripts de la misma.
 
