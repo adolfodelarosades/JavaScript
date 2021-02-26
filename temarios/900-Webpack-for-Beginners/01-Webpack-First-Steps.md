@@ -63,6 +63,7 @@ Tenga en cuenta que, ya sea que esté en Linux, Mac o Windows, el comando es bá
 El comando anterior nos instalará webpack con su propia CLI (interfaz de línea de comandos). Una vez que finalice el comando de instalación, abra el archivo `package.json` y debería ver algo similar a lo que se muestra en la Figura 1-1.
 
 ![01-01](images/01-01.png)
+
 ***Figura 1-1*** El archivo json del paquete después de instalar webpack y webpack-cli
 
 Observe que webpack y webpack-cli se agregaron con la versión de cada uno en `devDependencies`. También observe que se creó una nueva carpeta llamada `node_modules`, así como otro archivo llamado `package-lock.json`.
@@ -72,6 +73,7 @@ Entonces, por un lado, además de las propiedades básicas generadas (que hemos 
 Ahora que tenemos nuestro paquete web instalado, intentemos abrir la carpeta `node_modules` y ubicar nuestro paquete webpack. La Figura 1-2 muestra la ubicación exacta, que se encuentra en `"node_modules/.bin"`.
 
 ![01-02](images/01-02.png)
+
 ***Figura 1-2*** El archivo `"node_modules/.bin/webpack"` responsable de ejecutar el comando webpack
 
 El archivo `"webpack"` de arriba (en `"node_modules/.bin"`) es de donde viene el "comando Webpack", así que cada vez que necesitemos compilar nuestro JavaScript, llamaremos a este archivo desde nuestra terminal. Sin embargo, hay una mejor manera de hacer esto (que veremos en la siguiente sección) creando un comando de alias que llamará a ese archivo por nosotros en lugar de especificar la ruta. Con eso en mente, es hora de escribir un código básico y comenzar a explorar el poder de webpack.
@@ -93,6 +95,7 @@ Lo que esto significa es que webpack espera que cree un archivo de entrada llama
 Asumiré que siempre está dentro de la carpeta que creamos en primer lugar (la que llamamos "webpack_beginners"). Así que ahora creemos una carpeta llamada `src` y también un archivo `index.js` dentro de ella. En la Figura 1-3, puede ver una captura de pantalla de cómo se ve mi árbol de carpetas.
 
 ![01-03](images/01-03.png)
+
 ***Figura 1-3*** Nuestro árbol de carpetas `"webpack"` después de agregar una carpeta `"src"` y un archivo `index.js`
 
 En `index.js`, escriba un primer alert de saludo:
@@ -112,6 +115,7 @@ Lo que hicimos aquí fue decirle a webpack que agrupe nuestro JS. Si se pregunta
 Después de decirle a webpack que agrupe nuestro JavaScript, `node_modules/.bin/webpack` y comenzará desde allí, después de ejecutar el comando webpack en su terminal. Obtendrá una salida similar a la que se muestra en la Figura 1-4.
 
 ![01-04](images/01-04.png)
+
 ***Figura 1-4*** Salida del terminal de ejecutar el comando `“node_modules/.bin/webpack”`
 
 Como puede ver en la salida, webpack especifica lo que se creó para nosotros como resultado (un archivo llamado `main.js`); También observe una advertencia en la parte inferior que dice lo siguiente:
@@ -131,11 +135,13 @@ node_modules/.bin/webpack --mode=production
 Una vez finalizada la compilación, echemos un vistazo a nuestro editor de texto (o IDE, según lo que utilice) y veamos lo que tenemos en la Figura 1-5.
 
 ![01-05](images/01-05.png)
+
 ***Figura 1-5*** `main.js`: el archivo generado por webpack en la carpeta `dist`
 
 Webpack creó un archivo `dist/main.js` para nosotros y también comprimió nuestro código, ¡pero espere un minuto! ¿No ve que nuestro `alert ('Hello Webpack World !')` Se transformó en un código extraño? Quiero decir que se le agregan más cosas. Envuelva el código en nuestro editor de texto y observemos con zoom, como se muestra en la Figura 1-6.
 
 ![01-06](images/01-06.png)
+
 ***Figura 1-6*** Nuestro `“Hello webpack world”` envuelto en su propio módulo
 
 Si se dio cuenta, nuestra alert está en la parte inferior, pero puede ver que hay un montón de código que la precede, por lo que no tiene que preocuparse ni comprender porque es específico de webpack y cómo hace que los módulos requieran funcional.
@@ -161,6 +167,7 @@ Continúe y cree un archivo `index.html` en la raíz de nuestra carpeta webpack_
 Guarde el archivo y ábralo en su navegador. Sí, el código está funcionando y aparece su primer `“Hello Webpack World”`. Vea la Figura 1-7.
 
 ![01-07](images/01-07.png)
+
 ***Figura 1-7*** Su primer alert `“Hello world”`
 
 Si bien este es un ejemplo muy básico de nuestro primer archivo JavaScript bundled(funcional) incluido en el webpack, ¡es hora de felicitarse! Lo hiciste y deberías estar orgulloso de haber dado tu primer paso en el mundo de los webpack. Pero antes de pasar a cosas más serias, hablemos un poco sobre el comando de empaquetado y cómo podemos usarlo de una manera más amigable para decirle a webpack que compile nuestro JavaScript.
@@ -177,9 +184,48 @@ Como ya mencioné, antes de pasar al siguiente capítulo, quiero hablar sobre el
 }
 ```
 
+Quite la línea:
 
+```js
+"test": "echo \"Error: no test specified\" && exit 1"
+```
 
+Y reemplázalo con este:
 
+```js
+"build": "webpack --mode=production"
+```
 
+Entonces se verá así:
 
+```js
+"scripts": {
+  "build": "webpack --mode=production"
+}
+```
 
+En la línea "script" que agregamos anteriormente a nuestro `package.json`, no es necesario especificar la ruta exacta al archivo webpack como lo hicimos en nuestra terminal porque sabrá dónde encontrarlo. Ahora en lugar de llamar:
+
+```sh
+$ node_modules/.bin/webpack
+```
+
+Usaremos nuestro comando personalizado:
+
+```sh
+$ npm run build
+```
+
+Esto buscará un comando webpack en la carpeta `node_modules` y lo llamará por nosotros. Tenga en cuenta que puede nombrar su secuencia de comandos como desee. No necesariamente tiene que ser `"build"`. Puede, por ejemplo, nombrarlo `"dev"` y luego llamarlo desde su terminal de la siguiente manera:
+
+```sh
+$ npm run dev
+```
+
+Entonces, como sea que lo nombre, debe llamarlo con su nombre, pero encontrará que la mayoría de la gente generalmente usa `"build"` o `"dev"` en el mundo webpack.
+
+<hr>
+
+## Resumen
+
+En este capítulo, presentamos los comandos necesarios para instalar webpack en nuestra máquina. Hemos visto el archivo `package.json` y lo que básicamente hace. Luego creamos nuestro primer archivo JavaScript y lo empaquetamos con webpack. Además, exploramos el archivo de entrada y cómo se debe nombrar para que la configuración cero de webpack funcione correctamente. Además, hemos aprendido a ejecutar el comando webpack desde nuestra terminal.
