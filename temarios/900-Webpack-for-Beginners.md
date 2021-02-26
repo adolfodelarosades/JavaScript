@@ -31,9 +31,9 @@ Este libro está diseñado para principiantes y recién llegados a Webpack, y se
 
 ### Table of Contents
 
-Cover
+* Cover
 
-Front Matter
+* Front Matter
 
 1. Webpack: First Steps
 
@@ -51,4 +51,4 @@ Front Matter
 
 8. Conclusion
 
-Back Matter
+* Back Matter
