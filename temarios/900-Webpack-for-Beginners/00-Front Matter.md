@@ -50,7 +50,81 @@ Bueno, con webpack, todos estos problemas se resuelven de inmediato, sin necesid
 Eso no es todo. Webpack también puede administrar su HTML, CSS, IMÁGENES y otros archivos como fuentes (a través de loaders y plugins). Creo que la mejor manera de pensarlo es como un administrador de sus activos. Si alguna vez visitó el sitio web oficial del paquete web https://webpack.js.org/, probablemente haya visto la siguiente imagen.
 
 ![00-01](images/00-01.png)
+
+Esta ilustración muestra cómo cada uno de sus archivos (en el lado izquierdo) puede tener una o más dependencias (sus archivos pueden ser de diferentes tipos como png, sass, js, jpg, cjs, etc.) y cómo webpack puede encargarse de ellos y convertir todo este caos en uno o más archivos organizados para servir sus activos.
+
+Webpack puede hacer mucho más de lo que he descrito hasta ahora, y veremos las muchas cosas que puede hacer con esta poderosa herramienta a través de ejemplos concretos en los siguientes capítulos.
+
+Webpack es un tema vasto, y siempre se le agregan cosas nuevas y mejoras. Mi objetivo no es cubrir todo al respecto, sino ayudarlo a comprender cómo funciona para que pueda usarlo en su trabajo diario (probablemente con su propio web framework) sin tener problemas para comprender por qué se hacen las cosas de cierta manera, o por qué usamos este loader, alias, etc. En resumen, esto te ayudará a dejar de decir: "¡No sé cómo funciona, pero funciona!"
+
 ![00-02](images/00-02.png)
 
+Otra cosa que debe saber (como se mencionó anteriormente) es que la mayoría de los frameworks web han adoptado webpack recientemente para construir y compilar JavaScript; y si está utilizando un framework como Symfony o Rails, etc., puede encontrar que el webpack ya está configurado y listo para usar de inmediato. Esto por sí solo es una gran ventaja si tuviera que configurarlo usted mismo, pero para poder usarlo, creo que necesita aprender un poco sobre la configuración y cómo funcionan los loaders y plugins. Una vez que aprenda eso, podrá ver una imagen muy clara de cómo se usarán las cosas al tratar con su JS dentro de su framework X o Y. Entonces, ya sea que esté usando un webpack con un framework o no, confíe en mí y aprendamos los fundamentos que lo convertirán en un solucionador de problemas cuando se trata de usar el webpack.
 
+### Table of Contents
 
+#### Chapter 1: Webpack: First Steps
+* Installing Webpack
+* Webpack 4 Zero Config
+* The Bundling Command
+* Summary
+
+#### Chapter 2: Write Modular Code
+* Separate in Multiple Files
+   * Calling a Function from an External File
+* Webpack Custom Configuration
+   * Creating Our Configuration File
+   * Altering the Default Output
+* Development Mode
+* Summary
+
+#### Chapter 3: Loaders and Plugins
+* Loaders vs. Plugins
+* Using Babel-Loader
+* Debugging Our JavaScript
+   * Source Map
+* Handling CSS and SASS Files
+   * Importing CSS in JavaScript
+   * Loading CSS with CSS-Loader
+   * Injecting CSS to Our HTML
+   * Compiling SASS to CSS
+   * Prefixing CSS with Vendor Prefixes
+   * Extract CSS to Its Own Separate File
+   * Minifying the Extracted CSS
+* Handling Images
+   * Loading Image Files
+   * Compressing Images
+* Summary
+
+#### Chapter 4: Cache
+* Output Files Naming
+* Adding Hash Content
+* Cleaning the Build Directory
+* Manifest Plugin
+* Alternative to Manifest
+* Summary
+
+#### Chapter 5: Resolving Folders
+* Organizing Our Files
+* Aliases
+* Resolving Modules
+* Summary
+
+#### Chapter 6: Webpack DevServer
+* Installing and Configuring Webpack Dev Server
+* Understanding publicPath option
+* Hot Module Replacement
+* Summary
+
+#### Chapter 7: Installing Third-Party Libraries
+* Welcome Isolation, Goodbye Global Variables
+* Using Bootstrap with Webpack
+* Webpack ProvidePlugin
+* Installing jQuery-UI
+* Installing QuillJS
+* Installing CKEDITOR
+* Lazy Loading
+* Summary
+
+#### Chapter 8: Conclusion
+* Index
