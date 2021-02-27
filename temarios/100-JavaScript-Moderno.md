@@ -158,7 +158,7 @@ Aprender JavaScript hoy en día es una necesidad de cualquier desarrollador Fron
 * 79 Protip: Multiples constructores 08:29
 * 80 Código fuente de la sección 00:18
 
-### 08 Módulos y Webpack • 16 clases • :clock1: 1h 56m
+### [08 Módulos y Webpack](100-JavaScript-Moderno/08-Modulos-y-Webpack.md) • 16 clases • :clock1: 1h 56m
 * 81 Introducción a la sección 03:30
 * 82 Temas puntuales de la sección 00:15
 * 83 Introducción a Node, Npm y Webpack 07:48
@@ -184,7 +184,7 @@ Aprender JavaScript hoy en día es una necesidad de cualquier desarrollador Fron
 * 101 Desplegar el proyecto a Github 08:53
 * 102 Github Pages 07:10
 
-### 10 Laboratorio 2: Aplicación de la Lista de Tareas • 17 clases • :clock1: 1h 51m
+### [10 Laboratorio 2: Aplicación de la Lista de Tareas](100-JavaScript-Moderno/10-Laboratorio-2.md) • 17 clases • :clock1: 1h 51m
 * 103 Introducción a la sección 01:35
 * 104 Temas puntuales de la sección 00:13
 * 105 TODO: Demostración del programa que haremos al final de la sección 01:27
