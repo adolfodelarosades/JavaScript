@@ -106,7 +106,32 @@ La configuración en Webpack es uno de los apartados más importantes y es con l
 
 ![03-13](images/03-13.png)
 
-Webpack es ***Configuration Driver*** o sea, es Conducido por la Configuración, vamos a ver en algunos ejemplos en los que es posible ejecutar Webpack sin necesidad de utilizar la configuración, pero no es recomendable realmente esto solo se utiliza este juguete simplemente se utiliza para arreglar un poco realmente para para sacar del poder a guapa necesitamos utilizar la configuración. Aquí es donde vamos a definir cómo se transforma el set el tipo de auto que se va a generar configurarlo. Aquí, bueno, vemos un ejemplo de un archivo de configuración y bueno, empezamos a ver cosas interesantes que hemos estado hablando tenemos otro sea que hoy no sea que definidos tenemos los Output Aquí, estamos cargando unos flooders esta síntesis ya lave iremos viendo y ya no sonará a medida que hagamos todos los tiempos y, bueno, aquí cargamos pagamos plus. Finalmente, bueno, vamos a hablar de de hotmail así las horas RR. Los conceptos de wordpad al simplemente complementa lo implementa y nos permite sacar las ventajas Del. Básicamente es una de las características más útiles porque nos permite actualizar nuestros módulos en tiempo de ejecución sin necesidad de tener que efectuar un refresco total de la página que esto es muy útil porque conservamos este nos ayuda a conservar todo el estado sin necesidad de tener que actualizarlo entero. Que los encuentros ventajas pues lo que ya conviven este es el estado de la nación nos ahorra tiempo, ya que los actualizalo cambiado lo tenemos que volver a actualizar y a generar toda la aplicación de nuevo las modificaciones en Jss tienen efecto inmediato encargado estuviésemos programas todo el mando. Web del Server implementa bueno, no implementó soporta realmente NRN Hot modelos como ya veremos cómo activar este este modo y aprendemos a configurarlo este curso. En resumen En resumen web para que su nervioso de módulos y además puede ser usado como tratamiento de tareas no como hace las veces que hace las veces que hace las veces que. También pasa todo pasa a través de todo el código para crearse debajo de su estado hablando estado hablando. 15. Es conducido por configuración por fichero de configuración se compone de entries del low desde plugins. Las cosas que nos están dando y su porta. Mediante. 
+Webpack es ***Configuration Driver*** o sea, es Conducido por la Configuración, vamos a ver en algunos ejemplos en los que es posible ejecutar Webpack sin necesidad de utilizar la configuración, pero ***no es recomendable realmente***, esto solo se utiliza como juguete, simplemente se utiliza para trastear un poco, realmente para sacarle el poder a Webpack necesitamos utilizar la configuración. Aquí es donde vamos a definir cómo se transforman los ***assets**, el tipo de ***output*** que se va a generar, y nos permite configurar los ***plugings. 
+
+![03-14](images/03-14.png)
+
+Aquí vemos un ejemplo de un archivo de configuración, empezamos a ver cosas interesantes que hemos estado hablando, tenemos los ***Entry Points*** definidos, tenemos los ***Output***, estamos cargando unos ***Loaders***, esta síntesis ya la iremos viendo y ya nos sonará a medida que hagamos todos los ejemplos y bueno también cargamos ***Plugins***. 
+
+![03-15](images/03-15.png)
+
+Finalmente vamos a hablar de **Hot Module Replacement(HMR)**, no es un concepto de Webpack, simplemente que Webpack lo implementa y nos permite sacar las ventajas de el.
+
+![03-16](images/03-16.png)
+
+Básicamente es una de las características más útiles porque nos permite actualizar nuestros módulos en tiempo de ejecución sin necesidad de tener que efectuar un refresco total de la página, esto es muy útil porque nos ayuda a conservar todo el estado de la aplicación sin necesidad de tener que actualizarlo entero. 
+
+![03-17](images/03-17.png)
+
+Las ventajas que nos aporta nos mantiene el estado de la aplicación, nos ahorra tiempo, ya que solo se actualiza lo cambiado, no tenemos que volver a actualizar y a generar toda la aplicación de nuevo, las modificaciones en JS y CSS tienen efecto inmediato en el navegador, es como si estuviésemos programas en la consola de desarrolladores.
+
+![03-18](images/03-18.png)
+
+**Webpack DevServer** soporta HMR en Hot Mode ya veremos cómo activar este modo y aprendemos a configurarlo en este curso. 
+
+![03-19](images/03-19.png)
+
+En resumen Webpack es un empaquetador de módulos y además puede ser usado como ejecutor de tareas como un ***Task Runner***, hace las veces de otras librerias como Grunt o Gulp.  También pasa a través de todo el código para crearse el grafo de dependencias. Soporta los módulos de dependencias de AMD, CommonJS y ES2015. Es Configuration Driver por fichero de configuración, se compone de Entry points, Output, Loaders y Plugins. Soporta HMR mediante DevServer.
+
 ## 04 Instalación de Webpack :clock3: 10:24 
 ## 05 Primeros pasos: Generar un bundle :clock3: 9:33 
 ## 06 Nuestro primer `webpack.config` :clock3: 8:28 
