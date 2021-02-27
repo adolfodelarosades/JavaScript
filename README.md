@@ -9,7 +9,7 @@ Serie de varios cursos JavaScript.
 # OpenWebinars
 
 * [500 Curso de Chrome DevTools: Herramientas para el desarrollo](temarios/500_Curso_de_Chrome_DevTools_Herramientas_para_el_desarrollo.md)
-* [510 Webpack básico]()
+* [510 Webpack Básico]()
 
 # Books
 * [900 Webpack for Beginners](temarios/900-Webpack-for-Beginners.md)
