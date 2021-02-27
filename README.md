@@ -5,6 +5,7 @@ Serie de varios cursos JavaScript.
 
 * [010 Programación para Principiantes - Primeros Pasos](temarios/010-Programacion-para-Principiantes.md)
 * [020 JavaScript De Cero Hasta los Detalles](temarios/020-JavaScript-De-Cero-Hasta-los-Detalles.md)
+* [100 JavaScript Moderno: Guía para dominar el lenguaje](temarios/100-JavaScript-Moderno.md)
 
 # OpenWebinars
 
