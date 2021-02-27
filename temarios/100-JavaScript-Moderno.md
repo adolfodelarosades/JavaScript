@@ -147,101 +147,101 @@ Aprender JavaScript hoy en día es una necesidad de cualquier desarrollador Fron
 ### 07 Clases en JavaScript y ESNext private properties • 12 clases • :clock1: 1h 25m
 * 69 Introducción a la sección 03:55
 * 70 Temas puntuales de la sección 00:12
-Problemática y necesidad de clases 13:02
-Clases básicas en JavaScript 09:45
-Métodos en las clases 04:32
-Sets y Gets 09:54
-Propiedades, gets y métodos estáticos 10:01
-Extends - Clases con SubClases 09:04
-Propiedades privadas 06:20
-Singleton en JavaScript 09:28
-Protip: Multiples constructores 08:29
-Código fuente de la sección 00:18
+* 71 Problemática y necesidad de clases 13:02
+* 72 Clases básicas en JavaScript 09:45
+* 73 Métodos en las clases 04:32
+* 74 Sets y Gets 09:54
+* 75 Propiedades, gets y métodos estáticos 10:01
+* 76 Extends - Clases con SubClases 09:04
+* 77 Propiedades privadas 06:20
+* 78 Singleton en JavaScript 09:28
+* 79 Protip: Multiples constructores 08:29
+* 80 Código fuente de la sección 00:18
 
 ### 08 Módulos y Webpack • 16 clases • :clock1: 1h 56m
-Introducción a la sección 03:30
-Temas puntuales de la sección 00:15
-Introducción a Node, Npm y Webpack 07:48
-Creando un proyecto de Node 06:46
-Exposición del problema y necesidad del Webpack 08:33
-Instalación y configuración de Webpack por defecto 12:25
-Archivo de configuración del Webpack 12:34
-Webpack Dev Server 07:51
-Importando estilos de forma dinámica 09:13
-Creando un archivo de estilos de forma global en la aplicación 10:43
-Nota de actualización 00:17
-Manejo de imágenes 10:13
-Webpack - Production Mode 08:51
-Instalación y configuración de Babel 11:58
-Limpiando la carpeta Dist 04:30
-Código fuente de la sección 00:08
+* 81 Introducción a la sección 03:30
+* 82 Temas puntuales de la sección 00:15
+* 83 Introducción a Node, Npm y Webpack 07:48
+* 84 Creando un proyecto de Node 06:46
+* 85 Exposición del problema y necesidad del Webpack 08:33
+* 86 Instalación y configuración de Webpack por defecto 12:25
+* 87 Archivo de configuración del Webpack 12:34
+* 88 Webpack Dev Server 07:51
+* 89 Importando estilos de forma dinámica 09:13
+* 90 Creando un archivo de estilos de forma global en la aplicación 10:43
+* 91 Nota de actualización 00:17
+* 92 Manejo de imágenes 10:13
+* 93 Webpack - Production Mode 08:51
+* 94 Instalación y configuración de Babel 11:58
+* 95 Limpiando la carpeta Dist 04:30
+* 96 Código fuente de la sección 00:08
 
 ### 09 Despliegue a Github y Github Pages • 6 clases • :clock1: 33m
-Introducción a la sección 02:10
-Temas puntuales de la sección 00:13
-¿Por qué debo de saber Git? 06:03
-Configuración de Git en nuestro equipo 08:46
-Desplegar el proyecto a Github 08:53
-Github Pages 07:10
+* 97 Introducción a la sección 02:10
+* 98 Temas puntuales de la sección 00:13
+* 99 ¿Por qué debo de saber Git? 06:03
+* 100 Configuración de Git en nuestro equipo 08:46
+* 101 Desplegar el proyecto a Github 08:53
+* 102 Github Pages 07:10
 
 ### 10 Laboratorio 2: Aplicación de la Lista de Tareas • 17 clases • :clock1: 1h 51m
-Introducción a la sección 01:35
-Temas puntuales de la sección 00:13
-TODO: Demostración del programa que haremos al final de la sección 01:27
-Inicio de proyecto - Todo 05:14
-Todo Class 04:40
-TodoList Class 08:08
-Construir las tareas en el HTML 10:02
-Evento para agregar un Todo 06:48
-Marcar como completado un Todo 10:24
-Eliminar un Todo 04:52
-Eliminar Todos completados 08:49
-LocalStorage y SessionStorage 06:42
-Guardando y recuperando Todos 15:03
-Reconstruyendo instancias de Todos 10:13
-Aplicar filtros 09:52
-Todos en la GitHub Pages 06:43
-Código fuente de la sección 00:05
+* 103 Introducción a la sección 01:35
+* 104 Temas puntuales de la sección 00:13
+* 105 TODO: Demostración del programa que haremos al final de la sección 01:27
+* 106 Inicio de proyecto - Todo 05:14
+* 107 Todo Class 04:40
+* 108 TodoList Class 08:08
+* 109 Construir las tareas en el HTML 10:02
+* 110 Evento para agregar un Todo 06:48
+* 111 Marcar como completado un Todo 10:24
+* 112 Eliminar un Todo 04:52
+* 113 Eliminar Todos completados 08:49
+* 114 LocalStorage y SessionStorage 06:42
+* 115 Guardando y recuperando Todos 15:03
+* 116 Reconstruyendo instancias de Todos 10:13
+* 117 Aplicar filtros 09:52
+* 118 Todos en la GitHub Pages 06:43
+* 119 Código fuente de la sección 00:05
 
 ### 11 Callbacks y Promesas • 16 clases • :clock1: 1h 35m
-Introducción a la sección 01:27
-Temas puntuales de la sección 00:18
-Inicio de proyecto - Callbacks y Promesas 02:23
-Callbacks 08:41
-Argumentos estándar de los callbacks 05:09
-Callback Hell 05:11
-Promesas 10:17
-Promise.all 07:25
-Promise.catch 04:59
-Promise.race 06:33
-Async 07:18
-Await 09:51
-Pro tip: Mejorar el uso del await 07:15
-Manejo de errores en el await 08:31
-for await, if await 09:24
-Código fuente de la sección 00:11
+* 120 Introducción a la sección 01:27
+* 121 Temas puntuales de la sección 00:18
+* 122 Inicio de proyecto - Callbacks y Promesas 02:23
+* 123 Callbacks 08:41
+* 124 Argumentos estándar de los callbacks 05:09
+* 125 Callback Hell 05:11
+* 126 Promesas 10:17
+* 127 Promise.all 07:25
+* 128 Promise.catch 04:59
+* 129 Promise.race 06:33
+* 130 Async 07:18
+* 131 Await 09:51
+* 132 Pro tip: Mejorar el uso del await 07:15
+* 133 Manejo de errores en el await 08:31
+* 134 for await, if await 09:24
+* 135 Código fuente de la sección 00:11
 
 ### 12 Peticiones HTTP y Subida de Archivos • 17 clases • :clock1: 1h 38m
-Introducción a la sección 01:38
-Temas puntuales de la sección 00:11
-Inicio de proyecto - Http 04:41
-Petición HTTP - Fetch - Get 07:13
-Pro tip: Promesas en cadena 02:39
-Centralizar las peticiones HTTP 09:04
-Página para mostrar y trabajar los chistes 13:23
-Obtener lista de usuarios 04:21
-Tarea - Crear una tabla con los usuarios 09:03
-CRUD - Leer usuarios 05:14
-CRUD - Crear un nuevo usuario 05:25
-CRUD - Actualizar un usuario 03:23
-CRUD - Borrar un usuario 03:51
-Preparando el backend para subir imágenes 10:15
-Crear el HTML para subida de archivos 08:45
-Subir imagen a Cloudinary 08:47
-Código fuente de la sección 00:12
+* 136 Introducción a la sección 01:38
+* 137 Temas puntuales de la sección 00:11
+* 138 Inicio de proyecto - Http 04:41
+* 139 Petición HTTP - Fetch - Get 07:13
+* 140 Pro tip: Promesas en cadena 02:39
+* 141 Centralizar las peticiones HTTP 09:04
+* 142 Página para mostrar y trabajar los chistes 13:23
+* 143 Obtener lista de usuarios 04:21
+* 144 Tarea - Crear una tabla con los usuarios 09:03
+* 145 CRUD - Leer usuarios 05:14
+* 146 CRUD - Crear un nuevo usuario 05:25
+* 147 CRUD - Actualizar un usuario 03:23
+* 148 CRUD - Borrar un usuario 03:51
+* 149 Preparando el backend para subir imágenes 10:15
+* 150 Crear el HTML para subida de archivos 08:45
+* 151 Subir imagen a Cloudinary 08:47
+* 152 Código fuente de la sección 00:12
 
 ### 13 Despedida del curso • 1 clases • :clock1: 2m
-Despedida del curso 02:23
+* 153 Despedida del curso 02:23
 
 
 
