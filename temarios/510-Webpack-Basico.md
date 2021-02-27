@@ -4,7 +4,7 @@
 
 Con este curso de Webpack básico aprenderás qué es Webpack y cómo utilizarlo en tus proyectos, de tal forma que podamos configurar el empaquetado, el servidor de desarrollo, las tareas de automatización y mucho más desde un único lugar.
 
-#### Con este curso aprenderás
+#### Con este curso aprenderás
 
 * Aprenderás los conceptos básicos de webpack.
 * Podrás usar webpack en un proyecto nuevo o en uno ya existente.
@@ -17,7 +17,7 @@ Con este curso de Webpack básico aprenderás qué es Webpack y cómo utilizarlo
 
 ## Tabla de Contenido
 
-### 01 Introducción 8m
+### [01 Introducción](510-Webpack-Basico/01-Introduccion.md) 8m
 * 01 Presentación 6:36 
 * 02 Entorno de desarrollo 2:09 
 
