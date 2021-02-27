@@ -176,7 +176,7 @@ Aprender JavaScript hoy en día es una necesidad de cualquier desarrollador Fron
 * 95 Limpiando la carpeta Dist 04:30
 * 96 Código fuente de la sección 00:08
 
-### 09 Despliegue a Github y Github Pages • 6 clases • :clock1: 33m
+### [09 Despliegue a Github y Github Pages](100-JavaScript-Moderno/09-Despliegue-a-Github-y-Github-Pages.md) • 6 clases • :clock1: 33m
 * 97 Introducción a la sección 02:10
 * 98 Temas puntuales de la sección 00:13
 * 99 ¿Por qué debo de saber Git? 06:03
