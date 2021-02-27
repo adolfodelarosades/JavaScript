@@ -1,6 +1,6 @@
 # 510 Webpack Básico
 
-:clock:  2:51:26
+:clock1: 2:51:26
 
 Con este curso de Webpack básico aprenderás qué es Webpack y cómo utilizarlo en tus proyectos, de tal forma que podamos configurar el empaquetado, el servidor de desarrollo, las tareas de automatización y mucho más desde un único lugar.
 
