@@ -17,11 +17,11 @@ Con este curso de Webpack básico aprenderás qué es Webpack y cómo utilizarlo
 
 ## Tabla de Contenido
 
-### [01 Introducción](510-Webpack-Basico/01-Introduccion.md) 8m
+### [01 Introducción](510-Webpack-Basico/01-Introduccion.md) 8m :-1:
 * 01 Presentación 6:36 
 * 02 Entorno de desarrollo 2:09 
 
-### 02 Conceptos básicos 64m
+### [02 Conceptos básicos](510-Webpack-Basico/02-Conceptos-Basicos.md) 64m
 
 * 03 Introducción a Webpack 9:19 
 * 04 Instalación de Webpack 10:24 
