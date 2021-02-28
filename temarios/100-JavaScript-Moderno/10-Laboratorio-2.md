@@ -120,19 +120,26 @@ Entonces este directorio lo vamos a colocar dentro de la carpeta JavaScript y de
 
 Tomen la carpeta déjenla dentro de Visual Studio o su editor de texto favorito en el editor favorito de ustedes y tendremos que reconstruir los módulos de noted.
 
-Para eso voy a escribir MPM instó Enter.
+Para eso voy a escribir:
+
+```sh
+npm install
+```
 
 Esto tiene que hacer el procedimiento.
 
-Esperamos un segundo debería tardar mucho y bueno claro eso depende de la velocidad suya de Internet pero no lo dejamos que haga el enemistó.
+Esperamos un segundo debería tardar mucho y bueno claro eso depende de la velocidad suya de Internet pero no lo dejamos que haga el mismo, no se preocupen de estar a punto de terminar.
 
-No se preocupen de estar a punto de terminar.
+Perfecto termina y ahora podemos ejecutar:
 
-Perfecto termina y ahora podemos ejecutar el MPM Stadt presionar Enter para que lance y bueno ya ahora mi aplicación para que me permita a mí desarrollar de una manera rápida.
+```sh
+npm start
+```
 
-Ok siempre dejemos las herramientas de desarrollo al lado y esto es como yo necesito que esté la aplicación por lo menos para el inicio.
+para que lance y bueno ya ahora mi aplicación para que me permita a mí desarrollar de una manera rápida, siempre dejemos las herramientas de desarrollo al lado y esto es como yo necesito que esté la aplicación por lo menos para el inicio.
 
-Voy a cerrar esto con la X no con el basurero porque esto termina el procedimiento con la X y hagamos el Source y aquí tengo índex que tiene esta información y acá no esto me va a servir entonces les voy a pedir ahora que tomemos el archivo índex lo vamos a poner aquí dentro de Visual Studio Code COPINH sé todo lo que esté aquí con controlado Cumana lo copian con control C y reemplazan todo el código que tiene el índex actual por este índex junto a HTML y graban los cambios.
+
+Voy a cerrar la terminal con la X, no con el basurero porque esto termina el procedimiento, con la X y hagamos el Source y aquí tengo índex que tiene esta información y acá no esto me va a servir entonces les voy a pedir ahora que tomemos el archivo índex lo vamos a poner aquí dentro de Visual Studio Code COPINH sé todo lo que esté aquí con controlado Cumana lo copian con control C y reemplazan todo el código que tiene el índex actual por este índex junto a HTML y graban los cambios.
 
 Si ustedes regresan a la aplicación van a ver que ahora tenemos esto que se mira aún peor pero por menos ya tenemos aquí el HTML excelente.
 
