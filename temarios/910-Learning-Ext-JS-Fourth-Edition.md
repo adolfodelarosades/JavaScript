@@ -52,6 +52,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
          * Errata
          * Piracy
          * Questions
+         
 1. An Introduction to Ext JS 5
    * Considering Ext JS for your next project
    * Getting started with Ext JS
@@ -70,6 +71,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
       * Sencha Architect
    * What's new in Ext JS 5?
    * Summary
+   
 2. The Core Concepts
    * The class system
       * Naming conventions
@@ -91,6 +93,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
       * Query – how do we find them?
       * DOM manipulation – how do we change it?
    * Summary
+   
 3. Components and Layouts
    * The component life cycle
       * The initialization phase
@@ -112,7 +115,8 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * More layouts
    * Comments about using layouts
    * Summary
-* 4. It's All about the Data
+
+4. It's All about the Data
    * Ajax
       * Passing parameters to Ajax request
       * Setting timeout to Ajax request calls
@@ -138,6 +142,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
          * XML reader
    * Sending data
    * Summary
+
 5. Buttons and Toolbars
    * Event-driven development
    * Creating a simple button
@@ -152,6 +157,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
       * Handling selections in the breadcrumb bar
    * The main menu for our application
    * Summary
+
 6. Doing It with Forms
    * The form component
       * The anatomy of the fields
@@ -167,6 +173,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * Triggers
    * Submitting the data
    * Summary
+
 7. Give Me the Grid
    * The data connection (models and stores)
    * A basic grid
@@ -193,6 +200,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * Grid paging
    * Infinite scrolling
    * Summary
+
 8. DataViews and Templates
    * The data connection (model and store)
    * A basic DataView
@@ -202,6 +210,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
       * Ext.XTemplate
    * A more complex DataView component
    * Summary
+
 9. The Tree Panel
    * A basic tree panel
    * The TreeStore
@@ -210,6 +219,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * The check tree
    * The tree grid panel
    * Summary
+
 10. Architecture
    * The MVC and MVVM patterns
       * Model-View-Controller (MVC)
@@ -225,6 +235,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
       * Binding and data binding
    * Router – implementing and using
    * Summary
+
 11. The Look and Feel
    * Setting up our environment
    * The packages folder
@@ -237,6 +248,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * Different styles for the same component
    * Supporting legacy browsers
    * Summary
+
 12. Responsive Configurations and Tablet Support
    * Overview
       * New themes
@@ -246,6 +258,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
       * Investigating the output
       * Checking all panels
    * Summary
+
 13. From Drawing to Charting
    * Basic drawing
    * Adding interaction
@@ -261,6 +274,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * Introducing chart themes
    * Enhancing our application with charts
    * Summary
+
 14. Finishing the Application
    * Preparing for deployment
       * The app.json file
@@ -270,6 +284,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
       * Packaging and deploying
    * Testing the application
    * Summary
+
 15. What's Next?
    * Forums
    * Resources
@@ -278,4 +293,5 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * The future
    * Final thoughts
    * Summary
+
 * Index
