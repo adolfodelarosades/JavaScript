@@ -220,7 +220,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * The tree grid panel
    * Summary
 
-10. Architecture
+* 10. Architecture
    * The MVC and MVVM patterns
       * Model-View-Controller (MVC)
       * Model-View-ViewModel (MVVM)
@@ -236,7 +236,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * Router – implementing and using
    * Summary
 
-11. The Look and Feel
+* 11. The Look and Feel
    * Setting up our environment
    * The packages folder
    * Variables
@@ -249,7 +249,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * Supporting legacy browsers
    * Summary
 
-12. Responsive Configurations and Tablet Support
+* 12. Responsive Configurations and Tablet Support
    * Overview
       * New themes
       * Neptune touch and Crisp touch
@@ -259,7 +259,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
       * Checking all panels
    * Summary
 
-13. From Drawing to Charting
+* 13. From Drawing to Charting
    * Basic drawing
    * Adding interaction
    * Charts
@@ -275,7 +275,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * Enhancing our application with charts
    * Summary
 
-14. Finishing the Application
+* 14. Finishing the Application
    * Preparing for deployment
       * The app.json file
    * The Sencha command
@@ -285,7 +285,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * Testing the application
    * Summary
 
-15. What's Next?
+* 15. What's Next?
    * Forums
    * Resources
    * Third-party plugins (commercial)
