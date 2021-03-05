@@ -419,4 +419,139 @@ Ext.onReady(function(){
 ![01-23](images/01-23.png)
 ![01-24](images/01-24.png)
 
+## Herramientas y editores
 
+Antes de continuar, es importante que usemos algunas herramientas para ser más productivos al crear nuestro código y nuestras aplicaciones. Hay muchos editores en el mercado que podemos usar para escribir código. Repasemos algunos de ellos que serán útiles en este libro.
+
+### XAMPP o WAMP
+
+XAMPP es una distribución de código abierto de Apache que contiene MySQL, PHP y Perl, y es fácil de instalar y usar. XAMPP puede proporcionarnos un entorno de desarrollo web local que es fácil de manejar sin la necesidad de realizar pruebas en un servidor o alojamiento público.
+
+XAMPP está disponible para las versiones de Windows (32 bits), Linux y OS X y puede descargar XAMPP en https://www.apachefriends.org/index.html.
+
+WAMP es otro paquete gratuito que contiene Apache, MySQL y PHP, especialmente diseñado para el sistema operativo Windows. Puede obtenerlo en http://www.wampserver.com/en/. WAMP viene en versiones de 32 y 64 bits según su sistema operativo Windows.
+
+Para probar el código o revisar algunos ejemplos de Ext JS, necesitaremos un servidor web (Apache) o IIS para obtener la funcionalidad adecuada y las respuestas AJAX que los ejemplos y el código requieren.
+
+### Aptana
+
+El editor de **Aptana** es un IDE de Appcelerator. Está basado en Eclipse pero optimizado para aplicaciones web. Es un proyecto de código abierto y gratuito.
+
+Entre otros IDE, Aptana contiene una funcionalidad de autocompletar para JavaScript y Ext JS, un validador de JavaScript, un validador de CSS y HTML, un depurador de JavaScript, paquetes y más:
+
+![01-25](images/01-25.png)
+
+Aptana es una gran herramienta cuando se trabaja con Python, Ruby o PHP como backend de nuestros proyectos. Contiene herramientas para trabajar con esos lenguajes listos para usar y también contiene herramientas para implementar su aplicación en la nube usando Heroku o Engine Yard.
+
+### Sencha Architect
+
+La aplicación de escritorio Sencha Architect es una herramienta que le ayudará a diseñar y desarrollar una aplicación más rápido que codificarla a mano. La idea es arrastrar y soltar los componentes en un lienzo y luego agregar la funcionalidad. La aplicación de escritorio Sencha Architect es un producto de Sencha Inc. que tiene como objetivo ayudar a los desarrolladores a definir componentes con unos pocos clics. Podemos crear un proyecto Ext JS o Sencha Touch. Podemos obtener una prueba gratuita desde el sitio web oficial de Sencha. También podemos comprar la licencia allí.
+
+> **NOTA**
+> La versión actual de Sencha Architect es 3.1.0. Esto funciona para las versiones 4.xy 5.x de Ext JS. Las versiones anteriores del arquitecto Sencha, como 2.x, no funcionarán para Ext JS 5.
+> La versión más reciente la encontramos en https://www.sencha.com/blog/sencha-architect-4-2-4-is-now-generally-available/
+
+Una de las ventajas que tiene Architect es que puede arrastrar y soltar componentes en la zona de trabajo y esta herramienta creará (generará) el código básico de los componentes y/o las piezas con las que está trabajando.
+
+![01-26](images/01-26.png)
+
+Además, puede cambiar a la vista de código y ver los resultados hasta ahora (algunas partes de las clases/componentes de Ext JS se pueden editar, pero no todas). Puede ver la vista de código en la siguiente captura de pantalla:
+
+![01-27](images/01-27.png)
+
+La intención de este libro no es enseñarle sobre Sencha Architect, es para que usted comprenda y aprenda Ext JS y cree aplicaciones sin la necesidad de usar Sencha Architect. Más adelante, si siente que necesita usar Sencha Architect o quiere probar, puede ser más fácil una vez que conozca los conceptos básicos y esenciales que se tratan en este libro.
+
+## ¿Qué hay de nuevo en Ext JS 5?
+
+Ext JS 5 introduce una gran cantidad de características nuevas, y la mayoría de ellas se tratarán en los próximos capítulos cuando las veamos más de cerca, pero por el momento mencionaremos brevemente algunas de las adiciones importantes en la versión 5:
+
+* **Compatibilidad con tabletas y nuevos temas**: Esto ha introducido la capacidad de crear aplicaciones compatibles con dispositivos de pantalla táctil (computadoras portátiles, PC y tabletas con pantalla táctil). Se introduce el tema Crisp y se basa en el tema Neptune. Además, hay nuevos temas para la compatibilidad con tabletas, que son Neptune touch y Crisp touch.
+
+* **Nueva arquitectura de aplicación - MVVM**: Agregando una nueva alternativa a MVC Sencha llamada MVVM (que significa Model-View-ViewModel), esta nueva arquitectura tiene enlace de datos y enlace de datos bidireccional, lo que nos permite disminuir gran parte del código adicional que algunos de nosotros lo estábamos haciendo en versiones anteriores. Esta nueva arquitectura presenta:
+
+* Data binding
+* View controllers
+* View models
+
+* **Routing**: el Routing proporciona un enlace profundo de la funcionalidad de la aplicación y nos permite realizar ciertas acciones o métodos en nuestra aplicación mediante la traducción de la URL. Esto nos da la capacidad de controlar el estado de la aplicación, lo que significa que podemos ir a una parte específica o un enlace directo a nuestra aplicación. Además, puede manejar múltiples acciones en la URL.
+
+* **Responsive configurations**: Ahora tenemos la capacidad de establecer la propiedad `responsiveConfig` (nueva propiedad) a algunos componentes, que será un objeto de configuración que representa las condiciones y criterios sobre los cuales se aplicarán las configuraciones establecidas, si la regla cumple con estas configuraciones. Como ejemplo:
+
+```js
+responsiveConfig: {
+   'width > 800': { region: 'west' },
+   'width <= 800':{ region: 'north' }
+}
+```
+
+* **Data package improvements**: Se produjeron algunos cambios buenos en la versión 5 relacionados con el manejo de datos y la manipulación de datos. Estos cambios permitieron a los desarrolladores un viaje más fácil en sus proyectos, y algunas de las cosas nuevas son:
+
+   * Common Data (la clase Ext JS Data, `Ext.Data`, ahora es parte del paquete principal)
+   * Many-to-many associations
+   * Chained stores
+   * Custom field types
+
+* **Event system**: Se cambió la lógica del evento y ahora es un solo oyente adjunto en la parte superior de la jerarquía DOM. Entonces, esto significa que cuando un elemento DOM activa un evento, sube a la cima de la jerarquía antes de ser manejado. Entonces, Ext JS intercepta esto y verifica los listeners relevantes que agregó al component o store. Esto reduce la cantidad de interacciones en el DOM y también nos da la capacidad de habilitar gestos.
+
+* **Sencha Charts**: los Charts pueden funcionar tanto en Ext JS como en Sencha Touch, y tienen un rendimiento mejorado en dispositivos de tableta. Los gráficos Legacy Ext JS 4 se convirtieron en un paquete separado para minimizar la conversión/actualización. En la versión 5, los charts tienen nuevas características como:
+
+   * Candlestick and OHLC series
+   * Pan, zoom, and crosshair interactions
+   * Floating axes
+   * Multiple axes
+   * SVG and HTML Canvas support
+   * Better performance
+   * Greater customization
+   * Chart themes
+
+* **Tab Panels**: los Tab Panels tienen más opciones para controlar configuraciones como la alineación de iconos y la rotación de texto. Gracias a los nuevos mixins flexibles de Sass, podemos controlar fácilmente las opciones de presentación.
+
+* **Grids**: este componente, que ha estado presente desde la versión 2.x, es uno de los componentes más populares, y podemos llamarlo uno de los pilares de este marco. En la versión 5, tiene algunas características nuevas increíbles:
+   
+   * Components in Cells
+   * Buffered updates
+   * Cell updaters
+   * Grid filters (El popular "UX" (user extension) se ha reescrito e integrado en el framework. También los filtros se pueden guardar en el estado del componente).
+   * Rendering optimizations
+   
+* **Widgets**: Este es un componente ligero, que es un término medio entre `Ext.Component` y el Cell renderer.
+
+* **Breadcrumb bars**: Este nuevo componente muestra los datos de un store (un almacén de datos específico para el componente tree) en un toolbar form. Este nuevo control puede ahorrar espacio en pantallas pequeñas o tabletas.
+
+* **Form package improvements**: Ext JS 5 introduce algunos controles nuevos y cambios significativos en otros:
+
+   * **Tagfield**: Este es un nuevo control para seleccionar múltiples valores.
+   * **Segmented buttons**: Son botones con presentación, como múltiples selecciones en interfaces móviles.
+   * **Goodbye to TriggerField**: En la versión 5, TriggerField está en desuso y ahora la forma de crear desencadenadores es utilizando el campo de texto e implementando los desencadenadores en la configuración de TextField. (TriggerField en la versión 4 es un campo de texto con un botón o botones configurados en el lado derecho).
+   
+   ![01-28](images/01-28.png)
+   
+   * **Field and Form layouts**: Los diseños se refactorizaron utilizando HTML y CSS, por lo que hay una mejora ya que el rendimiento ahora es mejor.
+
+* **New SASS Mixins** (http://sass-lang.com/): Varios componentes que no podían tener un tema personalizado ahora tienen la capacidad de ser estilizados de múltiples formas en un solo tema o aplicación. Estos componentes son:
+
+   * `Ext.menu.Menu`
+   * `Ext.form.Labelable`
+   * `Ext.form.FieldSet`
+   * `Ext.form.CheckboxGroup`
+   * `Ext.form.field.Text`
+   * `Ext.form.field.Spinner`
+   * `Ext.form.field.Display`
+   * `Ext.form.field.Checkbox`
+
+* **The Sencha Core package**: El paquete core contiene código compartido entre Ext JS y Sencha Touch y, en el futuro, este core será parte de la próxima versión importante de Sencha Touch. El núcleo incluye:
+
+   * Class system
+   * Data
+   * Events
+   * Element
+   * Utilities
+   * Feature/environment detection
+
+## Resumen
+
+En este capítulo, aprendió a configurar e instalar Ext JS 5 y Sencha Cmd también. También aprendió sobre el contenido de las carpetas incluidas en Ext JS 5 SDK, y las diferencias entre carpetas en la versión 4 y la versión 5. Mencionamos algunas herramientas útiles que serán esenciales para este libro; sin embargo, es posible que a muchos desarrolladores no les gusten o no se sientan cómodos con estas herramientas, así que no dude en utilizar sus herramientas y editores favoritos.
+
+A lo largo de este libro, aprenderá sobre el uso de Ext JS 5 y cubriremos las partes, características y componentes más importantes, y muchas más clases y herramientas. Al final de este libro, completaremos una pequeña aplicación del mundo real para que pueda tener una idea de cómo implementar Ex JS para sus próximos y futuros proyectos.
+
+En el próximo capítulo, nos centraremos en los conceptos centrales de Ext JS 5 y la manipulación DOM.
