@@ -469,9 +469,9 @@ Ext JS 5 introduce una gran cantidad de características nuevas, y la mayoría d
 
 * **Nueva arquitectura de aplicación - MVVM**: Agregando una nueva alternativa a MVC Sencha llamada MVVM (que significa Model-View-ViewModel), esta nueva arquitectura tiene enlace de datos y enlace de datos bidireccional, lo que nos permite disminuir gran parte del código adicional que algunos de nosotros lo estábamos haciendo en versiones anteriores. Esta nueva arquitectura presenta:
 
-* Data binding
-* View controllers
-* View models
+   * Data binding
+   * View controllers
+   * View models
 
 * **Routing**: el Routing proporciona un enlace profundo de la funcionalidad de la aplicación y nos permite realizar ciertas acciones o métodos en nuestra aplicación mediante la traducción de la URL. Esto nos da la capacidad de controlar el estado de la aplicación, lo que significa que podemos ir a una parte específica o un enlace directo a nuestra aplicación. Además, puede manejar múltiples acciones en la URL.
 
