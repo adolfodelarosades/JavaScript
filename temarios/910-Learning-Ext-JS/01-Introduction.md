@@ -188,7 +188,7 @@ Antes de comenzar a escribir código, primero debe aprender y comprender algunos
 
 En la capa **Ext Foundation** se crea el objeto **`Ext`**, así como algunas utilidades útiles y el sistema de clases que nos permite extender clases, anular métodos y propiedades, agregar mixins y configuraciones a clases, y muchas cosas más.
 
-> **NOTA**
+> **NOTA**<br>
 > Para comprender más sobre los mixins, consulte http://docs.sencha.com/extjs/5.1/5.1.1-apidocs/#!/api/Ext.Mixin
 
 La capa **Ext Core** contiene las clases que administran el **Document Object Model (DOM)**, la configuración y activación de eventos, el soporte para solicitudes(requests) Ajax y las clases para buscar DOM usando selectores CSS. También ahora, parte de **`Ext.Core`** es el paquete de datos (clases relacionadas con datos como campos, tienda, etc.). A partir de la versión 5.1, Ext JS Core tendrá un código compartido común con Sencha Touch (la próxima versión principal).
@@ -228,7 +228,7 @@ Abra el archivo `myfirstapp.html` en su editor favorito y escriba el siguiente c
 </html>
 ```
 
-> **TIP**
+> **TIP**<br>
 > Puede descargar el código de ejemplos en http://www.packtpub.com.
 
 ### Escribir el código Ext JS 
@@ -315,7 +315,7 @@ Si abre el archivo HTML en su navegador favorito, verá algo como la siguiente c
 
 ![01-13](images/01-13.png)
 
-> **TIP**
+> **TIP**<br>
 > No dude en utilizar su navegador favorito para trabajar con los ejemplos de este libro. Te recomiendo que uses Google Chrome porque tiene herramientas de desarrollo más avanzadas y es un navegador rápido. Si eres fanático de Firefox, puedes descargar el complemento de Firebug; es una herramienta poderosa que podemos usar para depurar en Firefox.
 
 Si por alguna razón no podemos ver el mensaje de alerta en nuestro navegador, es porque no hemos definido la ruta correcta al archivo **`ext-all.js`**. Si observa la consola de JavaScript, probablemente veremos el siguiente error:
@@ -349,9 +349,7 @@ Ext.onReady(function(){
 
 ![01-18](images/01-18.png)
 
-![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `#1589F0`
-
-> **TIP**
+> **TIP**<br>
 > Si no recibe ningún error en la consola de JavaScript pero aún no puede ver el mensaje en la pantalla, como se ve en la captura de pantalla anterior, asegúrese de haber insertado la hoja de estilo correctamente.
 
 En este caso, estamos usando el método **`alert`** del objeto **`Ext.Msg`**. El primer parámetro es el título del mensaje y el segundo parámetro es el contenido del mensaje. Eso fue fácil, ¿verdad? Ahora creemos un cuadro de diálogo de confirmación:
@@ -447,7 +445,7 @@ Aptana es una gran herramienta cuando se trabaja con Python, Ruby o PHP como bac
 
 La aplicación de escritorio Sencha Architect es una herramienta que le ayudará a diseñar y desarrollar una aplicación más rápido que codificarla a mano. La idea es arrastrar y soltar los componentes en un lienzo y luego agregar la funcionalidad. La aplicación de escritorio Sencha Architect es un producto de Sencha Inc. que tiene como objetivo ayudar a los desarrolladores a definir componentes con unos pocos clics. Podemos crear un proyecto Ext JS o Sencha Touch. Podemos obtener una prueba gratuita desde el sitio web oficial de Sencha. También podemos comprar la licencia allí.
 
-> **NOTA**
+> **NOTA**<br>
 > La versión actual de Sencha Architect es 3.1.0. Esto funciona para las versiones 4.xy 5.x de Ext JS. Las versiones anteriores del arquitecto Sencha, como 2.x, no funcionarán para Ext JS 5.
 > La versión más reciente la encontramos en https://www.sencha.com/blog/sencha-architect-4-2-4-is-now-generally-available/
 
@@ -477,12 +475,12 @@ Ext JS 5 introduce una gran cantidad de características nuevas, y la mayoría d
 
 * **Responsive configurations**: Ahora tenemos la capacidad de establecer la propiedad `responsiveConfig` (nueva propiedad) a algunos componentes, que será un objeto de configuración que representa las condiciones y criterios sobre los cuales se aplicarán las configuraciones establecidas, si la regla cumple con estas configuraciones. Como ejemplo:
 
-```js
-responsiveConfig: {
-   'width > 800': { region: 'west' },
-   'width <= 800':{ region: 'north' }
-}
-```
+   ```js
+   responsiveConfig: {
+      'width > 800': { region: 'west' },
+      'width <= 800':{ region: 'north' }
+   }
+   ```
 
 * **Data package improvements**: Se produjeron algunos cambios buenos en la versión 5 relacionados con el manejo de datos y la manipulación de datos. Estos cambios permitieron a los desarrolladores un viaje más fácil en sus proyectos, y algunas de las cosas nuevas son:
 
