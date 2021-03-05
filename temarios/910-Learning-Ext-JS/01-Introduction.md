@@ -99,7 +99,7 @@ Ejecute la configuración de Sencha Cmd, siga las instrucciones y, después de i
 sencha
 ```
 
-> TIP
+> TIP<br/>
 >En entornos Windows, se recomienda que reinicie el sistema después de la instalación para que se apliquen las variables de entorno adecuadas.
 
 Después de escribir el comando `Sencha`, deberíamos ver el siguiente resultado:
