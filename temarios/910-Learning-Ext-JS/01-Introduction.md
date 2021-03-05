@@ -33,6 +33,36 @@ En este capítulo, cubriremos los conceptos básicos del framework de la versió
 * Herramientas y editores
 * ¿Qué hay de nuevo en Ext JS 5?
 
+<hr>
+
+## Instalación de la Última Versión Disponible 
+### (No la del Libro)
+
+Entre al URL [Try Sencha Ext JS](https://www.sencha.com/products/extjs/evaluate/).
+
+Existen dos formas de instalar la aplicación:
+
+Descargando el ZIP o con NPM
+
+![01-05](images/01-05.png)
+![01-06](images/01-06.png)
+
+Al seguir los pasos con NPM nos genera la aplicación que se carga en el URL http://localhost:1962/:
+
+![01-07](images/01-07.png)
+![01-08](images/01-08.png)
+![01-09](images/01-09.png)
+![01-10](images/01-10.png)
+![01-11](images/01-11.png)
+
+Si queremos documentación más detallado lo podemos hacer en la siguiente URL:
+
+https://docs.sencha.com/extjs/7.2.0/guides/getting_started/getting_started_with_npm.html
+
+![01-12](images/01-12.png)
+
+<hr>
+
 ## Considerando Ext JS para su próximo proyecto
 
 Ext JS es una gran biblioteca para crear RIAs que requieren mucha interactividad con el usuario. Si necesita componentes complejos para administrar su información, entonces Ext es su mejor opción porque contiene muchos widgets como grid, forms, trees, panels y un gran paquete de datos y sistema de clases.
