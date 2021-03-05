@@ -73,9 +73,9 @@ Si descarga Ext JS directamente desde http://www.sencha.com/products/download/, 
 
 Theme   | Links
 --------|------
-Classic | * Archivo CSS: http://cdn.sencha.com/ext/trial/5.1.1/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css <br/> * Archivo JavaScript: http://cdn.sencha.com/ext/trial/5.1.1/build/ext-all.js
-Neptune | * Archivo CSS: http://cdn.sencha.com/ext/trial/5.1.1/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css <br/> * Archivo JavaScript: http://cdn.sencha.com/ext/trial/5.1.1/build/ext-all.js <br/> * Theme JS Overrides: http://cdn.sencha.com/ext/trial/5.1.1/packages/ext-theme-neptune/build/ext-theme-neptune.js
-Crisp   | * Archivo CSS: http://cdn.sencha.com/ext/trial/5.1.1/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css * Archivo JavaScript: http://cdn.sencha.com/ext/trial/5.1.1/build/ext-all.js * Theme JS Overrides: http://cdn.sencha.com/ext/trial/5.1.1/packages/ext-theme-crisp/build/ext-theme-crisp.js
+Classic | &#8226; Archivo CSS: http://cdn.sencha.com/ext/trial/5.1.1/packages/ext-theme-classic/build/resources/ext-theme-classic-all.css <br/> &#8226; Archivo JavaScript: http://cdn.sencha.com/ext/trial/5.1.1/build/ext-all.js
+Neptune | &#8226; Archivo CSS: http://cdn.sencha.com/ext/trial/5.1.1/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css <br/> &#8226; Archivo JavaScript: http://cdn.sencha.com/ext/trial/5.1.1/build/ext-all.js <br/> &#8226; Theme JS Overrides: http://cdn.sencha.com/ext/trial/5.1.1/packages/ext-theme-neptune/build/ext-theme-neptune.js
+Crisp   | &#8226; Archivo CSS: http://cdn.sencha.com/ext/trial/5.1.1/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css <br/> &#8226; Archivo JavaScript: http://cdn.sencha.com/ext/trial/5.1.1/build/ext-all.js <br/> &#8226; Theme JS Overrides: http://cdn.sencha.com/ext/trial/5.1.1/packages/ext-theme-crisp/build/ext-theme-crisp.js
 
 ### Configuración e instalación de Ext JS 5
 
