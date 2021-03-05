@@ -229,12 +229,130 @@ Abra el archivo `myfirstapp.html` en su editor favorito y escriba el siguiente c
 ```
 
 > **TIP**
-> Descargando el código de ejemplo http://www.packtpub.com.
- 
+> Puede descargar el código de ejemplos en http://www.packtpub.com.
 
+### Escribir el código Ext JS 
+
+El código anterior muestra cómo importar la biblioteca para un entorno de desarrollo. Primero, importamos la stylesheet que se encuentra en `ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css`. El segundo paso es importar toda la library de `ext-5.1.1/build/ext-all.js`. El tercer paso es importar un archivo JavaScript que contiene anulaciones para que el tema pueda funcionar correctamente (ajustes específicos en este tema). 
+
+Ahora estamos listos para escribir nuestro código en el archivo `app.js`.
+
+Antes de que podamos comenzar a crear widgets, debe esperar hasta que el DOM esté listo para ser utilizado y Ext JS se cargue y analice. Ext JS proporciona una función llamada `Ext.onReady`, que ejecuta un callback automáticamente cuando se puede acceder a todos los nodos del árbol. Escribamos el siguiente código en nuestro archivo `app.js`:
+
+
+```js
+Ext.onReady(function(){
+   alert("This is my first Extjs app !");
+});
+```
+
+#### :computer: Mi versión
+
+`myfirstapp.html`
 
 ```html
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title>Mi primera aplicación</title>
+    
+    <link rel="stylesheet" type="text/css" href="../ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+    <script src="../ext-5.1.1/build/ext-all.js"></script>
+    <script src="../ext-5.1.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+    <!--
+    <link rel="stylesheet" type="text/css" href="../ext-5.0.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css"> 
+    <script src="../ext-5.0.1/build/ext-all.js"></script>
+    <script src="../ext-5.0.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+    -->
+    <script type ="text/javascript" src="app.js"></script>
+</head>
+<body> </body>
+</html>
 ```
+
+```js
+Ext.onReady(function(){
+	alert("¡Esta es mi primera aplicación Extjs!");
+});
+```
+
+![01-14](images/01-14.png)
+
+Una alternativa a este código también puede ser:
+
+```js
+Ext.application({
+    name : 'MyFirstApplication',
+    launch : function() {
+        Ext.Msg.alert("Hello"," my first Ext JS app");
+    }
+});
+```
+
+#### :computer: Mi versión
+
+```js
+Ext.application({
+    name : 'MyFirstApplication',
+    launch : function() {
+        Ext.Msg.alert("Hello"," my first Ext JS app");
+    }
+});
+```
+
+![01-15](images/01-15.png)
+
+Una de las ventajas de usar Ext JS es que la library solo usa un único objeto en el scope global llamado `Ext` para asignar todas las clases y objetos dentro del framework.
+
+Si abre el archivo HTML en su navegador favorito, verá algo como la siguiente captura de pantalla:
+
+![01-13](images/01-13.png)
+
+> TIP<br>
+> No dude en utilizar su navegador favorito para trabajar con los ejemplos de este libro. Te recomiendo que uses Google Chrome porque tiene herramientas de desarrollo más avanzadas y es un navegador rápido. Si eres fanático de Firefox, puedes descargar el complemento de Firebug; es una herramienta poderosa que podemos usar para depurar en Firefox.
+
+Si por alguna razón no podemos ver el mensaje de alerta en nuestro navegador, es porque no hemos definido la ruta correcta al archivo `ext-all.js`. Si observa la consola de JavaScript, probablemente veremos el siguiente error:
+
+![01-16](images/01-16.png)
+
+Esto significa que el archivo `ext-all.js` no se importa correctamente. Necesitamos asegurarnos de que todo esté correcto con la ruta y actualizar el navegador nuevamente.
+
+### Añadiendo interacción al programa
+
+Ahora que sabemos cómo ejecutar código cuando el DOM está listo, enviemos un mensaje de alerta desde la library Ext. Usando el objeto `Ext.MessageBox` alias `Ext.Msg`, podemos crear diferentes tipos de mensajes como alert, confirmation, prompt, progress bar, o incluso un mensaje personalizado:
+
+```js
+Ext.onReady(function(){
+   //alert("This is my first Extjs app !");
+   Ext.Msg.alert("Alert","This is my first Ext js app !");
+});
+```
+
+La salida de las líneas de código anteriores se muestra en la siguiente captura de pantalla:
+
+![01-17](images/01-17.png)
+
+#### :computer: Mi versión
+
+```js
+Ext.onReady(function(){
+	Ext.Msg.alert("Alert","¡Esta es mi primera aplicación Ext js!");
+});
+```
+
+![01-18](images/01-18.png)
+
+![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `#1589F0`
+
+> **TIP**
+> Si no recibe ningún error en la consola de JavaScript pero aún no puede ver el mensaje en la pantalla, como se ve en la captura de pantalla anterior, asegúrese de haber insertado la hoja de estilo correctamente.
+
+En este caso, estamos usando el método **`alert`** del objeto **`Ext.Msg`**. El primer parámetro es el título del mensaje y el segundo parámetro es el contenido del mensaje. Eso fue fácil, ¿verdad? Ahora creemos un cuadro de diálogo de confirmación:
+
+
+
 
 ```html
 ```
