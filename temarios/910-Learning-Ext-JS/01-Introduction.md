@@ -148,3 +148,63 @@ Los desarrolladores que usan versiones anteriores de Ext JS pueden encontrar con
 
 ![01-02](images/01-02.png)
 
+Ahora que tiene un conocimiento básico de los archivos y carpetas descargados, podemos avanzar al siguiente paso de "comenzar".
+
+### Mirando la imagen completa
+
+Antes de comenzar a escribir código, primero debe aprender y comprender algunos conceptos. Ext JS se divide en tres capas, como se muestra en la siguiente captura de pantalla. El propósito de estas capas es compartir código con Sencha Touch, un marco para crear aplicaciones web móviles.
+
+![01-03](images/01-03.png)
+
+En la capa **Ext Foundation** se crea el objeto `Ext`, así como algunas utilidades útiles y el sistema de clases que nos permite extender clases, anular métodos y propiedades, agregar mixins y configuraciones a clases, y muchas cosas más.
+
+> **NOTA**<br>
+> Para comprender más sobre los mixins, consulte http://docs.sencha.com/extjs/5.1/5.1.1-apidocs/#!/api/Ext.Mixin
+
+La capa **Ext Core** contiene las clases que administran el **Document Object Model (DOM)**, la configuración y activación de eventos, el soporte para solicitudes(requests) Ajax y las clases para buscar DOM usando selectores CSS. También ahora, parte de `Ext.Core` es el paquete de datos (clases relacionadas con datos como campos, tienda, etc.). A partir de la versión 5.1, Ext JS Core tendrá un código compartido común con Sencha Touch (la próxima versión principal).
+
+Finalmente, la capa **Ext JS 5** contiene todos los componentes, widgets y muchas más características sobre las que aprenderá en este libro.
+
+## Nuestro primer programa
+
+Necesitamos configurar nuestro workspace para escribir todos los ejemplos de este libro. Creemos una carpeta llamada `learning-ext-5`. Por ahora, no necesitamos un servidor web para alojar nuestros ejemplos, pero en los siguientes capítulos usaremos Ajax; por lo tanto, es una buena idea usar su servidor web favorito para alojar nuestro código de estos primeros ejemplos.
+
+En nuestra nueva carpeta, crearemos carpetas que contienen los ejemplos de cada capítulo de este libro. En este punto, tenemos una carpeta llamada `chapter_01` que corresponde a este capítulo y otra llamada `extjs-5.1.1` que contiene el framework Ext JS. Ambas carpetas están ubicadas en el mismo nivel.
+
+Dentro de la carpeta `chapter_01`, vamos a crear un archivo llamado `myfirstapp.html`, donde necesitamos importar la library `Ext` y crear un archivo JavaScript llamado `app.js` que contendrá nuestro código JavaScript:
+
+![01-04](images/01-04.png)
+
+Abra el archivo `myfirstapp.html` en su editor favorito y escriba el siguiente código:
+
+```html
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <title>My first application</title>
+    <!-- Importing the stylesheet (theme neptune) --> 
+    <link rel="stylesheet" type="text/css" href="../ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+    <!-- Importing the Extjs library --> 
+    <script src="../ext-5.1.1/build/ext-all.js"></script>
+    <!-- Importing overrides Js code special for theme neptune -->
+    <script src="../ext-5.1.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+
+    <!-- Importing our application -->
+    <script type ="text/javascript" src="app.js"></script>
+</head>
+<body> </body>
+</html>
+```
+
+> **TIP**
+> Descargando el código de ejemplo http://www.packtpub.com.
+ 
+
+
+```html
+```
+
+```html
+```
