@@ -35,7 +35,7 @@ En este capítulo, cubriremos los conceptos básicos del framework de la versió
 
 <hr>
 
-## Instalación de la Última Versión Disponible 
+## Instalación de la Última Versión Disponible 7.3.0
 ### (No la del Libro)
 
 Entre al URL [Try Sencha Ext JS](https://www.sencha.com/products/extjs/evaluate/).
@@ -186,22 +186,22 @@ Antes de comenzar a escribir código, primero debe aprender y comprender algunos
 
 ![01-03](images/01-03.png)
 
-En la capa **Ext Foundation** se crea el objeto `Ext`, así como algunas utilidades útiles y el sistema de clases que nos permite extender clases, anular métodos y propiedades, agregar mixins y configuraciones a clases, y muchas cosas más.
+En la capa **Ext Foundation** se crea el objeto **`Ext`**, así como algunas utilidades útiles y el sistema de clases que nos permite extender clases, anular métodos y propiedades, agregar mixins y configuraciones a clases, y muchas cosas más.
 
-> **NOTA**<br>
+> **NOTA**
 > Para comprender más sobre los mixins, consulte http://docs.sencha.com/extjs/5.1/5.1.1-apidocs/#!/api/Ext.Mixin
 
-La capa **Ext Core** contiene las clases que administran el **Document Object Model (DOM)**, la configuración y activación de eventos, el soporte para solicitudes(requests) Ajax y las clases para buscar DOM usando selectores CSS. También ahora, parte de `Ext.Core` es el paquete de datos (clases relacionadas con datos como campos, tienda, etc.). A partir de la versión 5.1, Ext JS Core tendrá un código compartido común con Sencha Touch (la próxima versión principal).
+La capa **Ext Core** contiene las clases que administran el **Document Object Model (DOM)**, la configuración y activación de eventos, el soporte para solicitudes(requests) Ajax y las clases para buscar DOM usando selectores CSS. También ahora, parte de **`Ext.Core`** es el paquete de datos (clases relacionadas con datos como campos, tienda, etc.). A partir de la versión 5.1, Ext JS Core tendrá un código compartido común con Sencha Touch (la próxima versión principal).
 
 Finalmente, la capa **Ext JS 5** contiene todos los componentes, widgets y muchas más características sobre las que aprenderá en este libro.
 
 ## Nuestro primer programa
 
-Necesitamos configurar nuestro workspace para escribir todos los ejemplos de este libro. Creemos una carpeta llamada `learning-ext-5`. Por ahora, no necesitamos un servidor web para alojar nuestros ejemplos, pero en los siguientes capítulos usaremos Ajax; por lo tanto, es una buena idea usar su servidor web favorito para alojar nuestro código de estos primeros ejemplos.
+Necesitamos configurar nuestro workspace para escribir todos los ejemplos de este libro. Creemos una carpeta llamada **`910-Learning-Ext-JS`**. Por ahora, no necesitamos un servidor web para alojar nuestros ejemplos, pero en los siguientes capítulos usaremos Ajax; por lo tanto, es una buena idea usar su servidor web favorito para alojar nuestro código de estos primeros ejemplos.
 
-En nuestra nueva carpeta, crearemos carpetas que contienen los ejemplos de cada capítulo de este libro. En este punto, tenemos una carpeta llamada `chapter_01` que corresponde a este capítulo y otra llamada `extjs-5.1.1` que contiene el framework Ext JS. Ambas carpetas están ubicadas en el mismo nivel.
+En nuestra nueva carpeta, crearemos carpetas que contienen los ejemplos de cada capítulo de este libro. En este punto, tenemos una carpeta llamada **`chapter_01`** o para mi versión uso **`capitulo_01`** que corresponde a este capítulo y otra llamada **`extjs-5.1.1`** que contiene el framework Ext JS. Ambas carpetas están ubicadas en el mismo nivel.
 
-Dentro de la carpeta `chapter_01`, vamos a crear un archivo llamado `myfirstapp.html`, donde necesitamos importar la library `Ext` y crear un archivo JavaScript llamado `app.js` que contendrá nuestro código JavaScript:
+Dentro de la carpeta **`chapter_01`**, vamos a crear un archivo llamado **`myfirstapp.html`**, donde necesitamos importar la library **`Ext`** y crear un archivo JavaScript llamado **`app.js`** que contendrá nuestro código JavaScript:
 
 ![01-04](images/01-04.png)
 
@@ -211,18 +211,18 @@ Abra el archivo `myfirstapp.html` en su editor favorito y escriba el siguiente c
 <!doctype html>
 <html>
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta charset="utf-8">
-  <title>My first application</title>
-    <!-- Importing the stylesheet (theme neptune) --> 
-    <link rel="stylesheet" type="text/css" href="../ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
-    <!-- Importing the Extjs library --> 
-    <script src="../ext-5.1.1/build/ext-all.js"></script>
-    <!-- Importing overrides Js code special for theme neptune -->
-    <script src="../ext-5.1.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>My first application</title>
+   <!-- Importing the stylesheet (theme neptune) --> 
+   <link rel="stylesheet" type="text/css" href="../ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+   <!-- Importing the Extjs library --> 
+   <script src="../ext-5.1.1/build/ext-all.js"></script>
+   <!-- Importing overrides Js code special for theme neptune -->
+   <script src="../ext-5.1.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
 
-    <!-- Importing our application -->
-    <script type ="text/javascript" src="app.js"></script>
+   <!-- Importing our application -->
+   <script type ="text/javascript" src="app.js"></script>
 </head>
 <body> </body>
 </html>
@@ -233,12 +233,17 @@ Abra el archivo `myfirstapp.html` en su editor favorito y escriba el siguiente c
 
 ### Escribir el código Ext JS 
 
-El código anterior muestra cómo importar la biblioteca para un entorno de desarrollo. Primero, importamos la stylesheet que se encuentra en `ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css`. El segundo paso es importar toda la library de `ext-5.1.1/build/ext-all.js`. El tercer paso es importar un archivo JavaScript que contiene anulaciones para que el tema pueda funcionar correctamente (ajustes específicos en este tema). 
+El código anterior muestra cómo importar la biblioteca para un entorno de desarrollo. 
 
-Ahora estamos listos para escribir nuestro código en el archivo `app.js`.
+1. Primero, importamos la stylesheet que se encuentra en `ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css`. 
+2. El segundo paso es importar toda la library de `ext-5.1.1/build/ext-all.js`. 
+3. El tercer paso es importar un archivo JavaScript que contiene anulaciones para que el tema pueda funcionar correctamente (ajustes específicos en este tema). 
 
-Antes de que podamos comenzar a crear widgets, debe esperar hasta que el DOM esté listo para ser utilizado y Ext JS se cargue y analice. Ext JS proporciona una función llamada `Ext.onReady`, que ejecuta un callback automáticamente cuando se puede acceder a todos los nodos del árbol. Escribamos el siguiente código en nuestro archivo `app.js`:
+Ahora estamos listos para escribir nuestro código en el archivo **`app.js`**.
 
+Antes de que podamos comenzar a crear widgets, debe esperar hasta que el DOM esté listo para ser utilizado y Ext JS se cargue y analice. Ext JS proporciona una función llamada **`Ext.onReady`**, que ejecuta un callback automáticamente cuando se puede acceder a todos los nodos del árbol. Escribamos el siguiente código en nuestro archivo **`app.js`**:
+
+`app.js`
 
 ```js
 Ext.onReady(function(){
@@ -254,19 +259,19 @@ Ext.onReady(function(){
 <!doctype html>
 <html>
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta charset="utf-8">
-	<title>Mi primera aplicación</title>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>Mi primera aplicación</title>
     
-    <link rel="stylesheet" type="text/css" href="../ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
-    <script src="../ext-5.1.1/build/ext-all.js"></script>
-    <script src="../ext-5.1.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
-    <!--
-    <link rel="stylesheet" type="text/css" href="../ext-5.0.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css"> 
-    <script src="../ext-5.0.1/build/ext-all.js"></script>
-    <script src="../ext-5.0.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
-    -->
-    <script type ="text/javascript" src="app.js"></script>
+   <link rel="stylesheet" type="text/css" href="../ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+   <script src="../ext-5.1.1/build/ext-all.js"></script>
+   <script src="../ext-5.1.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+   <!--
+   <link rel="stylesheet" type="text/css" href="../ext-5.0.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css"> 
+   <script src="../ext-5.0.1/build/ext-all.js"></script>
+   <script src="../ext-5.0.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+   -->
+   <script type ="text/javascript" src="app.js"></script>
 </head>
 <body> </body>
 </html>
@@ -274,7 +279,7 @@ Ext.onReady(function(){
 
 ```js
 Ext.onReady(function(){
-	alert("¡Esta es mi primera aplicación Extjs!");
+   alert("¡Esta es mi primera aplicación Extjs!");
 });
 ```
 
@@ -284,10 +289,10 @@ Una alternativa a este código también puede ser:
 
 ```js
 Ext.application({
-    name : 'MyFirstApplication',
-    launch : function() {
-        Ext.Msg.alert("Hello"," my first Ext JS app");
-    }
+   name : 'MyFirstApplication',
+   launch : function() {
+      Ext.Msg.alert("Hello"," my first Ext JS app");
+   }
 });
 ```
 
@@ -295,10 +300,10 @@ Ext.application({
 
 ```js
 Ext.application({
-    name : 'MyFirstApplication',
-    launch : function() {
-        Ext.Msg.alert("Hello"," my first Ext JS app");
-    }
+   name : 'MyFirstApplication',
+   launch : function() {
+      Ext.Msg.alert("Hello"," my first Ext JS app");
+   }
 });
 ```
 
@@ -310,18 +315,18 @@ Si abre el archivo HTML en su navegador favorito, verá algo como la siguiente c
 
 ![01-13](images/01-13.png)
 
-> TIP<br>
+> **TIP**
 > No dude en utilizar su navegador favorito para trabajar con los ejemplos de este libro. Te recomiendo que uses Google Chrome porque tiene herramientas de desarrollo más avanzadas y es un navegador rápido. Si eres fanático de Firefox, puedes descargar el complemento de Firebug; es una herramienta poderosa que podemos usar para depurar en Firefox.
 
-Si por alguna razón no podemos ver el mensaje de alerta en nuestro navegador, es porque no hemos definido la ruta correcta al archivo `ext-all.js`. Si observa la consola de JavaScript, probablemente veremos el siguiente error:
+Si por alguna razón no podemos ver el mensaje de alerta en nuestro navegador, es porque no hemos definido la ruta correcta al archivo **`ext-all.js`**. Si observa la consola de JavaScript, probablemente veremos el siguiente error:
 
 ![01-16](images/01-16.png)
 
-Esto significa que el archivo `ext-all.js` no se importa correctamente. Necesitamos asegurarnos de que todo esté correcto con la ruta y actualizar el navegador nuevamente.
+Esto significa que el archivo **`ext-all.js`** no se importa correctamente. Necesitamos asegurarnos de que todo esté correcto con la ruta y actualizar el navegador nuevamente.
 
 ### Añadiendo interacción al programa
 
-Ahora que sabemos cómo ejecutar código cuando el DOM está listo, enviemos un mensaje de alerta desde la library Ext. Usando el objeto `Ext.MessageBox` alias `Ext.Msg`, podemos crear diferentes tipos de mensajes como alert, confirmation, prompt, progress bar, o incluso un mensaje personalizado:
+Ahora que sabemos cómo ejecutar código cuando el DOM está listo, enviemos un mensaje de alerta desde la library Ext. Usando el objeto **`Ext.MessageBox`** alias **`Ext.Msg`**, podemos crear diferentes tipos de mensajes como alert, confirmation, prompt, progress bar, o incluso un mensaje personalizado:
 
 ```js
 Ext.onReady(function(){
@@ -338,7 +343,7 @@ La salida de las líneas de código anteriores se muestra en la siguiente captur
 
 ```js
 Ext.onReady(function(){
-	Ext.Msg.alert("Alert","¡Esta es mi primera aplicación Ext js!");
+   Ext.Msg.alert("Alerta","¡Esta es mi primera aplicación Ext js!");
 });
 ```
 
@@ -351,8 +356,67 @@ Ext.onReady(function(){
 
 En este caso, estamos usando el método **`alert`** del objeto **`Ext.Msg`**. El primer parámetro es el título del mensaje y el segundo parámetro es el contenido del mensaje. Eso fue fácil, ¿verdad? Ahora creemos un cuadro de diálogo de confirmación:
 
-
-
-
-```html
+```js
+Ext.onReady(function(){
+   Ext.Msg.alert("Alert","This is my first Ext JS app !");
+   Ext.Msg.confirm("Confirm","Do you like Ext JS 5?");
+});
 ```
+
+Usamos el método **`confirm`** para solicitar dos posibles respuestas del usuario. El primer parámetro es el título del cuadro de diálogo y el segundo parámetro es la pregunta o mensaje que queremos mostrarle al usuario:
+
+![01-19](images/01-19.png)
+
+#### :computer: Mi versión
+
+```js
+Ext.onReady(function(){
+   Ext.Msg.alert("Alerta","¡Esta es mi primera aplicación Ext JS!");
+   Ext.Msg.confirm("Confirmar","¿Te gusta Ext JS 5?");
+ });
+```
+
+![01-20](images/01-20.png)
+
+Antes de que apareciera el cuadro de diálogo de confirmación, hubo una alerta que no apareció. ***Una cosa importante a tener en cuenta es que los mensajes y alertas de la library Ext no bloquean el bucle de JavaScript, a diferencia del cuadro de diálogo del navegador nativo***. Esto significa que si agregamos otra alert o mensaje personalizado después de llamar al método **`confirm`**, ya no veremos el cuadro de diálogo de confirmación.
+
+Hasta ahora, hemos mostrado un cuadro de diálogo de confirmación solicitando dos posibles respuestas del usuario, pero ¿cómo podemos saber la respuesta del usuario para hacer algo de acuerdo con la respuesta? Hay un tercer parámetro en el cuadro de diálogo de confirmación, que es una función de devolución de llamada que se ejecutará cuando el usuario haga clic en una de las dos respuestas:
+
+```js
+Ext.onReady(function(){
+   Ext.Msg.alert("Alert","This is my first Ext JS app !");
+   Ext.Msg.confirm("Confirm","Do you like Ext JS 5?",
+      function(btn){
+         if (btn === "yes") {
+            Ext.Msg.alert("Great!","This is great!");
+         } else {
+            Ext.Msg.alert("Really?","That's too bad.");
+         }
+   });
+});
+```
+
+La función callback se ejecuta después de que el usuario hace clic en el botón **Yes** o **No** o cierra el cuadro de diálogo de confirmación. La función recibe el valor del botón pulsado como parámetro, que es **Yes** o **No**; podemos hacer lo que queramos dentro de la función callback. En este caso, enviamos un mensaje dependiendo de la respuesta dada. Actualicemos nuestro navegador y probemos nuestro pequeño programa para ver nuestros cambios. Las confirmaciones generalmente se solicitan cuando un usuario desea eliminar algo, o tal vez cuando desea desencadenar un proceso largo, básicamente cualquier cosa que tenga solo dos opciones.
+
+#### :computer: Mi versión
+
+```js
+Ext.onReady(function(){
+   Ext.Msg.alert("Alerta", "¡Esta es mi primera aplicación Ext JS!");
+   Ext.Msg.confirm("Confirmar", "¿Te gusta Ext JS 5?",
+      function(btn){
+         if (btn === "yes") {
+            Ext.Msg.alert("¡Genial!", "¡Esto es genial!");
+         } else {
+            Ext.Msg.alert("¿De verdad?", "Eso es una lástima".);
+         }
+   });
+ });
+```
+
+![01-21](images/01-21.png)
+![01-22](images/01-22.png)
+![01-23](images/01-23.png)
+![01-24](images/01-24.png)
+
+
