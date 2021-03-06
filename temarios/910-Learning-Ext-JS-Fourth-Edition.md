@@ -72,7 +72,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * What's new in Ext JS 5?
    * Summary
    
-2. The Core Concepts
+2. [The Core Concepts](910-Learning-Ext-JS/02-The-Core-Concepts.md)
    * The class system
       * Naming conventions
       * Writing your first class
