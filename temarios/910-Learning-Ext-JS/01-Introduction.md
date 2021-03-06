@@ -302,14 +302,14 @@ Ext.application({
 Ext.application({
    name : 'MyFirstApplication',
    launch : function() {
-      Ext.Msg.alert("Hello"," my first Ext JS app");
+      Ext.Msg.alert("Hola"," Mi primera aplicación Ext JS");
    }
 });
 ```
 
 ![01-15](images/01-15.png)
 
-Una de las ventajas de usar Ext JS es que la library solo usa un único objeto en el scope global llamado `Ext` para asignar todas las clases y objetos dentro del framework.
+***Una de las ventajas de usar Ext JS es que la library solo usa un único objeto en el scope global llamado `Ext` para asignar todas las clases y objetos dentro del framework***.
 
 Si abre el archivo HTML en su navegador favorito, verá algo como la siguiente captura de pantalla:
 
