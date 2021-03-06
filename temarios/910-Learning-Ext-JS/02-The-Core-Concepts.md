@@ -961,7 +961,163 @@ console.log( "¿Patricia es mayor? : " + is_old );
 ![02-19](images/02-19.png)
 
 ### Métodos y propiedades estáticos
-#### Explicación
+
+Los métodos **`statics`** pertenecen a la clase y no a la instancia; por lo tanto, podemos usar métodos **`statics`** sin una instancia. Los miembros Static de una clase se pueden definir mediante statics **`config`**. Nuevamente modificamos el código anterior al siguiente código:
+
+```js
+Ext.define('Myapp.sample.Employee',{
+   statics:{
+      instanceCount: 0,
+      payrollId: 1000,
+      nextId : function(){
+         return ( this.payrollId + this.instanceCount );
+      }
+   },
+   config:{
+      name: 'Unknown',
+      lastName: 'Unknown',
+      age: 0,
+      isOld: false,
+      payrollNumber: 0
+   },
+   constructor: function ( config ){
+      this.initConfig( config );
+      this.setPayrollNumber(  this.statics().nextId() );
+      this.self.instanceCount ++;
+   },
+   work: function( task ){
+      console.log( this.getName() + ' is working on: ' + task);
+   },
+   applyAge: function( newAge ) {
+      this.setIsOld ( (newAge >= 90) );
+      return newAge;
+   },
+   getTotalEmployees: function(){
+      return this.statics().instanceCount;
+   }
+});
+var patricia = Ext.create('Myapp.sample.Employee', {
+   name: 'Patricia',
+   lastName: 'Diaz',
+   age: 21,
+   isOld: false
+});
+console.log( "patricia payrollId = " + patricia.getPayrollNumber());
+console.log( "total employees = " + patricia.getTotalEmployees());
+
+var peter = Ext.create('Myapp.sample.Employee', {
+   name: 'Peter',
+   lastName: 'Pan',
+   age: 16,
+   isOld: false
+});
+console.log( "Peter payrollId = " + peter.getPayrollNumber() );
+console.log( "total employees = " + patricia.getTotalEmployees());
+
+console.log( "instance(s) of employee class = " + Myapp.sample.Employee.instanceCount );
+```
+
+#### EXPLICACIÓN
+
+Creamos la configuración estática en la clase Empleado:
+
+```js
+   statics:{
+      instanceCount: 0,
+      payrollId: 1000,
+      nextId : function(){
+         return ( this.payrollId + this.instanceCount );
+      }
+   },
+```
+
+Estos valores serán static para todas las clases de instancia. En la propiedad **`config`** de la clase, agregamos **`payrollNumber:0,`**; este número se asignará automáticamente en el método **`constructor`**:
+
+![02-20](images/02-20.png)
+
+El **`instanceCount`** se incrementará gracias al código **`this.self.instanceCount++`**. Cuando use el código **`this.self`** dentro de la clase, tenga en cuenta que nos estamos refiriendo globalmente a la clase **`Myapp.sample.Employee`** en sí.
+
+En este caso, creamos dos instancias de las clases **`Patricia`** y **`Peter`**, así que actualice el navegador y deberíamos ver algo como la siguiente captura de pantalla en la consola de JavaScript:
+
+![02-21](images/02-21.png)
+
+:computer: Mi versión
+
+`statics_01.html`
+
+```html
+<!doctype html>
+<html>
+   <meta charset="utf-8">
+   <title>Extjs - statics</title>
+   <script src="../ext-5.1.1/build/ext-all.js"></script>
+   <script type ="text/javascript" src="statics_01.js"></script>
+</head>
+<body> </body>
+</html>
+```
+
+`statics_01.js`
+
+```js
+//Capítulo 02 - código 06
+// Base class Employee  usando config
+Ext.define('Myapp.sample.Employee',{
+   statics:{
+      instanceCount:0, 		
+      payrollId:1000,	
+      nextId : function(){			
+         return (this.payrollId + this.instanceCount);	
+      }
+   },
+   config:{
+      name:'Desconocido',
+      lastName:'Desconocido',
+      age:0,	
+      isOld:false, 
+      payrollNumber:0		
+   },
+   constructor: function (config){		
+      this.initConfig(config); 
+      this.setPayrollNumber(  this.statics().nextId() ); 
+      this.self.instanceCount ++;
+   },
+   work: function( task ){
+      console.log( this.getName() + ' está trabajando en: ' + task);
+   },
+   applyAge: function(newAge) {
+      this.setIsOld ( (newAge>=90) ); 
+      return newAge;
+   }, 
+   getTotalEmployees: function(){
+      return this.statics().instanceCount;
+   }
+});
+
+var patricia = Ext.create('Myapp.sample.Employee', {
+   name:'Patricia', 
+   lastName:'Diaz', 
+   age:21, 
+   isOld:false 
+}); 
+console.log( "Patricia payrollId = " + patricia.getPayrollNumber() );
+console.log( "Total de empleados = " + patricia.getTotalEmployees() );
+
+var peter    = Ext.create('Myapp.sample.Employee', {
+   name:'Peter', 
+   lastName:'Pan', 
+   age:16, 
+   isOld:false 
+}); 
+
+console.log( "Peter payrollId = " + peter.getPayrollNumber() );
+console.log( "Total de empleados = " + patricia.getTotalEmployees() );
+
+console.log( "Instancia(s) de clase de empleado = " + Myapp.sample.Employee.instanceCount);
+```
+
+![02-22](images/02-22.png)
+
 ### La clase Singleton
 ### Aliases
 ## Carga de clases bajo demanda
