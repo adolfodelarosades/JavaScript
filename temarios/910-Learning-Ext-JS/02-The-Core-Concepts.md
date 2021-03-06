@@ -70,8 +70,183 @@ Ext JS utiliza convenciones de nomenclatura coherentes en todo el framework. Est
    * **`MyApp.`grids`.EmployeesGrid`**
    * **`MyApp.`data.clients`.SalesReport`**
 
+* Como regla y también para evitar posibles errores, las clases que no forman parte del framework nunca deben usar **`Ext`** como espacio de nombres de nivel superior, a menos que esté creando un componente **`Ext.ux`**. Sin embargo, como regla general, si está utilizando plugins o componentes de terceros, asegúrese de que los nombres que está usando no colisionen ni interfieran con estos plugins/components.
+
 ### Escribiendo tu primera clase
+
+Así que ahora creemos nuestra primera clase usando la primera abreviatura de la lista anterior. En un nuevo archivo llamado **`classes_01.js`**, necesitamos escribir el siguiente código:
+
+```js
+Ext.define('Myapp.sample.Employee',{
+   name: 'Unknown',
+   constructor: function (name){
+      this.name= name;
+      console.log('class was created – name:' + this.name);
+   },
+   work: function(task){
+      alert(this.name + ' is working on: ' + task);
+   }
+});
+var patricia = Ext.create('Myapp.sample.Employee', 'Patricia Diaz');
+patricia.work('Attending phone calls');
+```
+
+En este código, definimos el nombre de la clase como una cadena **`'Myapp.sample.Employee'`** como el primer parámetro de la función **`Ext.define`**. Luego establecemos la propiedad **`name`** y dos métodos: **`constructor`** y **`work`**.
+
+Cuando se crea una nueva clase, **`Ext`** usará el método **`constructor`** como un callback y se ejecutará cada vez que se cree una nueva instancia, dándonos la oportunidad de aplicar las configuraciones iniciales a la clase. Si el constructor no está definido, **`Ext`** usará una función vacía y también las propiedades iniciales de la clase serán los valores predeterminados.
+
+Ahora tenemos la clase ya definida en el código, y se crea una nueva instancia de la clase en el siguiente código:
+
+![02-01](images/02-01.png)
+
+Le estamos diciendo a Ext JS que cree una nueva instancia de la clase **`Myapp.sample.Employee`** y pasando el parámetro **`Patricia Diaz`**, justo después de la ejecución del código donde se ejecutará el método constructor:
+
+![02-02](images/02-02.png)
+
+Finalmente, invocamos el método **`work`**, que hará que aparezca una alert en el navegador:
+
+![02-03](images/02-03.png)
+
+:computer: Mi versión
+
+`classes_01.html`
+
+```html
+<!doctype html>
+<html>
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>Clases - Ejemplo 01</title>
+   <script src="../ext-5.1.1/build/ext-all.js"></script>
+   <script type ="text/javascript" src="classes_01.js"></script>
+</head>
+<body> </body>
+</html>
+```
+
+`classes_01.js`
+
+```js
+Ext.define('Myapp.sample.Employee',{
+   name: 'Desconocido',
+   constructor: function (name){
+      this.name= name;
+      console.log('Se creó la clase – name:' + this.name);
+   },
+   work: function(task){
+      alert(this.name + ' está trabajando: ' + task);
+   }
+});
+var adolfo = Ext.create('Myapp.sample.Employee', 'Adolfo de la Rosa');
+adolfo.work('Desarrollando programas JS');
+```
+
+![02-04](images/02-04.png)
+
+Hasta ahora hemos estado manejando un valor en la clase, y la forma habitual para que la mayoría de los desarrolladores hagan esto es que manejamos múltiples valores al crear clases, así que cambiemos el código como se muestra en el siguiente ejemplo:
+
+`classes_01.js`
+
+```js
+Ext.define('Myapp.sample.Employee',{
+   name: 'Unknown',
+   lastName: 'Unknown',
+   age: 0,
+   constructor: function (config){
+      Ext.apply( this, config || {} );
+      console.log('class created – fullname:' + this.name + ' ' + this.lastName);
+   },
+   checkAge:function(){
+      console.log( 'Age of ' + this.name + ' ' + this.lastName + ' is:' + this.age );
+   },
+   work: function( task ){
+      console.log( this.name + ' is working on: ' + task);
+   }
+});
+var patricia = Ext.create('Myapp.sample.Employee',{
+   name:'Patricia',
+   lastName:'Diaz',
+   age:21
+});
+patricia.checkAge();
+patricia.work('Attending phone calls');
+```
+
+Repasemos los cambios. El parámetro en el método **`constructor`** se cambió a **`config`**, por lo que ahora pasaremos un objeto como parámetro al método **`constructor`**. **`Ext.apply(this, config || {});`** nos permitirá copiar todas las propiedades del parámetro **`config`**  a las propiedades de la clase.
+
+Para ejecutar el ejemplo, necesitamos crear una página HTML que contenga el siguiente fragmento de código e importar la biblioteca Ext JS y el archivo de clase del cliente (**`classes_01.js`**), y luego podemos ejecutar el código anterior.
+
+`classes_01.html`
+
+```html
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<title>My first ExtJS class</title>
+<script src="../ext-5.1.1/build/ext-all.js"></script>
+<script type ="text/javascript" src="classes_01.js"></script>
+</head>
+<body> </body>
+</html>
+```
+
+Abra el archivo HTML en su navegador favorito y la consola JavaScript presionando Ctrl + Shift + I (acceso directo para usuarios de Windows) o Cmd + Opción + I (acceso directo para usuarios de Mac) para abrir las herramientas de desarrollo en Google Chrome.
+
+Si está utilizando Firefox, el acceso directo para mostrar la consola de JavaScript es Ctrl + Shift + K (para usuarios de Windows) o Cmd + Option + K (para usuarios de Mac). Deberíamos ver dos mensajes de registro en la consola de JavaScript como se muestra en la siguiente captura de pantalla:
+
+![02-05](images/02-05.png)
+
+El primer mensaje se imprime en la consola mediante el método **`constructor`** que se ejecuta cuando se crea la clase **`Employee`**. El segundo mensaje se imprime cuando hemos llamado al método **`checkAge`** y hemos accedido a la propiedad **`age`**. Finalmente, después de haber llamado al método **`work`**, aparecerá el tercer mensaje.
+
+Una vez que tenemos la instancia de la clase **`Employee`**, podemos modificar sus propiedades asignando el nuevo valor. Si actualizamos nuestro navegador, veremos un nuevo mensaje en la consola y tendrá el nuevo valor. Podemos crear tantas instancias como queramos de nuestra clase y cada una de ellas tendrá las mismas propiedades y métodos. Sin embargo, podemos cambiar sus valores individualmente o incluso pasar un objeto al constructor con las propiedades que queremos cambiar.
+
+:computer: Mi versión
+
+`classes_01.js`
+
+```js
+//Capítulo 02 - código 01 
+Ext.define('Myapp.sample.Employee',{
+   name: 'Desconocido',
+   lastName: 'Desconocido',
+   age: 0,
+   constructor: function (config){
+      Ext.apply( this, config || {} );
+      console.log('Se creó la clase – nombre completo: ' + this.name + ' ' + this.lastName);
+   },
+   checkAge: function(){
+      console.log( 'La edad de ' + this.name + ' ' + this.lastName + ' es: ' + this.age);
+   },
+   work: function(task){
+      console.log(this.name + ' está trabajando: ' + task);
+   }
+});
+
+//Crea el Objeto
+var adolfo = Ext.create('Myapp.sample.Employee', {
+   name: 'Adolfo',
+   lastName: 'de la Rosa',
+   age: 31
+});
+
+//Invoca los métodos del Objeto
+adolfo.checkAge();
+adolfo.work('Desarrollando programas JS');
+```
+
+![02-06](images/02-06.png)
+
 ### Herencia simple
+
+Cuando creamos una clase usando el método Ext.define, estamos extendiendo desde la clase Ext.Base. Esta clase contiene métodos abstractos que serán heredados por todas las subclases para que podamos usarlos a nuestra conveniencia.
+
+En nuestro ejemplo anterior, la clase Empleado se extiende desde la clase Base. No tuvimos que hacer nada especial para lograrlo. De forma predeterminada, si no configuramos una clase para que se extienda desde cualquier otra clase, se extiende desde la clase Base, y debemos tener esto en cuenta.
+
+La mayoría de las clases de la biblioteca Ext se extienden desde la clase Ext.Base, sin embargo, hay algunas clases principales que no lo hacen. La siguiente captura de pantalla muestra el árbol de herencia de los componentes Button y Model:
+
 ### Preprocesadores y posprocesadores
 ### Mezcla de muchas clases (el uso de mixins)
 ### Una explicación de mixins
