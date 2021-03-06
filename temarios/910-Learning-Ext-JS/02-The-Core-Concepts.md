@@ -420,6 +420,113 @@ Ahora que tiene una comprensión básica de cómo funciona el sistema de clases,
 
 ### Mezcla de muchas clases (el uso de mixins)
 
+Hasta ahora, ha aprendido acerca de la herencia simple, pero también podemos imitar múltiples herencias usando el procesador **`mixins`**. El concepto es realmente simple: podemos mezclar muchas clases en una. Como resultado, la nueva clase tendrá acceso a todas las propiedades y métodos de las clases mixtas.
+
+Continuando con las clases anteriores, **`Employee`** y **`Supervisor`**, organicemos esas clases un poco más. Las ocupaciones en la empresa pueden variar según las necesidades de las organizaciones; una secretaria tiene diferentes tareas que realizar desde un gerente o un contador. Entonces vamos a separar las tareas obligatorias que tiene que realizar cada ocupación, y así tendremos unas clases distintas con las tareas que pueden realizar las personas de la empresa según la ocupación que tenga cada una.
+
+El siguiente diagrama muestra un ejemplo:
+
+![02-11](images/02-11.png)
+
+Hagamos un duplicado del archivo **`classes_02.js`** y cambiemos el nombre de **`classes_04.js`**; también haga un duplicado del archivo HTML **`classes_02.html`** y cambie la referencia del archivo JavaScript a **`classes_04.js`**. Y ahora procedemos a realizar algunos cambios nuevos en el archivo **`classes_04.js`**. Después del código donde definimos la clase de empleado, escribamos el siguiente código:
+
+```js
+// Mixins
+Ext.define('Myapp.sample.tasks.attendPhone',{
+   answerPhone:function(){
+      console.log( this.name + ' is answering the phone');
+   }
+});
+Ext.define('Myapp.sample.tasks.attendClient',{
+   attendClient:function(clientName){
+      console.log( this.name + ' is attending client: ' + clientName);
+   }
+});
+Ext.define('Myapp.sample.tasks.attendMeeting',{
+   attendMeeting:function(person){
+      console.log( this.name + ' is attending a meeting with ' + person);
+   }
+});
+Ext.define('Myapp.sample.tasks.superviseEmployees',{
+   superviseEmployee:function(supervisor, employee){
+      console.log( supervisor.name + ' is supervising : ' + employee.name + ' ' + employee.lastName);
+   }
+});
+```
+
+En aras de la simplicidad, solo enviamos un mensaje de registro a la consola en cada método. Pero podemos hacer cualquier otra cosa que sea necesaria. Ahora definamos las clases de ocupación, que contienen algunos métodos (tareas) de acuerdo con lo que puede hacer cada ocupación.
+
+Por ejemplo, un gerente no contesta el teléfono, ya que esta es la tarea de una secretaria, y una secretaria no supervisa a ningún empleado, ya que es una tarea de un gerente.
+
+```js
+Ext.define('Myapp.sample.Secretary',{
+   extend:'Myapp.sample.Employee',
+   mixins:{
+      answerPhone: 'Myapp.sample.tasks.attendPhone'
+   },
+   constructor: function (config){
+      Ext.apply(this, config || {});
+      console.log('Secretary class created – fullname:' + this.name + ' ' + this.lastName);
+   }
+});
+
+Ext.define('Myapp.sample.Accountant',{
+   extend:'Myapp.sample.Employee',
+   mixins:{
+      attendClient: 'Myapp.sample.tasks.attendClient',
+      attendMeeting: 'Myapp.sample.tasks.attendMeeting'
+   },
+   constructor: function (config){
+      Ext.apply(this, config || {});
+      console.log('Accountant class created – fullname:' + this.name + ' ' + this.lastName);
+   }
+});
+
+Ext.define('Myapp.sample.Manager',{
+   extend:'Myapp.sample.Employee',
+   mixins:{
+      attendClient:  'Myapp.sample.tasks.attendClient',
+      attendMeeting: 'Myapp.sample.tasks.attendMeeting',
+      supervisePersons:'Myapp.sample.tasks.superviseEmployees'
+   },
+   constructor: function (config){
+      Ext.apply(this, config || {});//this.name= config.name;
+      console.log('Manager class created – fullname:' + this.name + ' ' + this.lastName);
+   },
+   supervise: function(employee){
+      console.log( this.name + ' starts supervision ');
+      this.mixins.supervisePersons.superviseEmployee(this, employee);
+      console.log( this.name + ' finished supervision ');
+   }
+});
+```
+
+Aquí creamos tres clases (**`Secretary`**, **`Accountant`** y **`Manager`** ). Cada clase extiende la clase **`Employee`** y en cada clase, se ha agregado una nueva configuración: **`mixins:{...}`**. Y por último, insertemos el siguiente código al final:
+
+```js
+// Usage of each class
+var patricia = Ext.create('Myapp.sample.Secretary', {name:'Patricia', lastName:'Diaz', age:21 } );
+patricia.work('Attending phone calls');
+patricia.answerPhone();
+
+var peter =  Ext.create('Myapp.sample.Accountant', {name:'Peter', lastName:'Jones', age:44 } );
+peter.work('Checking financial books');
+peter.attendClient('ACME Corp.');
+peter.attendMeeting('Patricia');
+
+var robert =  Ext.create('Myapp.sample.Manager', {name:'Robert', lastName:'Smith', age:34 } );
+robert.work('Administration of the office');
+robert.attendClient('Iron Tubes of America');
+robert.attendMeeting('Patricia & Peter');
+robert.supervise(patricia);
+robert.supervise(peter);
+```
+
+Una vez que el código esté listo, actualice el navegador y debería ver algo como la siguiente captura de pantalla en la consola de JavaScript:
+
+![02-12](images/02-12.png)
+
+
 
 ### Una explicación de mixins
 #### Usando la propiedad mixinConfig
