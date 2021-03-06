@@ -698,8 +698,268 @@ var robert =  Ext.create('Myapp.sample.Manager', {name:'Robert', lastName:'Smith
 ![02-14](images/02-14.png)
 
 ### Una explicación de mixins
-#### Usando la propiedad mixinConfig
-#### Configuraciones
+
+Cada clase se basa en la clase **`Employee`**. Luego definimos las tareas de los **`employee`** (como clases) como **`Myapp.sample.tasks.attendMeeting`** y esto fue incorporado (mezclado) en la clase respectiva usando la configuración **`mixin{...}`**.
+
+Al final, tenemos cada clase con métodos como los de la siguiente tabla:
+
+Classes/Employee type | Methods
+----------------------|--------
+**`Secretary`**       | &#8226; **`work`** <br>  &#8226; **`answerPhone`**
+**`Accountant`**      | &#8226; **`work`** <br>  &#8226; **`attendClient`** <br>  &#8226; **`attendMeeting`**
+**`Manager`**         | &#8226; **`work`** <br>  &#8226; **`attendClient`** <br>  &#8226; **`attendMeeting`** <br>  &#8226; **`supervise`**
+
+Tenga en cuenta que el método **`supervise`** definido en **`Manager`** usa el siguiente código:
+
+![02-15](images/02-15.png)
+
+Este código nos permite llamar a la función correcta definida en **`Myapp.sample.tasks.superviseEmployees`**. Ahora hagamos validaciones y realicemos otras operaciones antes de ejecutar la función **`superviseEmployee`**.
+
+#### USANDO LA PROPIEDAD MIXINCONFIG
+
+El uso de la propiedad **`mixinConfig`** hace que la clase **`mixin`** pueda proporcionar hooks **`before`** o **`after`** que no están involucrados en la clase (es decir, la clase con la que vamos a trabajar).
+
+Una forma fácil de entender esto es que los ajustes de before y after se pueden configurar para realizar algunas acciones vinculadas al método que se llama. Entonces, la configuración **`mixinConfig`** funcionará como un monitor (observable) y cuando se llame a la función adjunta, se ejecutará el método establecido en cada configuración.
+
+Además, la clase derivada no puede ajustar los parámetros a los métodos de enlace cuando se llaman a estos métodos. En el siguiente ejemplo, vamos a crear un **`mixinConfig`** para ejecutar métodos antes y después de contestar el celular (la clase **`Secretary`**).
+
+El siguiente código implementa **`mixinConfig`** para la clase **`Secretary`**:
+
+```js
+Ext.define('Myapp.sample.tasks.attendCellPhone',{
+   extend: 'Ext.Mixin',
+   /* answerCellPhone es la función adjunta para antes y después y 
+      ejecutará el método definido en la propiedad answerCellPhone 
+      en cada objeto de configuración (before / after)
+   */
+   mixinConfig:{
+      before:{
+         answerCellPhone:'cellPhoneRinging'
+      },
+      after:{
+         answerCellPhone:'finishCall'
+      }
+   },
+   cellPhoneRinging: function(){
+      console.log( 'cell phone is ringing you may attend call');
+   },
+   finishCall: function(){
+      console.log( 'cell phone call is over');
+   }
+});
+```
+
+Ahora necesitamos modificar la clase **`Secretary`** como se muestra en el siguiente código:
+
+```js
+Ext.define('Myapp.sample.Secretary',{
+   extend:'Myapp.sample.Employee',
+   mixins:{
+      answerPhone: 'Myapp.sample.tasks.attendPhone',
+      util:'Myapp.sample.tasks.attendCellPhone'
+   },
+   constructor: function (config){
+      Ext.apply(this, config || {});//this.name= config.name;
+      console.log('Secretary class created – fullname:' + this.name + ' ' + this.lastName);
+   },
+   answerCellPhone:function(){
+      console.log( this.name + ' is answering the cellphone');
+   }
+});
+```
+
+Actualice el navegador y debería ver algo como la siguiente captura de pantalla en la consola de JavaScript:
+
+![02-16](images/02-16.png)
+
+:computer: Mi versión
+
+![02-17](images/02-17.png)
+
+***Lo importante de los mixins es que podemos crear clases para realizar tareas específicas y luego mezclar esas clases en una. De esta forma, podemos reutilizar las mismas clases una y otra vez***.
+
+En la library **`Ext`**, las clases como **`Ext.util.Observable`**, **`Ext.util.Floating`**, **`Ext.state.Stateful`** y otras se tratan como **`mixins`**, ya que cada clase sabe cómo hacer cosas específicas. Esto es algo grandioso para las grandes aplicaciones y debemos pensar sabiamente cómo vamos a estructurar nuestra gran aplicación antes de comenzar a codificar.
+
+#### CONFIGURACIONES
+
+Otra gran característica que comenzó en Ext JS versión 4 es la adición de configuraciones. Por lo general, cuando creamos una clase, establecemos configuraciones para que podamos cambiar los valores y el comportamiento de nuestra clase en función de los parámetros de entrada. Desde Ext JS 4, este proceso es realmente fácil al agregar un preprocesador para manejar las configuraciones por nosotros.
+
+Aquí tenemos un ejemplo de cómo la versión anterior a la versión 4 tenía que definir configurations/properties en las clases:
+
+```js
+Ext.define('Myapp.sample.Employee',{
+   name:'Unknown',
+   lastName: 'Unknown',
+   age: 0,
+   constructor: function (config){
+      Ext.apply(this, config || {});//this.name= config.name;
+      console.log('class A created – fullname:' + this.name + ' ' + this.lastName);
+   },
+   work: function( task ){
+      console.log( this.name + ' is working on: ' + task);
+   },
+   setName: function( newName ){
+      this.name = newName;
+   },
+   getName: function(){
+      return this.name;
+   }
+});
+```
+
+En las versiones anteriores a la versión 4, teníamos que codificar los métodos **`setName`** y **`getName`** para cambiar las propiedades de la clase, lo que requería mucho tiempo para los desarrolladores. Desde la versión 4, la propiedad **`config`** en las clases nos permite evitar todo este trabajo extra gracias a los preprocesadores Ext JS antes de que se cree la clase. Las características de la configuración son las siguientes:
+
+* Las configuraciones se encapsulan a partir de otros miembros de la clase.
+* Los métodos getter y setter para cada propiedad **`config`** se crean automáticamente en el prototipo de clase si aún no están definidos.
+* También se genera un método **`apply`** (por ejemplo, **`setName`**, cambiará el nombre de su propiedad) para cada propiedad **`config`**. El método setter generado automáticamente llama al método **`apply`** internamente antes de establecer el valor. Puede override el método **`apply`** para una propiedad **`config`** si necesita ejecutar una lógica personalizada antes de settear el valor. Si **`apply`** no devuelve un valor, el setter no establecerá el valor.
+
+Si tiene la intención/plan crear una nueva clase o componente y está extendiendo la clase **`Ext.Base`** para esto, entonces es necesario que call/use el método **`initConfig()`**. En las clases que ya utilizan la propiedad **`config`**, no es necesario llamar al método **`initConfig()`**.
+
+Para el siguiente ejercicio, creemos un nuevo archivo llamado **`config_01.js`** y un HTML llamado **`config_01.html`**. Coloque la referencia necesaria a la library Ext JS que hemos hecho en los ejemplos anteriores y trabajemos en el código del archivo **`config_01.js`**, que será el siguiente:
+
+```js
+Ext.define('Myapp.sample.Employee',{
+   config:{
+      name: 'Unknown',
+      lastName: 'Unknown',
+      age: 0,
+      isOld: false
+   },
+   constructor: function ( config ){
+      this.initConfig( config );
+   },
+   work: function( task ){
+      console.log( this.name + ' is working on: ' + task);
+   },
+   applyAge: function(newAge) {
+      this.setIsOld ( ( newAge >= 90 ) );
+      return newAge;
+   }
+});
+```
+
+En el código anterior, realizamos los siguientes pasos:
+
+1. Empaquetamos las propiedades de la clase **`Employee`** en el objeto **`config`**.
+2. En el método constructor, cambiamos el código antiguo y configuramos solo **`this.initConfig(config);`**.
+3. Después de crear la clase, tendrá los métodos setters y getters para las propiedades: **`name`**, **`lastName`** y **`age`**. Tenga en cuenta que al configurar la clase de esta manera, tendremos cuatro métodos nuevos para cada propiedad. Como ejemplo, los siguientes son los nuevos métodos relacionados con la **`age`**:
+
+   * **`getAge`**
+   * **`setAge`**
+   * **`applyAge`** (este método personalizado se lanzará automáticamente cuando se invoca **`setAge`**)
+
+4. Después de definir nuestra clase con el objeto **`config`** como una propiedad, coloquemos el siguiente código en el archivo **`config_01.js`** después de la definición de la clase para una prueba:
+
+```js
+var patricia = Ext.create('Myapp.sample.Employee',{
+   name: 'Patricia',
+   lastName: 'Diaz',
+   age: 21,
+   isOld:false
+});
+
+console.log( "employee Name = " + patricia.getName() );
+console.log( "employee Last name = " + patricia.getLastName() );
+console.log( "employee Age  = " + patricia.getAge() );
+patricia.work( 'Attending phone calls' );
+
+patricia.setName( 'Karla Patricia' );
+patricia.setLastName( 'Diaz de Leon' );
+patricia.setAge ( 25 );
+console.log("employee New Name=" + patricia.getName() );
+console.log("employee New Last name=" + patricia.getLastName() );
+console.log( "employee New Age  = " + patricia.getAge() );
+
+patricia.work('Attending phone calls');
+var is_old='';
+is_old= ( patricia.getIsOld() == true)? 'yes' : 'no' ;
+console.log( "is patricia old? : " + is_old ) ;
+patricia.setAge( 92 );
+is_old='';
+is_old= ( patricia.getIsOld() == true)? 'yes' : 'no' ;
+console.log( "is patricia old? : " + is_old );
+```
+
+Como puede ver en el código resaltado, estamos usando los métodos setters y getters creados automáticamente por **`initConfig(config)`**. Cuando cambiamos la edad del empleado usando **`patricia.setAge(92)`**, se invocó el método **`applyAge`** que cambió la propiedad **`isOld`** en la clase. Echemos un vistazo a la consola:
+
+![02-18](images/02-18.png)
+
+:computer: Mi versión
+
+`config_01.html`
+
+```html
+<!doctype html>
+<html>
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>Extjs - Config</title>
+   <script src="../ext-5.1.1/build/ext-all.js"></script>
+   <script type ="text/javascript" src="config_01.js"></script>
+</head>
+<body> </body>
+</html>
+```
+
+`config_01.js`
+
+```js
+//Capítulo 02 - Código 05
+// Base class Employee  usando config
+Ext.define('Myapp.sample.Employee',{
+   config:{
+      name:'Desconocido',
+      lastName:'Desconocido',
+      age:0,	
+      isOld:false
+   },
+   constructor: function (config){
+      this.initConfig(config); 
+   },
+   work: function( task ){
+      console.log( this.getName() + ' está trabajando en: ' + task);
+   },
+   applyAge: function(newAge) {
+      this.setIsOld ( (newAge>=90) ); 
+      return newAge;
+   }
+});
+
+var patricia = Ext.create('Myapp.sample.Employee', {
+   name:'Patricia', 
+   lastName:'Diaz', 
+   age:21, 
+   isOld:false 
+}); 
+
+console.log( "Nombre del empleado = " + patricia.getName() ); 	
+console.log( "Apellido del empleado = " + patricia.getLastName() ); 		
+console.log( "Edad del empleado  = " + patricia.getAge() );
+patricia.work('Atender llamadas telefónicas');
+
+patricia.setName('Karla Patricia'); 
+patricia.setLastName('Diaz de Leon'); 
+patricia.setAge (25); 
+console.log( "Nuevo nombre del empleado = " + patricia.getName() ); 	
+console.log( "Nuevo apellido del empleado = " + patricia.getLastName() ); 		
+console.log( "Nueva edad del empleado  = " + patricia.getAge() ); 	
+
+patricia.work('Atender llamadas telefónicas');
+
+var is_old=''; 
+is_old= (patricia.getIsOld()==true)?'yes':'no'; 
+console.log( "¿Patricia es mayor? : " + is_old ) ; 
+
+patricia.setAge(92); 
+
+is_old=''; 
+is_old= (patricia.getIsOld()==true)?'yes':'no'; 
+console.log( "¿Patricia es mayor? : " + is_old );
+```
+
+![02-19](images/02-19.png)
+
 ### Métodos y propiedades estáticos
 #### Explicación
 ### La clase Singleton
