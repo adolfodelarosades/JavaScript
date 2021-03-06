@@ -354,7 +354,7 @@ var jorge =  Ext.create('Myapp.sample.Supervisor', {name:'Jorge', lastName:'Saba
 
 ![02-09](images/02-09.png)
 
-### Preprocesadores y posprocesadores
+### Preprocesadores y postprocesadores
 
 Cada clase en Ext JS es una instancia de la clase **`Ext.Class`**. Cuando usamos el método **`Ext.define`** para definir una clase, de hecho estamos creando una instancia de la clase **`Ext.Class`**.
 
@@ -383,6 +383,36 @@ Al ejecutar el código anterior en un navegador, deberíamos ver los siguientes 
 ["className", "loader", "extend", "privates", "statics", "inheritableStatics", "platformConfig", "config", "cachedConfig", "mixins", "alias"]
 ["alias", "singleton", "alternateClassName", "debugHooks", "deprecated", "uses"]
 ```
+
+:computer: Mi versión
+
+`classes_03.html`
+
+```html
+<!doctype html>
+<html>
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>Preprocesadores y Postprocesadores</title>
+   <script src="../ext-5.1.1/build/ext-all.js"></script>
+   <script type ="text/javascript" src="classes_03.js"></script>
+</head>
+<body> </body>
+</html>
+```
+
+`classes_03.js`
+
+```js
+//Capítulo 03 - código 03
+var pre  = Ext.Class.getDefaultPreprocessors(),
+post	 = Ext.ClassManager.defaultPostprocessors;
+console.log(pre);
+console.log(post);
+```
+
+![02-13](images/02-13.png)
 
 La siguiente captura de pantalla representa el flujo de la creación de clases con los preprocesadores y posprocesadores:
 
@@ -526,7 +556,146 @@ Una vez que el código esté listo, actualice el navegador y debería ver algo c
 
 ![02-12](images/02-12.png)
 
+:computer: Mi versión
 
+`classes_04.html`
+
+```html
+<!doctype html>
+<html>
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>Extjs - Mixins</title>
+   <script src="../ext-5.1.1/build/ext-all.js"></script>
+   <script type ="text/javascript" src="classes_04.js"></script>
+</head>
+<body> </body>
+</html>
+```
+
+`classes_04.js`
+
+```js
+//Capítulo 02 - código 04
+// Base class Employee 
+Ext.define('Myapp.sample.Employee',{		
+   name:'Desconocido',
+   lastName:'Desconocido',
+   age:0, 
+   constructor: function (config){
+      Ext.apply(this, config || {});
+      console.log('Clase Employee creada - nombre completo: ' + this.name + ' ' + this.lastName); 
+   },
+   work: function( task ){
+      console.log( this.name + ' está trabajando en: ' + task);
+   }
+});
+// Mixins
+Ext.define('Myapp.sample.tasks.attendPhone',{
+   answerPhone:function(){
+      console.log( this.name + ' está contestando el teléfono'); 
+   }
+});
+Ext.define('Myapp.sample.tasks.attendCellPhone',{
+   extend: 'Ext.Mixin', 
+   /* answerCellPhone es la función adjunta para antes y después
+      y ejecutará el método definido en la propiedad answerCellPhone
+      en cada objeto de configuración (before / after)
+   */
+   mixinConfig:{
+      before:{
+         answerCellPhone:'cellPhoneRinging'	
+      },
+      after:{
+         answerCellPhone:'finishCall'
+      }	
+   },
+   cellPhoneRinging: function(){
+      console.log( 'El teléfono celular está sonando, puede atender la llamada'); 
+   },	
+   finishCall: function(){
+      console.log( 'La llamada del celular ha terminado'); 
+   }
+});
+Ext.define('Myapp.sample.tasks.attendClient',{
+   attendClient:function(clientName){
+      console.log( this.name + ' está atendiendo al cliente: ' + clientName); 
+   }
+}); 
+Ext.define('Myapp.sample.tasks.attendMeeting',{
+   attendMeeting:function(person){
+      console.log( this.name + ' está asistiendo a una reunión con ' + person); 
+   }
+}); 
+Ext.define('Myapp.sample.tasks.superviseEmployees',{
+   superviseEmployee:function(supervisor, employee){
+      console.log( supervisor.name + ' está supervisando a: ' + employee.name + ' ' + employee.lastName); 
+   }
+}); 
+//Clases definidas para cada ocupación 
+Ext.define('Myapp.sample.Secretary',{
+   extend:'Myapp.sample.Employee', 	
+   mixins:{
+      answerPhone: 'Myapp.sample.tasks.attendPhone',	
+      util:'Myapp.sample.tasks.attendCellPhone' 
+   },
+   constructor: function (config){
+      Ext.apply(this, config || {});
+      console.log('Se creó la clase Secretary - nombre completo: ' + this.name + ' ' + this.lastName); 
+   },
+   answerCellPhone:function(){
+      console.log( this.name + ' está contestando el celular'); 
+   }		
+});
+Ext.define('Myapp.sample.Accountant',{
+   extend:'Myapp.sample.Employee', 
+   mixins:{
+      attendClient: 'Myapp.sample.tasks.attendClient',
+      attendMeeting: 'Myapp.sample.tasks.attendMeeting'
+   },
+   constructor: function (config){
+      Ext.apply(this, config || {});
+      console.log('Clase Accountant creada – nombre completo: ' + this.name + ' ' + this.lastName); 
+   }
+}); 
+Ext.define('Myapp.sample.Manager',{
+   extend:'Myapp.sample.Employee', 
+   mixins:{
+      attendClient:  'Myapp.sample.tasks.attendClient',
+      attendMeeting: 'Myapp.sample.tasks.attendMeeting',
+      supervisePersons: 'Myapp.sample.tasks.superviseEmployees'
+   },
+   constructor: function (config){
+      Ext.apply(this, config || {});
+      console.log('Clase Manager creada – nombre completo: ' + this.name + ' ' + this.lastName); 
+   },
+   supervise: function(employee){ 
+      console.log( this.name + ' comienza la supervisión '); 
+      this.mixins.supervisePersons.superviseEmployee(this, employee); 
+      console.log( this.name + ' supervisión terminada '); 
+   } 
+});
+// Uso de cada clase
+var patricia = Ext.create('Myapp.sample.Secretary', {name:'Patricia', lastName:'Diaz', age:21 } ); 
+    patricia.work('Atender llamadas telefónicas');
+    patricia.answerPhone(); 
+    patricia.answerCellPhone(); 
+	
+var peter =  Ext.create('Myapp.sample.Accountant', {name:'Peter', lastName:'Jones', age:44 } );  
+    peter.work('Consultar libros financieros');
+    peter.attendClient('ACME Corp.'); 	
+    peter.attendMeeting('Patricia'); 
+	
+var robert =  Ext.create('Myapp.sample.Manager', {name:'Robert', lastName:'Smith', age:34 } ); 
+    robert.work('Administración de la oficina');
+    robert.attendClient('Iron Tubes of America'); 	
+    robert.attendMeeting('Patricia & Peter');	
+    robert.supervise(patricia); 	
+    robert.supervise(peter);
+```
+
+![02-14](images/02-14.png)
 
 ### Una explicación de mixins
 #### Usando la propiedad mixinConfig
