@@ -241,14 +241,186 @@ adolfo.work('Desarrollando programas JS');
 
 ### Herencia simple
 
-Cuando creamos una clase usando el método Ext.define, estamos extendiendo desde la clase Ext.Base. Esta clase contiene métodos abstractos que serán heredados por todas las subclases para que podamos usarlos a nuestra conveniencia.
+Cuando creamos una clase usando el método **`Ext.define`**, estamos extendiendo desde la clase **`Ext.Base`**. Esta clase contiene métodos abstractos que serán heredados por todas las subclases para que podamos usarlos a nuestra conveniencia.
 
-En nuestro ejemplo anterior, la clase Empleado se extiende desde la clase Base. No tuvimos que hacer nada especial para lograrlo. De forma predeterminada, si no configuramos una clase para que se extienda desde cualquier otra clase, se extiende desde la clase Base, y debemos tener esto en cuenta.
+En nuestro ejemplo anterior, la clase **`Employee`** se extiende desde la clase **`Base`**. No tuvimos que hacer nada especial para lograrlo. De forma predeterminada, si no configuramos una clase para que se extienda desde cualquier otra clase, se extiende desde la clase **`Base`**, y debemos tener esto en cuenta.
 
-La mayoría de las clases de la biblioteca Ext se extienden desde la clase Ext.Base, sin embargo, hay algunas clases principales que no lo hacen. La siguiente captura de pantalla muestra el árbol de herencia de los componentes Button y Model:
+La mayoría de las clases de la library **`Ext`** se extienden desde la clase **`Ext.Base`**, sin embargo, hay algunas clases principales que no lo hacen. La siguiente captura de pantalla muestra el árbol de herencia de los componentes **`Button`** y **`Model`**:
+
+![02-07](images/02-07.png)
+
+Como podemos ver en la imagen anterior, la raíz del árbol es la clase **`Ext.Base`**, lo que significa que los componentes **`Button`** y **`Model`** comparten los mismos métodos definidos en la clase **`Ext.Base`**.
+
+Para extendernos desde cualquier otra clase, necesitamos definir la propiedad **`extend`** a nuestra nueva clase de la siguiente manera; esto nos permitirá heredar todos los métodos y propiedades del padre.
+
+`classes_02.js`
+
+```js
+Ext.define('Myapp.sample.Supervisor',{
+   extend: 'Myapp.sample.Employee',
+   constructor: function ( config ){
+      Ext.apply(this, config || {});
+      console.log('class B created – fullname:' + this.name + ' ' + this.lastName);
+   },
+   supervise: function( employee ){
+      var employeefullname = employee.name + ' ' + employee.lastname;
+      console.log( this.name + ' is supervising the work of ' + employeefullname );
+   }
+});
+```
+
+Aquí hemos creado una clase que se extiende desde la clase **`Myapp.sample.Employee`** simplemente agregando la propiedad **`extend`** y asignando el nombre de la superclase en **`extend:'Myapp.sample.Employee'`**. Además, agregamos un nuevo método llamado **`supervise`**, que estará disponible solo para la clase **`Supervisor`**.
+
+Hagamos un duplicado de los archivos del primer ejemplo y cambiemos el nombre del archivo HTML a **`classes_02.html`** y al archivo JavaScript a **`classes_02.js`**. Ahora, cambie los tags **`script`** que apuntan a la propiedad **`src`** al nuevo archivo JavaScript. Al final del código en el archivo **`classes_02.js`**, agregue el siguiente código:
+
+```js
+var robert = Ext.create('Myapp.sample.Supervisor',{
+   name: 'Robert',
+   lastName: 'Smith',
+   age: 34
+});
+robert.checkAge();
+robert.work( 'Administration of the office' );
+robert.supervise( patricia );
+```
+
+Usamos el método **`Ext.create`** para crear una instancia de la clase **`Supervisor`**. En este ejemplo, estamos pasando nuevos parámetros. Una vez creada la clase **`Supervisor`**, ejecutamos los mismos métodos de la clase **`Employee`** y también ejecutamos el nuevo método **`supervise`**.
+
+Abramos el archivo HTML en nuestro navegador y miremos la consola de JavaScript. Deberíamos ver los nuevos registros de la clase **`Supervisor`**.
+
+![02-08](images/02-08.png)
+
+Como podemos ver en este ejemplo de herencia, esta propiedad también es útil cuando queremos extender classes/widgets como **`Ext.panel.Panel`** y crear nuestro propio panel al tiempo que damos una funcionalidad especial y extra que el panel no proporciona.
+
+:computer: Mi versión
+
+`classes_02.html`
+
+```html
+<!doctype html>
+<html>
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>Herencia simple</title>
+   <script src="../ext-5.1.1/build/ext-all.js"></script>
+   <script type ="text/javascript" src="classes_02.js"></script>
+</head>
+<body> </body>
+</html>
+```
+
+`classes_02.js`
+
+```js
+//Capítulo 02 - código 02
+Ext.define('Myapp.sample.Employee',{		
+   name:'Desconocido',
+   lastName:'Desconocido',
+   age:0, 
+   constructor: function (config){
+      Ext.apply(this, config || {});
+      console.log('Se creó la clase Employee – nombre completo: ' + this.name + ' ' + this.lastName); 
+   },
+   checkAge:function(){
+      console.log( 'La edad de ' + this.name + ' ' + this.lastName + ' es: ' + this.age );
+   },	
+   work: function( task ){
+      console.log( this.name + ' está trabajando: ' + task);
+   }
+});
+
+Ext.define('Myapp.sample.Supervisor',{
+   extend:'Myapp.sample.Employee', 
+   constructor: function (config){
+      Ext.apply(this, config || {});
+      console.log('Se creó la clase Supervisor – nombre completo: ' + this.name + ' ' + this.lastName); 
+   },	
+   supervise:function(employee){
+      var employeefullname = employee.name + ' ' + employee.lastName; 
+      console.log( this.name + ' está supervisando el trabajo de ' + employeefullname );	
+   }	
+}); 
+
+var adolfo = Ext.create('Myapp.sample.Employee', {name:'Adolfo', lastName:'de la Rosa', age:31 } ); 
+    adolfo.checkAge(); 					
+    adolfo.work('Desarrollando programas JS'); //Alerts  " Adolfo de la Rosa está trabajando: Desarrollando programas JS
+	
+var jorge =  Ext.create('Myapp.sample.Supervisor', {name:'Jorge', lastName:'Sabater', age:34 } ); 
+    jorge.checkAge(); 
+    jorge.work('Coordinando Proyecto');
+    jorge.supervise(adolfo); 
+```
+
+![02-09](images/02-09.png)
 
 ### Preprocesadores y posprocesadores
+
+Cada clase en Ext JS es una instancia de la clase **`Ext.Class`**. Cuando usamos el método **`Ext.define`** para definir una clase, de hecho estamos creando una instancia de la clase **`Ext.Class`**.
+
+Según la documentación, la clase **`Ext.Class`** es un factory. Esto no significa que nuestras clases se extiendan desde la clase **`Ext.Class`**. Como se mencionó anteriormente, todas las clases se extienden desde la clase **`Ext.Base`**. Lo que esto realmente significa es que cuando usamos el método **`Ext.create`**, **`Ext`** ejecuta procesos detrás de escena. Cada proceso es una tarea con un propósito específico en todo el proceso de creación de la clase.
+
+Un proceso puede ser asíncrono o no, por ejemplo, tenemos un preprocesador que carga todas las dependencias para nuestra nueva clase si aún no están cargadas. Cuando el preprocesador finaliza sus tareas, se ejecuta el siguiente proceso hasta que la lista está vacía y luego se crea nuestra nueva clase.
+
+Un **preprocessor** es un proceso que se ejecuta antes de que se cree la instancia de una clase **`Ext.Class`**, o en otras palabras, antes de que se cree nuestra nueva clase. Cada uno de los procesos definidos cambiará el comportamiento de nuestra clase, si es necesario.
+
+Un **postprocessor** es un proceso que se ejecuta después de que se crea nuestra nueva clase. Existe un proceso para convertir nuestra clase en un singleton, para definir nombres alternativos para nuestra clase y para algunos otros procesos.
+
+Hay algunos procesos definidos por la library **`Ext`**, pero podemos definir los nuestros y agregarlos a la cola de procesos si queremos.
+
+La pregunta ahora es ¿de qué procesos estamos hablando? ¿Y que hacen ellos? Si queremos ver la lista de procesos registrados, podemos ejecutar las siguientes líneas de código:
+
+```js
+var pre = Ext.Class.getDefaultPreprocessors(),
+post = Ext.ClassManager.defaultPostprocessors;
+console.log(pre);
+console.log(post);
+```
+
+Al ejecutar el código anterior en un navegador, deberíamos ver los siguientes mensajes en la consola de JavaScript:
+
+```sh
+["className", "loader", "extend", "privates", "statics", "inheritableStatics", "platformConfig", "config", "cachedConfig", "mixins", "alias"]
+["alias", "singleton", "alternateClassName", "debugHooks", "deprecated", "uses"]
+```
+
+La siguiente captura de pantalla representa el flujo de la creación de clases con los preprocesadores y posprocesadores:
+
+![02-10](images/02-10.png)
+
+Esto es lo que sucede cuando creamos una clase. Todos los preprocesadores se ejecutan antes de que la clase esté lista, modificando el resultado. Los postprocesadores, por otro lado, se ejecutan cuando la clase está lista para ser utilizada.
+
+Por ejemplo, el proceso **`loader`** busca las dependencias y, si no están presentes, intenta cargarlas de forma síncrona. Una vez que todas las dependencias están listas, pasa el control a la clase **`Ext.Class`** para continuar con el siguiente proceso. El siguiente proceso en la cola es extendido, que es responsable de copiar todos los métodos y propiedades del prototipo de la superclase a la subclase.
+
+La siguiente tabla muestra una breve descripción de todos los preprocesadores que se pueden ejecutar para crear una nueva clase:
+
+Preprocessors | Descripción
+--------------|------------
+**`className`** | Esto define el namespace y el nombre de la clase.
+**`loader`** | Esto busca las dependencias y si aún no existen, intenta cargarlas
+**`extend`** | Esto hereda todos los métodos y propiedades de la superclase a la nueva clase.
+**`statics`** | Esto crea los métodos o propiedades estáticos definidos para la clase actual.
+**`inheritableStatics`** | Esto hereda los métodos estáticos o las propiedades de la superclase, si corresponde.
+**`config`** | Esto crea los getters y setters para las propiedades de configuración.
+**`mixins`** | Esto hereda todos los métodos y propiedades de las clases **`mixin`**.
+**`alias`** | Esto establece el alias para la nueva clase.
+
+Una vez creada la clase, se ejecutan los siguientes postprocesadores:
+
+Postprocessor | Descripción
+--------------|------------
+**`alias`**   | Esto registra la nueva clase en el administrador de clases y su alias.
+**`singleton`** | Esto crea una única instancia de la nueva clase.
+**`alternateClassName`** | Esto define nombres alternativos para la nueva clase creada.
+**`uses`**    | Esto importa las clases que se utilizarán, junto con la nueva clase.
+
+A veces, los procesos no se ejecutan, por lo que si este es el caso, debemos verificar cómo hemos configurado y definido nuestras clases. A veces, las letras en minúsculas y mayúsculas pueden marcar una gran diferencia, así que tenga en cuenta que los nombres de las clases y los nombres de las propiedades deben estar en la sintaxis correcta de mayúsculas y minúsculas; de lo contrario, estos procesos o propiedades se ignorarán.
+
+Ahora que tiene una comprensión básica de cómo funciona el sistema de clases, podemos avanzar a cómo podemos definir nuestras clases usando la lógica del proceso y aprovecharlas.
+
 ### Mezcla de muchas clases (el uso de mixins)
+
+
 ### Una explicación de mixins
 #### Usando la propiedad mixinConfig
 #### Configuraciones
