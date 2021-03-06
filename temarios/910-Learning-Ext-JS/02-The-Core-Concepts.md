@@ -1119,7 +1119,148 @@ console.log( "Instancia(s) de clase de empleado = " + Myapp.sample.Employee.inst
 ![02-22](images/02-22.png)
 
 ### La clase Singleton
+
+Por definición, no se puede crear una instancia de una clase **`singleton`** más de una vez. Debe ser la misma instancia todo el tiempo. Ext nos permite crear clases **`singleton`** muy fácilmente con un postprocesador.
+
+Si queremos que una clase sea singleton, solo necesitamos establecer la propiedad **`singleton`** en **`true`**. Esto disparará el postprocesador correcto. Como práctica, necesitamos cambiar/agregar el siguiente código al comienzo del archivo anterior y guardarlo como **`singleton_01.js`**:
+
+```js
+Ext.define('Myapp.CompanyConstants',{
+   singleton: true,
+   companyName: 'Extjs code developers Corp.',
+   workingDays: 'Monday to Friday',
+   website: 'www.extjscodedevelopers.com',
+   welcomeEmployee: function (employee){
+      "Hello " + employee.getName() + ", you are now working for " + this.companyName;
+   }
+});
+```
+
+Como esta clase será *la única instancia única* en todo el código de nuestra aplicación, no es necesario crear una nueva instancia o usar **`Ext.create`**. Simplemente lo llamamos por su nombre, por ejemplo:
+
+```js
+alert( Myapp.CompanyConstants.companyName );
+// will alert "Extjs code developers Corp."
+```
+
+Después de crear cada instancia de clase **`Employee`** dentro del código, agreguemos las siguientes líneas:
+
+```js
+var patricia = Ext.create('Myapp.sample.Employee', {
+   name:'Patricia',
+   lastName:'Diaz',
+   age:21,
+   isOld:false
+});
+console.log(Myapp.CompanyConstants.welcomeEmployee(patricia));
+
+var peter = Ext.create('Myapp.sample.Employee', {
+   name:'Peter',
+   lastName:'Pan',
+   age:16,
+   isOld:false
+});
+console.log(Myapp.CompanyConstants.welcomeEmployee(peter));
+```
+
+Guardemos el archivo y actualice el navegador y deberíamos ver algo como la siguiente captura de pantalla que muestra la consola de JavaScript:
+
+![02-23](images/02-23.png)
+
+:computer: Mi versión
+
+`singleton_01.html`
+
+```html
+<!doctype html>
+<html>
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>Extjs - singleton</title>
+   <script src="../ext-5.1.1/build/ext-all.js"></script>
+   <script type ="text/javascript" src="singleton_01.js"></script>
+</head>
+<body> </body>
+</html>
+```
+
+`singleton_01.js`
+
+```js
+//Capítulo 02 - código 07
+// Singleton Class
+Ext.define('Myapp.CompanyConstants',{
+   singleton: true, 	
+   companyName: 'Extjs code developers Corp.',
+   workingDays: 'Lunes a Viernes', 
+   website: 'www.extjscodedevelopers.com', 		
+   welcomeEmployee:function (employee){
+      return "Hola " + employee.getName() + " ahora estas trabajando para " + this.companyName; 	   
+   }
+});
+// Base class Employee  usando config
+Ext.define('Myapp.sample.Employee',{
+   statics:{
+      instanceCount: 0, 		
+      payrollId: 1000,	
+      nextId : function(){			
+         return (this.payrollId + this.instanceCount);	
+      }
+   },
+   config:{
+      name: 'Desconocido',
+      lastName: 'Desconocido',
+      age: 0,	
+      isOld: false, 
+      payrollNumber: 0		
+   },
+   constructor: function (config){		
+      this.initConfig(config); 
+      this.setPayrollNumber(  this.statics().nextId() ); 
+      this.self.instanceCount ++;
+   },
+   work: function( task ){
+      console.log( this.getName() + ' está trabajando en: ' + task);
+   },
+   applyAge: function(newAge) {
+      this.setIsOld ( (newAge >= 90) ); 
+      return newAge;
+   }, 
+   getTotalEmployees: function(){
+      return this.statics().instanceCount;
+   }
+});
+
+var patricia = Ext.create('Myapp.sample.Employee', {
+   name:'Patricia', 
+   lastName:'Diaz', 
+   age:21, 
+   isOld:false 
+}); 
+console.log( Myapp.CompanyConstants.welcomeEmployee(patricia)  ); 
+
+var peter    = Ext.create('Myapp.sample.Employee', {
+   name:'Peter', 
+   lastName:'Pan', 
+   age:16, 
+   isOld:false 
+}); 
+console.log( Myapp.CompanyConstants.welcomeEmployee(peter)  ); 
+```
+
+![02-24](images/02-24.png)
+
+***Las clases singleton se usan comúnmente para contener constantes, configuraciones y funciones comunes (comúnmente denominadas clases de utilidad) para nuestra aplicación, como la ruta base de nuestra aplicación, la ruta donde se encuentran las imágenes y cosas por el estilo***.
+
 ### Aliases
+
+```js
+```
+
+```js
+```
+
 ## Carga de clases bajo demanda
 ### Habilitando el loader
 ## Trabajando con el DOM
