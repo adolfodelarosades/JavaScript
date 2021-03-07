@@ -1253,13 +1253,108 @@ console.log( Myapp.CompanyConstants.welcomeEmployee(peter)  );
 
 ***Las clases singleton se usan comúnmente para contener constantes, configuraciones y funciones comunes (comúnmente denominadas clases de utilidad) para nuestra aplicación, como la ruta base de nuestra aplicación, la ruta donde se encuentran las imágenes y cosas por el estilo***.
 
-### Aliases
+### Alias
+
+Un alias es un nombre corto para una clase. El administrador de clases maps/adds el nombre de alias con el objeto de clase actual. Por convención, un alias debe estar en minúsculas.
+
+Esta función es realmente útil cuando se usa la propiedad **`xtype`** para crear widgets. Creemos un archivo JavaScript y lo llamemos **`alias_01.js`** y coloquemos el siguiente código en él:
 
 ```js
+Ext.define('Myapp.sample.EmployeePanel',{
+   extend: 'Ext.panel.Panel',
+   alias: 'widget.employeePanel',
+   alternateClassName: 'mycustomemployeepanel',
+   title: 'Employee Panel',
+   html: 'Employee content here..!'
+});
 ```
 
+En el código anterior, configuramos la propiedad **`alias`** con un nombre corto. También estamos usando el prefijo **`widget`** para indicar que estamos creando un componente. Un componente es una clase como una window, grid, o panel.
+
+También en el código definimos la propiedad **`alternateClassName`**, que nos permite definir otros nombres alternativos para nuestra clase. Esta propiedad puede ser una cadena o un objeto array con varios nombres, por ejemplo, **`['employeepanel','customEmployeePanel', 'employeeboard']`**.
+
+En Ext JS, tenemos una lista de espacios de nombres para usar para los alias:
+
+* **`feature`**: se utiliza para funciones de Grid
+* **`plugin`** : se utiliza para plugins
+* **`store`** : se utiliza para **`Ext.data.Store`** 
+* **`widget`** : se utiliza para componentes
+
+Ahora creemos nuestra clase usando el nombre **`alias`**. Tenemos algunas opciones para hacer esto:
+
 ```js
+Ext.onReady (function(){
+   Ext.create('widget.employeePanel',{
+      title: 'Employee Panel: Patricia Diaz...',
+      height:250,
+      width:450,
+      renderTo: Ext.getBody()
+   });
+});
 ```
+
+Como alternativa, también podemos utilizar el siguiente código:
+
+```js
+Ext.onReady (function(){
+   Ext.widget('employeePanel',{
+   //using the xtype which is employeePanel
+      title: 'Employee Panel: Patricia Diaz...',
+      height:250,
+      width:450,
+      renderTo: Ext.getBody()
+   });
+});
+```
+
+Además, cree el archivo HTML llamado **`alias_01.html`**. Realice los cambios en el archivo HTML para que se vea como el siguiente código:
+
+```html
+<!doctype html>
+<html>
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>Extjs - Alias</title>
+   <link rel="stylesheet" type="text/css" href="../ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+   <script src="../ext-5.1.1/build/ext-all.js"></script>
+   <script src="../ext-5.1.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+   <script type ="text/javascript" src="alias_01.js"></script>
+</head>
+<body style="padding:15px;"></body>
+</html>
+```
+
+Ejecute el archivo en su navegador y puede obtener un resultado similar al que se muestra en la siguiente captura de pantalla:
+
+![02-25](images/02-25.png)
+
+Veamos la explicación. Definimos la nueva clase **`Myapp.sample.EmployeePanel`** ampliando el componente **`Ext.panel.Panel`** de la clase Ext JS. Como esta clase es de hecho un *widget*, declaramos el *alias* como **`widget.employeePanel`**. Como dijimos anteriormente, **`Ext.ClassManager`** maneja la declaración de nuestra clase extendida (el uso interno de preprocesadores y postprocesadores) y defines/maps el alias para su uso posterior. Entonces, cuando creamos una nueva instancia de la nueva clase **`Myapp.sample.EmployeePanel`**, Ext JS sabrá cómo manejar y ejecutar el código correctamente.
+
+Además, tenemos otras formas de hacer referencia a la nueva clase:
+
+```js
+Ext.ClassManager.instantiateByAlias("widget.employeePanel",{
+   renderTo: Ext.getBody()
+});
+// OR
+Ext.createByAlias("widget.employeePanel",{
+   renderTo: Ext.getBody()
+});
+```
+
+En este caso, **`Ext.createByAlias`** es la abreviatura de **`Ext.ClassManager.instantiateByAlias;`**; funcionan de la misma manera y, por lo general, es más fácil utilizar la segunda opción. También podemos referirnos a la nueva clase usando su propiedad **`xtype`** en un objeto de configuración, como el siguiente código:
+
+```js
+var win = Ext.create("Ext.window.Window",{
+   title: "Window", width:350, height:250,
+   items: [{ xtype: "employeePanel" }]
+});
+win.show();
+```
+
+> **NOTA**<br>
+>Recuerde que al extender una clase, intente extender la clase que le brinda las propiedades y métodos que realmente necesita para crear su nueva clase. A veces, es una mala práctica extender una class/widget como **`Ext.panel.Panel`**, si no vamos a aprovechar al máximo la funcionalidad que nos puede brindar. En este caso, quizás sea más conveniente extender la clase base del panel, que es la clase **`Ext.container.Container`**.
 
 ## Carga de clases bajo demanda
 ### Habilitando el loader
