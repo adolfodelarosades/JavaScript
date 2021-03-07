@@ -1582,15 +1582,51 @@ Ext.require([
 ]);
 
 Ext.onReady(function(){ 
-   console.log ("Título de la aplicación 	= " +  MyApp.Constants.title ); 
-   console.log ("Version de aplicacion 	= " +  MyApp.Constants.getVersion() ); 
+
+   console.log ("Título de la aplicación   = " +  MyApp.Constants.title ); 
+   console.log ("Version de aplicacion     = " +  MyApp.Constants.getVersion() ); 
    var testClass = Ext.create('MyApp.samples.demoClass',{ initialValue:21}); 
    console.log ( testClass.getDescription() ); 
 });
 ```
 
-![02-28](images/02-28.png)
-![02-29](images/02-29.png)
+Además de estos archivos tenemos una subcarpeta con la siguiente estructura:
+
+![02-37](images/02-37.png)
+
+`constants.js`
+
+```js
+Ext.define("MyApp.Constants",{
+   singleton:true,  
+   title:'Aplicación de muestra', 
+   major:1,
+   minor:0,
+   revision:0,
+   getVersion: function(){
+      return this.major + "." + this.minor + "." + this.revision; 	  	  
+   }	
+});
+```
+
+`demoClass.js`
+
+```js
+// JavaScript Document
+Ext.define("MyApp.samples.demoClass",{
+   initialValue:0,
+   constructor: function (config){
+      Ext.apply(this, config || {});
+   },
+   getDescription: function(){
+      return 'Esta es una clase demo con un valor inicial de: ' + this.initialValue;
+   }
+});
+```
+
+La salida que tenemos es:
+
+![02-36](images/02-36.png)
 
 ## Trabajando con el DOM
 
@@ -1651,6 +1687,39 @@ div.setStyle({
 Aquí estamos pasando un objeto con todas las reglas que queremos aplicar al nodo. Como resultado, deberíamos ver un cuadrado gris en el centro de nuestra pantalla:
 
 ![02-31](images/02-31.png)
+
+:computer: Mi versión
+
+```html
+<!doctype html>
+<html>
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>Extjs - manipulating the DOM </title>
+   <script src="../ext-5.1.1/build/ext-all.js"></script>
+   <script type="text/javascript">
+      Ext.onReady(function(){
+         var mymainDiv = Ext.get('main'); 
+         var mysecondDiv = Ext.dom.Element.get('second');
+         mymainDiv.setStyle({
+            width   : "100px",
+            height  : "100px",
+            border  : "2px solid #444",
+            margin  : "80px auto",
+            backgroundColor : "#ccc"
+         });
+      });    
+   </script>  
+</head>
+<body style="padding:10px;"> 
+   <div id="main"></div>
+   <div id="second"></div>
+</body>
+</html>
+```
+
+![02-33](images/02-33.png)
 
 Si queremos agregar una clase CSS al nodo, podemos usar el método **`addCls`**. También podemos usar el método **`removeCls`** si queremos eliminar una clase CSS del nodo. Veamos cómo usar el método **`addCls`**:
 
@@ -1736,16 +1805,54 @@ La instrucción **`myElements.setStyle({...});`** toma la acción de aplicar el 
 
 :computer: Mi versión
 
-```js
+`dom_02.html`
+
+```html
+<!doctype html>
+<html>
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>Extjs - manipulando el DOM </title>
+   <script src="../ext-5.1.1/build/ext-all.js"></script>
+   <script type="text/javascript">
+      Ext.onReady(function(){
+         var myElements = Ext.dom.Query.select('#main .menu ul li');			
+         myElements = Ext.get(myElements); 
+         myElements.setStyle({
+            display : "inline",
+            backgroundColor : "#003366",
+            margin : "3px",
+            color : "#FFCC00",
+            padding : "3px 20px",
+            borderRadius : "10px",
+            boxShadow : "inset 0 1px 15px #6699CC"
+         });
+			
+         var h1 = Ext.select("#main div[class=content] h1");	
+         h1.setStyle("color","#003399");	
+      });
+   </script>  
+</head>
+<body style="padding:10px;">  
+   <div id="main">
+      <div class="menu">
+         <ul>
+            <li>Inicio</li>
+            <li>Sobre nosotros</li>
+         </ul>
+      </div>
+      <div class="content">
+         <h1>¡Aprendiendo Ext JS 5!</h1>
+         <p>Este es un ejemplo de la clase DomQuery.</p>
+      </div>
+   </div>
+</body>
+</html>
 ```
 
-```js
-```
-
-```js
-```
-
-
+![02-34](images/02-34.png)
+![02-35](images/02-35.png)
 
 ### Manipulación del DOM: ¿cómo lo cambiamos?
 
