@@ -1442,8 +1442,117 @@ win.show();
 >Recuerde que al extender una clase, intente extender la clase que le brinda las propiedades y métodos que realmente necesita para crear su nueva clase. A veces, es una mala práctica extender una class/widget como **`Ext.panel.Panel`**, si no vamos a aprovechar al máximo la funcionalidad que nos puede brindar. En este caso, quizás sea más conveniente extender la clase base del panel, que es la clase **`Ext.container.Container`**.
 
 ## Carga de clases bajo demanda
-### Habilitando el loader
+
+Cuando desarrollamos aplicaciones grandes, el rendimiento es realmente importante. Solo debemos cargar los scripts que necesitamos; esto significa que si tenemos muchos módulos en nuestra aplicación, deberíamos separarlos en paquetes para poder cargarlos individualmente.
+
+Ext JS, desde la versión 4, nos permite cargar clases y archivos dinámicamente cuando los necesitemos, también podemos configurar dependencias en cada clase y la librería **`Ext`** las cargará por nosotros.
+
+Debe comprender que usar el loader es excelente para el desarrollo, de esa manera podemos depurar fácilmente el código porque el loader incluye todas las clases una por una. Sin embargo, no se recomienda cargar todas las clases Ext en entornos de producción. Deberíamos crear paquetes de clases y luego cargarlos cuando sea necesario, pero no clase por clase.
+
+Para usar el sistema loader, necesitamos seguir algunas convenciones al definir nuestra clase.
+
+* Defina solo una clase por archivo.
+* El nombre de la clase debe coincidir con el nombre del archivo JavaScript.
+* El namespace de la clase debe coincidir con la estructura de la carpeta. Por ejemplo, si definimos una clase **`MyApp.customers.controller.Main`**, deberíamos tener el archivo **`Main.js`** en la ruta **`MyApp/customers/controller`**.
+
+### Habilitando el Loader
+
+El sistema de loader está habilitado o deshabilitado dependiendo del archivo **`Ext`** que importamos a nuestro archivo HTML. Si importamos el archivo **`ext-all`** o **`ext-all-debug`** dentro de la carpeta **`extjs/build`**, el loader está deshabilitado porque todas las clases en la library **`Ext`** ya están cargadas. Si importamos los archivos **`ext-all`** y **`ext-all-debug`** dentro de la carpeta **`extjs`**, el loader está habilitado porque solo se cargan las clases core en la library **`Ext`**.
+
+Si necesitamos habilitar el loader, debemos hacer lo siguiente al comienzo del archivo JS:
+
+```js
+Ext.Loader.setConfig({
+   enabled: true
+});
+```
+
+El código anterior nos permitirá cargar las clases cuando las necesitemos. También hay un preprocesador que carga todas las dependencias para la clase dada si no existen.
+
+Para comenzar a cargar clases, necesitamos configurar las rutas donde están las clases, y podemos hacerlo de dos maneras diferentes. Podemos usar el método **`setConfig`** para definir una propiedad **`paths`** de la siguiente manera:
+
+```js
+Ext.Loader.setConfig({
+   enabled:true,
+   paths:{
+      MyApp:'appcode'
+   }
+});
+```
+
+La propiedad **`paths`** recibe un objeto que contiene el root namespace de nuestra aplicación y la carpeta donde se encuentran todas las clases en este namespace. Entonces, en el código anterior cuando nos referimos a **`Myapp`**, Ext JS buscará dentro de la carpeta **`appcode/`**. Recuerde que podemos agregar tantas rutas o referencias de ubicación como sea necesario.
+
+Una vez que hayamos habilitado y configurado correctamente el cargador, podemos empezar a cargar nuestras clases usando el método **`require`**:
+
+```js
+Ext.require([
+   'MyApp.Constants',
+   'MyApp.samples.demoClass'
+]);
+```
+
+El método **`require`** crea una script tag entre bastidores. Una vez cargados todos los archivos necesarios, se dispara el evento **`onReady`**. Dentro del callback, podemos usar todas las clases cargadas.
+
+Si intentamos cargar las clases después de la llamada **`require`**, obtendremos un error porque la clase no existirá hasta que se descargue y se cree. Es por eso que necesitamos configurar la callback **`onReady`** y esperar hasta que todo esté listo para ser utilizado.
+
+En este caso, abra el archivo **`loader_01.html`** y verifique que el archivo tenga las rutas correctas (que las etiquetas del script sean correctas) al archivo **`ext.js`** en lugar de **`ext-all.js`**, y ejecute el archivo en el navegador. Si observa la pestaña **Network** en las herramientas de desarrollo, notará los archivos que solo se cargaron, que de hecho son algunas clases (solo las clases que Ext JS realmente necesitan para ejecutar el código). Además, la velocidad de ejecución de estas clases fue más rápida que las muestras de código anteriores cuando estábamos cargando el archivo **`ext-all.js`** completo ubicado en la carpeta **`build`**.
+
+:computer: Mi versión (FALLA)
+
+`loader_01.html`
+
+```html
+<!doctype html>
+<html>
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>Extjs - Loader</title>
+   <link rel="stylesheet" type="text/css" href="../ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+   <script src="../ext-5.1.1/build/ext.js"></script>
+   <script src="../ext-5.1.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+   <script type ="text/javascript" src="loader_01.js"></script>
+</head>
+<body> </body>
+</html>
+```
+
+`loader_01.js`
+
+```js
+//Capítulo 02 - código 09
+//EXT JS - LOADER 
+Ext.Loader.setConfig({
+   enabled: true, 
+   paths:{
+      MyApp:'appcode'	
+   }
+});
+Ext.require([
+   'MyApp.Constants',
+   'MyApp.samples.demoClass'
+]);
+
+Ext.onReady(function(){ 
+   console.log ("Título de la aplicación 	= " +  MyApp.Constants.title ); 
+   console.log ("Version de aplicacion 	= " +  MyApp.Constants.getVersion() ); 
+   var testClass = Ext.create('MyApp.samples.demoClass',{ initialValue:21}); 
+   console.log ( testClass.getDescription() ); 
+});
+```
+
+![02-28](images/02-28.png)
+![02-29](images/02-29.png)
+
 ## Trabajando con el DOM
+
+```js
+```
+
+```js
+```
+```js
+```
 ### Obteniendo elementos
 ### Query: ¿cómo los encontramos?
 ### Manipulación del DOM: ¿cómo lo cambiamos?
