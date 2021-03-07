@@ -1329,6 +1329,91 @@ Ejecute el archivo en su navegador y puede obtener un resultado similar al que s
 
 ![02-25](images/02-25.png)
 
+:computer: Mi versión
+
+`alias_01.html`
+
+```html
+<!doctype html>
+<html>
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>Extjs - Alias</title>
+   <link rel="stylesheet" type="text/css" href="../ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+   <script src="../ext-5.1.1/build/ext-all.js"></script>
+   <script src="../ext-5.1.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+   <script type ="text/javascript" src="alias_01.js"></script>
+</head>
+<body style="padding:15px;"></body>
+</html>
+```
+
+`alias_01.js`
+
+```js
+//Capítulo 02 - código 08
+// usando alias y alternateClassName
+
+Ext.define('Myapp.sample.EmployeePanel',{
+   extend : 'Ext.panel.Panel',
+   alias  : 'widget.employeePanel',
+   alternateClassName:'mycustomemployeepanel', //['employeepanel','customEmployeePanel'],
+   title  : 'Panel de empleados',
+   html   : '¡Contenido del empleado aquí ...!'
+});
+
+Ext.onReady (function(){	
+   Ext.create('widget.employeePanel',{
+      title: 'Panel de Empleado: Patricia Diaz...', 
+      height:250, 
+      width:450,
+      renderTo: Ext.getBody()
+   });	
+});
+
+/*	
+Ext.widget('employeePanel',{  //Alternative
+   title: 'Panel de Empleado: Patricia Diaz...', 
+   height:250, 
+   width:450,
+   renderTo: Ext.getBody()
+}); 
+*/	
+/*	
+Ext.create('Myapp.sample.EmployeePanel',{ //Using direct class name 
+   title: 'Panel de Empleado: Patricia Diaz...', 
+   height:250, 
+   width:450,
+   renderTo: Ext.getBody()
+});
+*/
+/*
+Ext.create('mycustomemployeepanel',{ //Using alternateClassName 
+   title: 'Panel de Empleado: Patricia Diaz...', 
+   height:250, 
+   width:450,
+   renderTo: Ext.getBody()
+});
+*/	
+
+/* Other possible use */
+/*	
+var win = Ext.create("Ext.window.Window",{
+   title  : "Window", width:350, height:250,
+   items    : [{ xtype: "employeePanel" }]
+});
+win.show();
+*/
+```
+
+![02-26](images/02-26.png)
+
+Todas las opciones comentadas son alternativas de hacer referencia a la nueva clase y nos presentan la misma salida, a excepción de la última que nos pone la ventana así:
+
+![02-27](images/02-27.png)
+
+
 Veamos la explicación. Definimos la nueva clase **`Myapp.sample.EmployeePanel`** ampliando el componente **`Ext.panel.Panel`** de la clase Ext JS. Como esta clase es de hecho un *widget*, declaramos el *alias* como **`widget.employeePanel`**. Como dijimos anteriormente, **`Ext.ClassManager`** maneja la declaración de nuestra clase extendida (el uso interno de preprocesadores y postprocesadores) y defines/maps el alias para su uso posterior. Entonces, cuando creamos una nueva instancia de la nueva clase **`Myapp.sample.EmployeePanel`**, Ext JS sabrá cómo manejar y ejecutar el código correctamente.
 
 Además, tenemos otras formas de hacer referencia a la nueva clase:
