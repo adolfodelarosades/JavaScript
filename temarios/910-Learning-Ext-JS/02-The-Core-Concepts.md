@@ -107,7 +107,7 @@ Finalmente, invocamos el método **`work`**, que hará que aparezca una alert en
 
 ![02-03](images/02-03.png)
 
-:computer: Mi versión
+### :computer: 1. Mi versión
 
 `classes_01.html`
 
@@ -203,7 +203,7 @@ El primer mensaje se imprime en la consola mediante el método **`constructor`**
 
 Una vez que tenemos la instancia de la clase **`Employee`**, podemos modificar sus propiedades asignando el nuevo valor. Si actualizamos nuestro navegador, veremos un nuevo mensaje en la consola y tendrá el nuevo valor. Podemos crear tantas instancias como queramos de nuestra clase y cada una de ellas tendrá las mismas propiedades y métodos. Sin embargo, podemos cambiar sus valores individualmente o incluso pasar un objeto al constructor con las propiedades que queremos cambiar.
 
-:computer: Mi versión
+### :computer: 2. Mi versión
 
 `classes_01.js`
 
@@ -292,7 +292,7 @@ Abramos el archivo HTML en nuestro navegador y miremos la consola de JavaScript.
 
 Como podemos ver en este ejemplo de herencia, esta propiedad también es útil cuando queremos extender classes/widgets como **`Ext.panel.Panel`** y crear nuestro propio panel al tiempo que damos una funcionalidad especial y extra que el panel no proporciona.
 
-:computer: Mi versión
+### :computer: 3. Mi versión
 
 `classes_02.html`
 
@@ -384,7 +384,7 @@ Al ejecutar el código anterior en un navegador, deberíamos ver los siguientes 
 ["alias", "singleton", "alternateClassName", "debugHooks", "deprecated", "uses"]
 ```
 
-:computer: Mi versión
+### :computer: 4. Mi versión
 
 `classes_03.html`
 
@@ -556,7 +556,7 @@ Una vez que el código esté listo, actualice el navegador y debería ver algo c
 
 ![02-12](images/02-12.png)
 
-:computer: Mi versión
+### :computer: 5. Mi versión
 
 `classes_04.html`
 
@@ -772,7 +772,7 @@ Actualice el navegador y debería ver algo como la siguiente captura de pantalla
 
 ![02-16](images/02-16.png)
 
-:computer: Mi versión
+### :computer: 6. Mi versión
 
 ![02-17](images/02-17.png)
 
@@ -884,7 +884,7 @@ Como puede ver en el código resaltado, estamos usando los métodos setters y ge
 
 ![02-18](images/02-18.png)
 
-:computer: Mi versión
+### :computer: 7. Mi versión
 
 `config_01.html`
 
@@ -1041,7 +1041,7 @@ En este caso, creamos dos instancias de las clases **`Patricia`** y **`Peter`**,
 
 ![02-21](images/02-21.png)
 
-:computer: Mi versión
+### :computer: 8. Mi versión
 
 `statics_01.html`
 
@@ -1167,7 +1167,7 @@ Guardemos el archivo y actualice el navegador y deberíamos ver algo como la sig
 
 ![02-23](images/02-23.png)
 
-:computer: Mi versión
+### :computer: 9. Mi versión
 
 `singleton_01.html`
 
@@ -1329,7 +1329,7 @@ Ejecute el archivo en su navegador y puede obtener un resultado similar al que s
 
 ![02-25](images/02-25.png)
 
-:computer: Mi versión
+### :computer: 10. Mi versión
 
 `alias_01.html`
 
@@ -1497,7 +1497,7 @@ Si intentamos cargar las clases después de la llamada **`require`**, obtendremo
 
 En este caso, abra el archivo **`loader_01.html`** y verifique que el archivo tenga las rutas correctas (que las etiquetas del script sean correctas) al archivo **`ext.js`** en lugar de **`ext-all.js`**, y ejecute el archivo en el navegador. Si observa la pestaña **Network** en las herramientas de desarrollo, notará los archivos que solo se cargaron, que de hecho son algunas clases (solo las clases que Ext JS realmente necesitan para ejecutar el código). Además, la velocidad de ejecución de estas clases fue más rápida que las muestras de código anteriores cuando estábamos cargando el archivo **`ext-all.js`** completo ubicado en la carpeta **`build`**.
 
-:computer: Versión Original (FUNCIONA)
+### :computer: 11. Versión Original (FUNCIONA)
 
 ```html
 <!doctype html>
@@ -1543,9 +1543,7 @@ Ext.onReady(function(){
 
 ![02-30](images/02-30.png)
 
-:computer: Mi versión (FALLA)
-
-Simplemente por cambiar de carpeta de **`chapter_02`** a **`capitulo_02`** deja de funcionar.
+### :computer: 11. Mi versión
 
 `loader_01.html`
 
@@ -1688,7 +1686,7 @@ Aquí estamos pasando un objeto con todas las reglas que queremos aplicar al nod
 
 ![02-31](images/02-31.png)
 
-:computer: Mi versión
+### :computer: 12. Mi versión
 
 ```html
 <!doctype html>
@@ -1803,7 +1801,7 @@ La instrucción **`myElements.setStyle({...});`** toma la acción de aplicar el 
 
 ![02-32](images/02-32.png)
 
-:computer: Mi versión
+### :computer: 13. Mi versión
 
 `dom_02.html`
 
