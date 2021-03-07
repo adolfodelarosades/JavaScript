@@ -1594,14 +1594,227 @@ Ext.onReady(function(){
 
 ## Trabajando con el DOM
 
+Ext JS proporciona una manera fácil de lidiar con DOM. Podemos crear nodos, cambiar estilos, agregar listeners y crear hermosas animaciones, entre otras cosas, sin preocuparnos por las implementaciones del navegador. Ext JS nos proporciona una API de compatibilidad entre navegadores que nos facilitará la vida.
+
+La clase responsable de tratar con los nodos DOM es la clase **`Ext.Element`**. Esta clase es un contenedor para los nodos nativos y nos proporciona muchos métodos y utilidades para manipular los nodos.
+
+> **NOTA**<br>
+> Manipular DOM directamente se considera una mala práctica y ninguna de las marcas de DOM debe colocarse en el archivo de índice. Este ejemplo existe solo con fines ilustrativos.
+
+### Obteniendo elementos
+
+El método **`Ext.get`** nos permite recuperar un elemento DOM encapsulado en la clase **`Ext.dom.Element`**, recuperando este elemento por su ID. Esto nos permitirá modificar y manipular el elemento DOM. A continuación, se muestra un ejemplo básico:
+
+```html
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<title>Extjs - Loader</title>
+<link rel="stylesheet" type="text/css" href="../ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+<script src="../ext-5.1.1/ext-all.js"></script>
+<script src="../ext-5.1.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+<script type="text/javascript">
+   Ext.onReady(function(){
+      var mymainDiv = Ext.get('main');
+      var mysecondDiv = Ext.dom.Element.get('second');
+   });
+</script>
+</head>
+<body style="padding:10px">
+<div id="main"></div>
+<div id="second"></div>
+</body>
+</html>
+```
+
+Por lo general, para obtener un elemento, usamos **`Ext.get`**, que es un alias/shorthand de **`Ext.dom.Element.get`**.
+
+> **NOTA**<br>
+> Al pasar una ID, no debe incluir el carácter `#` que se usa para un selector de CSS.
+
+En la variable **`div`**, tenemos una instancia de la clase **`Ext.Element`** que contiene una referencia al nodo que tiene **`main`** como su ID.
+
+Podemos usar el método **`setStyle`** para asignar algunas reglas CSS al nodo. Agreguemos el siguiente código a nuestro ejemplo:
+
+```css
+div.setStyle({
+   width: "100px",
+   height: "100px",
+   border: "2px solid #444",
+   margin: "80px auto",
+   backgroundColor: "#ccc"
+});
+```
+
+Aquí estamos pasando un objeto con todas las reglas que queremos aplicar al nodo. Como resultado, deberíamos ver un cuadrado gris en el centro de nuestra pantalla:
+
+![02-31](images/02-31.png)
+
+Si queremos agregar una clase CSS al nodo, podemos usar el método **`addCls`**. También podemos usar el método **`removeCls`** si queremos eliminar una clase CSS del nodo. Veamos cómo usar el método **`addCls`**:
+
+```js
+div.addCls("x-testing x-box-component");
+div.removeCls("x-testing");
+```
+
+Hay muchos métodos que podemos usar para manipular el nodo elemento. Probemos algunas animaciones con nuestro elemento:
+
+```js
+div.fadeOut()
+.fadeIn({
+   duration:3000
+});
+```
+
+El método **`fadeOut`** oculta lentamente el elemento cambiando la opacidad progresivamente. Cuando la opacidad es cero por ciento, el método **`fadeIn`** se ejecuta cambiando la opacidad en un 100 por ciento en tres segundos.
+
+Deberías echar un vistazo a la documentación (http://docs.sencha.com/) para conocer todas las opciones que tenemos disponibles, ya que allí podemos encontrar ejemplos de código para jugar.
+
+### Query: ¿cómo los encontramos?
+
+Ext JS nos permite consultar el DOM para buscar nodos específicos. El query engine(motor de consulta) es compatible con la mayoría de las especificaciones del selector CSS3 y el XPath básico.
+
+La clase responsable que hace el trabajo es la clase **`Ext.dom.Query`**; esta clase contiene algunos métodos para realizar una búsqueda.
+
+> **NOTA**<br>
+> La clase **`Ext.dom.Query`** es una clase singleton, por lo que no es necesario declararla como una nueva instancia para buscar elementos DOM. También es importante conocer los selectores de CSS, por lo que esto nos ayudará a comprender cómo podemos seleccionar uno o varios elementos.
+
+El siguiente código es un documento HTML que contiene algunas etiquetas para que podamos buscarlas usando la clase **`Ext.dom.Query`**:
+
+```html
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<title>Extjs - manipulating the DOM </title>
+<script src="../ext-5.1.1/build/ext-all.js"></script>
+<script type="text/javascript">
+Ext.onReady(function(){
+   var myElements = Ext.dom.Query.select('#main .menu ul li');
+   myElements = Ext.get(myElements);
+   myElements.setStyle({
+      display: "inline",
+      backgroundColor: "#003366",
+      margin: "3px",
+      color: "#FFCC00",
+      padding: "3px 20px",
+      borderRadius: "10px",
+      boxShadow: "inset 0 1px 15px #6699CC"
+   });
+   var h1 = Ext.select("#main div[class=content] h1");
+   h1.setStyle("color","#003399");
+});
+</script>
+</head>
+<body style="padding:10px;">
+   <div id="main">
+      <div class="menu">
+         <ul>
+            <li>Home</li>
+            <li>About us</li>
+         </ul>
+      </div>
+      <div class="content">
+         <h1>Learning Ext JS 5!</h1>
+         <p>This is an example for the DomQuery class.</p>
+      </div>
+   </div>
+</body>
+</html>
+```
+
+Para realizar la búsqueda usaremos el método **`select`** de la clase **`Ext.dom.Query`**, y pasamos un selector CSS como único parámetro, **`#main .menu ul li`**. La variable **`myElements`** se convirtió en un array con dos elementos. **`Ext`** envuelve los nodos en una colección **`Ext.CompositeElementLite`**.
+
+Después de eso, convertimos la colección (cada elemento en la matriz) a un objeto **`Ext.dom.Element`** usando la instrucción **`myElements = Ext.get(myElements);`**.
+
+La instrucción **`myElements.setStyle({...});`** toma la acción de aplicar el estilo (objeto de configuración) a cada uno de los elementos (en el array), usando los métodos **`Ext.dom.Element`** para lograr esto. La siguiente captura de pantalla representa el resultado del código:
+
+![02-32](images/02-32.png)
+
+:computer: Mi versión
+
 ```js
 ```
 
 ```js
 ```
+
 ```js
 ```
-### Obteniendo elementos
-### Query: ¿cómo los encontramos?
+
+
+
 ### Manipulación del DOM: ¿cómo lo cambiamos?
+
+Podemos crear y eliminar nodos del DOM muy fácilmente. Ext JS contiene un object/class **`DomHelper`**, que proporciona una capa de abstracción y nos da una API para crear nodos DOM o fragmentos HTML.
+
+Creemos un archivo HTML, importemos la library **`Ext`** y luego usemos el objeto **`DomHelper`** para agregar un elemento **`div`** al body del documento:
+
+```js
+Ext.onReady(function(){
+   Ext.DomHelper.append(Ext.getBody(),{
+      tag: "div",
+      style: {
+         width: "100px",
+         height: "100px",
+         border: "2px solid #333",
+         margin  : "20px auto"
+      }
+   });
+});
+```
+
+Usamos el método **`append`**; el primer parámetro es donde queremos agregar el nuevo elemento (o nodo DOM). En este caso, lo agregaremos al body del documento.
+
+El second/next parámetro es una cadena u objeto que especifica el elemento que vamos a agregar; Es importante que especifiquemos la propiedad **`tag`**, que define el type/kind de elemento (elemento DOM) que deseamos agregar al elemento definido en el primer parámetro.
+
+En este caso, definimos previamente un elemento **`div`** que se agregará en el body del documento, pero podemos definir cualquier otra etiqueta como se define en la especificación HTML. Podemos definir styles, classes, children y cualquier otra propiedad que admita un elemento HTML. Agreguemos algunos children a nuestro ejemplo anterior:
+
+```js
+Ext.DomHelper.append(Ext.getBody(),{
+   //...
+   children  : [{
+      tag      : "ul",
+      children  : [
+         {tag: "li", html: "Item 1"},
+         {tag: "li", html: "Item 2"}
+      ]
+   }]
+});
+```
+
+Hemos agregado una lista desordenada al elemento principal **`div`**. La lista contiene dos elementos secundarios que son elementos de la lista. Podemos tener tantos children como necesitemos.
+
+Hay otro método que podemos usar si queremos crear un nodo, pero queremos insertarlo en el DOM más tarde:
+
+```js
+var h1 = Ext.DomHelper.createDom({
+   tag: "h1",
+   html: "This is the title!"
+});
+
+Ext.getBody().appendChild(h1);
+```
+
+Cuando usamos el método **`createDom`**, creamos un nuevo nodo en la memoria. Probablemente agreguemos este nodo al DOM más adelante, o tal vez no. En este ejemplo, lo hemos agregado al cuerpo del documento.
+
+Sabemos cómo crear y agregar nodos al DOM, pero ¿y si queremos eliminar elementos del DOM? Para eliminar el elemento del DOM, necesitamos usar el método **`remove`** en la clase **`Ext.Element`**:
+
+```js
+Ext.fly(h1).remove();
+```
+
+El código anterior llama al método **`Ext.fly`**. Este método es similar al método **`Ext.get`** pero la diferencia es que **`Ext.fly`** obtiene el elemento y no almacena este elemento en la memoria; realmente es para un solo uso o una referencia única. El método **`Ext.get`** almacena el elemento en la memoria para ser reutilizado en otras clases o código de aplicación.
+
+Entonces, **`Ext.fly`** devuelve una instancia a la clase **`Ext.Element`** que contiene una referencia al elemento de nodo. Una vez que tenemos el nodo en el contenedor, podemos llamar al método **`remove`** y el nodo será eliminado del DOM.
+
 ## Resumen
+
+Cuando usamos Ext JS, necesitamos cambiar de opinión y ver todo como un objeto o clase. Necesitamos pensar detenidamente cómo vamos a organizar las clases, ya que esto nos ayudará en los próximos capítulos. También aprendió a trabajar con OOP con el sistema de clases en Ext JS.
+
+También aprendió sobre el sistema de carga para importar nuestras clases dinámicamente, administrar las dependencias por nosotros y solo cargar lo que necesitamos. Al final de este capítulo, aprendió sobre DOM y cómo realizar una búsqueda para manipular los nodos fácilmente.
+
+En el próximo capítulo, aprenderá sobre el sistema de diseño, una forma poderosa de crear y administrar nuestros diseños. Usar y combinar varios tipos de diseños nos ayudará a crear interfaces únicas.
