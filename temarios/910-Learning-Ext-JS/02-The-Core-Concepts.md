@@ -1497,7 +1497,55 @@ Si intentamos cargar las clases después de la llamada **`require`**, obtendremo
 
 En este caso, abra el archivo **`loader_01.html`** y verifique que el archivo tenga las rutas correctas (que las etiquetas del script sean correctas) al archivo **`ext.js`** en lugar de **`ext-all.js`**, y ejecute el archivo en el navegador. Si observa la pestaña **Network** en las herramientas de desarrollo, notará los archivos que solo se cargaron, que de hecho son algunas clases (solo las clases que Ext JS realmente necesitan para ejecutar el código). Además, la velocidad de ejecución de estas clases fue más rápida que las muestras de código anteriores cuando estábamos cargando el archivo **`ext-all.js`** completo ubicado en la carpeta **`build`**.
 
+:computer: Versión Original (FUNCIONA)
+
+```html
+<!doctype html>
+<html>
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+   <title>Extjs - Loader</title>
+   <link rel="stylesheet" type="text/css" href="../ext-5.1.1/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+   <script src="../ext-5.1.1/build/ext.js"></script>
+   <script src="../ext-5.1.1/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+   <script type ="text/javascript" src="loader_01.js"></script>
+</head>
+<body> </body>
+</html>
+```
+
+`loader_01.js`
+
+```js
+//Chapter 02 - code 09
+//EXT JS - LOADER 
+Ext.Loader.setConfig({
+   enabled: true, 
+   paths:{
+      MyApp:'appcode'	
+   }
+});
+Ext.require([
+   'MyApp.Constants',
+   'MyApp.samples.demoClass'
+]);
+
+Ext.onReady(function(){ 
+
+   console.log ("App title 	= " +  MyApp.Constants.title ); 
+   console.log ("App version 	= " +  MyApp.Constants.getVersion() ); 
+   var testClass = Ext.create('MyApp.samples.demoClass',{ initialValue:21}); 
+   console.log ( testClass.getDescription() ); 
+
+});
+```
+
+![02-30](images/02-30.png)
+
 :computer: Mi versión (FALLA)
+
+Simplemente por cambiar de carpeta de **`chapter_02`** a **`capitulo_02`** deja de funcionar.
 
 `loader_01.html`
 
