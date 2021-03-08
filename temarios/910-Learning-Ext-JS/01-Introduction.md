@@ -83,6 +83,24 @@ Una cosa más a tener en cuenta es la capacidad de preparar nuestro código para
 
 La documentación es muy importante y Ext JS tiene una excelente documentación, que es muy descriptiva con muchos ejemplos, videos y código de muestra para que podamos verlo en acción directamente en las páginas de documentación, y también podemos leer los comentarios de la comunidad.
 
+## Instalación de la Última Versión Disponible 7.3.0 en Windows
+### (No la del Libro)
+
+Se instala Sencha CMD en Windos y después se pulsarón los los siguientes comandos para crear la primer aplicación:
+
+```sh
+> cd C:\Users\ext-adelarosa\
+> cd mySencha
+> sencha generate app --ext MyApp ./MyApp
+> cd Myapp
+> sencha app watch
+> 
+```
+
+![image](https://user-images.githubusercontent.com/23094588/110304039-669cc100-7ffb-11eb-9423-604f9ed87611.png)
+
+
+
 ## Empezando con Ext JS
 
 Entonces, ¡comencemos con Ext JS! Lo primero que debemos hacer es descargar el framework del sitio web oficial, http://www.sencha.com/products/extjs/. La versión disponible al momento de escribir este libro es 5.1.1. (*Yo descargue la 7.3.0*)
