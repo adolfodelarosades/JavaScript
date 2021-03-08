@@ -10,6 +10,10 @@
 * TutorialPoins ExtJS: https://www.tutorialspoint.com/extjs/index.htm
 * ExtJS-Tutorial.com: https://www.extjs-tutorial.com/ 
 
+#### Libros ExtJS
+
+* PacktPublishing/Ext-JS-6-By-Example: https://github.com/PacktPublishing/Ext-JS-6-By-Example
+* Ext JS 6 By Example.pdf: https://github.com/adolfodelarosades/ness-js
 
 #### Videos YouTube Sencha
 
