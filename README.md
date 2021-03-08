@@ -14,7 +14,7 @@ Serie de varios cursos JavaScript.
 
 # Sencha
 
-* [800 Sencha ExtJS](temarios/800-Sencha-ExtJS.md)
+* [800 Sencha ExtJS y XEditor](temarios/800-Sencha-ExtJS.md)
 
 # Books
 * [900 Webpack for Beginners](temarios/900-Webpack-for-Beginners.md)
