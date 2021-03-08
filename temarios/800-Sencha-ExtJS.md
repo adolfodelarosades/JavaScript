@@ -22,5 +22,5 @@ Lista de Recursos de XEditor
 Videos YouTube Xeditor
 
 * Xeditor Presentation https://www.youtube.com/watch?v=zdJNDDnpM9E
-* Tutorial 3 Videos de 
+
 
