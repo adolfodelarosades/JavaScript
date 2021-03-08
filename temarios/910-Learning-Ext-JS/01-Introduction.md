@@ -86,7 +86,11 @@ La documentación es muy importante y Ext JS tiene una excelente documentación,
 ## Instalación de la Última Versión Disponible 7.3.0 en Windows
 ### (No la del Libro)
 
-Se instala Sencha CMD en Windos y después se pulsarón los los siguientes comandos para crear la primer aplicación:
+Se instala Sencha CMD en Windos y se comprueba su instalación con el comando `sencha`:
+
+![image](https://user-images.githubusercontent.com/23094588/110304039-669cc100-7ffb-11eb-9423-604f9ed87611.png)
+
+Después se pulsarón los los siguientes comandos para crear la primer aplicación:
 
 ```sh
 > cd C:\Users\ext-adelarosa\
@@ -97,7 +101,18 @@ Se instala Sencha CMD en Windos y después se pulsarón los los siguientes coman
 > 
 ```
 
-![image](https://user-images.githubusercontent.com/23094588/110304039-669cc100-7ffb-11eb-9423-604f9ed87611.png)
+![image](https://user-images.githubusercontent.com/23094588/110304464-ee82cb00-7ffb-11eb-90b1-00138b40d34d.png)
+
+Una vez que se levanta el servidor invocamos el URL http://localhost:1841/ y veremos la siguiente aplicación:
+
+![image](https://user-images.githubusercontent.com/23094588/110304800-4cafae00-7ffc-11eb-85a2-d66ee38124b0.png)
+
+![image](https://user-images.githubusercontent.com/23094588/110304973-7b2d8900-7ffc-11eb-9c7d-e91f80e3c1d8.png)
+
+![image](https://user-images.githubusercontent.com/23094588/110305061-95676700-7ffc-11eb-9d94-023a17a55c4a.png)
+
+![image](https://user-images.githubusercontent.com/23094588/110305131-af08ae80-7ffc-11eb-9991-9fce84007f34.png)
+
 
 
 
