@@ -4,6 +4,7 @@
 
 * Página oficial de Sencha ExtJS: https://www.sencha.com/products/extjs/
 * Documentación Ext JS 7.3.1: https://docs.sencha.com/extjs/7.3.1/guides/getting_started/getting_started_with_npm.html
+* Documentación Ext JS 6.2.0: https://docs.sencha.com/extjs/6.2.0/index.html
 * Ejecución de Código: https://fiddle.sencha.com/#view/editor
 
 #### Videos YouTube Sencha
