@@ -1,12 +1,12 @@
-# 800 Sencha ExtJS
+# 800 Sencha ExtJS y XEditor
 
-Lista de Recursos de Sencha ExtJS
+### Lista de Recursos de Sencha ExtJS
 
 * Página oficial de Sencha ExtJS: https://www.sencha.com/products/extjs/
 * Documentación Ext JS 7.3.1: https://docs.sencha.com/extjs/7.3.1/guides/getting_started/getting_started_with_npm.html
 * Ejecución de Código: https://fiddle.sencha.com/#view/editor
 
-Videos YouTube Sencha
+#### Videos YouTube Sencha
 
 * Videos Oficiales de Sencha: https://www.youtube.com/c/sencha/videos
 * Iniciar un Proyecto de Sencha ExtJS con CMD v7.x: https://www.youtube.com/watch?v=iEeQhheKOeQ
@@ -14,13 +14,13 @@ Videos YouTube Sencha
 
 
 
-Lista de Recursos de XEditor
+### Lista de Recursos de XEditor
 
 * Página oficial de XEditor: https://www.xpublisher.com/products/xeditor
 * Documentación XEditor: https://documentation.xeditor.com/
 * Xeditor 6.6.0 API: https://api.xeditor.com/v6_6/
 
-Videos YouTube Xeditor
+#### Videos YouTube Xeditor
 
 * Xeditor Presentation https://www.youtube.com/watch?v=zdJNDDnpM9E
 
