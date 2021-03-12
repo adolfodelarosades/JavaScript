@@ -1,4 +1,4 @@
-### Capítulo 1: Empezando con Ext JS
+# Capítulo 1: Empezando con Ext JS
 * ¿Por qué Ext JS?
    * Compatibilidad con varios navegadores
    * Componentes de interfaz de usuario enriquecidos
