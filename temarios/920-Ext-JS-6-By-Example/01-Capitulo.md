@@ -240,5 +240,45 @@ set PATH=%PATH%;C:\Sencha\Cmd\6.0.0.92
 
 > **NOTA:** En el comando anterior, cambie `/bin/Sencha/Cmd/6.0.0.92` con la ruta de instalación correcta.
 
+### :red_circle: Instalación de la Última Versión Disponible 7.3.0
+#### (No la del Libro)
+
+Entre al URL [Try Sencha Ext JS](https://www.sencha.com/products/extjs/evaluate/).
+
+Existen dos formas de instalar la aplicación:
+
+Descargando el ZIP o con NPM
+
+![01-05](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/910-Learning-Ext-JS/images/01-05.png)
+![01-06](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/910-Learning-Ext-JS/images/01-06.png)
+
+Al seguir los pasos con NPM nos genera la aplicación que se carga en el URL http://localhost:1962/:
+
+![01-07](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/910-Learning-Ext-JS/images/01-07.png)
+![01-08](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/910-Learning-Ext-JS/images/01-08.png)
+![01-09](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/910-Learning-Ext-JS/images/01-09.png)
+![01-10](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/910-Learning-Ext-JS/images/01-10.png)
+![01-11](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/910-Learning-Ext-JS/images/01-11.png)
+
+Si queremos documentación más detallado lo podemos hacer en la siguiente URL:
+
+https://docs.sencha.com/extjs/7.2.0/guides/getting_started/getting_started_with_npm.html
+
+![01-12](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/910-Learning-Ext-JS/images/01-12.png)
+
+### :red_circle: Instalación de Sencha Cmd en mi equipo
+
+```sh
+export PATH=~/bin/Sencha/Cmd/7.3.1.27:$PATH
+```
+
+![01-01](images/01-01.png)
+
+<hr>
+
+
+
+
+
 ```sh
 ```
