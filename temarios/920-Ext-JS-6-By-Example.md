@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-Preface
+[Preface](920-Ext-JS-6-By-Example/00-Prefacio.md)
 
 ### [Chapter 1: Getting Started with Ext JS](920-Ext-JS-6-By-Example/01-Capitulo.md)
 * Why Ext JS?
