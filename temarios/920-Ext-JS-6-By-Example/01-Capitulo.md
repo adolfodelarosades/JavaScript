@@ -158,3 +158,87 @@ La idea básica aquí es tener dos conjuntos de herramientas en un solo framewor
 Si es totalmente nuevo en Ext JS, estos pueden ser un poco confusos para usted ahora, pero no se preocupe mucho por eso ahora. Esto tendrán más sentido más adelante cuando trabajemos en el muestras y código de ejemplo.
 
 Ext JS 6 se envía con dos conjuntos de temas para el toolkit clásico y el toolkit moderno. Hay temas específicos en Ext JS, que proporciona aspectos nativos para Windows, Android y iPhone. Aprenderá sobre temas más adelante en el *Capítulo 8, Temas y Diseño de respuesta*.
+
+## Configuración de Ext JS
+
+Para facilitar el desarrollo de su aplicación Ext JS, debe instalar una herramienta llamada Sencha Cmd. Está disponible para Windows, Mac y Linux.
+
+> **NOTA: Sencha Cmd no es imprescindible para la aplicación de desarrollo de Ext JS, pero usarlo te hace la vida más fácil. Entonces, es muy recomendable utilizar Sencha Cmd.
+
+### Sencha Cmd
+
+Sencha Cmd es una poderosa herramienta de línea de comandos para el desarrollo de aplicaciones de Sencha.
+Ayuda a aumentar la productividad al automatizar muchas tareas. Algunos de las características son scaffolding, package management, JS compiler, build scripts, theming, etcétera.
+
+Antes de instalar Sencha Cmd 6, necesita JRE, y si va a usar ExtJS 5 y Sencha Cmd 5, entonces también necesitarás Ruby.
+
+### Entorno de ejecución de Java (JRE)
+
+Para comprobar si Java se está ejecutando en su máquina, escriba el siguiente comando en la terminal (Mac) o la ventana de comandos (Windows):
+
+
+```sh
+java -version
+```
+
+Si ya tiene Java ejecutándose en su máquina, entonces debería ver algo similar al siguiente código; de lo contrario, descargue e instale JRE o JDK:
+
+```sh
+java -version
+java version "1.8.0_25"
+Java(TM) SE Runtime Environment (build 1.8.0_25-b17)
+Java HotSpot(TM) 64-Bit Server VM (build 25.25-b02, mixed mode)
+```
+
+Si aún recibe un error, es posible que deba agregar la ruta instalada a la `PATH` variable.
+
+### Ruby
+
+Tenga en cuenta que no necesita Ruby si va a utilizar Sencha Cmd 6, pero si va a usar Ext JS 5 y Sencha Cmd 5, entonces necesitará Ruby. Para comprobar si Ruby está instalado en su máquina, escriba el siguiente comando en la terminal (Mac) o la ventana de comandos (Windows):
+
+```sh
+rubí --versión
+```
+
+Si ya tiene Ruby instalado en su máquina, entonces debería ver algo similar al siguiente código; de lo contrario, descargue e instale Ruby:
+
+```sh
+ruby --version
+ruby 2.0.0p481 (2014-05-08 revision 45883) [universal.x86_64-darwin14]
+```
+
+Si aún recibe un error, es posible que deba agregar la ruta instalada a la `PATH` variable.
+
+### Instalación de Sencha Cmd
+
+Ahora, descargue e instale Sencha Cmd desde el sitio web de Sencha. Una vez instalado, asegúrese de que Sencha Cmd esté disponible para su uso desde la terminal o command window. Para comprobarlo, ejecute el siguiente comando:
+
+```sh
+sencha which
+```
+
+Si está disponible en la terminal o en la ventana de comandos, debería tener algo similar al siguiente código:
+
+```sh
+Sencha Cmd v6.0.0.92
+/bin/Sencha/Cmd/6.0.0.92/
+```
+
+Si obtiene un error en su lugar, es posible que deba agregar la ruta instalada a la `PATH` variable. En Mac, ejecute el siguiente comando en la terminal para agregar el `PATH` variable:
+
+```sh
+export PATH=~/bin/Sencha/Cmd/6.0.0.92:$PATH
+```
+
+> **NOTA:** En el comando anterior, cambie `/bin/Sencha/Cmd/6.0.0.92` con la ruta de instalación correcta.
+
+En Windows, ejecute el siguiente comando en el Command Prompt para agregar el `PATH` variable:
+
+```sh
+set PATH=%PATH%;C:\Sencha\Cmd\6.0.0.92
+```
+
+> **NOTA:** En el comando anterior, cambie `/bin/Sencha/Cmd/6.0.0.92` con la ruta de instalación correcta.
+
+```sh
+```
