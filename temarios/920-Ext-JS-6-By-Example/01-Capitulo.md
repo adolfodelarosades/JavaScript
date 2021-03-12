@@ -197,7 +197,7 @@ Si aún recibe un error, es posible que deba agregar la ruta instalada a la `PAT
 Tenga en cuenta que no necesita Ruby si va a utilizar Sencha Cmd 6, pero si va a usar Ext JS 5 y Sencha Cmd 5, entonces necesitará Ruby. Para comprobar si Ruby está instalado en su máquina, escriba el siguiente comando en la terminal (Mac) o la ventana de comandos (Windows):
 
 ```sh
-rubí --versión
+ruby --versión
 ```
 
 Si ya tiene Ruby instalado en su máquina, entonces debería ver algo similar al siguiente código; de lo contrario, descargue e instale Ruby:
