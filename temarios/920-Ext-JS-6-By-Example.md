@@ -51,7 +51,7 @@ Preface
 * Tha development IDE
 * Summary
 
-### Chapter 2: Core Concepts 29
+### Chapter 2: Core Concepts
 * The class system
    * Ext
       * application
@@ -96,7 +96,7 @@ Preface
       * The VBox layout
 * Summary
    
-### Chapter 3: Basic Components 57
+### Chapter 3: Basic Components
 * Getting familiar with basic components
    * Ext.Button
    * Ext.MessageBox
