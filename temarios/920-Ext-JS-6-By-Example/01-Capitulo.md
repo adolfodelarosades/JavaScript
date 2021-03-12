@@ -268,14 +268,80 @@ https://docs.sencha.com/extjs/7.2.0/guides/getting_started/getting_started_with_
 
 ### :red_circle: Instalación de Sencha Cmd en mi equipo
 
+Descargamos Sencha CMD del siguiente URL: https://www.sencha.com/products/extjs/cmd-download/
+
+![01-02](images/01-02.png)
+
+Después de dergarlo e instalarlo debemos ejecutar la siguiente instrucción para incluirlo en el `PATH` variable:
+
 ```sh
 export PATH=~/bin/Sencha/Cmd/7.3.1.27:$PATH
 ```
 
 ![01-01](images/01-01.png)
 
+Con la siguiente instrucción vemos la versión de Sencha y la ubicación:
+
+```sh
+sencha which
+```
+
+![01-03](images/01-03.png)
+
 <hr>
 
+## Generando la aplicación Ext JS usando Sencha Cmd
+
+Abra la terminal(Mac)/command(Windows) y escriba el siguiente comando:
+
+```sh
+sencha generate app --ext MyApp ./myapp
+```
+
+El comando anterior creará un scaffold de una aplicación Ext JS llamada `MyApp` y colocará todos los archivos de la subcarpeta denominada `myapp`.
+
+Tenga en cuenta que el comando anterior generará una aplicación que contiene código para ambos kits de herramientas: clásico y moderno. Si solo necesita el conjunto de herramientas clásico o moderno, entonces use `--modern` o `--classic`, como se muestra en el siguiente comando:
+
+```sh
+sencha generate app --ext --modern MyApp ./myapp
+```
+
+Cuando ejecute este comando por primera vez, debería descargar automáticamente Ext JS 6. Si no descarga Ext JS automáticamente, puede descargar manualmente Ext JS 6, extráelo a tu máquina local y usa el siguiente comando para especificar la ruta del SDK:
+
+```sh
+sencha -sdk /path/to/sdk generate app MyApp /path/to/myapp
+```
+
+Sencha Cmd es compatible con Ext JS 4.1.1a y superior y Sencha Touch 2.1 y superior. Tú puede tener varias versiones del SDK en su máquina. El anterior es el formato del comando para generar una aplicación basada en un Sencha SDK específico.
+
+El siguiente comando es un ejemplo que generará la aplicación Ext JS 6 llamado MyApp en la ruta `/projects/extjs/myapp`:
+
+```sh
+sencha -sdk /bin/Sencha/ext/6.0.0/ generate app MyApp /projects/extjs/myapp
+```
+
+Ahora, para ver la aplicación Ext JS creada, ejecute el siguiente comando en el terminal o símbolo del sistema:
+
+```sh
+cd sample
+sencha app watch
+```
+
+Ahora, esto realizará un montón de tareas relacionadas con la compilación y, al final, en la ventana de laterminal, verá algo similar en la Figura 1.1:
+
+![01-04](images/01-04.png)
+![01-05](images/01-05.png)
+![01-06](images/01-06.png)
+![01-07](images/01-07.png)
+![01-08](images/01-08.png)
+![01-09](images/01-09.png)
+![01-10](images/01-10.png)
+![01-11](images/01-11.png)
+![01-12](images/01-12.png)
+![01-13](images/01-13.png)
+![01-14](images/01-14.png)
+![01-15](images/01-15.png)
+![01-16](images/01-16.png)
 
 
 
