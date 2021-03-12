@@ -1,4 +1,6 @@
-# Ext JS 6 By Example
+# 920 Ext JS 6 By Example
+
+[920-Portada](920-Ext-JS-6-By-Example/images/920-portada.png)
 
 ## Table of Contents
 
