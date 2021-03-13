@@ -300,7 +300,7 @@ sencha generate app --ext MyApp ./myapp
 
 El comando anterior creará un scaffold de una aplicación Ext JS llamada `MyApp` y colocará todos los archivos de la subcarpeta denominada `myapp`.
 
-Tenga en cuenta que el comando anterior generará una aplicación que contiene código para ambos kits de herramientas: clásico y moderno. Si solo necesita el conjunto de herramientas clásico o moderno, entonces use `--modern` o `--classic`, como se muestra en el siguiente comando:
+Tenga en cuenta que el comando anterior generará una aplicación que contiene código para ambos toolkit: ***clásico y moderno***. Si solo necesita el conjunto de herramientas clásico o moderno, entonces use `--modern` o `--classic`, como se muestra en el siguiente comando:
 
 ```sh
 sencha generate app --ext --modern MyApp ./myapp
@@ -330,10 +330,45 @@ sencha app watch
 Ahora, esto realizará un montón de tareas relacionadas con la compilación y, al final, en la ventana de laterminal, verá algo similar en la Figura 1.1:
 
 ![01-04](images/01-04.png)
+
+El reloj monitorea cualquier cambio de código realizado, y tan pronto como se realicen los cambios de código guardado, actualizará el navegador para incluir los cambios de código actualizados.
+
+Si abre la aplicación con la URL predeterminada (`http://localhost:1842`), como mostrado antes, la aplicación se verá similar a la Figura 1.2:
+
 ![01-05](images/01-05.png)
+
+De forma predeterminada, cuando navega a la URL (`http://localhost:1842`) desde un computadora de escritorio, la aplicación para mostrar se detecta automáticamente y le muestra ek toolkit clásico. Si se accede a este desde un navegador móvil, le mostrará el toolkit moderno. Para ver la aplicación moderna en la computadora de escritorio, agregue a la URL `?profile=modern`, y verá la siguiente captura de pantalla:
+
 ![01-06](images/01-06.png)
+
+El contenido de **MyApp** se verá como se muestra en la Figura 1.4. Echaremos un vistazo a algunos de los archivos importantes de esta aplicación de muestra.
+
+La aplicación contiene `model`, `store` y `application`. Considere un `store` como una colección de instancias del modelo. El `store` carga datos usando el proxy y proporciona funcionalidades, como ordenar, filtrar, paginar, etc. Aprenderás más
+sobre `store` más tarde.
+
+En la siguiente captura de pantalla, vea las carpetas modernas y clásicas. Estas carpetas contienen el código de la aplicación que utiliza los respectivos toolkit: moderno y clásico.
+
 ![01-07](images/01-07.png)
+
+La figura 1.5 muestra el contenido de la carpeta clásica y la carpeta moderna. El clásico carpeta y la carpeta moderna contiene la carpeta src que contiene vistas de la aplicación. El archivo `main.scss` contiene los estilos específicos para dispositivos móviles y el escritorio. Existe la carpeta `sass` en la raíz que contiene el estilo de aplicación común.
+
+***SASS (Syntactically Awesome Stylesheets)*** es un lenguaje de hojas de estilo. SASS es muy utilizado en Ext JS. Aprenderá más sobre el estilo y la temática más adelante en el *Capítulo 8, Theming y Responsive Design*.
+
+Tenga en cuenta que estos no son el código del kit toolkit, sino el código de la aplicación. Puede encontrar el código del toolkit clásico y moderno del framework en la carpeta `ext`:
+
 ![01-08](images/01-08.png)
+
+En la siguiente sección, veremos MVC y el contenido que algunos de estos archivos generado usando Sencha Cmd en la aplicación de muestra MyApp.
+
+## The application architecture
+### Model
+### View
+### Controller
+### View model
+#### View model – MainModel.js
+#### Controller – MainController.js
+#### View – main.js
+
 ![01-09](images/01-09.png)
 ![01-10](images/01-10.png)
 ![01-11](images/01-11.png)
