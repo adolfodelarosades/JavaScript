@@ -576,20 +576,52 @@ Una aplicación Ext JS típica contiene un conjunto de componentes anidados. Con
 
 En el código anterior, los componentes están anidados, como se muestra en el siguiente diagrama:
 
+![02-01](images/02-01.png)
+![02-02](images/02-02.png)
+
 ### Layouts
+
+![02-03](images/02-03.png)
 #### updateLayout
 #### suspendLayout
 #### El absolute layout
+
+![02-04](images/02-04.png)
+
 #### El accordion layout
+
+![02-05](images/02-05.png)
+
 #### El anchor layout
+
+![02-06](images/02-06.png)
+
 #### El border layout
+
+![02-07](images/02-07.png)
+
 #### El card layout
+
+![02-08](images/02-08.png)
+
 #### El center layout
 #### El column layout
 #### El fit Layout
+
+![02-09](images/02-09.png)
+
 #### El hbox layout
+
+![02-10](images/02-10.png)
+
 #### El table layout
+
+![02-12](images/02-12.png)
+
 #### El VBox layout
+
+![02-11](images/02-11.png)
+
 ## Resumen
 ```js
 ```
