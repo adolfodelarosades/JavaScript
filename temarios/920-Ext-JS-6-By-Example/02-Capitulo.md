@@ -525,10 +525,57 @@ Del mismo modo, puede utilizar otros métodos, como `nextNode`, `up`, `down`, `p
 
 ## Componentes, containers y layouts
 
-```js
-```
+Ext JS viene con un rico conjunto de componentes y layouts(diseños), que hacen que la interfaz de usuario(UI) de desarrollo de aplicaciones en Ext JS es muy fácil incluso para un desarrollador que no es UI.
+
 ### Componentes
+
+Desde componentes simples, como button y label, hasta componentes complejos, como como Tree Panel, Grids, etc., Ext JS tiene una lista extensa de componentes integrados. Todos los componentes se derivan de `Ext.Component`, que proporciona soporte a
+crear, cambiar el tamaño, renderizar y eliminar los componentes.
+
+Todos los componentes tienen una propiedad llamada `xtype`. Esto es muy útil cuando no desea crear una instancia del componente inmediatamente, pero desea cargarlo de forma diferida (lazy load).
+
 ### Containers
+
+Los contenedores son un tipo especial de componente que son capaces de contener otros componentes. `Ext.container.Container` es la clase base de todos los contenedores en Ext JS.
+
+`Ext.toolbar.Toolbar`, `Ext.panel.Panel` y `Ext.Editor` son algunos de los ejemplos de componentes integrados. Estos son capaces de contener otros componentes. `Ext.button.Button` no se deriva de `Ext.container.Container`, por lo que no es
+capaz de contener otros componentes.
+
+Una aplicación Ext JS típica contiene un conjunto de componentes anidados. Considera este ejemplo simple:
+
+   ```js
+   Ext.create('Ext.panel.Panel', {
+      renderTo : Ext.getBody(),
+      width : 700,
+      height : 400,
+      items: [
+      {
+         xtype: 'panel',
+         title: 'Panel 1',
+      },
+      {
+         xtype: 'panel',
+      title: 'Panel 2',
+      height: 200,
+      items: [
+      {
+         xtype: 'button',
+         text: 'Click Me'
+      }
+      ]
+      },
+      {
+         xtype: 'panel',
+         title: 'Panel 3',
+         width: 150,
+         height: 100,
+      }
+      ]
+   });
+   ```
+
+En el código anterior, los componentes están anidados, como se muestra en el siguiente diagrama:
+
 ### Layouts
 #### updateLayout
 #### suspendLayout
