@@ -362,9 +362,22 @@ En la siguiente sección, veremos MVC y el contenido que algunos de estos archiv
 
 ### :red_circle: Generando la aplicación Ext JS usando Sencha Cmd
 
+Para crear la aplicación con Sencha CMD me coloco en la carpeta que tiene mis proyectos EXT JS, en este caso la carpeta se llama `PROYECTOS-SENCHA` y escribimos el siguiente comando:
+
+```sh
+sencha generate app --ext MyApp ./myapp
+```
+
+```sh
+```
+
+```sh
+```
+
+
 ![01-17](images/01-17.png)
-![01-17](images/01-17.png)
-![01-17](images/01-17.png)
+![01-18](images/01-18.png)
+![01-19](images/01-19.png)
 ![01-20](images/01-20.png)
 ![01-21](images/01-21.png)
 ![01-22](images/01-22.png)
