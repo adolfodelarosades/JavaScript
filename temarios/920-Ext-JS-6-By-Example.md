@@ -51,7 +51,7 @@
 * Tha development IDE
 * Summary
 
-### Chapter 2: Core Concepts
+### [Chapter 2: Core Concepts](920-Ext-JS-6-By-Example/02-Capitulo.md)
 * The class system
    * Ext
       * application
