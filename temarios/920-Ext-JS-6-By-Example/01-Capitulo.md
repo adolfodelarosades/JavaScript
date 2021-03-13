@@ -266,7 +266,7 @@ https://docs.sencha.com/extjs/7.2.0/guides/getting_started/getting_started_with_
 
 ![01-12](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/910-Learning-Ext-JS/images/01-12.png)
 
-### :red_circle: Instalación de Sencha Cmd en mi equipo
+### 🔴 Instalación de Sencha Cmd en mi equipo
 
 Descargamos Sencha CMD del siguiente URL: https://www.sencha.com/products/extjs/cmd-download/
 
@@ -360,7 +360,7 @@ Tenga en cuenta que estos no son el código del kit toolkit, sino el código de 
 
 En la siguiente sección, veremos MVC y el contenido que algunos de estos archivos generados usando Sencha Cmd en la aplicación de muestra MyApp.
 
-### :red_circle: Generando la aplicación Ext JS usando Sencha Cmd
+### 🔴 Generando la aplicación Ext JS usando Sencha Cmd
 
 Para crear la aplicación con Sencha CMD me coloco en la carpeta que tiene mis proyectos EXT JS, en este caso la carpeta se llama `PROYECTOS-SENCHA` y escribimos el siguiente comando:
 
@@ -368,33 +368,512 @@ Para crear la aplicación con Sencha CMD me coloco en la carpeta que tiene mis p
 sencha generate app --ext MyApp ./myapp
 ```
 
-```sh
-```
-
-```sh
-```
-
-
 ![01-17](images/01-17.png)
+
+Esto empieza a descargar todo lo necesario para crear la aplicación EXT JS.
+
 ![01-18](images/01-18.png)
+
+Al finalizar vemos que ya tenemos una nueva carpeta llamada `myapp` que contiene nuestro proyecto.
+
 ![01-19](images/01-19.png)
+
+Ahora, para ver la aplicación Ext JS creada, ejecutemos el siguiente comando en el terminal o símbolo del sistema:
+
+```sh
+cd myapp
+sencha app watch
+```
+
 ![01-20](images/01-20.png)
+
+Como vemos en el log que nos presenta nos indica que nuestra aplicación ha sido levantada en el URL http://localhost:1841, si lo abrimos tenemos nuestra aplicación:
+
 ![01-21](images/01-21.png)
+
 ![01-22](images/01-22.png)
+
 ![01-23](images/01-23.png)
+
 ![01-24](images/01-24.png)
 
+![01-25](images/01-25.png)
+![01-26](images/01-26.png)
+![01-27](images/01-27.png)
+
 ## The application architecture
+
+Ext JS proporciona soporte para arquitecturas de aplicaciones MVC y MVVM.
+
 ### Model
+
+Esto representa la capa de datos. El modelo puede contener validación de datos y lógicas para persistir los datos. En Ext JS, principalmente el modelo se usa junto con un data store(almacén de datos).
+
 ### View
+
+Esto representa la interfaz de usuario. Componentes como button, form y message box son views.
+
 ### Controller
+
+Esto maneja cualquier lógica relacionada con la vista, manejo de eventos de la vista y cualquier lógica de aplicación.
+
 ### View model
+
+Esto encapsula la lógica de presentación requerida para la vista, vincula los datos a la vista y maneja las actualizaciones cada vez que se modifican los datos.
+
+Ahora, examinemos algunos de los archivos creados por Sencha Cmd para la view, controller y view model.
+
+Si abre `app.js`, verá el siguiente código, que es el código de inicio de su Aplicación Ext JS:
+
+```js
+Ext.application({
+   name: 'MyApp',
+
+   extend: 'MyApp.Application',
+
+   requires: [
+   'MyApp.view.main.Main'
+   ],
+   mainView: 'MyApp.view.main.Main'
+});
+```
+
+En el código anterior, la primera línea define el nombre de la aplicación y en la siguiente línea extiende `MyApp.Application`, que se declara en `Application.js` en la carpeta `app`:
+
+```js
+   extend: 'MyApp.Application'
+```
+
+La lista de clases requeridas para esta clase debe especificarse en la sección `requires`. Estos se cargarán primero antes de crear una instancia de esta clase. La última línea especifica el nombre de la vista inicial a crear.
+
+### 🔴
+
+```js
+/*
+ * This file launches the application by asking Ext JS to create
+ * and launch() the Application class.
+ */
+Ext.application({
+   extend: 'MyApp.Application',
+
+   name: 'MyApp',
+
+   requires: [
+      // This will automatically load all classes in the MyApp namespace
+      // so that application classes do not need to require each other.
+      'MyApp.*'
+   ],
+
+   // The name of the initial view to create.
+   mainView: 'MyApp.view.main.Main'
+});
+```
+
+![01-28](images/01-28.png)
+
+
+A continuación, si comprueba la carpeta `app`, verá `Application.js` y `model`, `view`, `store`, etc.
+
+![01-29](images/01-29.png)
+
+En el archivo `application.js`, verá el siguiente código:
+
+```js
+Ext.define('MyApp.Application', {
+   extend: 'Ext.app.Application',
+   name: 'MyApp',
+   stores: [
+   // TODO: add global / shared stores here
+   ],
+   launch: function () {
+   // TODO - Launch the application
+   }
+});
+```
+
+Aquí, puede ver que `MyApp.Application` extiende `Ext.app.Application`. La función `launch` se define en `Ext.app.Application`. Esta función se llama después de se carga la página.
+
+La store en `application.js` no es más que el almacenes de datos. Aprenderás sobre los store en detalles más adelante en los próximos capítulos.
+
+### 🔴 
+
+`Application.js`
+
+```js
+/**
+ * The main application class. An instance of this class is created by app.js when it
+ * calls Ext.application(). This is the ideal place to handle application launch and
+ * initialization details.
+ */
+Ext.define('MyApp.Application', {
+   extend: 'Ext.app.Application',
+
+   name: 'MyApp',
+
+   quickTips: false,
+   platformConfig: {
+      desktop: {
+         quickTips: true
+      }
+   },
+
+   onAppUpdate: function () {
+      Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
+         function (choice) {
+            if (choice === 'yes') {
+               window.location.reload();
+            }
+         }
+      );
+   }
+});
+```
+
 #### View model – MainModel.js
+
+Eche un vistazo a `MainModel.js` en `\app\view\main\`. Esta clase es el view model para la vista `Main` de la aplicación. El modelo `view` se extiende desde `Ext.app.ViewModel`, como se muestra en el siguiente código:
+
+```js
+Ext.define('MyApp.view.main.MainModel', {
+   extend: 'Ext.app.ViewModel',
+
+   alias: 'viewmodel.main',
+
+   data: {
+      name: 'MyApp',
+      loremIpsum: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+   }
+});
+```
+
+### 🔴 
+
+`MainModel.js`
+
+```js
+/**
+ * This class is the view model for the Main view of the application.
+ */
+Ext.define('MyApp.view.main.MainModel', {
+   extend: 'Ext.app.ViewModel',
+
+   alias: 'viewmodel.main',
+
+   data: {
+      name: 'MyApp',
+
+      loremIpsum: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+   }
+
+   //TODO - add data, formulas and/or methods to support your view
+});
+```
+
 #### Controller – MainController.js
+
+Esta clase es el controlador de la vista para la vista `main` de la aplicación. En el siguiente código, puede ver que la función `onItemSelected` está definida; esto se llamará cuando se selecciona un elemento del grid en la vista.
+
+```js
+Ext.define('MyApp.view.main.MainController', {
+   extend: 'Ext.app.ViewController',
+
+   alias: 'controller.main',
+
+   onItemSelected: function (sender, record) {
+      Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
+   },
+
+   onConfirm: function (choice) {
+      if (choice === 'yes') {
+         //
+      }
+   }
+});
+```
+
+Hay dos tipos de controladores: `Ext.app.ViewController` y `Ext.app.Controller`.
+
+Aprenderá sobre su diferencia y uso más adelante en los próximos capítulos.
+
+### 🔴 
+
+`MainController.js`
+
+```js
+/**
+ * This class is the controller for the main view for the application. It is specified as
+ * the "controller" of the Main view class.
+ */
+Ext.define('MyApp.view.main.MainController', {
+   extend: 'Ext.app.ViewController',
+
+   alias: 'controller.main',
+
+   onItemSelected: function (sender, record) {
+      Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
+   },
+
+   onConfirm: function (choice) {
+      if (choice === 'yes') {
+         //
+      }
+   }
+});
+```
+
 #### View – main.js
 
+Si ha utilizado Sencha Cmd 6, y si generó la aplicación solo para el toolkits clásico o moderno con `--classic` o `--modern`, luego encontrará el archivo `main.js` en la carpeta `\app\view\main\`, pero si ha utilizado Sencha Cmd 6 para generar una aplicación universal, puede encontrar dos archivos `main.js` ubicados en dos rutas:
+
+`\classic\src\view\main\` y `\modern\src\view\main\`.
+
+![01-30](images/01-30.png)
+
+Antes de ver el contenido de este archivo, repasemos el trasfondo detrás de estos dos archivos `main.js` en dos rutas diferentes.
+
+Anteriormente en este capítulo, aprendió cómo Ext JS 6 fusiona Sencha Ext JS y Sencha Touch en un framework. Como resultado, se crea un framework único con dos toolkits.
+
+El núcleo de estos dos framework se mueve a una library común y se divide el resto del código en dos partes: clásico y moderno. El código Ext JS tradicional se trasladó al toolkit clásico y al código moderno que admite la función táctil y HTML5 se trasladan al toolkit moderno.
+
+Las aplicaciones que comparten los recursos básicos y la lógica y utilizan ambos toolkits son llamadas aplicaciones universales.
+
+Ahora, echemos un vistazo al archivo de vista `main.js` en modern:
+
+
+```js
+Ext.define('MyApp.view.main.Main', {
+   extend: 'Ext.tab.Panel',
+   xtype: 'app-main',
+
+   requires: [
+   'Ext.MessageBox',
+   'MyApp.view.main.MainController',
+   'MyApp.view.main.MainModel',
+   'MyApp.view.main.List'
+   ],
+
+   controller: 'main',
+   viewModel: 'main',
+
+   defaults: {
+      styleHtmlContent: true
+   },
+
+   tabBarPosition: 'bottom',
+
+   items: [
+   {
+      title: 'Home',
+      iconCls: 'fa-home',
+      layout: 'fit',
+      items: [{
+         xtype: 'mainlist'
+      }]
+   },{
+      title: 'Users',
+      iconCls: 'fa-user',
+      bind: {
+         html: '{loremIpsum}'
+   }
+   },{
+      title: 'Groups',
+      iconCls: 'fa-users',
+      bind: {
+         html: '{loremIpsum}'
+      }
+   },{
+      title: 'Settings',
+      iconCls: 'fa-cog',
+      bind: {
+         html: '{loremIpsum}'
+      }
+   }
+   ]
+});   
+```
+
+Esta vista de muestra define `controller`, `viewmodel` y otras clases de dependencia required, crea cuatro tabs y vincula la propiedad `loremIpsum` de `ViewModel`. Usted aprenda más sobre esto en detalle en los próximos capítulos.
+
+Ahora, echemos un vistazo a `main.js` en `\classic\src\view\main\`:
+
+```js
+Ext.define('NewApp.view.main.Main', {
+   extend: 'Ext.tab.Panel',
+   xtype: 'app-main',
+
+   requires: [
+   'Ext.plugin.Viewport',
+   'Ext.window.MessageBox',
+
+   'NewApp.view.main.MainController',
+   'NewApp.view.main.MainModel',
+   'NewApp.view.main.List'
+   ],
+   
+   controller: 'main',
+   viewModel: 'main',
+
+   ui: 'navigation',
+   
+   tabBarHeaderPosition: 1,
+   titleRotation: 0,
+   tabRotation: 0,
+   
+   header: {
+      layout: {
+         align: 'stretchmax'
+      },
+      title: {
+         bind: {
+            text: '{name}'
+         },
+         flex: 0
+      },
+      iconCls: 'fa-th-list'
+   },
+
+   tabBar: {
+      flex: 1,
+      layout: {
+         align: 'stretch',
+         overflowHandler: 'none'
+      }
+   },
+   
+   responsiveConfig: {
+      tall: {
+         headerPosition: 'top'
+      },
+      wide: {
+         headerPosition: 'left'
+      }
+   },
+   
+   defaults: {
+      bodyPadding: 20,
+      tabConfig: {
+         plugins: 'responsive',
+         responsiveConfig: {
+            wide: {
+               iconAlign: 'left',
+               textAlign: 'left'
+            },
+            tall: {
+               iconAlign: 'top',
+               textAlign: 'center',
+               width: 120
+            }
+         }
+      }
+   },
+
+   items: [{
+      title: 'Home',
+      iconCls: 'fa-home',
+      items: [{
+         xtype: 'mainlist'
+      }]
+   }, {
+      title: 'Users',
+      iconCls: 'fa-user',
+      bind: {
+         html: '{loremIpsum}'
+      }
+   }, {
+      title: 'Groups',
+      iconCls: 'fa-users',
+      bind: {
+         html: '{loremIpsum}'
+      }
+   }, {
+      title: 'Settings',
+      iconCls: 'fa-cog',
+      bind: {
+         html: '{loremIpsum}'
+      }
+   }]`
+});            
+```
+
+En el código anterior, puede ver que el contenido de los elementos es casi el mismo que en el toolkit moderno. Además, puede ver que este archivo tiene alguna configuración que es específico para el diseño responsive. La siguiente línea en el código anterior le dice al framework para usar el componente de estilo de interfaz de usuario llamado `navigation`:
+
+```js
+   ui: 'navigation'
+```
+
+Aprenderá más sobre la configuración de la interfaz de usuario y el diseño responsive más adelante en el Capítulo 8, Theming y Responsive Design.
+
+Del mismo modo, si echas un vistazo a `List.js` en classic y modern, solo encontrarás algunas diferencias menores.
+
+## Explorando los comandos Sencha Cmd
+
+Ahora, exploremos algunos de los comandos útiles en Sencha Cmd.
+
+### El formato de comando Sencha
+
+Los comandos de Sencha tienen el siguiente formato:
+
+```sh
+sencha [category] [command] [options...] [arguments…]
+```
+
+Hay muchos comandos y opciones disponibles en Sencha Cmd. Echemos un vistazo a algunos de los comandos importantes.
+
+### Help
+
+Si simplemente escribe el siguiente comando, obtendrá una lista de categorías, una lista de nivel superior comandos y opciones disponibles:
+
+```sh
+sencha help
+```
+
+Para obtener ayuda sobre un tipo de categoría en particular, el nombre de la categoría, seguido de help, para por ejemplo, para obtener ayuda sobre una aplicación de categoría, ejecute el siguiente comando:
+
+```sh
+sencha help app
+```
+
+Esto producirá el siguiente resultado:
+
 ![01-09](images/01-09.png)
+
+Si además desea obtener ayuda sobre los comandos de subcategoría en la aplicación, puede simplemente agregue el comando al final para limpiar, como se muestra en el siguiente código:
+
+```sh
+sencha help app clean
+```
+
+Esto le dará el siguiente resultado:
+
 ![01-10](images/01-10.png)
+
+### Actualización de Sencha Cmd
+
+
+### Generando una aplicación
+### Construyendo la aplicación
+### Lanzamiento de la aplicación
+### La generación de código
+### Actualización de su aplicación
+## Depuración de una aplicación Ext JS
+## Ilumination
+### Las características de la Illumination.
+#### Nomenclatura de objetos
+#### Elemento resaltado
+## App Inspector
+### Sencha Fiddle
+## El IDE de desarrollo
+## Resumen
+
+```sh
+```
+
+```sh
+```
+
+
 ![01-11](images/01-11.png)
 ![01-12](images/01-12.png)
 ![01-13](images/01-13.png)
