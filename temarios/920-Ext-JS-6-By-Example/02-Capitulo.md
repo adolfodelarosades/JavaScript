@@ -434,21 +434,99 @@ En el siguiente ejemplo, `myCustomComponent.getEl().dom` se pasa como nodo raíz
    
 ### Ext.select
 
-Dado algún selector de CSS / XPath, Ext.select devuelve un solo objeto de tipo
-CompositeElement, que representa una colección de elementos.
-Este CompositeElement tiene métodos para filtrar, iterar y realizar acciones colectivas
-en todo el conjunto, y así sucesivamente:
+Dado algún selector CSS/XPath, `Ext.select` devuelve un solo objeto de tipo `CompositeElement`, que representa una colección de elementos.
 
-```js
-```
+Este `CompositeElement` tiene métodos para filtrar, iterar y realizar acciones colectivas en todo el conjunto, y así sucesivamente:
 
-```js
-```
+   ```js
+   var rows = Ext.select('div.row'); ////Matches all divs with class
+   row
+   rows.setWidth(100); // All elements become 100 width
+   ```
+   
+También puede combinar ambas líneas en una sola línea, como se muestra en el siguiente código:
+
+   ```js
+   Ext.select('div.row').setWidth(100);
+   ```
+   
 #### Multiple selections
+
+Esto se puede usar para seleccionar múltiples conjuntos de elementos especificando la búsqueda múltiple criterios en una sola llamada al método:
+
+   ```js
+   Ext.select('div.row, span.title'); //Matches all divs with class
+   row and all spans with class title
+   ```
+   
 #### Selection root
+
+Cuando usa select, toma el body HTML como root y comienza a buscar en el todo el árbol DOM del body de forma predeterminada. Puede evitar esto especificando un root elemento para que solo busque los children de la raíz dada.
+
+   ```js
+   Ext.get('myEl').select('div.row');
+   ```
+
+Aquí, esto usa el elemento raíz 'myEL'. Esto primero encontrará el elemento que tiene el id 'myEl', y luego, debajo de ese elemento raíz, buscará etiquetas 'div' que tengan la clase 'row'.
+
+   ```js
+   Ext.select('div.row', true, 'myEl');// This is equivalent to the previous line.
+   ```
+
 #### Selection chaining
+
+La siguiente consulta coincide con `div` con una clase de row y tiene una title attribute bar, que es el first child de su parent inmediato:
+
+   ```js
+   Ext.select('div.row[title=bar]:first')
+   ```
+
 ### Ext.ComponentQuery
+
+Esto le permite encontrar un componente con ID, xtype y propiedades. Usted puede buscar globalmente, o puede especificar un componente raíz.
+
+La siguiente consulta devolverá todos los componentes con el `button` xtype:
+
+   ```js
+   Ext.ComponentQuery.query('button');
+   ```
+
+Para obtener un componente con el ID de `foo`, use el siguiente código:
+
+   ```js
+   Ext.ComponentQuery.query('#foo');
+   ```
+
+El siguiente código devolverá todos los componentes con el `button` xtype y el título de la propiedad `my button`:
+
+   ```js
+   Ext.ComponentQuery.query("button[title='my button']");;
+
+   //or
+   
+   parent.query('textfield[title=my button]');
+   ```
+
+
+También puede utilizar selectores anidados de la siguiente manera:
+
+   ```js
+   Ext.ComponentQuery.query('formpanel numberfield'); // Gets only
+   the numberfields under a form
+   ```
+
+El siguiente código devuelve el primer child directo del contenedor que coincide con el selector pasado. Si no hay ninguna coincidencia, se devolverá un valor null.
+
+   ```js
+   parent.child('button[itemId=save]');
+   ```
+
+Del mismo modo, puede utilizar otros métodos, como `nextNode`, `up`, `down`, `previousSibling` y así sucesivamente.
+
 ## Componentes, containers y layouts
+
+```js
+```
 ### Componentes
 ### Containers
 ### Layouts
