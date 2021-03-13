@@ -976,6 +976,19 @@ La Figura 1.10 y la Figura 1.11 muestran un par de pestañas en el Inspector de 
 ![01-13](images/01-13.png)
 ![01-14](images/01-14.png)
 
+### 🔴 
+
+![01-37](images/01-37.png)
+![01-38](images/01-38.png)
+![01-39](images/01-39.png)
+![01-31](images/01-31.png)
+![01-32](images/01-32.png)
+![01-33](images/01-33.png)
+![01-34](images/01-34.png)
+![01-35](images/01-35.png)
+![01-36](images/01-36.png)
+
+
 ### Sencha Fiddle
 
 Esta es otra herramienta de depuración que puede resultar útil. También es un sitio web en línea.
