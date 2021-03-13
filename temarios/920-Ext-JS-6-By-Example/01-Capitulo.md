@@ -851,38 +851,148 @@ Esto le dará el siguiente resultado:
 
 ### Actualización de Sencha Cmd
 
+Si desea verificar si hay actualizaciones disponibles para Sencha Cmd, use el siguiente comando:
+
+```sh
+sencha upgrade --check
+```
+
+Si desea actualizar Sencha Cmd, simplemente elimine la opción `--check`, como se muestra en el siguiente código:
+
+```sh
+sencha upgrade
+```
 
 ### Generando una aplicación
+
+Sencha Cmd es compatible con Ext JS 4.1.1a y superior y Sencha Touch 2.1 y superior.
+Puede tener varias versiones del SDK en su máquina. Aquí está el formato de el comando para generar una aplicación basada en un Sencha SDK, como Ext JS o Sencha Touch:
+
+```sh
+sencha -sdk /path/to/sdk generate app [--modern/classic] MyApp /path/to/myapp
+```
+
+Este es un ejemplo que generará la aplicación Ext JS 6 llamada `MyApp` bajo la ruta `/Users/SomeUser/projects/extjs/myapp`:
+
+```sh
+sencha -sdk /Users/SomeUser/bin/Sencha/Cmd/repo/extract/ext/6.0.0/
+generate app MyApp /Users/SomeUser/projects/extjs/myapp
+```
+
 ### Construyendo la aplicación
+
+El siguiente comando construirá HTML, JS, SASS, etc.
+
+```sh
+sencha app build
+```
+
+En Sencha Cmd 6 y Ext JS 6, también puede ejecutar uno de los siguientes códigos para elegir ya sea moderno o clásico:
+
+```sh
+sencha app build modern
+sencha app build classic
+```
+
+Aquí, `modern` y `classic` se refiere a la configuración de compilaciones en `app.json`. Por defecto, Sencha Cmd pone dos configuraciones de compilación: clásica y moderna en `app.json;` usted puede agregue la configuración de compilación adicional si es necesario.
+
 ### Lanzamiento de la aplicación
+
+El comando watch se puede utilizar para reconstruir e iniciar la aplicación. Esto no solo inicia la aplicación, pero también supervisa cualquier cambio de código realizado, y tan pronto como los cambios de código se guardan, actualizará el navegador para incluir el código actualizado cambie de la siguiente manera:
+
+```sh
+sencha app watch
+```
+
+En Sencha Cmd 6 y Ext JS 6, también puede ejecutar uno de los siguientes códigos para elegir ya sea moderno o clásico:
+
+```sh
+sencha app watch modern
+sencha app watch classic
+```
+
 ### La generación de código
+
+Con Sencha Cmd, puede generar el código Ext JS, como views, controller y model:
+
+```sh
+sencha generate view myApp.MyView
+sencha generate model MyModel id:int,fname,lname
+sencha generate controller MyController
+```
+
+Si no se especifica el tipo de campo al generar el modelo, el tipo de campo predeterminado se utilizará un string.
+
 ### Actualización de su aplicación
+
+Sencha Cmd facilita la actualización de una versión del SDK a otra. Utilice el comando de actualización en la categoría `app` para actualizar al nuevo framework:
+
+```sh
+sencha app upgrade [ path-to-new-framework ]
+```
+
 ## Depuración de una aplicación Ext JS
+
+Puede utilizar el depurador predeterminado del navegador para depurar el código Ext JS, pero el depurar el código Ext JS es mucho más fácil con un complemento de Firefox llamado Illumination o el Complemento App Inspector para Chrome.
+
 ## Ilumination
+
+La iluminación es una herramienta de terceros. No es un producto de Sencha, y ahora mismo, es solo disponible para Firefox y requiere Firebug.
+
 ### Las características de la Illumination.
-#### Nomenclatura de objetos
-#### Elemento resaltado
-## App Inspector
-### Sencha Fiddle
-## El IDE de desarrollo
-## Resumen
 
-```sh
-```
+Estas son algunas de las características del complemento Illumination. Esto reducirá la cantidad de tiempo que dedicó a la depuración.
 
-```sh
-```
+#### Object naming
 
+La Illumination reconocerá los componentes Ext JS fácilmente, por lo que en la pestaña de Illumination verá los nombres de los componentes Ext JS como `Ext.panel.Panel` en lugar de mostrar verá `Object` en la pestaña DOM de Firebug.
+
+#### Elemento highlighting
+
+Si pasa el cursor sobre cualquiera de los objetos en la ventana Illumination, resaltará el componente completo en la página HTML.
+
+##### El menú contextual
+
+Un componente Ext JS se compone de varios elementos HTML. Si hace clic derecho en la página y seleccione el menú contextual de Firebug, se le llevará al elemento anidado en el componente Ext JS, pero si selecciona el menú contextual de Illumination, se mostrará el componente Ext JS que hace que sea más fácil examinar el componente y sus métodos, propiedades y eventos.
+
+Verifique la pestaña **DOM** de Firebug en la Figura 1.8 y vea cómo se representan los objetos:
 
 ![01-11](images/01-11.png)
+
+Ahora, revise la pestaña Illumination en la Figura 1.9 y vea cómo se representan los objetos. Puede ver que Illumination reconoce todo el componente Ext JS, como se muestra en la siguiente captura de pantalla:
+
 ![01-12](images/01-12.png)
+
+Aunque Illumination facilita la depuración de la aplicación Ext JS, no es una obligación. La Illumination no es una herramienta gratuita. Entonces, si no quiere pagar por ello, todavía puede usar Firebug para depurar, pero es posible que deba dedicar un poco más de tiempo para depurar, o es posible que deba echar un vistazo a App Inspector o Sencha Fiddle.
+
+## App Inspector
+
+App Inspector es un complemento gratuito de Chrome desarrollado por Sencha. También proporciona todas las características proporcionadas por Illumination. Algunas de las funciones proporcionadas son componentes inspector, store inspector y perfiles de distribución.
+
+Alguna información es más fácil de encontrar en App Inspector que en Illumination, y la depuración con la aplicación Illumination Ext JS tarda más en cargar que depuración con App Inspector.
+
+La Figura 1.10 y la Figura 1.11 muestran un par de pestañas en el Inspector de aplicaciones:
+
 ![01-13](images/01-13.png)
 ![01-14](images/01-14.png)
+
+### Sencha Fiddle
+
+Esta es otra herramienta de depuración que puede resultar útil. También es un sitio web en línea.
+IDE que proporciona algunas capacidades de depuración, como se muestra en la Figura 1.12:
+
 ![01-15](images/01-15.png)
+
+## El IDE de desarrollo
+
+Aunque puede usar cualquier editor de texto simple para escribir el código Ext JS, usando los IDEs definitivamente lo hacen un poco más fácil. Sencha proporciona el complemento Sencha JetBrains para Productos JetBrains, como IntelliJ, WebStrome, PHPStorm y RubyMine.
+
+Si está buscando un IDE simple y gratuito, eche un vistazo a Visual Studio Code y Brackets.io. Ambos son extremadamente ligeros y están disponibles para Mac, Windows y Linux. La figura 1.13 muestra **Visual Studio Code**:
+
 ![01-16](images/01-16.png)
 
+## Resumen
 
+En este capítulo, analizamos algunas de las ventajas de los frameworks JavaScript en lugar de usar JavaScript simple. También analizamos algunos de los famosos frameworks JavaScript. Aprendió a configurar un entorno de desarrollo para aplicaciones Ext JS y aplicamos scaffolding a una aplicación Ext JS con Sencha Cmd.
 
-
-```sh
-```
+En el próximo capítulo, aprenderá los conceptos básicos y básicos de Ext JS.
