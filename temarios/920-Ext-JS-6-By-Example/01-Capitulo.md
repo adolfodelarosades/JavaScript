@@ -358,7 +358,18 @@ Tenga en cuenta que estos no son el código del kit toolkit, sino el código de 
 
 ![01-08](images/01-08.png)
 
-En la siguiente sección, veremos MVC y el contenido que algunos de estos archivos generado usando Sencha Cmd en la aplicación de muestra MyApp.
+En la siguiente sección, veremos MVC y el contenido que algunos de estos archivos generados usando Sencha Cmd en la aplicación de muestra MyApp.
+
+### :red_circle: Generando la aplicación Ext JS usando Sencha Cmd
+
+![01-17](images/01-17.png)
+![01-17](images/01-17.png)
+![01-17](images/01-17.png)
+![01-20](images/01-20.png)
+![01-21](images/01-21.png)
+![01-22](images/01-22.png)
+![01-23](images/01-23.png)
+![01-24](images/01-24.png)
 
 ## The application architecture
 ### Model
