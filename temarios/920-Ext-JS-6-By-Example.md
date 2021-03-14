@@ -96,7 +96,7 @@
       * The VBox layout
 * Summary
    
-### Chapter 3: Basic Components
+### [Chapter 3: Basic Components](920-Ext-JS-6-By-Example/03-Capitulo.md)
 * Getting familiar with basic components
    * Ext.Button
    * Ext.MessageBox
