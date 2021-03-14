@@ -1,67 +1,69 @@
-# Chapter 3: Basic Components
-* Getting familiar with basic components
+# Capítulo 3: Componentes básicos
+
+* Familiarizarse con los componentes básicos
    * Ext.Button
    * Ext.MessageBox
-* Forms and form fields
+* Formularios y campos de formulario
    * Ext.form.Panel
 * Fields
    * Ext.form.field.Text
    * Ext.form.field.Number
    * Ext.form.field.ComboBox
    * Ext.form.field.HtmlEditor
-* The form field validation
-   * Events in the form panel
-   * Form field containers
+* La validación de campos del formulario
+   * Eventos en el panel de formulario
+   * Formulario de contenedores de campo
    * Ext.form.CheckboxGroup
    * Ext.form.FieldContainer
    * Ext.form.RadioGroup
    * Submitting a form
-   * Menus and toolbar
-* The customer feedback form design
-* Calculator – a sample project
-   * The folder structure
+   * Menus y toolbar
+* El diseño del formulario de comentarios del cliente
+* Calculadora: un proyecto de muestra
+   * La estructura de carpetas
       * App – app.js
-   * MVC and MVVM – Revisit
+   * MVC y MVVM – Revisión
       * Model
       * View
       * Controller
-      * ViewController and Controller
+      * ViewController y Controller
       * View model
    * View – Main.js
    * Controller – MainController.js
    * ViewModel – MainViewModel.js
-* Summary
-
-# Capítulo 3: Componentes básicos
-* Familiarizarse con los componentes básicos
-    * Botón ext.
-    * Ext.MessageBox
-* Formularios y campos de formulario
-    * Panel de formulario externo
-* Campos
-    * Ext.form.field.Text
-    * Número de campo de formulario externo
-    * Ext.form.field.ComboBox
-    * Ext.form.field.HtmlEditor
-* La validación del campo del formulario
-    * Eventos en el panel de formulario
-    * Formulario de contenedores de campo
-    * Ext.form.CheckboxGroup
-    * Ext.form.FieldContainer
-    * Ext.form.RadioGroup
-    * Enviar un formulario
-    * Menús y barra de herramientas
-* El diseño del formulario de comentarios del cliente
-* Calculadora: un proyecto de muestra
-    * La estructura de carpetas
-       * Aplicación - app.js
-    * MVC y MVVM - Revisión
-       * Modelo
-       * Vista
-       * Controlador
-       * ViewController y Controller
-       * Ver modelo
-    * Ver - Main.js
-    * Controlador - MainController.js
-    * ViewModel - MainViewModel.js
 * Resumen
+
+## Familiarizarse con los componentes básicos
+### Ext.Button
+### Ext.MessageBox
+## Formularios y campos de formulario
+### Ext.form.Panel
+## Fields
+### Ext.form.field.Text
+### Ext.form.field.Number
+### Ext.form.field.ComboBox
+### Ext.form.field.HtmlEditor
+## La validación de campos del formulario
+### Eventos en el panel de formulario
+### Formulario de contenedores de campo
+### Ext.form.CheckboxGroup
+### Ext.form.FieldContainer
+### Ext.form.RadioGroup
+### Submitting a form
+### Menus y toolbar
+## El diseño del formulario de comentarios del cliente
+## Calculadora: un proyecto de muestra
+### La estructura de carpetas
+#### App – app.js
+### MVC y MVVM – Revisión
+#### Model
+#### View
+#### Controller
+#### ViewController y Controller
+#### View model
+### View – Main.js
+### Controller – MainController.js
+### ViewModel – MainViewModel.js
+## Resumen
+
+
