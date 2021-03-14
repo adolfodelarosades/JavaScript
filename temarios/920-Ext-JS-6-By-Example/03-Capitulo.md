@@ -321,39 +321,135 @@ La salida del código anterior es la siguiente:
 
 ### Ext.form.field.HtmlEditor
 
-```js
-```
+Ext JS también tiene un editor HTML muy bueno que proporciona el procesador de texto común funciones directamente a sus páginas web, como se muestra en el siguiente código:
+
+   ```js
+   Ext.create('Ext.form.HtmlEditor', {
+      width: 800,
+      height: 200,
+      renderTo: Ext.getBody()
+   });
+   ```
+
+La salida del código anterior es la siguiente:
 
 ![03-09](images/03-09.png)
 
 ## La validación de campos del formulario
+
+La mayoría de los campos tienen sus propias reglas de validación, por ejemplo, si ingresa un valor no numérico en el campo de número, mostrará una validación de número no válida. El campo de texto viene con `allowBlank`, `minLength` y `maxLength`. Además, Regex se puede utilizar para validaciones personalizadas.
+
 ### Eventos en el panel de formulario
+
+Algunos de los eventos admitidos en el panel de formulario son:
+
+* `beforeaction`: Este evento se activará antes de ejecutar cualquier acción
+* `actionfailed`: Este evento se activará cuando una acción falle.
+* `actioncomplete`: Este evento se activará después de que se complete una acción
+* `validitychange`: Este evento se activará cuando la validez de la totalidad de forma cambie
+* `dirtychange`: Este evento se activará cuando el estado dirty de la forma cambie
+
 ### Formulario de contenedores de campo
+
+Los siguientes son algunos de los contenedores útiles para el panel de formulario.
+
 ### Ext.form.CheckboxGroup
 
-```js
-```
+`CheckboxGroup` extiende `FieldContainer` y se usa para agrupar checkbox field. En en el siguiente ejemplo, observe el mismo nombre para todos los elementos del grupo de checkbox; esto ayuda a que los valores se pasen como un solo parámetro al servidor.
+
+   ```js
+   Ext.create('Ext.form.CheckboxGroup', {
+      renderTo: Ext.getBody(),
+      fieldLabel: 'Skills ',
+      vertical: true,
+      columns: 1,
+      items: [
+         { boxLabel: 'C++', name: 'rb', inputValue: '1' },
+         { boxLabel: '.Net Framework', name: 'rb', inputValue: '2', checked: true },
+         { boxLabel: 'C#', name: 'rb', inputValue: '3' },
+         { boxLabel: 'SQL Server', name: 'rb', inputValue: '4' },
+      ]
+   });
+   ```
+
+La salida del código anterior es la siguiente:
 
 ![03-10](images/03-10.png)
 
 ### Ext.form.FieldContainer
 
-```js
-```
+`FieldContainer` es útil cuando desea agrupar un conjunto de campos relacionados y adjuntarlo a una sola etiqueta.
+
+El siguiente código crea una salida, que se muestra en la Figura 3.11:
+
+   ```js
+   Ext.create('Ext.form.FieldContainer', {
+      renderTo: Ext.getBody(),
+      fieldLabel: 'Name',
+      layout: 'hbox',
+      combineErrors: true,
+      defaultType: 'textfield',
+      defaults: {
+         hideLabel: 'true'
+      },
+      items: [{
+         name: 'firstName',
+         fieldLabel: 'First Name',
+         flex: 2,
+         emptyText: 'First',
+         allowBlank: false
+      }, {
+         name: 'lastName',
+         fieldLabel: 'Last Name',
+         flex: 3,
+         margin: '0 0 0 6',
+         emptyText: 'Last',
+         allowBlank: false
+      }]
+   });
+   ```
+   
 ![03-11](images/03-11.png)
 
 ### Ext.form.RadioGroup
 
-```js
-```
+`RadioGroup` extiende `CheckboxGroup` y se usa para agrupar radio buttons. Tenga en cuenta que la propiedad name es la misma para todos los elementos. Esto los mantiene agrupados. De lo contrario, serían seleccionables de forma independiente, como se muestra en el siguiente código:
 
+   ```js
+   Ext.create('Ext.form.RadioGroup', {
+      renderTo: Ext.getBody(),
+      fieldLabel: 'Sex ',
+      vertical: true,
+      columns: 1,
+      items: [
+         { boxLabel: 'Male', name: 'rb', inputValue: '1' },
+         { boxLabel: 'Female', name: 'rb', inputValue: '2' }
+      ]
+   });
+   ```
+
+La salida del código anterior es la siguiente:
 
 ![03-12](images/03-12.png)
 
 ### Submitting a form
 
-```js
-```
+Para enviar un formulario, puede utilizar el método de envío del formulario. Utilice el método `getForm` para obtener el formulario e `isValid` para validar el formulario antes de enviarlo, como se muestra en el siguiente código:
+
+   ```js
+   var form = this.up('form').getForm();
+   if (form.isValid()) {
+      form.submit({
+         url: 'someurl',
+            success: function () {
+         },
+         failure: function () {
+         }
+      });
+   } else {
+      Ext.Msg.alert('Error', 'Fix the errors in the form')
+   }
+   ```
 
 ### Menus y toolbar
 
