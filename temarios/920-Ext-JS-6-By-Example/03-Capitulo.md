@@ -33,6 +33,36 @@
    * ViewModel – MainViewModel.js
 * Resumen
 
+En este capítulo, aprenderá algunos de los componentes básicos disponibles Ext JS. Usaremos los conceptos aprendidos en los capítulos anteriores y en este capítulo para crear un proyecto de muestra. En este capítulo se tratarán los siguientes temas:
+
+* Familiarizarse con los componentes básicos: buttons, text field, date picker, etcétera
+* La validación del campo del formulario
+* Menus y toolbars
+* Un diseño de formulario de comentarios del cliente
+* Calculadora: un proyecto de muestra
+
+El objetivo principal del capítulo es crear un diseño de formulario y un proyecto de muestra de calculadora. La Figura 3.1 y la Figura 3.2 muestran el diseño del formulario de comentarios del cliente y el diseño de la calculadora, respectivamente.
+Primero, si observa el diseño del formulario de comentarios de los clientes en la Figura 3.1, verá que hemos usado muchos controles, como una label, un text field.
+
+La siguiente figura es el diseño del formulario **Customer Feedback**(Comentarios del cliente):
+
+![03-01](images/03-01.png)
+![03-02](images/03-02.png)
+![03-03](images/03-03.png)
+![03-04](images/03-04.png)
+![03-05](images/03-05.png)
+![03-06](images/03-06.png)
+![03-07](images/03-07.png)
+![03-08](images/03-08.png)
+![03-09](images/03-09.png)
+![03-10](images/03-10.png)
+![03-11](images/03-11.png)
+![03-12](images/03-12.png)
+![03-13](images/03-13.png)
+![03-14](images/03-14.png)
+![03-15](images/03-15.png)
+![03-16](images/03-16.png)
+
 ## Familiarizarse con los componentes básicos
 ### Ext.Button
 ### Ext.MessageBox
