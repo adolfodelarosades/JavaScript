@@ -577,57 +577,466 @@ Una aplicación Ext JS típica contiene un conjunto de componentes anidados. Con
 En el código anterior, los componentes están anidados, como se muestra en el siguiente diagrama:
 
 ![02-01](images/02-01.png)
+
+La salida del código anterior se verá similar a la siguiente captura de pantalla:
+
 ![02-02](images/02-02.png)
 
 ### Layouts
 
+Un layout define cómo se colocan y dimensionan los componentes contenidos. Cada container tiene un layout(diseño). El layout predeterminado es automático. Esto no especifica ninguna regla para colocar y dimensionar los componentes child.
+
+En la *Figura 2.2* anterior, es posible que haya notado que los componentes child son solo anidados uno tras otro en el contenedor principal. Esto se debe a que no hemos especificado cualquier layout para estos componentes en el código y, de forma predeterminada, utilizan el layout automático.
+
+Ahora, usemos algunos layouts para el mismo código. En el siguiente ejemplo, usaremos el layout de la columna y el layout del centro.
+
+Cuando utiliza el layout de columna, puede especificar `columnWidth`. La suma de los valores de `columnWidth` de todas las columnas deben ser iguales a `1`. También puede especificar el ancho fijo para algunas de las columnas, como se muestra en el siguiente código. Aquí, `Panel 3` tiene un ancho fijo de `150`, y las dos columnas restantes comparten el ancho restante basado en el valor `columnWidth`:
+
+   ```js
+   Ext.create('Ext.panel.Panel', {
+      renderTo : Ext.getBody(),
+      width : 700,
+      height : 400,
+      layout : 'column',
+      items: [
+      {
+         xtype: 'panel',
+         title: 'Panel 1',
+         columnWidth: 0.4,
+         height: 400,
+      },
+      {
+         xtype: 'panel',
+         title: 'Panel 2',
+         columnWidth: 0.6,
+         layout: 'center',
+         height: 400,
+         items: [
+         {
+            xtype: 'button',
+            text: 'Click Me'
+         }
+         ]
+      },
+      {
+         xtype: 'panel',
+         title: 'Panel 3',
+         width: 150,
+         height: 400,
+      }
+      ]
+   });
+   ```
+
+Ahora, la salida se verá así:
+
 ![02-03](images/02-03.png)
+
 #### updateLayout
+
+`updateLayout` es un método en `Ext.container.Container`. Esto se puede utilizar para reposicionar los componentes child de acuerdo con la regla de layout.
+
 #### suspendLayout
+
+La mayoría de las veces, no tiene que llamar a este método `updateLayout` en su código. Sin embargo, hay algunos casos en los que debe llamarlo.
+
+El método `updateLayout` se llama durante el cambio de tamaño y cuando agrega o quita children.. A veces, es posible que deba suspenderlo por un tiempo, especialmente cuando add/remove varios children subsecuentes.
+
+Entonces, en estos escenarios, puede establecer la propiedad `updateLayout` en `true`, y una vez termina de agregar o eliminar a los children, puede establecer `suspendLayout` en `false` y llame al método `updateLayout` en su código.
+
+Además, si desea suspender la actualización del layout para todo el framework, puede llame a `Ext.suspendLayouts()`, y después de la actualización por lotes, puede reanudarla llamando a `Ext.resumeLayouts(true)`.
+
+La siguiente es la lista de layouts integrados disponibles en Ext JS:
+
+* `absolute`
+* `accordion`
+* `anchor`
+* `border`
+* `card`
+* `center`
+* `column`
+* `fit`
+* `hbox`
+* `table`
+* `vbox`
+
 #### El absolute layout
+
+Este layout define el posicionamiento absoluto con propiedades `x` e `y`:
+
+   ```js
+   Ext.create('Ext.panel.Panel', {
+      renderTo : Ext.getBody(),
+      width : 700,
+      height : 400,
+      layout : 'absolute',
+      items: [
+      {
+         xtype: 'panel',
+         title: 'Panel 1',
+         x: 12,
+         y: 20,
+         height: 250,
+      },
+      {
+         xtype: 'panel',
+         title: 'Panel 2',
+         x: 200,
+         y: 150,
+         height: 200,
+      },
+      {
+         xtype: 'panel',
+         title: 'Panel 3',
+         x: 400,
+         y: 250,
+         width: 150,
+         height: 100,
+      }
+      ]
+   });
+   ```
+
+La salida se muestra aquí. Puede superponer componentes porque están colocados con posición absoluta:
 
 ![02-04](images/02-04.png)
 
 #### El accordion layout
 
+Este layout muestra solo un panel child a la vez con el soporte incorporado para colapsar y expandir. Eche un vistazo al siguiente ejemplo:
+
+   ```js
+   Ext.create('Ext.panel.Panel', {
+      renderTo : Ext.getBody(),
+      width : 700,
+      height : 400,
+      layout : 'accordion',
+      items: [
+      {
+         title: 'Item 1',
+         html: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
+      },
+      {
+         title: 'Item 2',
+         html: 'some content here'
+      },
+      {
+         title: 'Item 3',
+         html: 'empty'
+      }
+      ]
+   });
+   ```
+
+La salida se muestra aquí. El `Item 1` se expande, mientras que los otros paneles son colapsado:
+
 ![02-05](images/02-05.png)
 
 #### El anchor layout
+
+Este layout le permite especificar el tamaño de los componentes secundarios que son relativos al contenedor. Primero, se cambia el tamaño de los contenedores y luego todos los componentes child se redimensionan de acuerdo con las reglas de anclaje especificadas:
+
+```js
+Ext.create('Ext.panel.Panel', {
+   renderTo : Ext.getBody(),
+   width : 700,
+   height : 400,
+   layout : 'anchor',
+   items: [
+   {
+      title: 'Item 1',
+      html: 'Item 1',
+      anchor: '50%'
+   },
+   {
+      title: 'Item 2',
+      html: 'Item 2',
+      anchor: '-20 -200'
+   },
+   {
+      title: 'Item 3',
+      html: 'Item 3',
+      anchor: '-200'
+   }
+   ]
+});
+```
+
+La salida se muestra en la siguiente captura de pantalla:
 
 ![02-06](images/02-06.png)
 
 #### El border layout
 
+Este layout le permite especificar la posición de los componentes child en términos de regiones, como center, north, south, west y east. Cuando usas el layout `border`, siempre debe tener un componente con una región como centro, como se muestra en el siguiente código:
+
+   ```js
+   Ext.create('Ext.panel.Panel', {
+      renderTo : Ext.getBody(),
+      width : 700,
+      height : 400,
+      layout : 'border',
+      items: [
+      {
+         title: 'Item 1',
+         html: 'Item 1',
+         region: 'center'
+      },
+      {
+         title: 'Item 2',
+         html: 'Item 2',
+         region: 'east',
+         width: 200
+      },
+      {
+         title: 'Item 3',
+         html: 'Item 3',
+         region: 'south',
+         height: 100
+      }
+      ]
+   });
+   ```
+
+La salida del código anterior se verá similar a la siguiente figura:
+
 ![02-07](images/02-07.png)
 
 #### El card layout
 
+En este layout, solo un componente child será visible, que llenará casi el contenedor completo. El layout `card` se usa en el wizard y tabs:
+
+   ```js
+   Ext.create('Ext.panel.Panel', {
+      renderTo : Ext.getBody(),
+      width : 700,
+      height : 400,
+      layout : 'card',
+      defaultListenerScope: true,
+      bbar: ['->',
+      {
+         itemId: 'btn-prev',
+         text: 'Previous',
+         handler: 'showPrevious',
+         disabled: true
+      },
+      {
+         itemId: 'btn-next',
+         text: 'Next',
+         handler: 'showNext'
+      }
+      ],
+      items: [
+      {
+         index: 0,
+         title: 'Item 1',
+         html: 'Item 1'
+      },
+      {
+         index: 1,
+         title: 'Item 2',
+         html: 'Item 2'
+      },
+      {
+         index:2,
+         title: 'Item 3',
+         html: 'Item 3'
+      }
+      ],
+      showNext: function () {
+         this.navigate(1);
+      },
+      showPrevious: function () {
+         this.navigate(-1);
+      },
+      navigate: function (incr) {
+         var layout = this.getLayout();
+         var index = layout.activeItem.index + incr;
+         layout.setActiveItem(index);
+   
+         this.down('#btn-prev').setDisabled(index===0);
+         this.down('#btn-next').setDisabled(index===2);
+      }
+   });
+   ```
+
+Aquí se muestra el resultado del layout card (wizard). Cuando haces clic en el button **Next**, mostrará el panel `Item 2`:
+
 ![02-08](images/02-08.png)
 
 #### El center layout
+
+Este layout coloca al child en el centro del contenedor. Ya vimos un ejemplo en este capítulo al comienzo de la sección de layouts.
+
 #### El column layout
+
+Con este layout, puede dividir el contenedor en columnas de un tamaño y lugar específicos los componentes child en estas columnas. Ya vimos un ejemplo en este capítulo al comienzo de la sección de layouts.
+
 #### El fit Layout
+
+En este diseño, el child se ajusta a la dimensión del contenedor de la siguiente manera:
+
+   ```js
+   Ext.create('Ext.panel.Panel', {
+      renderTo : Ext.getBody(),
+      width : 700,
+      height : 400,
+      layout : 'fit',
+      bodyPadding: 20,
+      items: [
+      {
+         title: 'Item 1',
+         html: 'Fills the container',
+      }
+      ]
+   });
+   ```
+   
+Aquí se muestra la salida del código anterior. Tenga en cuenta que la brecha entre el child y el componente parent se crea mediante `bodyPadding` que configuramos en el código:   
 
 ![02-09](images/02-09.png)
 
 #### El hbox layout
 
+Este layout es casi el mismo que el diseño de columna, pero le permite estirar la altura de la columna.
+La opción flex utilizada aquí hace que el componente secundario se flexione horizontalmente de acuerdo con el valor flex relativo dado:
+
+   ```js
+   Ext.create('Ext.panel.Panel', {
+      renderTo : Ext.getBody(),
+      width : 700,
+      height : 400,
+      layout :
+      {
+         type: 'hbox',
+         pack: 'start',
+         align: 'stretch',
+      },
+      items: [
+      {
+         title: 'Item 1',
+         html: 'Item 1',
+         flex: 1
+      },
+      {
+         title: 'Item 2',
+         html: 'Item 2',
+         width: 100
+      },
+      {
+         title: 'Item 3',
+         html: 'Item 3',
+         flex: 2
+      }
+      ]
+   });
+   ```
+
+La salida del código anterior se verá similar a la siguiente figura:
+
 ![02-10](images/02-10.png)
 
 #### El table layout
+
+Este layout le permite renderizar en formato de tabla. Puede especificar el número de columnas y filas con `rowspan` y `colspan` para crear diseños complejos:
+
+   ```js
+   Ext.create('Ext.panel.Panel', {
+      renderTo : Ext.getBody(),
+      width : 700,
+      height : 400,
+      layout :
+      {
+         type: 'table',
+         columns: 3,
+         tableAttrs: {
+            style: {
+               width: '100%'
+            }
+         }
+      },
+      items: [
+      {
+         rowspan: 3,
+         title: 'Item 1',
+         html: 'Item 1'
+      },
+      {
+         title: 'Item 2',
+         html: 'Item 2'
+      },
+      {
+         title: 'Item 3',
+         rowspan: 2,
+         html: 'Item 3'
+      },
+      {
+         title: 'Item 4',
+         html: 'Item 4'
+      },
+      {
+         title: 'Item 5',
+         html: 'Item 5'
+      },
+      {
+         title: 'Item 6',
+         html: 'Item 6'
+      },
+      {
+         title: 'Item 7',
+         html: 'Item 7'
+      }
+      ]
+   });
+   ```
+
+La salida del código de layout de tabla anterior se muestra en la siguiente captura de pantalla:
 
 ![02-12](images/02-12.png)
 
 #### El VBox layout
 
+Este layout coloca los componentes child verticalmente hacia abajo uno tras otro.
+
+Eche un vistazo al siguiente código de muestra:
+
+   ```js
+   Ext.create('Ext.panel.Panel', {
+      renderTo : Ext.getBody(),
+      width : 700,
+      height : 400,
+      layout :
+      {
+         type: 'vbox',
+         pack: 'start',
+         align: 'stretch',
+      },
+      items: [
+      {
+         title: 'Item 1',
+         html: 'Item 1',
+         flex: 1
+      },
+      {
+         title: 'Item 2',
+         html: 'Item 2',
+         height: 100
+      },
+      {
+         title: 'Item 3',
+         html: 'Item 3',
+         flex: 2
+      }
+      ]
+   });
+   ```
+
+La salida de este código se muestra aquí:
+
 ![02-11](images/02-11.png)
 
 ## Resumen
-```js
-```
 
-```js
-```
+En este capítulo, analizamos las clases base en Ext JS y algunos de los métodos de uso más frecuente en estas clases. También aprendiste a crear y extend clases. Aprendimos a usar eventos y capacidades de consulta(query).
 
-```js
-```
+En el próximo capítulo, veremos muchos componentes útiles, como buttons, menus, toolbars, etc. También crearemos una pequeña aplicación de calculadora.
