@@ -453,55 +453,491 @@ Para enviar un formulario, puede utilizar el método de envío del formulario. U
 
 ### Menus y toolbar
 
+Ext JS proporciona soporte completo para construir cualquier tipo de toolbar y menús que pueda pensar en. Utilice `Ext.toolbar.Toolbar` para crear una toolbar. De forma predeterminada, cualquier elemento child en `Ext.toolbar.Toolbar` es un botón, pero puede agregar cualquier otro control, como text field, un number field, un icon, un dropdown etc, en la toolbar.
+
+Para organizar los elementos en la toolbar, puede utilizar `Ext.toolbar.Spacer`, `Ext.toolbar.Separator` y `Ext.toolbar.Fill` para tener espacio, una barra de separación y un contenedor de botones respectivamente. Los atajos para estos son, ' ' (space), '|' (pipe), and '->' (arrow), respectivamente.
+
+`Ext.menu.Menu` se utiliza para crear un menú con `Ext.menu.Item` como menu items.
+
+En la siguiente captura de pantalla se muestra un código de muestra y su salida:
+
 ![03-13](images/03-13.png)
 
-```js
-```
+   ```js
+   Ext.create('Ext.toolbar.Toolbar', {
+      renderTo: Ext.getBody(),
+      width: 800,
+      items: [
+      {
+         text: 'My Button'
+      },
+      {
+         text: 'My Button',
+         menu: [{
+            text: 'Item 1'
+         }, {
+            text: 'Item 2'
+         }, {
+            text: 'Item 3'
+         }]
+      },
+      {
+         text: 'Menu with divider',
+         tooltip: {
+            text: 'Tooltip info',
+            title: 'Tip Title'
+         },
+         menu: {
+            items: [{
+               text: 'Task 1',
+               // handler: onItemClick
+            }, '-', {
+               text: 'Task 2',
+               // handler: onItemClick
+            }, {
+               text: 'Task 3',
+               // handler: onItemClick
+            }]
+         }
+      },
+      '->',
+      {
+         xtype: 'textfield',
+         name: 'field1',
+         emptyText: 'search web site'
+      },
+      '-',
+      'Some Info',
+      {
+         xtype: 'tbspacer'
+      },
+      {
+         name: 'Count',
+         xtype: 'numberfield',
+         value: 0,
+         maxValue: 10,
+         minValue: 0,
+         width: 60
+      }
+      ]
+   });
+   ```
 
 ## El diseño del formulario customer feedback
 
+Ahora, usemos algunos de los conceptos aprendidos en los capítulos anteriores y en este capítulo para diseñar un diseño de formulario de comentarios del cliente (customer feedback).
+
+El siguiente formulario en la *Figura 3.13* es el diseño del formulario que diseñaremos:
+
 ![03-14](images/03-14.png)
 
+El código del diseño anterior se muestra en el siguiente código. Solo he guardado el código importante y truncado el resto. El código fuente completo para este proyecto está disponible en https://github.com/ananddayalan/extjs-by-example-customerfeedback-form.
+
+Aquí, colocaremos todos los componentes en `Viewport`. Este es un contenedor especializado que representa el área de visualización de la aplicación del navegador.
+
+En la `Viewport`, configuraremos la opción de desplazamiento para hacer que este componente child scrollable. En lugar de true o false, esta opción también puede tomar `x` o `y` como valores para habilitar solo desplazamiento horizontal o vertical:
+
 ```js
-```
+Ext.create('Ext.container.Viewport', {
+   scrollable: true,
+   items: [{
+      xtype: 'container',
+      layout: {
+         type: 'hbox',
+         align: 'center',
+         pack: 'center'
+      },
+      items: [ {
+         xtype: 'form',
+         bodyPadding: 20,
+         maxWidth: 700,
+         flex: 1,
+         title: 'Custom Feedback',
+         items: [ {
+            xtype: 'fieldcontainer',
+            layout: 'hbox',
+            fieldLabel: 'Name',
+            defaultType: 'textfield',
+            defaults: {
+               allowBlank: false,
+               flex: 1
+            },
+            items: [{
+               name: 'firstName',
+               emptyText: 'First Name
+            }, {
+               name: 'lastName',
+               margin: '0 0 0 5',
+               emptyText: 'Last Name'
+            }
+         ]}, {
+            xtype: 'datefield',
+            fieldLabel: 'Date of Birth',
+            name: 'dob',
+            maxValue: new Date() /* Prevent entering the future date. */
+         }, {
+            fieldLabel: 'Email Address',
+            name: 'email', vtype: 'email',
+            allowBlank: false
+         }, {
+            fieldLabel: 'Phone Number',
+            labelWidth: 100,
+            name: 'phone',
+            width: 200, emptyText: 'xxx-xxx-xxxx',
+            maskRe: /[\d\-]/,
+            regex: /^\d{3}-\d{3}-\d{4}$/,
+            regexText: 'The format must be xxx-xxx-xxxx' },
+            //…code truncated
+         {
+            xtype: 'radiogroup',
+            fieldLabel: 'How satisfied with our service?',
+            vertical: true, columns: 1,
+            items: [ {
+               boxLabel: 'Very satisfied',
+               name: 'rb',
+               inputValue: '1'
+            }, {
+               boxLabel: 'Satisfied',
+               name: 'rb', inputValue: '2'
+            },
+            //…code truncated
+            ]
+         },{
+            xtype: 'checkboxgroup',
+            fieldLabel: 'Which of these words would you use to describe our products? Select all that apply',
+            vertical: true,
+            columns: 1,
+            items: [{
+               boxLabel: 'Reliable',
+               name: 'ch',
+               inputValue: '1'
+            },
+            //…code truncated
+            ]
+            
+         },
+         {
+            xtype: 'radiogroup',
+            fieldLabel: 'How likely is it that you would recommend this company to a friend or colleague?',
+            vertical: false,
+            defaults: { padding: 20 },
+            items: [ {
+               boxLabel: '1',
+               name: 'recommend',
+               inputValue: '1'
+            },
+            //…code truncated
+            ],
+            buttons: [{
+               text: 'Submit',
+               handler: function () {
+                  var form = this.up('form').getForm();
+                  if (form.isValid()) {
+                     form.submit({
+                        url: 'cutomer/feedback',
+                        success: function () {},
+                        failure: function () {}
+                     });
+                  } else {
+                     Ext.Msg.alert('Error', 'Fix the errors in the form')
+                  }
+               }
+               //…code truncated
+   ```
+   
+En el código anterior, al establecer `defaultType` en el nivel del contenedor, estamos evitando la repetición de especificar 
+`xtype` para los componentes child del contenedor. Entonces por forma predeterminada, todos los componentes child que no tienen el `xtype` establecido tendrán por defecto el `textfield`.
+ 
+En el panel `form`, el `flex` se usa para hacer que el panel `form` llene el parent container's width, y al mismo tiempo, limitaremos el ancho máximo del formulario configurando `maxWidth` en `700`.
+
+El contenedor de campo se utiliza con el diseño de `hbox` para poner tanto el nombre como el apellido bajo una sola etiqueta.   
 
 ## Calculadora: un proyecto de muestra
+
+Construyamos un proyecto de muestra completo con los conceptos aprendidos en el anterior capítulo y este capítulo. Aquí está el diseño de la calculadora que construiremos:
 
 ![03-15](images/03-15.png)
 
 ### La estructura de carpetas
 
+Aquí está la estructura de carpetas de los archivos que tenemos en este proyecto. Solo he copiado algunos de los archivos requeridos de Ext JS a la carpeta del proyecto:
+
 ![03-16](images/03-16.png)
+
+Los siguientes son algunos de los archivos importantes del proyecto. He excluido el archivos HTML y CSS desde aquí. Los archivos completos del proyecto están disponibles en https://github.com/ananddayalan/extjs-by-example-calculator.
 
 #### App – app.js
 
-```js
-```
+En `app.js`, simplemente crearemos la vista `Main` y la mostraremos como una ventana flotante y móvil ventana en el navegador:
+
+   ```js
+   Ext.application({
+      name: 'Calc',
+      launch: function () {
+         Ext.create('Calc.view.main.Main').show();
+      }
+   });
+   ```
 
 ### MVC y MVVM – Revisión
+
+En el Capítulo 1, Introducción a Ext JS, aprendió sobre MVC (Vista de modelo Controller) y MVVM (Model View ViewModel). El código de este proyecto es muy buen ejemplo para mostrar la distinción entre view, controller y view model.
+
 #### Model
+
+Esto representa la capa de datos. El modelo puede contener validación de datos y lógicas para persistir los datos.
+
 #### View
+
+Esto representa la interfaz de usuario. Entonces, componentes como button, form y un message box son vistas. El `main.js` en este proyecto de calculadora es un buen ejemplo para la vista.
+
 #### Controller
+
+Esto maneja cualquier lógica relacionada con la vista, manejo de eventos de la vista y cualquier lógica de aplicación.
+
 #### ViewController y Controller
+
+En Ext JS 5 y 6, hay dos tipos de controladores: `ViewController` y `Controller`. `ViewController` se introdujo en Ext JS 5. `ViewController` es creado para una vista específica, pero puede tener el controlador para aplicaciones cruzadas ver la lógica.
+
+El view controller trae algunos conceptos nuevos, como reference y listener, a simplificar la conexión entre la vista y el controlador. Además, `ViewController` se destruirá cuando se destruya la vista. No usaremos la referencia y los listeners.
+en este ejemplo, pero los usaremos en el siguiente proyecto de muestra.
+
+> **NOTA:** Puede utilizar los listeners en este proyecto en lugar de utilizar el handler para manejar los eventos.
+
 #### View model
+
+Esto encapsula la lógica de presentación requerida para la vista, vincula los datos a la vista, y maneja todas las actualizaciones cada vez que se cambian los datos.
+
+A diferencia del modelo, el `view model` se crea principalmente para una vista específica. Un modelo es una clase de datos pura y se puede usar en toda la aplicación, pero el `view model` se crea para usar con una vista y un servidor como enlace de datos entre la vista y el modelo. Echa un vistazo a `main.js` en este proyecto de calculadora y vea el view model binding.
+
 ### View – Main.js
 
+Crearé una vista única para esta aplicación de calculadora llamada `Main`. Esta vista contiene todo el botón, el campo de visualización, etc. Los eventos están asociados con el métodos de este controlador. El controlador de esta vista se ha especificado mediante el configuración del controlador.
+
+Esta vista hace uso del diseño de tabla con cuatro columnas. La clase CSS ha sido especificado con la propiedad `cls`.
+
+Consulte los comentarios/explicaciones adicionales en el código como comentarios:
+
 ```js
+Ext.define('Calc.view.main.Main', {
+   extend: 'Ext.window.Window',
+   
+   /* Marks these are required classes to be to loaded before loading this view */
+   requires: [ 'Calc.view.main.MainController', 'Calc.view.main.MainModel'],
+   xtype: 'app-main',
+   controller: 'main',
+   
+   /* View model of the view */
+   viewModel: { type: 'main' },
+
+   resizable: false,
+   layout: {
+      type: 'table',
+      columns: 4
+   },
+
+   /* Defaults properties to be used for the child items. Any child can override it */
+   defaultType: 'button',
+   defaults: {
+      width: 50,
+      height: 50,
+      cls: 'btn',
+      handler: 'onClickNumber'
+   },
+   /* I'm using the header config of the Ext.window.Window to display the result in the calculator. Using this header you can move the floating calculator around within the browser */
+   header: {
+      items: [
+      {
+         xtype: 'displayfield',
+         colspan: 4,
+         width: 200,
+         cls: 'display',
+         bind: { value: '{display}' },
+         height: 60,
+         padding: 0
+      }]
+   },
+   items: [{
+      text: 'C',
+      colspan: 2,
+      width: 100,
+      cls: 'btn-green',
+      handler: 'onClickClear'
+   }, {
+      text: '+/-',
+      cls: 'btn-green',
+      handler: 'onClickChangeSign'
+   }, {
+      text: '&divide;',
+      cls: 'btn-orange',
+      handler: 'onClickOp'
+   },
+   { text: '7' },
+   { text: '8' },
+   { text: '9' },
+   { text: '&times;',
+      cls: 'btn-orange',
+      handler: 'onClickOp'
+   },
+   { text: '4'},
+   { text: '5'},
+   { text: '6'},
+   {
+      text: '-',
+      cls: 'btn-orange',
+      handler: 'onClickOp'
+   },
+   { text: '1'},
+   { text: '2'},
+   { text: '3'},
+   {
+      text: '+',
+      cls: 'btn-orange',
+      handler: 'onClickOp'
+   }, {
+      text: '0',
+      width: 100,
+      colspan: 2
+   }, {
+      text: '.',
+      handler: 'onClickDot'
+   }, {
+      text: '=',
+      cls: 'btn-orange',
+      handler: 'onClickOp'
+   }]
+});
 ```
 
 ### Controller – MainController.js
 
+Aunque este código de controlador es un poco más largo, es un código muy simple. Este controlador tiene varios métodos para manejar los eventos de clic de los botones, como operadores y operandos. El controlador usa un modelo llamado `Main`:
+
 ```js
+Ext.define('Calc.view.main.MainController', {
+   
+   extend: 'Ext.app.ViewController',
+
+   alias: 'controller.main',
+   views: ['Calc.view.main.Main'],
+   models: ['Main'],
+
+   //Here the 'state' is a custom property that use to track the state of the calculator.
+   state: {
+      operatorClicked: false,
+      selectedOperator: null,
+      dotClicked: false,
+      op1: 0,
+      numberClicked: false,
+      sign: true,
+      decimal: false
+   },
+   onClickClear: function () {
+      var vm = this.getViewModel();
+      vm.set('display','0');
+      this.state.selectedOperator=null;
+      this.state.op1=0;
+      this.state.isPositive = true;
+      this.state.decimal = false;
+      this.state.sign = true;
+   },
+   onClickChangeSign: function (btn) {
+      var vm = this.getViewModel();
+      var cur = vm.get('display');
+      if(cur!='0') {
+         if(this.state.sign===true ) {
+            vm.set('display', '-' + cur);
+         }
+         else {
+            vm.set('display', cur.toString().substring(1));
+         }
+      }
+      this.state.sign=!this.state.sign;
+   },
+
+   onClickOp: function (btn) {
+      if(this.state.selectedOperator!=null && this.state.numberClicked===true)
+      {
+         var vm = this.getViewModel();
+         var op2 = parseFloat(vm.get('display'));
+         var op1 = parseFloat(this.state.op1);
+         var result = 0;
+         
+         switch(this.state.selectedOperator){
+            case '+':
+               result = op1 + op2;
+               break;
+            case '-':
+               result = op1 - op2;
+               break;
+            case '&times;':
+               result = op1 * op2;
+               break;
+            case '&divide;':
+               result = op1 / op2;
+               break;
+         }
+         vm.set('display', Math.round(result * 100) / 100);
+         this.state.selectedOperator=null;
+      }
+      if(btn.text!='=') {
+         this.state.operatorClicked = true;
+      }
+      this.state.selectedOperator = btn.text;
+      this.state.numberClicked = false;
+   },
+   
+   onClickDot: function (btn) {
+      if(this.state.decimal===false) {
+         var vm = this.getViewModel();
+         vm.set('display', vm.get('display') + '.');
+      }
+   },
+   onClickNumber: function (btn) {
+      this.state.numberClicked = true;
+      if(this.state.selectedOperator ==='='){
+         this.onClickClear();
+      }
+      var vm = this.getViewModel();
+      if(this.state.operatorClicked===true) {
+         this.state.op1= vm.get('display');
+         vm.set('display', btn.text);
+         this.state.operatorClicked=false;
+      }
+      else{
+         var cur = vm.get('display');
+         if(cur == '0') {
+            cur = '';
+         }
+         vm.set('display', cur + btn.text);
+      }
+   }
+});
 ```
 
 ### ViewModel – MainViewModel.js
 
-```js
-```
+Este `ViewModel` tiene solo una propiedad llamada `display`. Esto se usa para unir el valor de visualización de la calculadora. Aquí, no crearemos un modelo por separado con un conjunto de campos. Además, hemos codificado los datos directamente.
+
+   ```js
+   Ext.define('Calc.view.main.MainModel', {
+      extend: 'Ext.app.ViewModel',
+      alias: 'viewmodel.main',
+      data: {
+         display: 0.0
+      }
+   });
+   ```
+
+Aprenderá más sobre el modelo de vista, el modelo, los campos, los tipos de campo, la validación, etc. en los próximos capítulos.
+
 
 ## Resumen
 
+En este capítulo, aprendió sobre diferentes tipos de componentes básicos, como test field, number field, button, menu, etc. Ya aprendiste a diseñar un formulario usando campos de formulario, y creamos un proyecto simple y agradable llamado calculadora.
 
+En el siguiente capítulo, aprenderá sobre data packages, como data stores, model,
+proxies, etc., que serán útiles para manejar datos.
 
 
 
