@@ -774,6 +774,88 @@ Actualice el navegador y debería ver algo como la siguiente captura de pantalla
 
 ### :computer: 6. Mi versión
 
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+    <title>USANDO LA PROPIEDAD MIXINCONFIG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" 
+         rel = "stylesheet" />
+      <script type = "text/javascript" 
+         src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      
+      <script type = "text/javascript">
+         //Capítulo 02 - código 04
+         // Base class Employee 
+         Ext.define('Myapp.sample.Employee',{		
+            name:'Desconocido',
+            lastName:'Desconocido',
+            age:0, 
+            constructor: function (config){
+               Ext.apply(this, config || {});
+               console.log('Clase Employee creada - nombre completo: ' + this.name + ' ' + this.lastName); 
+            },
+            work: function( task ){
+               console.log( this.name + ' está trabajando en: ' + task);
+            }
+         });
+         // Mixins
+         Ext.define('Myapp.sample.tasks.attendPhone',{
+            answerPhone:function(){
+               console.log( this.name + ' está contestando el teléfono'); 
+            }
+         });
+         Ext.define('Myapp.sample.tasks.attendCellPhone',{
+            extend: 'Ext.Mixin', 
+            /* answerCellPhone es la función adjunta para antes y después
+               y ejecutará el método definido en la propiedad answerCellPhone
+               en cada objeto de configuración (before / after)
+            */
+            mixinConfig:{
+               before:{
+                  answerCellPhone:'cellPhoneRinging'	
+               },
+               after:{
+                  answerCellPhone:'finishCall'
+               }	
+            },
+            cellPhoneRinging: function(){
+               console.log( 'El teléfono celular está sonando, puede atender la llamada'); 
+            },	
+            finishCall: function(){
+               console.log( 'La llamada del celular ha terminado'); 
+            }
+         });         
+         //Clases definidas para cada ocupación 
+         Ext.define('Myapp.sample.Secretary',{
+            extend:'Myapp.sample.Employee', 	
+            mixins:{
+               answerPhone: 'Myapp.sample.tasks.attendPhone',	
+               util:'Myapp.sample.tasks.attendCellPhone' 
+            },
+            constructor: function (config){
+               Ext.apply(this, config || {});
+               console.log('Se creó la clase Secretary - nombre completo: ' + this.name + ' ' + this.lastName); 
+            },
+            answerCellPhone:function(){
+               console.log( this.name + ' está contestando el celular'); 
+            }		
+         });
+         // Uso de cada clase
+         var patricia = Ext.create('Myapp.sample.Secretary', {name:'Patricia', lastName:'Diaz', age:21 } ); 
+             patricia.work('Atender llamadas telefónicas');
+             patricia.answerPhone(); 
+             patricia.answerCellPhone();   
+      </script>
+   </head>
+   
+   <body>
+      <h1>Presiona F12 para ver los resultados.</h1>
+   </body>
+</html>
+```
+
 ![02-17](images/02-17.png)
 
 ***Lo importante de los mixins es que podemos crear clases para realizar tareas específicas y luego mezclar esas clases en una. De esta forma, podemos reutilizar las mismas clases una y otra vez***.
