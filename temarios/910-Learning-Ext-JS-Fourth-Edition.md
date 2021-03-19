@@ -94,7 +94,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
       * DOM manipulation – how do we change it?
    * Summary
    
-3. Components and Layouts
+3. [Components and Layouts](910-Learning-Ext-JS/03-Components-and-Layouts.md)
    * The component life cycle
       * The initialization phase
       * The rendering phase
