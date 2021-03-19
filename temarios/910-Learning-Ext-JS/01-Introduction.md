@@ -114,8 +114,6 @@ Una vez que se levanta el servidor invocamos el URL http://localhost:1841/ y ver
 ![image](https://user-images.githubusercontent.com/23094588/110305131-af08ae80-7ffc-11eb-9991-9fce84007f34.png)
 
 
-
-
 ## Empezando con Ext JS
 
 Entonces, ¡comencemos con Ext JS! Lo primero que debemos hacer es descargar el framework del sitio web oficial, http://www.sencha.com/products/extjs/. La versión disponible al momento de escribir este libro es 5.1.1. (*Yo descargue la 7.3.0*)
@@ -284,7 +282,7 @@ Ext.onReady(function(){
 });
 ```
 
-#### :computer: Mi versión
+#### 🔴 💻 Mi versión
 
 `myfirstapp.html`
 
@@ -318,6 +316,35 @@ Ext.onReady(function(){
 
 ![01-14](images/01-14.png)
 
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-01-01.html`
+
+`910-Learning-Ext-JS-01-01.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Primera Aplicación Extjs</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      
+      <script type = "text/javascript">
+         Ext.onReady(function() {
+            Ext.onReady(function(){
+               alert("¡Esta es mi primera aplicación Extjs!");
+            });
+         });
+      </script>
+   </head>
+   
+   <body></body>
+</html>
+```
+
+![01-29](images/01-29.png)
+
 Una alternativa a este código también puede ser:
 
 ```js
@@ -329,7 +356,7 @@ Ext.application({
 });
 ```
 
-#### :computer: Mi versión
+#### 🔴 💻
 
 ```js
 Ext.application({
@@ -341,6 +368,35 @@ Ext.application({
 ```
 
 ![01-15](images/01-15.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-01-02.html`
+
+`910-Learning-Ext-JS-01-02.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Primera Aplicación Extjs - Alternativa</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      
+      <script type = "text/javascript">
+         Ext.application({
+            name : 'MyFirstApplication',
+            launch : function() {
+               Ext.Msg.alert("Hola"," Mi primera aplicación Ext JS");
+            }
+         });
+      </script>
+   </head>
+   
+   <body></body>
+</html>
+```
+
+![01-30](images/01-30.png)
 
 ***Una de las ventajas de usar Ext JS es que la library solo usa un único objeto en el scope global llamado `Ext` para asignar todas las clases y objetos dentro del framework***.
 
@@ -372,7 +428,7 @@ La salida de las líneas de código anteriores se muestra en la siguiente captur
 
 ![01-17](images/01-17.png)
 
-#### :computer: Mi versión
+#### 🔴 💻
 
 ```js
 Ext.onReady(function(){
@@ -398,7 +454,7 @@ Usamos el método **`confirm`** para solicitar dos posibles respuestas del usuar
 
 ![01-19](images/01-19.png)
 
-#### :computer: Mi versión
+#### 🔴 💻
 
 ```js
 Ext.onReady(function(){
@@ -429,7 +485,7 @@ Ext.onReady(function(){
 
 La función callback se ejecuta después de que el usuario hace clic en el botón **Yes** o **No** o cierra el cuadro de diálogo de confirmación. La función recibe el valor del botón pulsado como parámetro, que es **Yes** o **No**; podemos hacer lo que queramos dentro de la función callback. En este caso, enviamos un mensaje dependiendo de la respuesta dada. Actualicemos nuestro navegador y probemos nuestro pequeño programa para ver nuestros cambios. Las confirmaciones generalmente se solicitan cuando un usuario desea eliminar algo, o tal vez cuando desea desencadenar un proceso largo, básicamente cualquier cosa que tenga solo dos opciones.
 
-#### :computer: Mi versión
+#### 🔴 💻
 
 ```js
 Ext.onReady(function(){
