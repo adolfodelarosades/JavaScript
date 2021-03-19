@@ -2371,7 +2371,7 @@ Si intentamos cargar las clases después de la llamada **`require`**, obtendremo
 
 En este caso, abra el archivo **`loader_01.html`** y verifique que el archivo tenga las rutas correctas (que las etiquetas del script sean correctas) al archivo **`ext.js`** en lugar de **`ext-all.js`**, y ejecute el archivo en el navegador. Si observa la pestaña **Network** en las herramientas de desarrollo, notará los archivos que solo se cargaron, que de hecho son algunas clases (solo las clases que Ext JS realmente necesitan para ejecutar el código). Además, la velocidad de ejecución de estas clases fue más rápida que las muestras de código anteriores cuando estábamos cargando el archivo **`ext-all.js`** completo ubicado en la carpeta **`build`**.
 
-### :computer: 11. Versión Original (FUNCIONA)
+### :computer: 11. Versión Original
 
 ```html
 <!doctype html>
@@ -2863,7 +2863,7 @@ La instrucción **`myElements.setStyle({...});`** toma la acción de aplicar el 
 </html>
 ```
 
-![02-52](images/02-52.png)
+![02-54](images/02-54.png)
 
 ### Manipulación del DOM: ¿cómo lo cambiamos?
 
