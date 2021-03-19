@@ -282,6 +282,27 @@ Ext.onReady(function(){
 });
 ```
 
+Una alternativa a este código también puede ser:
+
+```js
+Ext.application({
+   name : 'MyFirstApplication',
+   launch : function() {
+      Ext.Msg.alert("Hello"," my first Ext JS app");
+   }
+});
+```
+
+***Una de las ventajas de usar Ext JS es que la library solo usa un único objeto en el scope global llamado `Ext` para asignar todas las clases y objetos dentro del framework***.
+
+Si abre el archivo HTML en su navegador favorito, verá algo como la siguiente captura de pantalla:
+
+![01-13](images/01-13.png)
+
+> **TIP**<br>
+> No dude en utilizar su navegador favorito para trabajar con los ejemplos de este libro. Te recomiendo que uses Google Chrome porque tiene herramientas de desarrollo más avanzadas y es un navegador rápido. Si eres fanático de Firefox, puedes descargar el complemento de Firebug; es una herramienta poderosa que podemos usar para depurar en Firefox.
+
+
 #### 🔴 💻 Mi versión
 
 `myfirstapp.html`
@@ -345,17 +366,6 @@ Ext.onReady(function(){
 
 ![01-29](images/01-29.png)
 
-Una alternativa a este código también puede ser:
-
-```js
-Ext.application({
-   name : 'MyFirstApplication',
-   launch : function() {
-      Ext.Msg.alert("Hello"," my first Ext JS app");
-   }
-});
-```
-
 #### 🔴 💻
 
 ```js
@@ -398,14 +408,6 @@ Ext.application({
 
 ![01-30](images/01-30.png)
 
-***Una de las ventajas de usar Ext JS es que la library solo usa un único objeto en el scope global llamado `Ext` para asignar todas las clases y objetos dentro del framework***.
-
-Si abre el archivo HTML en su navegador favorito, verá algo como la siguiente captura de pantalla:
-
-![01-13](images/01-13.png)
-
-> **TIP**<br>
-> No dude en utilizar su navegador favorito para trabajar con los ejemplos de este libro. Te recomiendo que uses Google Chrome porque tiene herramientas de desarrollo más avanzadas y es un navegador rápido. Si eres fanático de Firefox, puedes descargar el complemento de Firebug; es una herramienta poderosa que podemos usar para depurar en Firefox.
 
 Si por alguna razón no podemos ver el mensaje de alerta en nuestro navegador, es porque no hemos definido la ruta correcta al archivo **`ext-all.js`**. Si observa la consola de JavaScript, probablemente veremos el siguiente error:
 
