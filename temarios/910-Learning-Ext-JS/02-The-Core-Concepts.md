@@ -568,14 +568,35 @@ console.log(post);
 
 ![02-13](images/02-13.png)
 
-#### 🔴 6️⃣ 💻 Mi versión ``
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-04-Preprocesadores-Postprocesadores.html`
 
-``
+`910-Learning-Ext-JS-02-04-Preprocesadores-Postprocesadores.html`
 
 ```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Preprocesadores y Postprocesadores</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         //Capítulo 03 - código 03
+         var pre  = Ext.Class.getDefaultPreprocessors(),
+         post	 = Ext.ClassManager.defaultPostprocessors;
+         console.log(pre);
+         console.log(post);     
+      </script>
+   </head>
+   
+   <body>
+      <h1>Presiona F12 para ver los resultados.</h1>
+   </body>
+</html>
 ```
 
-![02-4X](images/02-4X.png)
+![02-42](images/02-42.png)
 
 La siguiente captura de pantalla representa el flujo de la creación de clases con los preprocesadores y posprocesadores:
 
@@ -860,14 +881,146 @@ var robert =  Ext.create('Myapp.sample.Manager', {name:'Robert', lastName:'Smith
 
 ![02-14](images/02-14.png)
 
-#### 🔴 6️⃣ 💻 Mi versión ``
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-05-Mezcla-Classes.html`
 
-``
+`910-Learning-Ext-JS-02-05-Mezcla-Classes.html`
 
 ```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Mezcla de muchas clases (el uso de mixins)</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         //Capítulo 02 - código 04
+         // Base class Employee 
+         Ext.define('Myapp.sample.Employee',{		
+            name:'Desconocido',
+            lastName:'Desconocido',
+            age:0, 
+            constructor: function (config){
+               Ext.apply(this, config || {});
+               console.log('Clase Employee creada - nombre completo: ' + this.name + ' ' + this.lastName); 
+            },
+            work: function( task ){
+               console.log( this.name + ' está trabajando en: ' + task);
+            }
+         });
+         // Mixins
+         Ext.define('Myapp.sample.tasks.attendPhone',{
+            answerPhone:function(){
+               console.log( this.name + ' está contestando el teléfono'); 
+            }
+         });
+         Ext.define('Myapp.sample.tasks.attendCellPhone',{
+            extend: 'Ext.Mixin', 
+            /* answerCellPhone es la función adjunta para antes y después
+               y ejecutará el método definido en la propiedad answerCellPhone
+               en cada objeto de configuración (before / after)
+            */
+            mixinConfig:{
+               before:{
+                  answerCellPhone:'cellPhoneRinging'	
+               },
+               after:{
+                  answerCellPhone:'finishCall'
+               }	
+            },
+            cellPhoneRinging: function(){
+               console.log( 'El teléfono celular está sonando, puede atender la llamada'); 
+            },	
+            finishCall: function(){
+               console.log( 'La llamada del celular ha terminado'); 
+            }
+         });
+         Ext.define('Myapp.sample.tasks.attendClient',{
+            attendClient:function(clientName){
+               console.log( this.name + ' está atendiendo al cliente: ' + clientName); 
+            }
+         }); 
+         Ext.define('Myapp.sample.tasks.attendMeeting',{
+            attendMeeting:function(person){
+               console.log( this.name + ' está asistiendo a una reunión con ' + person); 
+            }
+         }); 
+         Ext.define('Myapp.sample.tasks.superviseEmployees',{
+            superviseEmployee:function(supervisor, employee){
+               console.log( supervisor.name + ' está supervisando a: ' + employee.name + ' ' + employee.lastName); 
+            }
+         }); 
+         //Clases definidas para cada ocupación 
+         Ext.define('Myapp.sample.Secretary',{
+            extend:'Myapp.sample.Employee', 	
+            mixins:{
+               answerPhone: 'Myapp.sample.tasks.attendPhone',	
+               util:'Myapp.sample.tasks.attendCellPhone' 
+            },
+            constructor: function (config){
+               Ext.apply(this, config || {});
+               console.log('Se creó la clase Secretary - nombre completo: ' + this.name + ' ' + this.lastName); 
+            },
+            answerCellPhone:function(){
+               console.log( this.name + ' está contestando el celular'); 
+            }		
+         });
+         Ext.define('Myapp.sample.Accountant',{
+            extend:'Myapp.sample.Employee', 
+            mixins:{
+               attendClient: 'Myapp.sample.tasks.attendClient',
+               attendMeeting: 'Myapp.sample.tasks.attendMeeting'
+            },
+            constructor: function (config){
+               Ext.apply(this, config || {});
+               console.log('Clase Accountant creada – nombre completo: ' + this.name + ' ' + this.lastName); 
+            }
+         }); 
+         Ext.define('Myapp.sample.Manager',{
+            extend:'Myapp.sample.Employee', 
+            mixins:{
+               attendClient:  'Myapp.sample.tasks.attendClient',
+               attendMeeting: 'Myapp.sample.tasks.attendMeeting',
+               supervisePersons: 'Myapp.sample.tasks.superviseEmployees'
+            },
+            constructor: function (config){
+               Ext.apply(this, config || {});
+               console.log('Clase Manager creada – nombre completo: ' + this.name + ' ' + this.lastName); 
+            },
+            supervise: function(employee){ 
+               console.log( this.name + ' comienza la supervisión '); 
+               this.mixins.supervisePersons.superviseEmployee(this, employee); 
+               console.log( this.name + ' supervisión terminada '); 
+            } 
+         });
+         // Uso de cada clase
+         var patricia = Ext.create('Myapp.sample.Secretary', {name:'Patricia', lastName:'Diaz', age:21 } ); 
+             patricia.work('Atender llamadas telefónicas');
+             patricia.answerPhone(); 
+             patricia.answerCellPhone(); 
+            
+         var peter =  Ext.create('Myapp.sample.Accountant', {name:'Peter', lastName:'Jones', age:44 } );  
+             peter.work('Consultar libros financieros');
+             peter.attendClient('ACME Corp.'); 	
+             peter.attendMeeting('Patricia'); 
+            
+         var robert =  Ext.create('Myapp.sample.Manager', {name:'Robert', lastName:'Smith', age:34 } ); 
+             robert.work('Administración de la oficina');
+             robert.attendClient('Iron Tubes of America'); 	
+             robert.attendMeeting('Patricia & Peter');	
+             robert.supervise(patricia); 	
+             robert.supervise(peter);     
+      </script>
+   </head>
+   
+   <body>
+      <h1>Presiona F12 para ver los resultados.</h1>
+   </body>
+</html>
 ```
 
-![02-4X](images/02-4X.png)
+![02-43](images/02-43.png)
 
 ### Una explicación de mixins
 
@@ -1030,14 +1183,153 @@ Actualice el navegador y debería ver algo como la siguiente captura de pantalla
 
 ![02-17](images/02-17.png)
 
-#### 🔴 6️⃣ 💻 Mi versión ``
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-06-Usando-Propiedad-MIXINCONFIG.html`
 
-``
+`910-Learning-Ext-JS-02-06-Usando-Propiedad-MIXINCONFIG.html`
 
 ```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>USANDO LA PROPIEDAD MIXINCONFIG</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         //Capítulo 02 - código 04
+         // Base class Employee 
+         Ext.define('Myapp.sample.Employee',{		
+            name:'Desconocido',
+            lastName:'Desconocido',
+            age:0, 
+            constructor: function (config){
+               Ext.apply(this, config || {});
+               console.log('Clase Employee creada - nombre completo: ' + this.name + ' ' + this.lastName); 
+            },
+            work: function( task ){
+               console.log( this.name + ' está trabajando en: ' + task);
+            }
+         });
+         // Mixins
+         Ext.define('Myapp.sample.tasks.attendPhone',{
+            answerPhone:function(){
+               console.log( this.name + ' está contestando el teléfono'); 
+            }
+         });
+         Ext.define('Myapp.sample.tasks.attendCellPhone',{
+            extend: 'Ext.Mixin', 
+            /* answerCellPhone es la función adjunta para antes y después
+               y ejecutará el método definido en la propiedad answerCellPhone
+               en cada objeto de configuración (before / after)
+            */
+            mixinConfig:{
+               before:{
+                  answerCellPhone:'cellPhoneRinging'	
+               },
+               after:{
+                  answerCellPhone:'finishCall'
+               }	
+            },
+            cellPhoneRinging: function(){
+               console.log( 'El teléfono celular está sonando, puede atender la llamada'); 
+            },	
+            finishCall: function(){
+               console.log( 'La llamada del celular ha terminado'); 
+            }
+         });
+         /* 
+         Ext.define('Myapp.sample.tasks.attendClient',{
+            attendClient:function(clientName){
+               console.log( this.name + ' está atendiendo al cliente: ' + clientName); 
+            }
+         });
+         Ext.define('Myapp.sample.tasks.attendMeeting',{
+            attendMeeting:function(person){
+               console.log( this.name + ' está asistiendo a una reunión con ' + person); 
+            }
+         }); 
+         Ext.define('Myapp.sample.tasks.superviseEmployees',{
+            superviseEmployee:function(supervisor, employee){
+               console.log( supervisor.name + ' está supervisando a: ' + employee.name + ' ' + employee.lastName); 
+            }
+         });
+         */ 
+         //Clases definidas para cada ocupación 
+         Ext.define('Myapp.sample.Secretary',{
+            extend:'Myapp.sample.Employee', 	
+            mixins:{
+               answerPhone: 'Myapp.sample.tasks.attendPhone',	
+               util:'Myapp.sample.tasks.attendCellPhone' 
+            },
+            constructor: function (config){
+               Ext.apply(this, config || {});
+               console.log('Se creó la clase Secretary - nombre completo: ' + this.name + ' ' + this.lastName); 
+            },
+            answerCellPhone:function(){
+               console.log( this.name + ' está contestando el celular'); 
+            }		
+         });
+         /*
+         Ext.define('Myapp.sample.Accountant',{
+            extend:'Myapp.sample.Employee', 
+            mixins:{
+               attendClient: 'Myapp.sample.tasks.attendClient',
+               attendMeeting: 'Myapp.sample.tasks.attendMeeting'
+            },
+            constructor: function (config){
+               Ext.apply(this, config || {});
+               console.log('Clase Accountant creada – nombre completo: ' + this.name + ' ' + this.lastName); 
+            }
+         });
+         */
+         /* 
+         Ext.define('Myapp.sample.Manager',{
+            extend:'Myapp.sample.Employee', 
+            mixins:{
+               attendClient:  'Myapp.sample.tasks.attendClient',
+               attendMeeting: 'Myapp.sample.tasks.attendMeeting',
+               supervisePersons: 'Myapp.sample.tasks.superviseEmployees'
+            },
+            constructor: function (config){
+               Ext.apply(this, config || {});
+               console.log('Clase Manager creada – nombre completo: ' + this.name + ' ' + this.lastName); 
+            },
+            supervise: function(employee){ 
+               console.log( this.name + ' comienza la supervisión '); 
+               this.mixins.supervisePersons.superviseEmployee(this, employee); 
+               console.log( this.name + ' supervisión terminada '); 
+            } 
+         });
+         */
+         // Uso de cada clase
+         var patricia = Ext.create('Myapp.sample.Secretary', {name:'Patricia', lastName:'Diaz', age:21 } ); 
+             patricia.work('Atender llamadas telefónicas');
+             patricia.answerPhone(); 
+             patricia.answerCellPhone(); 
+         /*   
+         var peter =  Ext.create('Myapp.sample.Accountant', {name:'Peter', lastName:'Jones', age:44 } );  
+             peter.work('Consultar libros financieros');
+             peter.attendClient('ACME Corp.'); 	
+             peter.attendMeeting('Patricia'); 
+            
+         var robert =  Ext.create('Myapp.sample.Manager', {name:'Robert', lastName:'Smith', age:34 } ); 
+             robert.work('Administración de la oficina');
+             robert.attendClient('Iron Tubes of America'); 	
+             robert.attendMeeting('Patricia & Peter');	
+             robert.supervise(patricia); 	
+             robert.supervise(peter);
+         */     
+      </script>
+   </head>
+   
+   <body>
+      <h1>Presiona F12 para ver los resultados.</h1>
+   </body>
+</html>
 ```
 
-![02-4X](images/02-4X.png)
+![02-44](images/02-44.png)
 
 ***Lo importante de los mixins es que podemos crear clases para realizar tareas específicas y luego mezclar esas clases en una. De esta forma, podemos reutilizar las mismas clases una y otra vez***.
 
@@ -1223,14 +1515,81 @@ console.log( "¿Patricia es mayor? : " + is_old );
 
 ![02-19](images/02-19.png)
 
-#### 🔴 6️⃣ 💻 Mi versión ``
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-07-Configuracion.html`
 
-``
+`910-Learning-Ext-JS-02-07-Configuracion.html`
 
 ```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>CONFIGURACIÓN</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         //Capítulo 02 - Código 05
+         // Base class Employee  usando config
+         Ext.define('Myapp.sample.Employee',{
+            config:{
+               name:'Desconocido',
+               lastName:'Desconocido',
+               age:0,	
+               isOld:false
+            },
+            constructor: function (config){
+               this.initConfig(config); 
+            },
+            work: function( task ){
+               console.log( this.getName() + ' está trabajando en: ' + task);
+            },
+            applyAge: function(newAge) {
+               this.setIsOld ( (newAge>=90) ); 
+               return newAge;
+            }
+         });
+
+         var patricia = Ext.create('Myapp.sample.Employee', {
+            name:'Patricia', 
+            lastName:'Diaz', 
+            age:21, 
+            isOld:false 
+         }); 
+
+         console.log( "Nombre del empleado = " + patricia.getName() ); 	
+         console.log( "Apellido del empleado = " + patricia.getLastName() ); 		
+         console.log( "Edad del empleado  = " + patricia.getAge() );
+         patricia.work('Atender llamadas telefónicas');
+
+         patricia.setName('Karla Patricia'); 
+         patricia.setLastName('Diaz de Leon'); 
+         patricia.setAge (25); 
+         console.log( "Nuevo nombre del empleado = " + patricia.getName() ); 	
+         console.log( "Nuevo apellido del empleado = " + patricia.getLastName() ); 		
+         console.log( "Nueva edad del empleado  = " + patricia.getAge() ); 	
+
+         patricia.work('Atender llamadas telefónicas');
+
+         var is_old=''; 
+         is_old= (patricia.getIsOld()==true)?'yes':'no'; 
+         console.log( "¿Patricia es mayor? : " + is_old ) ; 
+
+         patricia.setAge(92); 
+
+         is_old=''; 
+         is_old= (patricia.getIsOld()==true)?'yes':'no'; 
+         console.log( "¿Patricia es mayor? : " + is_old );    
+      </script>
+   </head>
+   
+   <body>
+      <h1>Presiona F12 para ver los resultados.</h1>
+   </body>
+</html>
 ```
 
-![02-4X](images/02-4X.png)
+![02-45](images/02-45.png)
 
 ### Métodos y propiedades estáticos
 
@@ -1390,14 +1749,84 @@ console.log( "Instancia(s) de clase de empleado = " + Myapp.sample.Employee.inst
 
 ![02-22](images/02-22.png)
 
-#### 🔴 6️⃣ 💻 Mi versión ``
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-08-Metodos-Propiedades-Estaticos.html`
 
-``
+`910-Learning-Ext-JS-02-08-Metodos-Propiedades-Estaticos.html`
 
 ```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Métodos y Propiedades Estáticos</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         //Capítulo 02 - código 06
+         // Base class Employee  usando config
+         Ext.define('Myapp.sample.Employee',{
+            statics:{
+               instanceCount:0, 		
+               payrollId:1000,	
+               nextId : function(){			
+                  return (this.payrollId + this.instanceCount);	
+               }
+            },
+            config:{
+               name:'Desconocido',
+               lastName:'Desconocido',
+               age:0,	
+               isOld:false, 
+               payrollNumber:0		
+            },
+            constructor: function (config){		
+               this.initConfig(config); 
+               this.setPayrollNumber(  this.statics().nextId() ); 
+               this.self.instanceCount ++;
+            },
+            work: function( task ){
+               console.log( this.getName() + ' está trabajando en: ' + task);
+            },
+            applyAge: function(newAge) {
+               this.setIsOld ( (newAge>=90) ); 
+               return newAge;
+            }, 
+            getTotalEmployees: function(){
+               return this.statics().instanceCount;
+            }
+         });
+
+         var patricia = Ext.create('Myapp.sample.Employee', {
+            name:'Patricia', 
+            lastName:'Diaz', 
+            age:21, 
+            isOld:false 
+         }); 
+         console.log( "Patricia payrollId = " + patricia.getPayrollNumber() );
+         console.log( "Total de empleados = " + patricia.getTotalEmployees() );
+
+         var peter    = Ext.create('Myapp.sample.Employee', {
+            name:'Peter', 
+            lastName:'Pan', 
+            age:16, 
+            isOld:false 
+         }); 
+
+         console.log( "Peter payrollId = " + peter.getPayrollNumber() );
+         console.log( "Total de empleados = " + patricia.getTotalEmployees() );
+
+         console.log( "Instancia(s) de clase de empleado = " + Myapp.sample.Employee.instanceCount);    
+      </script>
+   </head>
+   
+   <body>
+      <h1>Presiona F12 para ver los resultados.</h1>
+   </body>
+</html>
 ```
 
-![02-4X](images/02-4X.png)
+![02-46](images/02-46.png)
 
 ### La clase Singleton
 
@@ -1532,14 +1961,89 @@ console.log( Myapp.CompanyConstants.welcomeEmployee(peter)  );
 
 ![02-24](images/02-24.png)
 
-#### 🔴 6️⃣ 💻 Mi versión ``
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-09-Clase-Singleton.html`
 
-``
+`910-Learning-Ext-JS-02-09-Clase-Singleton.html`
 
 ```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>La Clase Singleton</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         //Capítulo 02 - código 07
+         // Singleton Class
+         Ext.define('Myapp.CompanyConstants',{
+            singleton: true, 	
+            companyName: 'Extjs code developers Corp.',
+            workingDays: 'Lunes a Viernes', 
+            website: 'www.extjscodedevelopers.com', 		
+            welcomeEmployee:function (employee){
+               return "Hola " + employee.getName() + " ahora estas trabajando para " + this.companyName; 	   
+            }
+         });
+         // Base class Employee  usando config
+         Ext.define('Myapp.sample.Employee',{
+            statics:{
+               instanceCount: 0, 		
+               payrollId: 1000,	
+               nextId : function(){			
+                  return (this.payrollId + this.instanceCount);	
+               }
+            },
+            config:{
+               name: 'Desconocido',
+               lastName: 'Desconocido',
+               age: 0,	
+               isOld: false, 
+               payrollNumber: 0		
+            },
+            constructor: function (config){		
+               this.initConfig(config); 
+               this.setPayrollNumber(  this.statics().nextId() ); 
+               this.self.instanceCount ++;
+            },
+            work: function( task ){
+               console.log( this.getName() + ' está trabajando en: ' + task);
+            },
+            applyAge: function(newAge) {
+               this.setIsOld ( (newAge >= 90) ); 
+               return newAge;
+            }, 
+            getTotalEmployees: function(){
+               return this.statics().instanceCount;
+            }
+         });
+
+         var patricia = Ext.create('Myapp.sample.Employee', {
+            name:'Patricia', 
+            lastName:'Diaz', 
+            age:21, 
+            isOld:false 
+         }); 
+         console.log( Myapp.CompanyConstants.welcomeEmployee(patricia)  ); 
+
+         var peter    = Ext.create('Myapp.sample.Employee', {
+            name:'Peter', 
+            lastName:'Pan', 
+            age:16, 
+            isOld:false 
+         }); 
+         console.log( Myapp.CompanyConstants.welcomeEmployee(peter)  );    
+      </script>
+   </head>
+   
+   <body>
+      <h1>Presiona F12 para ver los resultados.</h1>
+   </body>
+</html>
 ```
 
-![02-4X](images/02-4X.png)
+![02-47](images/02-47.png)
 
 ***Las clases singleton se usan comúnmente para contener constantes, configuraciones y funciones comunes (comúnmente denominadas clases de utilidad) para nuestra aplicación, como la ruta base de nuestra aplicación, la ruta donde se encuentran las imágenes y cosas por el estilo***.
 
@@ -1703,14 +2207,85 @@ Todas las opciones comentadas son alternativas de hacer referencia a la nueva cl
 
 ![02-27](images/02-27.png)
 
-#### 🔴 6️⃣ 💻 Mi versión ``
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-10-Alias.html`
 
-``
+`910-Learning-Ext-JS-02-10-Alias.html`
 
 ```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Alias</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         //Capítulo 02 - código 08
+         // usando alias y alternateClassName
+
+         Ext.define('Myapp.sample.EmployeePanel',{
+            extend : 'Ext.panel.Panel',
+            alias  : 'widget.employeePanel',
+            alternateClassName:'mycustomemployeepanel', //['employeepanel','customEmployeePanel'],
+            title  : 'Panel de empleados',
+            html   : '¡Contenido del empleado aquí ...!'
+         });
+
+         Ext.onReady (function(){	
+            Ext.create('widget.employeePanel',{
+               title: 'Panel de Empleado: Patricia Diaz...', 
+               height:250, 
+               width:450,
+               renderTo: Ext.getBody()
+            });	
+         });
+
+         /*	
+         Ext.widget('employeePanel',{  //Alternative
+            title: 'Panel de Empleado: Patricia Diaz...', 
+            height:250, 
+            width:450,
+            renderTo: Ext.getBody()
+         }); 
+         */	
+         /*	
+         Ext.create('Myapp.sample.EmployeePanel',{ //Using direct class name 
+            title: 'Panel de Empleado: Patricia Diaz...', 
+            height:250, 
+            width:450,
+            renderTo: Ext.getBody()
+         });
+         */
+         /*
+         Ext.create('mycustomemployeepanel',{ //Using alternateClassName 
+            title: 'Panel de Empleado: Patricia Diaz...', 
+            height:250, 
+            width:450,
+            renderTo: Ext.getBody()
+         });
+         */	
+
+         /* Other possible use */
+         /*	
+         var win = Ext.create("Ext.window.Window",{
+            title  : "Window", width:350, height:250,
+            items    : [{ xtype: "employeePanel" }]
+         });
+         win.show();
+         */    
+      </script>
+   </head>
+   
+   <body>
+      
+   </body>
+</html>
 ```
 
-![02-4X](images/02-4X.png)
+![02-48](images/02-48.png)
+
+![02-49](images/02-49.png)
 
 
 Veamos la explicación. Definimos la nueva clase **`Myapp.sample.EmployeePanel`** ampliando el componente **`Ext.panel.Panel`** de la clase Ext JS. Como esta clase es de hecho un *widget*, declaramos el *alias* como **`widget.employeePanel`**. Como dijimos anteriormente, **`Ext.ClassManager`** maneja la declaración de nuestra clase extendida (el uso interno de preprocesadores y postprocesadores) y defines/maps el alias para su uso posterior. Entonces, cuando creamos una nueva instancia de la nueva clase **`Myapp.sample.EmployeePanel`**, Ext JS sabrá cómo manejar y ejecutar el código correctamente.
@@ -1925,14 +2500,51 @@ La salida que tenemos es:
 
 ![02-36](images/02-36.png)
 
-#### 🔴 6️⃣ 💻 Mi versión ``
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-11-Loader.html`
 
-``
+`910-Learning-Ext-JS-02-11-Loader.html`
 
 ```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Habilitando el Loader</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         //Chapter 02 - code 09
+         //EXT JS - LOADER 
+         Ext.Loader.setConfig({
+            enabled: true, 
+            paths:{
+               MyApp:'appcode'	
+            }
+         });
+         Ext.require([
+            'MyApp.Constants',
+            'MyApp.samples.demoClass'
+         ]);
+
+         Ext.onReady(function(){ 
+
+            console.log ("App title 	= " +  MyApp.Constants.title ); 
+            console.log ("App version 	= " +  MyApp.Constants.getVersion() ); 
+            var testClass = Ext.create('MyApp.samples.demoClass',{ initialValue:21}); 
+            console.log ( testClass.getDescription() ); 
+
+         });    
+      </script>
+   </head>
+   
+   <body>
+      <h1>Presiona F12 para ver los resultados.</h1>
+   </body>
+</html>
 ```
 
-![02-4X](images/02-4X.png)
+![02-50](images/02-50.png)
 
 ## Trabajando con el DOM
 
@@ -2047,14 +2659,46 @@ El método **`fadeOut`** oculta lentamente el elemento cambiando la opacidad pro
 
 Deberías echar un vistazo a la documentación (http://docs.sencha.com/) para conocer todas las opciones que tenemos disponibles, ya que allí podemos encontrar ejemplos de código para jugar.
 
-#### 🔴 6️⃣ 💻 Mi versión ``
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-12-DOM-Obtener-Elemento.html`
 
-``
+`910-Learning-Ext-JS-02-12-DOM-Obtener-Elemento.html`
 
 ```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>DOM - Obtener Elemento</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            var mymainDiv = Ext.get('main'); 
+            var mysecondDiv = Ext.dom.Element.get('second');
+            mymainDiv.setStyle({
+               width   : "100px",
+               height  : "100px",
+               border  : "2px solid #444",
+               margin  : "80px auto",
+               backgroundColor : "#ccc"
+            });
+            mymainDiv.fadeOut()
+            .fadeIn({
+               duration:3000
+            });
+         });     
+      </script>
+   </head>
+   
+   <body>
+      <div id="main"></div>
+      <div id="second"></div>
+   </body>
+</html>
 ```
 
-![02-4X](images/02-4X.png)
+![02-51](images/02-51.png)
 
 ### Query: ¿cómo los encontramos?
 
@@ -2169,14 +2813,57 @@ La instrucción **`myElements.setStyle({...});`** toma la acción de aplicar el 
 ![02-34](images/02-34.png)
 ![02-35](images/02-35.png)
 
-#### 🔴 6️⃣ 💻 Mi versión ``
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-13-DOM-Query.html`
 
-``
+`910-Learning-Ext-JS-02-13-DOM-Query.html`
 
 ```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>DOM - Query</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            var myElements = Ext.dom.Query.select('#main .menu ul li');			
+            myElements = Ext.get(myElements); 
+            myElements.setStyle({
+               display : "inline",
+               backgroundColor : "#003366",
+               margin : "3px",
+               color : "#FFCC00",
+               padding : "3px 20px",
+               borderRadius : "10px",
+               boxShadow : "inset 0 1px 15px #6699CC"
+            });
+            
+            var h1 = Ext.select("#main div[class=content] h1");	
+            h1.setStyle("color","#003399");	
+         });     
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      <div id="main">
+         <div class="menu">
+            <ul>
+               <li>Inicio</li>
+               <li>Sobre nosotros</li>
+            </ul>
+         </div>
+         <div class="content">
+            <h1>¡Aprendiendo Ext JS 5!</h1>
+            <p>Este es un ejemplo de la clase DomQuery.</p>
+         </div>
+      </div>
+   </body>
+</html>
 ```
 
-![02-4X](images/02-4X.png)
+![02-52](images/02-52.png)
 
 ### Manipulación del DOM: ¿cómo lo cambiamos?
 
@@ -2241,6 +2928,61 @@ Ext.fly(h1).remove();
 El código anterior llama al método **`Ext.fly`**. Este método es similar al método **`Ext.get`** pero la diferencia es que **`Ext.fly`** obtiene el elemento y no almacena este elemento en la memoria; realmente es para un solo uso o una referencia única. El método **`Ext.get`** almacena el elemento en la memoria para ser reutilizado en otras clases o código de aplicación.
 
 Entonces, **`Ext.fly`** devuelve una instancia a la clase **`Ext.Element`** que contiene una referencia al elemento de nodo. Una vez que tenemos el nodo en el contenedor, podemos llamar al método **`remove`** y el nodo será eliminado del DOM.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-14-DOM.html`
+
+`910-Learning-Ext-JS-02-14-DOM.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>DOM - Query</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            Ext.DomHelper.append(Ext.getBody(),{
+               tag: "div",
+               style: {
+                  width: "100px",
+                  height: "100px",
+                  border: "2px solid #333",
+                  margin  : "20px auto"
+               }
+            });
+            Ext.DomHelper.append(Ext.getBody(),{
+               //...
+               children  : [{
+                  tag      : "ul",
+                  children  : [
+                     {tag: "li", html: "Item 1"},
+                     {tag: "li", html: "Item 2"}
+                  ]
+               }]
+            });
+            var h1 = Ext.DomHelper.createDom({
+               tag: "h1",
+               html: "¡Este es el título!"
+            });
+
+            Ext.getBody().appendChild(h1);
+
+            //Ext.fly(h1).remove();
+         });    
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+![02-53](images/02-53.png)
+
 
 ## Resumen
 
