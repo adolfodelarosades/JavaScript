@@ -14,19 +14,46 @@
 * El sistema de layout
    * El Border layout
    * El Fit layout
-   * El Card layout
+    * El Card layout
    * El Accordion layout
    * El Anchor layout
 * Más layouts
 * Comentarios sobre el uso de layouts
 * Resumen
 
+Una de las mejores características de Ext JS es la capacidad de crear diseños complejos para organizar nuestros componentes de diferentes maneras utilizando el sistema de layout y los contenedores. Desde las primeras versiones de la library, Ext JS ha tenido un gran sistema de layouts. Desde la versión 4.x, hay nuevos layouts y algunas otras partes se han rediseñado para tener un mejor rendimiento y usabilidad.
+
+En este capítulo, aprenderá cómo funcionan los componentes, aprenderá los tipos de contenedores, cómo usar layouts y cómo hacer uso de layouts anidados para lograr diseños complejos.
+
+Vamos a cubrir los siguientes temas en este capítulo:
+
+* Componentes
+* Contenedores
+* El sistema de layouts
+* Diseños layouts
+
 ## El ciclo de vida de los componentes
 
+Antes de pasar a los sistemas de layouts y widgets, debe conocer algunos conceptos sobre cómo funcionan los componentes.
+
+Cada componente del framework Ext JS se extiende desde la clase `Ext.Component`. Esta clase se extiende desde `Ext.Component`, o por su nombre de clase alternativo `Ext.AbstractComponent`, que proporciona métodos compartidos para componentes en todo el framework.
+
 > **NOTA:**
->
+> Para comprender más sobre las jerarquías de componentes, consulte http://docs.sencha.com/extjs/5.1/core_concepts/components.html.
+ 
+Cuando creamos componentes como panels, windows, grids, trees y cualquier otro, hay un proceso llamado "ciclo de vida del componente" que debe comprender.
+
+Es importante para nosotros conocer las cosas que ocurren durante cada una de las fases del proceso del ciclo de vida. Esto nos ayudará a crear componentes personalizados o ampliar los existentes.
+
+Básicamente, hay tres fases en el ciclo de vida del componente: ***el proceso de inicialización, el proceso de renderizado y el proceso de destrucción***.
+
+***La fase de inicialización*** inicializa nuestra nueva instancia y se registra en el administrador de componentes; luego, ***la fase de renderizado*** creará todos los nodos requeridos en el DOM, y luego se ejecutará ***la fase de destrucción*** cuando se destruya el componente, eliminando los listeners y los nodos del DOM:
 
 ![03-01](images/03-01.png)
+
+La clase `Ext.AbstractComponent/Ext.Component` dirige el proceso del ciclo de vida, y cada clase que se extiende desde la clase `Component` participará en el ciclo de vida automáticamente. Todos los componentes visuales (widgets) se extienden desde estas clases y si estamos planeando crear nuestros propios componentes personalizados, también deberíamos extendernos desde esas clases.
+
+Para comprender mejor las tres fases, creemos un componente de panel y veamos qué sucede en cada fase paso a paso:
 
 ```js
 var panel = Ext.create("Ext.panel.Panel",{
@@ -38,7 +65,7 @@ var panel = Ext.create("Ext.panel.Panel",{
 ```
 
 > **NOTA:**
->
+> Cuando se habla del width y height de los componentes, la unidad de medida se maneja en píxeles.
 
 ### La fase de inicialización
 
