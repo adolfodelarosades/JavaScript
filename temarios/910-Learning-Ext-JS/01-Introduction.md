@@ -303,7 +303,7 @@ Si abre el archivo HTML en su navegador favorito, verá algo como la siguiente c
 > No dude en utilizar su navegador favorito para trabajar con los ejemplos de este libro. Te recomiendo que uses Google Chrome porque tiene herramientas de desarrollo más avanzadas y es un navegador rápido. Si eres fanático de Firefox, puedes descargar el complemento de Firebug; es una herramienta poderosa que podemos usar para depurar en Firefox.
 
 
-#### 🔴 💻 Mi versión
+#### 🔴 5️⃣ 💻 Mi versión
 
 `myfirstapp.html`
 
@@ -364,9 +364,9 @@ Ext.onReady(function(){
 </html>
 ```
 
-![01-29](images/01-29.png)
+![01-29](images/01-29.png) 
 
-#### 🔴 💻
+#### 🔴 5️⃣ 💻 Mi versión 
 
 ```js
 Ext.application({
@@ -379,7 +379,7 @@ Ext.application({
 
 ![01-15](images/01-15.png)
 
-#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-01-02.html`
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-01-02.html` - theme-classic
 
 `910-Learning-Ext-JS-01-02.html`
 
@@ -407,6 +407,76 @@ Ext.application({
 ```
 
 ![01-30](images/01-30.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-01-02.html` - theme-neptune
+
+`910-Learning-Ext-JS-01-02.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Primera Aplicación Extjs - Alternativa</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <!--
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      -->
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      
+      <script type = "text/javascript">
+         Ext.application({
+            name : 'MyFirstApplication',
+            launch : function() {
+               Ext.Msg.alert("Hola"," Mi primera aplicación Ext JS");
+            }
+         });
+      </script>
+   </head>
+   
+   <body></body>
+</html>
+```
+
+![01-31](images/01-31.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-01-02.html` - theme-crisp
+
+`910-Learning-Ext-JS-01-02.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Primera Aplicación Extjs - Alternativa</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <!--
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>   
+      -->
+
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-crisp/resources/theme-crisp-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      
+      <script type = "text/javascript">
+         Ext.application({
+            name : 'MyFirstApplication',
+            launch : function() {
+               Ext.Msg.alert("Hola"," Mi primera aplicación Ext JS");
+            }
+         });
+      </script>
+   </head>
+   
+   <body></body>
+</html>
+```
+
+![01-32](images/01-32.png)
 
 
 Si por alguna razón no podemos ver el mensaje de alerta en nuestro navegador, es porque no hemos definido la ruta correcta al archivo **`ext-all.js`**. Si observa la consola de JavaScript, probablemente veremos el siguiente error:
