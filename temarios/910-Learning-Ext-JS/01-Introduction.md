@@ -500,7 +500,7 @@ La salida de las líneas de código anteriores se muestra en la siguiente captur
 
 ![01-17](images/01-17.png)
 
-#### 🔴 💻
+#### 🔴 5️⃣ 💻 Mi versión
 
 ```js
 Ext.onReady(function(){
@@ -509,6 +509,34 @@ Ext.onReady(function(){
 ```
 
 ![01-18](images/01-18.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-01-03.html`
+
+`910-Learning-Ext-JS-01-03.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Añadiendo interacción al programa</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            //alert("¡Esta es mi primera aplicación Ext js!");
+            Ext.Msg.alert("Alerta","¡Esta es mi primera aplicación Ext js!");
+         });
+      </script>
+   </head>
+   
+   <body></body>
+</html>
+```
+
+![01-33](images/01-33.png)
 
 > **TIP**<br>
 > Si no recibe ningún error en la consola de JavaScript pero aún no puede ver el mensaje en la pantalla, como se ve en la captura de pantalla anterior, asegúrese de haber insertado la hoja de estilo correctamente.
@@ -526,7 +554,7 @@ Usamos el método **`confirm`** para solicitar dos posibles respuestas del usuar
 
 ![01-19](images/01-19.png)
 
-#### 🔴 💻
+#### 🔴 5️⃣ 💻 Mi versión
 
 ```js
 Ext.onReady(function(){
@@ -536,6 +564,33 @@ Ext.onReady(function(){
 ```
 
 ![01-20](images/01-20.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-01-04.html`
+
+`910-Learning-Ext-JS-01-04.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Método confirm</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+    
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            Ext.Msg.alert("Alerta","¡Esta es mi primera aplicación Ext JS!");
+            Ext.Msg.confirm("Confirmar","¿Te gusta Ext JS 6?");
+         });
+      </script>
+   </head>
+   
+   <body></body>
+</html>
+```
+
+![01-34](images/01-34.png)
 
 Antes de que apareciera el cuadro de diálogo de confirmación, hubo una alerta que no apareció. ***Una cosa importante a tener en cuenta es que los mensajes y alertas de la library Ext no bloquean el bucle de JavaScript, a diferencia del cuadro de diálogo del navegador nativo***. Esto significa que si agregamos otra alert o mensaje personalizado después de llamar al método **`confirm`**, ya no veremos el cuadro de diálogo de confirmación.
 
@@ -557,7 +612,7 @@ Ext.onReady(function(){
 
 La función callback se ejecuta después de que el usuario hace clic en el botón **Yes** o **No** o cierra el cuadro de diálogo de confirmación. La función recibe el valor del botón pulsado como parámetro, que es **Yes** o **No**; podemos hacer lo que queramos dentro de la función callback. En este caso, enviamos un mensaje dependiendo de la respuesta dada. Actualicemos nuestro navegador y probemos nuestro pequeño programa para ver nuestros cambios. Las confirmaciones generalmente se solicitan cuando un usuario desea eliminar algo, o tal vez cuando desea desencadenar un proceso largo, básicamente cualquier cosa que tenga solo dos opciones.
 
-#### 🔴 💻
+#### 🔴 5️⃣ 💻 Mi versión
 
 ```js
 Ext.onReady(function(){
@@ -577,6 +632,18 @@ Ext.onReady(function(){
 ![01-22](images/01-22.png)
 ![01-23](images/01-23.png)
 ![01-24](images/01-24.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-01-04.html`
+
+`910-Learning-Ext-JS-01-04.html`
+
+```js
+```
+
+![01-35](images/01-35.png)
+![01-36](images/01-36.png)
+![01-37](images/01-37.png)
+![01-38](images/01-38.png)
 
 ## Herramientas y editores
 
