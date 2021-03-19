@@ -384,7 +384,7 @@ Abramos el archivo HTML en nuestro navegador y miremos la consola de JavaScript.
 
 Como podemos ver en este ejemplo de herencia, esta propiedad también es útil cuando queremos extender classes/widgets como **`Ext.panel.Panel`** y crear nuestro propio panel al tiempo que damos una funcionalidad especial y extra que el panel no proporciona.
 
-### :computer: 3. Mi versión
+### 🔴 5️⃣ 💻 Mi versión
 
 `classes_02.html`
 
@@ -446,6 +446,68 @@ var jorge =  Ext.create('Myapp.sample.Supervisor', {name:'Jorge', lastName:'Saba
 
 ![02-09](images/02-09.png)
 
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-03-classes_02.html`
+
+`910-Learning-Ext-JS-02-03-classes_02.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Classes 02</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         //Capítulo 02 - código 02
+         Ext.define('Myapp.sample.Employee',{		
+            name:'Desconocido',
+            lastName:'Desconocido',
+            age:0, 
+            constructor: function (config){
+               Ext.apply(this, config || {});
+               console.log('Se creó la clase Employee – nombre completo: ' + this.name + ' ' + this.lastName); 
+            },
+            checkAge:function(){
+               console.log( 'La edad de ' + this.name + ' ' + this.lastName + ' es: ' + this.age );
+            },	
+            work: function( task ){
+               console.log( this.name + ' está trabajando: ' + task);
+            }
+         });
+
+         Ext.define('Myapp.sample.Supervisor',{
+            extend:'Myapp.sample.Employee', 
+            constructor: function (config){
+               Ext.apply(this, config || {});
+                  console.log('Se creó la clase Supervisor – nombre completo: ' + this.name + ' ' + this.lastName); 
+            },	
+            supervise:function(employee){
+               var employeefullname = employee.name + ' ' + employee.lastName; 
+               console.log( this.name + ' está supervisando el trabajo de ' + employeefullname );	
+            }	
+         }); 
+
+         var adolfo = Ext.create('Myapp.sample.Employee', {name:'Adolfo', lastName:'de la Rosa', age:31 } ); 
+             adolfo.checkAge(); 					
+             adolfo.work('Desarrollando programas JS'); //Alerts  " Adolfo de la Rosa está trabajando: Desarrollando programas JS
+	
+         var jorge =  Ext.create('Myapp.sample.Supervisor', {name:'Jorge', lastName:'Sabater', age:34 } ); 
+             jorge.checkAge(); 
+             jorge.work('Coordinando Proyecto');
+             jorge.supervise(adolfo);     
+      </script>
+   </head>
+   
+   <body>
+      <h1>Presiona F12 para ver los resultados.</h1>
+   </body>
+</html>
+```
+
+![02-41](images/02-41.png)
+
 ### Preprocesadores y postprocesadores
 
 Cada clase en Ext JS es una instancia de la clase **`Ext.Class`**. Cuando usamos el método **`Ext.define`** para definir una clase, de hecho estamos creando una instancia de la clase **`Ext.Class`**.
@@ -476,7 +538,7 @@ Al ejecutar el código anterior en un navegador, deberíamos ver los siguientes 
 ["alias", "singleton", "alternateClassName", "debugHooks", "deprecated", "uses"]
 ```
 
-### :computer: 4. Mi versión
+### 🔴 5️⃣ 💻 Mi versión
 
 `classes_03.html`
 
@@ -505,6 +567,15 @@ console.log(post);
 ```
 
 ![02-13](images/02-13.png)
+
+#### 🔴 6️⃣ 💻 Mi versión ``
+
+``
+
+```js
+```
+
+![02-4X](images/02-4X.png)
 
 La siguiente captura de pantalla representa el flujo de la creación de clases con los preprocesadores y posprocesadores:
 
@@ -648,7 +719,7 @@ Una vez que el código esté listo, actualice el navegador y debería ver algo c
 
 ![02-12](images/02-12.png)
 
-### :computer: 5. Mi versión
+### 🔴 5️⃣ 💻 Mi versión
 
 `classes_04.html`
 
@@ -789,6 +860,15 @@ var robert =  Ext.create('Myapp.sample.Manager', {name:'Robert', lastName:'Smith
 
 ![02-14](images/02-14.png)
 
+#### 🔴 6️⃣ 💻 Mi versión ``
+
+``
+
+```js
+```
+
+![02-4X](images/02-4X.png)
+
 ### Una explicación de mixins
 
 Cada clase se basa en la clase **`Employee`**. Luego definimos las tareas de los **`employee`** (como clases) como **`Myapp.sample.tasks.attendMeeting`** y esto fue incorporado (mezclado) en la clase respectiva usando la configuración **`mixin{...}`**.
@@ -864,7 +944,7 @@ Actualice el navegador y debería ver algo como la siguiente captura de pantalla
 
 ![02-16](images/02-16.png)
 
-### :computer: 6. Mi versión
+### 🔴 5️⃣ 💻 Mi versión
 
 ```html
 <!DOCTYPE html>
@@ -949,6 +1029,15 @@ Actualice el navegador y debería ver algo como la siguiente captura de pantalla
 ```
 
 ![02-17](images/02-17.png)
+
+#### 🔴 6️⃣ 💻 Mi versión ``
+
+``
+
+```js
+```
+
+![02-4X](images/02-4X.png)
 
 ***Lo importante de los mixins es que podemos crear clases para realizar tareas específicas y luego mezclar esas clases en una. De esta forma, podemos reutilizar las mismas clases una y otra vez***.
 
@@ -1058,7 +1147,7 @@ Como puede ver en el código resaltado, estamos usando los métodos setters y ge
 
 ![02-18](images/02-18.png)
 
-### :computer: 7. Mi versión
+### 🔴 5️⃣ 💻 Mi versión
 
 `config_01.html`
 
@@ -1133,6 +1222,15 @@ console.log( "¿Patricia es mayor? : " + is_old );
 ```
 
 ![02-19](images/02-19.png)
+
+#### 🔴 6️⃣ 💻 Mi versión ``
+
+``
+
+```js
+```
+
+![02-4X](images/02-4X.png)
 
 ### Métodos y propiedades estáticos
 
@@ -1215,7 +1313,7 @@ En este caso, creamos dos instancias de las clases **`Patricia`** y **`Peter`**,
 
 ![02-21](images/02-21.png)
 
-### :computer: 8. Mi versión
+### 🔴 5️⃣ 💻 Mi versión
 
 `statics_01.html`
 
@@ -1292,6 +1390,15 @@ console.log( "Instancia(s) de clase de empleado = " + Myapp.sample.Employee.inst
 
 ![02-22](images/02-22.png)
 
+#### 🔴 6️⃣ 💻 Mi versión ``
+
+``
+
+```js
+```
+
+![02-4X](images/02-4X.png)
+
 ### La clase Singleton
 
 Por definición, no se puede crear una instancia de una clase **`singleton`** más de una vez. Debe ser la misma instancia todo el tiempo. Ext nos permite crear clases **`singleton`** muy fácilmente con un postprocesador.
@@ -1341,7 +1448,7 @@ Guardemos el archivo y actualice el navegador y deberíamos ver algo como la sig
 
 ![02-23](images/02-23.png)
 
-### :computer: 9. Mi versión
+### 🔴 5️⃣ 💻 Mi versión
 
 `singleton_01.html`
 
@@ -1425,6 +1532,15 @@ console.log( Myapp.CompanyConstants.welcomeEmployee(peter)  );
 
 ![02-24](images/02-24.png)
 
+#### 🔴 6️⃣ 💻 Mi versión ``
+
+``
+
+```js
+```
+
+![02-4X](images/02-4X.png)
+
 ***Las clases singleton se usan comúnmente para contener constantes, configuraciones y funciones comunes (comúnmente denominadas clases de utilidad) para nuestra aplicación, como la ruta base de nuestra aplicación, la ruta donde se encuentran las imágenes y cosas por el estilo***.
 
 ### Alias
@@ -1503,7 +1619,7 @@ Ejecute el archivo en su navegador y puede obtener un resultado similar al que s
 
 ![02-25](images/02-25.png)
 
-### :computer: 10. Mi versión
+### 🔴 5️⃣ 💻 Mi versión
 
 `alias_01.html`
 
@@ -1586,6 +1702,15 @@ win.show();
 Todas las opciones comentadas son alternativas de hacer referencia a la nueva clase y nos presentan la misma salida, a excepción de la última que nos pone la ventana así:
 
 ![02-27](images/02-27.png)
+
+#### 🔴 6️⃣ 💻 Mi versión ``
+
+``
+
+```js
+```
+
+![02-4X](images/02-4X.png)
 
 
 Veamos la explicación. Definimos la nueva clase **`Myapp.sample.EmployeePanel`** ampliando el componente **`Ext.panel.Panel`** de la clase Ext JS. Como esta clase es de hecho un *widget*, declaramos el *alias* como **`widget.employeePanel`**. Como dijimos anteriormente, **`Ext.ClassManager`** maneja la declaración de nuestra clase extendida (el uso interno de preprocesadores y postprocesadores) y defines/maps el alias para su uso posterior. Entonces, cuando creamos una nueva instancia de la nueva clase **`Myapp.sample.EmployeePanel`**, Ext JS sabrá cómo manejar y ejecutar el código correctamente.
@@ -1717,7 +1842,7 @@ Ext.onReady(function(){
 
 ![02-30](images/02-30.png)
 
-### :computer: 11. Mi versión
+### 🔴 5️⃣ 💻 Mi versión
 
 `loader_01.html`
 
@@ -1800,6 +1925,15 @@ La salida que tenemos es:
 
 ![02-36](images/02-36.png)
 
+#### 🔴 6️⃣ 💻 Mi versión ``
+
+``
+
+```js
+```
+
+![02-4X](images/02-4X.png)
+
 ## Trabajando con el DOM
 
 Ext JS proporciona una manera fácil de lidiar con DOM. Podemos crear nodos, cambiar estilos, agregar listeners y crear hermosas animaciones, entre otras cosas, sin preocuparnos por las implementaciones del navegador. Ext JS nos proporciona una API de compatibilidad entre navegadores que nos facilitará la vida.
@@ -1860,7 +1994,7 @@ Aquí estamos pasando un objeto con todas las reglas que queremos aplicar al nod
 
 ![02-31](images/02-31.png)
 
-### :computer: 12. Mi versión
+### 🔴 5️⃣ 💻 Mi versión
 
 ```html
 <!doctype html>
@@ -1912,6 +2046,15 @@ div.fadeOut()
 El método **`fadeOut`** oculta lentamente el elemento cambiando la opacidad progresivamente. Cuando la opacidad es cero por ciento, el método **`fadeIn`** se ejecuta cambiando la opacidad en un 100 por ciento en tres segundos.
 
 Deberías echar un vistazo a la documentación (http://docs.sencha.com/) para conocer todas las opciones que tenemos disponibles, ya que allí podemos encontrar ejemplos de código para jugar.
+
+#### 🔴 6️⃣ 💻 Mi versión ``
+
+``
+
+```js
+```
+
+![02-4X](images/02-4X.png)
 
 ### Query: ¿cómo los encontramos?
 
@@ -1975,7 +2118,7 @@ La instrucción **`myElements.setStyle({...});`** toma la acción de aplicar el 
 
 ![02-32](images/02-32.png)
 
-### :computer: 13. Mi versión
+### 🔴 5️⃣ 💻 Mi versión
 
 `dom_02.html`
 
@@ -2025,6 +2168,15 @@ La instrucción **`myElements.setStyle({...});`** toma la acción de aplicar el 
 
 ![02-34](images/02-34.png)
 ![02-35](images/02-35.png)
+
+#### 🔴 6️⃣ 💻 Mi versión ``
+
+``
+
+```js
+```
+
+![02-4X](images/02-4X.png)
 
 ### Manipulación del DOM: ¿cómo lo cambiamos?
 
