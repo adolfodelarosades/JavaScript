@@ -107,7 +107,7 @@ Finalmente, invocamos el método **`work`**, que hará que aparezca una alert en
 
 ![02-03](images/02-03.png)
 
-### :computer: 1. Mi versión
+### 🔴 5️⃣ 💻 Mi versión
 
 `classes_01.html`
 
@@ -143,6 +143,46 @@ adolfo.work('Desarrollando programas JS');
 ```
 
 ![02-04](images/02-04.png)
+
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-01-classes_01.html`
+
+`910-Learning-Ext-JS-02-01-classes_01.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Classes 01</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.define('Myapp.sample.Employee',{
+            name: 'Desconocido',
+            constructor: function (name){
+               this.name= name;
+               console.log('Se creó la clase – name: ' + this.name);
+            },
+            work: function(task){
+               alert(this.name + ' está trabajando: ' + task);
+            }
+         });
+
+         var adolfo = Ext.create('Myapp.sample.Employee', 'Adolfo de la Rosa');
+         adolfo.work('Desarrollando programas JS');
+      </script>
+   </head>
+   
+   <body>
+      <h1>Presiona F12 para ver los resultados.</h1>
+   </body>
+</html>
+```
+
+![02-38](images/02-38.png)
+![02-39](images/02-39.png)
 
 Hasta ahora hemos estado manejando un valor en la clase, y la forma habitual para que la mayoría de los desarrolladores hagan esto es que manejamos múltiples valores al crear clases, así que cambiemos el código como se muestra en el siguiente ejemplo:
 
@@ -203,7 +243,7 @@ El primer mensaje se imprime en la consola mediante el método **`constructor`**
 
 Una vez que tenemos la instancia de la clase **`Employee`**, podemos modificar sus propiedades asignando el nuevo valor. Si actualizamos nuestro navegador, veremos un nuevo mensaje en la consola y tendrá el nuevo valor. Podemos crear tantas instancias como queramos de nuestra clase y cada una de ellas tendrá las mismas propiedades y métodos. Sin embargo, podemos cambiar sus valores individualmente o incluso pasar un objeto al constructor con las propiedades que queremos cambiar.
 
-### :computer: 2. Mi versión
+### 🔴 5️⃣ 💻 Mi versión
 
 `classes_01.js`
 
@@ -239,6 +279,58 @@ adolfo.work('Desarrollando programas JS');
 
 ![02-06](images/02-06.png)
 
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-02-02-classes_01.html`
+
+`910-Learning-Ext-JS-02-02-classes_01.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Classes 01</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         //Capítulo 02 - código 01 
+         Ext.define('Myapp.sample.Employee',{
+            name: 'Desconocido',
+            lastName: 'Desconocido',
+            age: 0,
+            constructor: function (config){
+               Ext.apply( this, config || {} );
+               console.log('Se creó la clase – nombre completo: ' + this.name + ' ' + this.lastName);
+            },
+            checkAge: function(){
+               console.log( 'La edad de ' + this.name + ' ' + this.lastName + ' es: ' + this.age);
+            },
+            work: function(task){
+               console.log(this.name + ' está trabajando: ' + task);
+            }
+         });
+
+         //Crea el Objeto
+         var adolfo = Ext.create('Myapp.sample.Employee', {
+            name: 'Adolfo',
+            lastName: 'de la Rosa',
+            age: 31
+         });
+
+         //Invoca los métodos del Objeto
+         adolfo.checkAge();
+         adolfo.work('Desarrollando programas JS');
+      </script>
+   </head>
+   
+   <body>
+      <h1>Presiona F12 para ver los resultados.</h1>
+   </body>
+</html>
+```
+
+![02-40](images/02-40.png)
+         
 ### Herencia simple
 
 Cuando creamos una clase usando el método **`Ext.define`**, estamos extendiendo desde la clase **`Ext.Base`**. Esta clase contiene métodos abstractos que serán heredados por todas las subclases para que podamos usarlos a nuestra conveniencia.
