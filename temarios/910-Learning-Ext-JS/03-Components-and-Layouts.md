@@ -1034,7 +1034,6 @@ Hay muchas más opciones para el componente window. Debería echar un vistazo a 
 </html>
 ```
 
-![03-30](images/03-30.png)
 ![03-31](images/03-31.png)
 
 ## El sistema de layout
