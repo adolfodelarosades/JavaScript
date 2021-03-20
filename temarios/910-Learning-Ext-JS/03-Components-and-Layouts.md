@@ -1478,9 +1478,9 @@ Hasta ahora hemos visto los layouts básicos (los más utilizados). Para ver má
 
 ## Comentarios sobre el uso de layouts
 
-Tenga en cuenta que puede anidar diseños utilizando combinaciones de contenedores y diseños, y también recuerde asegurarse de la configuración correcta que necesita cada diseño. En los próximos capítulos, utilizaremos combinaciones de diseño de anidamiento y contenedores para que pueda tener una idea más precisa de cómo combinarlos. Mientras tanto, puede intentar anidar, combinar y jugar con el sistema de diseño.
+Tenga en cuenta que puede anidar diseños utilizando combinaciones de contenedores y layouts, y también recuerde asegurarse de la configuración correcta que necesita cada layout. En los próximos capítulos, utilizaremos combinaciones de layouts de anidamiento y contenedores para que pueda tener una idea más precisa de cómo combinarlos. Mientras tanto, puede intentar anidar, combinar y jugar con el sistema de layouts.
 
-Uno de los errores comunes que cometen los principiantes de Ext JS es con los componentes sobreanidados; esto a veces puede dañar el rendimiento. Debe utilizar diseños y establecer el tipo de contenedor adecuado con una planificación adecuada, por ejemplo:
+Uno de los errores comunes que cometen los principiantes de Ext JS es con los componentes sobreanidados; esto a veces puede dañar el rendimiento. Debe utilizar layouts y establecer el tipo de contenedor adecuado con una planificación adecuada, por ejemplo:
 
 ```js
 Ext.onReady(function(){
@@ -1515,6 +1515,8 @@ Ext.onReady(function(){
 });
 ```
 
+Como puede ver, en la región West estamos configurando un panel que contiene un formulario (`Ext.form.Panel`). En este caso, estamos overnesting, porque si ve la documentación, `Ext.form.Panel` está extendiendo un componente `Panel` y esto hará que nuestro navegador haga más DOM. Esto también puede reducir la memoria porque estamos creando dos componentes en lugar de uno; la forma correcta debería ser:
+
 ```js
 {
    xtype: 'form',
@@ -1529,4 +1531,12 @@ Ext.onReady(function(){
 }
 ```
 
+De esta manera, el panel de formulario actúa de la misma manera que cualquier panel. Reducimos un componente con muchas propiedades, métodos y eventos que no son necesarios y solo consumirán recursos.
+
 ## Resumen
+
+En este capítulo, aprendió sobre el ciclo de vida del componente. No necesitamos recordar cada paso que se ejecuta en cada fase, pero debemos conocer los métodos que podemos anular en nuestras subclases, de modo que podamos agregar una funcionalidad específica en una de las tres fases. Al crear nuestros componentes personalizados, es muy importante recordar que debemos destruir todas nuestras referencias y componentes internos que hemos creado. De esta forma, liberaremos memoria.
+
+También aprendió sobre los contenedores básicos y los diseños utilizados más comúnmente, y cómo agregar otros componentes a un contenedor y organizarlos de acuerdo con nuestras necesidades.
+
+En el próximo capítulo, hablaremos sobre el data package. Aprenderá sobre models, stores y associations, y muchas cosas más interesantes.
