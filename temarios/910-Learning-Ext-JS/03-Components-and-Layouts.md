@@ -862,6 +862,10 @@ Ext.onReady(function(){
 
 ### El panel
 
+El componente del panel (`Ext.panel.Panel`) es uno de los componentes más utilizados en Ext JS. Un panel puede contener otros paneles o incluso otros componentes.
+
+Creemos nuestro primer panel instanciando la clase `Ext.panel.Panel`. Necesitamos crear una página HTML, importar la library Ext JS y luego ejecutar el siguiente código cuando el DOM esté listo para ser utilizado:
+
 ```js
 Ext.onReady(function(){
    var MyPanel = Ext.create("Ext.panel.Panel",{
@@ -874,13 +878,53 @@ Ext.onReady(function(){
 });
 ```
 
+Como puede observar, hemos creado la instancia de la clase `Panel` de la misma manera que creamos un componente en los ejemplos anteriores (los ejemplos de contenedores). La única diferencia es que hemos agregado una nueva configuración llamada `title` con el texto que queremos mostrar como título de nuestro panel.
+
 ![03-10](images/03-10.png)
 
-#### Paneles versus contenedores
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-03-09-Panel.html`
+
+`910-Learning-Ext-JS-03-09-Panel.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Panel</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            var MyPanel = Ext.create("Ext.panel.Panel",{
+               renderTo: Ext.getBody(),
+               title: 'Mi primer panel...',
+               width: 300,
+               height: 220,
+               html:'<b>Aquí</b> va algo de  <i>contenido</i>...!'
+            });
+         });   
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+![03-28](images/03-28.png)
+
+#### PANELS VERSUS CONTAINERS
+
+Como hemos visto, los contenedores crean un elemento DOM HTML básico que contiene HTML o componentes secundarios que insertamos en el contenedor. Los paneles, por otro lado, crean secciones adicionales (como header y tools) y tienen más funcionalidad (métodos y funciones) que los contenedores. Algunos aspectos destacados y partes comunes del panel se muestran en la siguiente captura de pantalla:
 
 ![03-11](images/03-11.png)
 
 ### El componente Window
+
+Una window es básicamente un panel flotante con más funciones. El componente `Window` se extiende desde la clase `Panel`. Esto significa que podemos utilizar todos los métodos y propiedades que tiene el panel. Además, podemos arrastrar una window desde la barra de encabezado, cerrarla y maximizarla, entre otras cosas. Creemos un archivo `.html` de la siguiente manera que importe la library `Ext` y ejecute el código cuando el DOM esté listo:
 
 ```js
 var win = Ext.create("Ext.window.Window",{
@@ -893,6 +937,8 @@ var win = Ext.create("Ext.window.Window",{
 win.show();
 ```
 
+Otra alternativa para este código puede ser:
+
 ```js
 Ext.create("Ext.window.Window",{
    title: 'My first window',
@@ -903,11 +949,117 @@ Ext.create("Ext.window.Window",{
 }).show();
 ```
 
+La única diferencia entre nuestro código anterior y el código del panel es la propiedad `maximizable` que nos permite maximizar la ventana. También eliminamos la propiedad `renderTo` y usamos el método `show` para renderizar y mostrar la ventana.
+
 ![03-12](images/03-12.png)
 
+De forma predeterminada, la ventana se puede cerrar, pero podemos hacer que no se pueda cerrar estableciendo la propiedad `closable` en `false`. Podemos mover la ventana por la pantalla arrastrando el encabezado. También podemos cambiar el tamaño de la ventana con el mouse para cada uno de los cuatro lados.
+
+Hay muchas más opciones para el componente window. Debería echar un vistazo a la documentación de la API y jugar con este componente.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-03-10-ComponenteWindow.html`
+
+`910-Learning-Ext-JS-03-10-ComponenteWindow.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Componente Window</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            var win = Ext.create("Ext.window.Window",{
+               title: 'Mi primer ventana',
+               width: 300,
+               height: 200,
+               maximizable: true,
+               html: 'Esta es mi primera ventana'
+            });
+            win.show();
+         });   
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+![03-29](images/03-29.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-03-11-ComponenteWindow.html`
+
+`910-Learning-Ext-JS-03-11-ComponenteWindow.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Componente Window</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            Ext.create('Ext.container.Viewport',{
+               padding:'5px',
+               layout:'auto',
+               style : {
+                  'background-color': '#fc9',
+                  'color': '#000'
+               },
+               html:'Esta es el área de la aplicación'
+            });
+            Ext.create("Ext.window.Window",{
+               title: 'Mi primera ventana',
+               width: 300,
+               height: 200,
+               maximizable: true,
+               closable: false,
+               html: 'Esta es mi primera ventana'
+            }).show();
+         });   
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+![03-30](images/03-30.png)
+![03-31](images/03-31.png)
 
 ## El sistema de layout
+
+Una de las mejores características de la library Ext JS es la capacidad de crear layouts de una manera fácil. Podemos definir layouts fijos o layouts fluidos utilizando las clases adecuadas.
+
+En este punto, sabe cómo funciona un contenedor. Podemos organizar los children de un contenedor estableciendo un layout. Si no definimos un layout para nuestros contenedores, por defecto se utilizará el layout `auto`. En nuestros ejemplos anteriores, usamos el layout `auto` y, como pudimos ver, los children o HTML se muestran uno tras otro.
+
+Hay muchos layouts disponibles que podemos usar para organizar nuestros componentes, como `accordions`, `cards`, `columns`, etc.
+
+Podemos encontrar todos los layouts disponibles en el paquete `Ext.layout.container`. Vaya a la documentación y busque en la clase `enum` de layouts: http://docs.sencha.com/extjs/5.1/5.1.1-apidocs/#!/api/Ext.enums.Layout.
+
+Aquí veremos muchas clases, cada una representando un tipo de layout. Algunos de los diseños más comunes son:
+
+* El Border layout
+* El Fit layout
+* El The Card layout
+* El The Accordion layout
+* El Anchor layout
+
 ### El Border layout
+
+El Border layout divide el espacio del contenedor en cinco regiones (varios paneles): `north`, `south`, `west`, `east` y `center`. Podemos ubicar a nuestros children en cualquiera de las regiones, pero siempre estamos obligados a usar la región central.
+
+En el siguiente código, definiremos el layout como `border`. También definiremos las regiones `center`, `west` y `south` para el layout `border`:
 
 ```js
 Ext.onReady(function(){
@@ -941,10 +1093,71 @@ Ext.onReady(function(){
 });
 ```
 
+Hemos hecho de la región **West** un panel plegable. Si hacemos clic en la flecha pequeña ubicada en el encabezado o en la barra de división, veremos que el panel se colapsará hacia el lado izquierdo. Además, hemos definido nuestro panel **South** para que esté dividido. Esto nos permite cambiar el tamaño del panel **South** arrastrando la barra de separación con nuestro mouse.
+
 > **NOTA:**
->
+> Puede colocar directamente otro(s) componente(s) que admita una región para evitar el anidamiento excesivo de componentes.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-03-12-BorderLayout.html`
+
+`910-Learning-Ext-JS-03-12-BorderLayout.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Border layout</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            Ext.create('Ext.panel.Panel', {
+               width: 500,  height: 300,
+               title:  'Border Layout',
+               layout: 'border',
+               items: [{
+                  xtype: 'panel',
+                  title: 'South Region es redimensionable',
+                  region: 'south',     // region
+                  height: 100,
+                  split: true          // enable resizing
+               },{
+                  xtype: 'panel',
+                  title: 'West Region',
+                  region:'west',   // region
+                  width: 200,
+                  collapsible: true,  //make panel/region collapsible
+                  layout: 'fit',
+                  split: true    // enable resizing
+               },{
+                  title: 'Center Region',
+                  region: 'center',
+                  layout: 'fit',
+                  margin: '5 5 0 0',
+                  html:'<b>El contenido principal</b> va aquí'
+               }],
+               renderTo: Ext.getBody()
+            });
+         });   
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+![03-32](images/03-32.png)
+![03-33](images/03-33.png)
+![03-34](images/03-34.png)
+
 
 ### El Fit layout
+
+Este layout está destinado a ser utilizado por un solo child. Nos permite ampliar el componente interior al tamaño del contenedor. El componente child ocupa todo el espacio disponible en el componente contenedor. Cuando se cambia el tamaño del padre, el tamaño del hijo también se actualiza para adaptarse a las nuevas dimensiones. Hagamos el código para este layout:
 
 ```js
 Ext.onReady(function(){
@@ -968,9 +1181,65 @@ Ext.onReady(function(){
 });
 ```
 
+En el código anterior, solo agregamos la propiedad `layout`. En este caso, estamos configurando una cadena con el nombre del layout, pero también podemos establecer un objeto y definir algunas configuraciones para el layout seleccionado. De hecho, cada layout es una clase que acepta configuraciones.
+
+La siguiente captura de pantalla muestra cómo el layout `fit` organiza los children del componente contenedor:
+
 ![03-13](images/03-13.png)
 
+Como puede ver, aunque definimos dos children para la ventana, solo muestra uno. Si cambiamos el tamaño de la ventana principal, deberíamos ver que el panel **Menu** se expande para ajustarse al nuevo tamaño de la ventana.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-03-13-FitLayout.html`
+
+`910-Learning-Ext-JS-03-13-FitLayout.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Fit layout</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            var win = Ext.create("Ext.window.Window",{
+               title: "Mi primera ventana",
+               width: 300,
+               height: 200,
+               maximizable: true,
+               layout: "fit",
+               defaults: {
+                  xtype: "panel",
+                  height: 60,
+                  border: false
+               },
+               items: [
+                  {title: "Menú", html: "El menú principal"},
+                  {title: "Contenido", html: "¡El contenido principal!"}
+               ]
+            });
+            win.show();
+         });   
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+![03-35](images/03-35.png)
+![03-36](images/03-36.png)
+![03-37](images/03-37.png)
+
 ### El Card layout
+
+El Card layout puede administrar varios child, por lo que si necesitamos crear un asistente o mostrar solo un componente a la vez, debemos usar este layout. Este layout extiende la clase del layout `fit`, lo que significa que solo un componente puede ser visible en un momento dado y llenará todo el espacio disponible en el contenedor.
+
+También podemos establecer el componente mostrado inicial por su índice usando el índice del array `items`. Y podemos mover los componentes fácilmente llamando al método `next` o `prev`. Veamos el código para el Card layout:
 
 ```js
 Ext.onReady(function(){
@@ -997,7 +1266,61 @@ Ext.onReady(function(){
 });
 ```
 
+El código anterior crea un componente `window` con dos paneles. Configuramos el layout de la window a `card` en el paso uno.
+
+En el paso dos, obtenemos la instancia del layout llamando al método `getLayout` después de 3 segundos y cambiamos el elemento inicial usando el método `setActiveItem(1)` para mostrar el panel **Content**. También podemos usar los métodos `next` y `prev` de la instancia del layout para mostrar la card siguiente y anterior.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-03-14-CardLayout.html`
+
+`910-Learning-Ext-JS-03-14-CardLayout.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Card layout</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            var win = Ext.create("Ext.window.Window",{
+               title: "Mi primera ventana",
+               width: 300,
+               height: 200,
+               maximizable: true,
+               layout: "card",//Step 1
+               defaults:{ xtype: "panel", height: 60, border: false },
+               items: [{
+                  title: "Menú",
+                  html: "El menú principal"
+               },{
+                  title: "Contenido",
+                  html: "¡El contenido principal!"
+               }]
+            });
+            win.show();
+
+            setTimeout(function(){
+               win.getLayout().setActiveItem(1);  //Step 2
+            },3000);
+         });   
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+![03-38](images/03-38.png)
+![03-39](images/03-39.png)
+
 ### El Accordion layout
+
+Similar al Card layout, este layout nos permite mostrar un componente a la vez en un estilo de acordeón expandible. Veremos el encabezado de los componentes internos y podremos expandir y contraer los componentes haciendo clic en sus barras de título. Revisemos el siguiente código para el Accordion layout:
 
 ```js
 var win = Ext.create("Ext.window.Window",{
@@ -1015,12 +1338,65 @@ var win = Ext.create("Ext.window.Window",{
 });
 ```
 
+Modificando el código anterior, solo hemos cambiado/definido el Accordion layout y agregado un nuevo panel al array `items`. Veremos algo como la siguiente captura de pantalla:
+
 ![03-14](images/03-14.png)
 
+Al usar el Accordion layout, solo veremos un panel expandido a la vez. El panel expandido tomará la altura disponible para mostrarse. No importa si cambiamos el tamaño del contenedor.
+
 > **NOTA:**
->
+> En el Accordion layout, es importante señalar que solo necesitamos usar la clase `Ext.panel.Panel` o subclases de la clase `Ext.panel.Panel`.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-03-15-AccordionLayout.html`
+
+`910-Learning-Ext-JS-03-15-AccordionLayout.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Accordion layout</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            var win = Ext.create("Ext.window.Window",{
+               title: "Mi primera ventana",
+               width: 300,
+               height: 200,
+               maximizable: true,
+               layout: "accordion",
+               defaults: { xtype: "panel" },
+               items:[
+                  {title: "Menú", html: "El menú principal" },
+                  {title: "Contenido", html: "¡El contenido principal!" },
+                  {title: "3er Panel", html: "¡Contenido aquí...!" }
+               ]
+            });
+            win.show();
+         });   
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+![03-40](images/03-40.png)
+![03-41](images/03-41.png)
+![03-42](images/03-42.png)
 
 ### El Anchor layout
+
+Este layout permite el anclaje de elementos contenidos (elementos child) en relación con las dimensiones del contenedor. Si se cambia el tamaño del contenedor principal, se cambiará el tamaño de los elementos secundarios de acuerdo con las reglas aplicadas a estos elementos child.
+
+De forma predeterminada, `AnchorLayout` calculará las medidas de anclaje en función del tamaño del contenedor en sí. Pero si el contenedor está usando la propiedad `AnchorLayout`, proporcionará una propiedad `config` específica de anclaje `anchorSize`. Si se especifica la propiedad `anchorSize`, el layout la usará como un contenedor virtual con el propósito de calcular las medidas de anclaje basadas en ella en lugar del contenedor en sí.
+
+Hagamos algunos cambios en los ejemplos anteriores y establezcamos el código de esta manera:
 
 ```js
 Ext.onReady(function(){
@@ -1045,11 +1421,66 @@ Ext.onReady(function(){
 });
 ```
 
+La pantalla se verá como la siguiente captura de pantalla:
+
 ![03-15](images/03-15.png)
+
+Cuando usamos la propiedad `anchor` con un solo valor, el anchor se usará en el ancho del componente, por ejemplo, `anchor:'70%'` cubrirá el 70% del ancho del contenedor principal. Usando `anchor:'-10'` cubrirá el 100% menos 10 píxeles del ancho del contenedor principal. Por último, al utilizar dos valores, el anclaje se aplicará al ancho y al alto como en el último panel del código: `anchor:'50% 40%'`.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-03-16-AnchorLayout.html`
+
+`910-Learning-Ext-JS-03-16-AnchorLayout.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Anchor layout</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            var win = Ext.create("Ext.window.Window",{
+               title: "Mi primera ventana",
+               width: 300,
+               height: 300,
+               maximizable : true,
+               layout: "anchor",
+               defaults: {xtype: "panel", height: 60, border: false},
+               items: [
+               {
+                  title: "Menú",  html: "panel al 100% - 10 px", anchor:'-10'
+               },{
+                  title: "Contenido", html: "panel al 70% del anchor", anchor:'70%'
+               },{
+                  title: "3er Panel", html: "panel al 50% width y 40% height de anchor", anchor:'50% 40%', bodyStyle:'background-color:#fc3;'
+               }
+               ]
+            });
+            win.show();
+         });   
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+![03-43](images/03-43.png)
 
 ## Más layouts
 
+Hasta ahora hemos visto los layouts básicos (los más utilizados). Para ver más diseños en acción, como HBox Layout, VBox Layout, Table Layout, etc., y también para ver cómo funcionan, visite http://dev.sencha.com/ext/5.1.0/examples/kitchensink/#layouts.
+
 ## Comentarios sobre el uso de layouts
+
+Tenga en cuenta que puede anidar diseños utilizando combinaciones de contenedores y diseños, y también recuerde asegurarse de la configuración correcta que necesita cada diseño. En los próximos capítulos, utilizaremos combinaciones de diseño de anidamiento y contenedores para que pueda tener una idea más precisa de cómo combinarlos. Mientras tanto, puede intentar anidar, combinar y jugar con el sistema de diseño.
+
+Uno de los errores comunes que cometen los principiantes de Ext JS es con los componentes sobreanidados; esto a veces puede dañar el rendimiento. Debe utilizar diseños y establecer el tipo de contenedor adecuado con una planificación adecuada, por ejemplo:
 
 ```js
 Ext.onReady(function(){
