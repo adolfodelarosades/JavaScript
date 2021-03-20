@@ -561,10 +561,15 @@ Comprender el ciclo de vida de los componentes en Ext JS es esencial para agrega
 ![03-23](images/03-23.png)
 ![03-24](images/03-24.png)
 
-
 ## Sobre contenedores
 
+En este punto, conocemos todos los pasos del ciclo de vida. Si recuerda, en la fase de renderizado hay un paso en el que también se renderizan los elementos secundarios de los componentes. Ahora aprenderemos sobre los contenedores y cómo podemos agregar elementos secundarios a un componente.
+
+La clase `Ext.container.Container` es responsable de administrar a los children y de organizar a los que usan layouts. Si queremos que nuestra clase contenga otros componentes, debemos extenderlos desde esta clase. Vale la pena decir que esta clase se extiende desde `Ext.Component`, por lo que también podremos usar el ciclo de vida del componente en nuestras subclases:
+
 ![03-07](images/03-07.png)
+
+Todas las clases que extienden `Ext.Container` podrán tener children usando la propiedad `items` o usar el método `add` para agregar un nuevo componente como child. Veamos el siguiente fragmento de código:
 
 ```js
 Ext.define("MyApp.sample.MyContainer",{
@@ -593,6 +598,16 @@ Ext.define("MyApp.sample.MyContainer",{
 });
 ```
 
+En el ejemplo de código, establecemos `var me=this;`. Esto es para presentar `me` o `this` se refiere al alcance del object/class actual que se está manejando o manipulando.
+
+La clase anterior se extiende desde la clase `Ext.container.Container`. Ahora podemos usar el sistema de layout para organizar los children del contenedor.
+
+Al extendernos desde la clase `Container`, podemos usar la propiedad `items` para definir los children del contenedor principal. Estamos repitiendo la propiedad `items`, que es un array, para agregar algunos estilos básicos. Estamos usando el método `initComponent` que se ejecuta automáticamente en la fase de creación. No debemos olvidar llamar a la superclase ejecutando el método `callParent`.
+
+El último paso overrides el método `onRender`. Después de ejecutar el método `callParent`, podemos tener acceso a la propiedad `el` que es una referencia al nodo principal de nuestro componente. Si la propiedad `border` se establece en `true`, agregaremos estilos CSS para mostrar un borde alrededor del nodo del elemento principal.
+
+Una vez que hemos definido nuestra clase, podemos crear una instancia de ella. Creemos una página HTML que incluya la library `Ext` y nuestra clase para ejecutar el siguiente código:
+
 ```js
 Ext.onReady(function(){
    Ext.create("MyApp.sample.MyContainer",{
@@ -608,10 +623,18 @@ Ext.onReady(function(){
 });
 ```
 
+Estamos creando la instancia de nuestra clase como de costumbre. Agregamos la propiedad `items` como un array de componentes. Podemos definir tantos componentes como necesitemos porque nuestra clase es un contenedor.
+
+En este ejemplo, estamos usando la propiedad `xtype` para definir cada componente interno, pero también podríamos crear una instancia del child del componente y luego pasar la referencia al array `items`.
+
 > **TIP:**
->
+> El uso de la propiedad `xtype` nos permite crear componentes más fácilmente que manejar el nombre completo de la clase, y también usamos menos líneas de código. Cuando se crea el contenedor principal, también se crean todos sus children. Encontraremos todas las propiedades `xtype` disponibles en la documentación. Por lo general, `xtype` está al lado del nombre de la clase. Para ver todos los `xtype` disponibles en Ext JS, visite http://docs.sencha.com/extjs/5.1/5.1.1-apidocs/#!/api/Ext.enums.Widget.
+ 
+La siguiente captura de pantalla muestra tres componentes. Uno es el componente principal que contiene dos children. Lo hemos logrado extendiendo desde la clase `Container` y usando la propiedad `items`.
 
 ![03-08](images/03-08.png)
+
+Cuando usamos contenedores, podemos usar una propiedad llamada `defaults` que nos permite aplicar las mismas propiedades (values/configurations predeterminados) a todos los children en el contenedor principal. Agreguemos algunos valores predeterminados a nuestro ejemplo anterior:
 
 ```js
 Ext.onReady(function(){
@@ -630,13 +653,158 @@ Ext.onReady(function(){
 });
 ```
 
+La propiedad `defaults` recibe un objeto que contiene todas las configuraciones que queremos aplicar a los componentes dentro del array `items`. En este caso, hemos agregado las propiedades `width` y `xtype`. De esta forma, no tenemos que repetir las mismas líneas de código para cada componente:
+
 ![03-09](images/03-09.png)
 
+Como podemos ver en la captura de pantalla anterior, los tamaños de los dos hijos son los mismos. También podemos override una propiedad default simplemente agregando la propiedad que queremos que sea diferente al child específico.
+
 > **TIP:**
->
+> Cada vez, encontramos propiedades que se repiten en cada componente child. Se recomienda utilizar la propiedad `defaults` para aplicar todas las propiedades definidas en `defaults` a la vez. Esto reducirá las líneas de código y evitará la duplicación de código. Si definimos la misma propiedad en cualquiera de los children, se overridden el valor predeterminado.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-03-06-Containers.html`
+
+`910-Learning-Ext-JS-03-06-Containers.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Contenedores</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.define("MyApp.sample.MyContainer",{
+            extend: "Ext.container.Container",   //Step 1
+            border: true,
+            padding: 10,
+            initComponent: function(){
+               var me = this;
+               Ext.each(me.items,function(item){  //Step 2
+                  item.style = {
+                  backgroundColor:"#f4f4f4",
+                     border:"1px solid #333"
+                  };
+                  item.padding = 10;
+                  item.height = 100;
+               });
+               me.callParent();
+            },
+            onRender: function(){
+               var me = this;
+               me.callParent(arguments);
+               if( me.border ){  //Step 3
+                  me.el.setStyle( "border" , "1px solid #333" );
+               }
+            }
+         });
+         Ext.onReady(function(){
+            Ext.create("MyApp.sample.MyContainer",{
+               renderTo: Ext.getBody(),
+               items: [{
+                  xtype: "component",
+                  html: "Hijo Componente uno"
+               },{
+                  xtype: "component",
+                  html: "Hijo Componente dos"
+               }]
+            });
+         });   
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+![03-25](images/03-25.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-03-07-Containers.html`
+
+`910-Learning-Ext-JS-03-07-Containers.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Contenedores</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.define("MyApp.sample.MyContainer",{
+            extend: "Ext.container.Container",   //Step 1
+            border: true,
+            padding: 10,
+            initComponent: function(){
+               var me = this;
+               Ext.each(me.items,function(item){  //Step 2
+                  item.style = {
+                  backgroundColor:"#f4f4f4",
+                     border:"1px solid #333"
+                  };
+                  item.padding = 10;
+                  item.height = 100;
+               });
+               me.callParent();
+            },
+            onRender: function(){
+               var me = this;
+               me.callParent(arguments);
+               if( me.border ){  //Step 3
+                  me.el.setStyle( "border" , "1px solid #333" );
+               }
+            }
+         });
+         Ext.onReady(function(){
+            Ext.create("MyApp.sample.MyContainer",{
+               renderTo: Ext.getBody(),
+               defaults: {
+                  xtype  : "component",
+                  width  : 100
+               },
+               items: [{
+                  xtype: "component",
+                  html: "Hijo Componente uno"
+               },{
+                  xtype: "component",
+                  html: "Hijo Componente dos"
+               }]
+            });
+         });   
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+![03-26](images/03-26.png)
 
 ### Tipos de contenedores
+
+Ext JS usa varios componentes como contenedores, y cada uno de ellos tiene su propia base de la clase `Ext.container.Container`. Algunos de los contenedores más comunes son los siguientes:
+
+Contenedor          | Descripción
+--------------------|------------
+`Ext.panel.Panel`   | Este componente extiende `Ext.container.Container` y es un contenedor con una funcionalidad específica. También es uno de los contenedores más comunes utilizados en Ext JS.
+`Ext.window Window` | Este componente extiende la clase `Ext.panel.Panel` y está destinado a ser utilizado como una ventana de aplicación. Las windows son componentes flotantes y se pueden cambiar de tamaño y arrastrar. Además, las windows se pueden maximizar para llenar la viewport(ventana gráfica).
+`Ext.tab.Panel`     | Este componente también extiende el contenedor de la clase `Ext.panel.Panel` y tiene la capacidad de contener otros componentes `Ext.panel.Panel`, creando una pestaña por panel en su sección de encabezado. Además, el panel de pestañas utiliza el card layout para administrar sus componentes secundarios.
+`Ext.form.Panel`    | El panel de formulario extiende la clase `Ext.panel.Panel` y proporciona un contenedor estándar para formularios. Esencialmente, es un contenedor de `Panel` que crea un formularios básicos para administrar componentes de field.
+`Ext.Viewport`      | Este contenedor representa el área de la aplicación (browser viewport). Se representa en el cuerpo del documento y cambia de tamaño al tamaño de la browser viewport.
+
+Tenga en cuenta que cada contenedor tiene el diseño de propiedad; esta propiedad nos dará la capacidad de presentar sus componentes secundarios de diferentes formas para organizarlos.
+
 ### La viewport
+
+La viewport(ventana gráfica), como mencionamos antes, representa el área visible de la aplicación y la mejor práctica es que *solo debe haber una viewport creada en la página web*. Para crear una viewport básica, usemos el siguiente código:
 
 ```js
 Ext.onReady(function(){
@@ -653,7 +821,44 @@ Ext.onReady(function(){
 ```
 
 > **TIP:**
->
+> Se recomienda que, independientemente de la aplicación que cree, ya sea de código simple o una aplicación que utilice la arquitectura MVC o MVVM, es necesario utilizar el componente viewport.
+
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-03-08-Viewport.html`
+
+`910-Learning-Ext-JS-03-08-Viewport.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Viewport</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            Ext.create('Ext.container.Viewport',{
+               padding:'5px',
+               layout:'auto',
+               style : {
+                  'background-color': '#fc9',
+                  'color': '#000'
+               },
+               html:'Esta es el área de la aplicación'
+            });
+         });   
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+![03-27](images/03-27.png)
 
 ### El panel
 
