@@ -135,6 +135,87 @@ Si actualizamos su navegador para ejecutar el código que hemos modificado, debe
 
 ![04-02](images/04-02.png)
 
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-01-Ajax.html`
+
+`910-Learning-Ext-JS-04-01-Ajax.html`
+
+```js
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Ajax</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            Ext.Ajax.request({
+            url: "http://familiadelarosa.com/serverside/miprimerdata.php",
+            success: function(response,options){
+               console.log('Función success ejecutada, ¡aquí podemos hacer algunas cosas!');
+            },
+            failure: function(response,options){
+               console.log('Fallo del lado del servidor con código de estado ' + response.status);
+            },
+            callback: function( options, success, response ){
+               if(success){
+                  var data= Ext.decode(response.responseText);
+                  Ext.Msg.alert("Mensaje", data.msg);
+               }
+            }
+            });
+         });   
+      </script>
+   </head>
+   
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+En teoría deberiamos usar el archivo `miprimerdata.json` que esta subido en el servidor pero por cuestiones de CORS se usa el archivo `miprimerdata.php` que tiene el manejo del CORS.
+
+`miprimerdata.json`
+
+```js
+{
+   "success" : true,
+   "msg"     : "!Este es un mensaje exitoso ...!"
+}
+```
+
+`miprimerdata.php`
+
+```js
+<?php 
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Allow: GET, POST, OPTIONS, PUT, DELETE");
+$method = $_SERVER['REQUEST_METHOD'];
+if($method == "OPTIONS") {
+    die();
+}
+
+echo '{
+   "success" : true,
+   "msg"     : "!Este es un mensaje exitoso ...!"
+}'; 
+
+?>
+```
+
+![04-12](images/04-12.png)
+![04-13](images/04-13.png)
+![04-11](images/04-11.png)
+
+
+AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
 Ahora, supongamos que queremos usar XML en lugar de JSON. Crearemos la solicitud de una manera muy similar a nuestro código anterior. El siguiente código debe guardarse en un nuevo archivo en `serverside/data.xml`:
 
 ```xml
