@@ -33,10 +33,18 @@ El data package es lo que nos permitirá cargar y guardar datos en nuestro códi
 
 Ext JS crea una capa abstracta con muchas clases y configuraciones; la idea es utilizar estas clases cuando se trata de información. Todos los widgets y componentes que muestran información utilizan el data package para manipular y presentar los datos fácilmente.
 
-> **NOTA**
-> 
+> **NOTA:**
+> Es importante mencionar que se requiere un servidor web para este capítulo y los siguientes. No importa cuál decida usar porque no estamos usando ninguna tecnología específica del lado del servidor.
 
 ## Ajax
+
+Antes de comenzar a aprender sobre el data package, es importante saber cómo podemos realizar una solicitud Ajax al servidor. La solicitud Ajax es una de las formas más útiles de obtener datos del servidor de forma **asincrónica**. ***Esto significa que el bucle de JavaScript no se bloquea mientras se ejecuta la solicitud y se disparará un evento cuando el servidor responda; esto nos permite hacer cualquier otra cosa mientras se realiza la solicitud***.
+
+Si eres nuevo en Ajax, te recomiendo que leas más al respecto. Hay miles de tutoriales en línea, pero le sugiero que lea este sencillo artículo en https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started.
+
+Ext JS proporciona un objeto singleton (`Ext.Ajax`) que se encarga de gestionar todos los procesos necesarios para realizar una solicitud en cualquier navegador. Hay algunas diferencias en cada navegador, pero Ext JS maneja estas diferencias por nosotros y nos brinda una solución entre navegadores para realizar solicitudes Ajax.
+
+Hagamos nuestra primera llamada Ajax a nuestro servidor. Primero, necesitaremos crear un archivo HTML e importar la library Ext. Luego, podemos agregar el siguiente código dentro de la etiqueta del script:
 
 ```js
 Ext.Ajax.request({
@@ -45,8 +53,14 @@ Ext.Ajax.request({
 console.log("Next lines of code...");
 ```
 
+Usando el método `request`, podemos hacer una llamada Ajax a nuestro servidor. El método `request` recibe un objeto que contiene las configuraciones para la llamada Ajax. La única configuración que tenemos definida es la URL donde queremos realizar nuestra solicitud.
+
+Es importante tener en cuenta que Ajax es asíncrono de forma predeterminada. Esto significa que una vez que se ejecuta el método de solicitud, el motor de JavaScript continuará ejecutando las líneas de código que lo siguen y no esperará hasta que el servidor responda. ***También puede ejecutar Ajax de forma síncrona, estableciendo la propiedad `Ext.Ajax.async = false`***.
+
 > **NOTA**
-> 
+> Para obtener más detalles, consulte http://docs.sencha.com/extjs/5.1/5.1.1-apidocs/#!/api/Ext.Ajax-cfg-async.
+
+En el código anterior, no hicimos nada cuando el servidor respondió a nuestra solicitud. Para obtener la fecha de respuesta, necesitamos configurar una función `callback` para que se ejecute cuando el servidor responda, y también tenemos funciones para `success` o `failure`. Modifiquemos nuestro ejemplo anterior para configurar esas callbacks:
 
 ```js
 Ext.Ajax.request({
@@ -63,6 +77,14 @@ Ext.Ajax.request({
 });
 ```
 
+La función `success` se ejecutará solo cuando el servidor responda con un estado 200-299, lo que significa que la solicitud se ha realizado correctamente. Si el estado de respuesta es 403, 404, 500, 503 y cualquier otro estado de error, se ejecutará el callback `failure`.
+
+Cada función (success o failure) recibe dos parámetros. El primer parámetro es el objeto de respuesta del servidor, donde podemos encontrar el texto de respuesta y los encabezados. El segundo parámetro es la opción de configuración que usamos para esta solicitud Ajax, en este caso el objeto contendrá tres propiedades: la URL y los callbacks `success` y `failure`.
+
+La función `callback` se ejecutará siempre, sin importar si es un success o failure. Además, esta función recibe tres parámetros: `options` es un parámetro para la llamada de solicitud, `success` es un valor booleano según si la solicitud fue exitosa o no, y el parámetro `response` es un objeto `XMLhttpRequest` que contiene la información de la respuesta.
+
+En este punto, tenemos nuestros callbacks configurados, pero todavía no estamos haciendo nada en el interior. Normalmente, necesitamos obtener la respuesta de los datos y hacer algo con ellos; supongamos que obtenemos el siguiente JSON en nuestra respuesta:
+
 ```js
 {
    "success": true,
@@ -71,7 +93,9 @@ Ext.Ajax.request({
 ```
 
 > **TIP**
-> 
+> En la comunidad Ext JS, uno de los formatos preferidos para enviar y recibir datos al servidor es **JSON**; Ext JS también puede manejar XML. JSON son las siglas de **JavaScript Object Notation**. Si no está familiarizado con JSON, puede visitar http://www.json.org/ para comprender más sobre JSON.
+ 
+Para que la función `success` interactúe con los datos devueltos, necesitamos decodificar los datos JSON devueltos (que vienen en formato de texto) y convertir el texto en un objeto para que podamos acceder a sus propiedades en nuestro código. Cambiemos el siguiente código en el callback `success`:
 
 ```js
 success: function(response,options){
@@ -80,28 +104,38 @@ success: function(response,options){
 },
 ```
 
+Primero obtenemos la respuesta del servidor como un texto usando la propiedad `responseText` del objeto `response`. Luego, usamos el método `Ext.decode` para convertir el texto JSON en objetos JavaScript y guardar el resultado en una variable `data`.
+
+Una vez que tengamos nuestro objeto data con la respuesta del servidor, mostraremos un mensaje de alerta accediendo a la propiedad `msg` desde el objeto data. Tengamos en cuenta que si queremos mostrar algo usando el DOM, necesitamos poner nuestro código dentro del método `onReady` que hemos aprendido en el capítulo anterior.
+
 ```js
 Ext.Ajax.request({
-  url: "serverside/myfirstdata.json ",
-  success: function(response,options){
-    console.log('success function executed, here we can do some stuff !');
-  },
-  failure: function(response,options){
-    console.log('server-side failure with status code ' + response.status);
-  },
-  callback: function( options, success, response ){
-    if(success){
-      var data= Ext.decode(response.responseText);
-      Ext.Msg.alert("Message", data.msg);
-    }
-  }
+   url: "serverside/myfirstdata.json ",
+   success: function(response,options){
+      console.log('success function executed, here we can do some stuff !');
+   },
+   failure: function(response,options){
+      console.log('server-side failure with status code ' + response.status);
+   },
+   callback: function( options, success, response ){
+      if(success){
+         var data= Ext.decode(response.responseText);
+         Ext.Msg.alert("Message", data.msg);
+      }
+   }
 });
 ```
 
 > **TIP**
+> Es importante que los archivos del lado del servidor devuelvan una respuesta adecuada y sin errores; esto significa que debemos asegurarnos de que los archivos del lado del servidor tengan la sintaxis adecuada y no se muestren advertencias o errores (PHP como ejemplo).
 > 
+> Además, es importante especificar el Header en el lado del servidor para garantizar el contenido adecuado. Por ejemplo, `header('Content-Type: application/json');`
+
+Si actualizamos su navegador para ejecutar el código que hemos modificado, deberíamos ver algo como la siguiente captura de pantalla:
 
 ![04-02](images/04-02.png)
+
+Ahora, supongamos que queremos usar XML en lugar de JSON. Crearemos la solicitud de una manera muy similar a nuestro código anterior. El siguiente código debe guardarse en un nuevo archivo en `serverside/data.xml`:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -110,20 +144,27 @@ Ext.Ajax.request({
 </response>
 ```
 
+Luego, procedamos a cambiar la URL y el código en la devolución del callback `success`, de la siguiente manera:
+
 ```js
 Ext.Ajax.request({
-  url: "serverside/myfirstdata.xml",
-  success: function(response,options){
-    var data = response.responseXML;
-    var node = xml.getElementsByTagName('msg')[0];
-    Ext.Msg.alert("Message", node.firstChild.data );
-  },
-  failure: function(response,options){
-    Ext.Msg.alert("Message", 'server-side failure with status code ' + response.status);
-  }
+   url: "serverside/myfirstdata.xml",
+   success: function(response,options){
+      var data = response.responseXML;
+      var node = xml.getElementsByTagName('msg')[0];
+      Ext.Msg.alert("Message", node.firstChild.data );
+   },
+   failure: function(response,options){
+      Ext.Msg.alert("Message", 'server-side failure with status code ' + response.status);
+   }
 });
 ```
 
+Usamos la propiedad `responseXML` para obtener el árbol de nodos y luego obtenemos el nodo con una etiqueta `msg`. Después de eso, podemos obtener el texto real usando la propiedad `firstChild.data` del nodo anterior. Si ejecutamos el código, veremos algo muy similar a nuestro ejemplo anterior con JSON.
+
+Como podemos notar, es más fácil trabajar con JSON. Solo necesitamos decodificar el texto y luego podemos usar los objetos. XML es un poco complicado, pero también podemos usar este formato si nos sentimos cómodos con él.
+
+AQUIIIIIIII
 ### Pasar parámetros a Ajax request
 
 ```js
