@@ -265,12 +265,12 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 header("Allow: GET, POST, OPTIONS, PUT, DELETE");
 $method = $_SERVER['REQUEST_METHOD'];
 if($method == "OPTIONS") {
-    die();
+   die();
 }
 
 echo '<?xml version="1.0" encoding="utf-8"?>
 <response success="true">
-	<msg>!Este es un mensaje exitoso ...!</msg>
+   <msg>!Este es un mensaje exitoso ...!</msg>
 </response>'; 
 
 ?>
@@ -282,7 +282,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
 <html>
    <head>
-      <title>Ajax</title>
+      <title>Ajax - XML</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
       <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
       <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
@@ -290,19 +290,15 @@ echo '<?xml version="1.0" encoding="utf-8"?>
       <script type = "text/javascript">
          Ext.onReady(function(){
             Ext.Ajax.request({
-            url: "http://familiadelarosa.com/serverside/miprimerdataxml.php",
-            success: function(response,options){
-               console.log('Función success ejecutada, ¡aquí podemos hacer algunas cosas!');
-            },
-            failure: function(response,options){
-               console.log('Fallo del lado del servidor con código de estado ' + response.status);
-            },
-            callback: function( options, success, response ){
-               if(success){
-                  var data= Ext.decode(response.responseText);
-                  Ext.Msg.alert("Mensaje", data.msg);
+               url: "http://familiadelarosa.com/serverside/miprimerdataxml.php",
+               success: function(response,options){
+                  var data = response.responseXML;
+                  var node = data.getElementsByTagName('msg')[0];
+                  Ext.Msg.alert("Mensaje", node.firstChild.data );
+               },
+               failure: function(response,options){
+                  Ext.Msg.alert("Mensaje", 'Fallo del lado del servidor con código de estado ' + response.status);
                }
-            }
             });
          });   
       </script>
