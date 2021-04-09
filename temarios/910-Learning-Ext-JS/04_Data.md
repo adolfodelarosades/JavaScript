@@ -452,18 +452,18 @@ A veces, pero no todo el tiempo, el servidor puede tardar demasiado en responder
 
 ```js
 Ext.Ajax.request({
-  url: "serverside/myfirstparams.php",
-  method: 'POST',
-  params: {x:200, y:300},
-  timeout: 50000,
-  success: function(response,options){
-    var data = Ext.decode(response.responseText);
-    Ext.Msg.alert("Message", data.msg);
-  },
-  failure: function(response,options){
-    Ext.Msg.alert("Message", 'server-side failure with status code ' + response.status);
-    Ext.Msg.alert("Message", 'server-side failure:' + response.status);
-  }
+   url: "serverside/myfirstparams.php",
+   method: 'POST',
+   params: {x:200, y:300},
+   timeout: 50000,
+   success: function(response,options){
+      var data = Ext.decode(response.responseText);
+      Ext.Msg.alert("Message", data.msg);
+   },
+   failure: function(response,options){
+      Ext.Msg.alert("Message", 'server-side failure with status code ' + response.status);
+      Ext.Msg.alert("Message", 'server-side failure:' + response.status);
+   }
 });
 ```
 
@@ -536,12 +536,12 @@ Ext.define('Myapp.model.Client',{
 extend:'Ext.data.Model',  // step 1
 idProperty:'clientId ', // step 2
 fields:[// step 3
-  {name: 'clientId', type: 'int'},
-  {name: 'name'    , type: 'string'},
-  {name: 'phone'   , type: 'string'},
-  {name: 'website' , type: 'string'},
-  {name: 'status'  , type: 'string'},
-  {name: 'clientSince', type: 'date', dateFormat:'Y-m-d H:i'}
+   {name: 'clientId', type: 'int'},
+   {name: 'name'    , type: 'string'},
+   {name: 'phone'   , type: 'string'},
+   {name: 'website' , type: 'string'},
+   {name: 'status'  , type: 'string'},
+   {name: 'clientSince', type: 'date', dateFormat:'Y-m-d H:i'}
 ]
 });
 ```
@@ -594,12 +594,12 @@ Una vez que hayamos definido nuestro modelo, podemos crear un archivo HTML. Impo
 
 ```js
 var myclient = Ext.create('Myapp.model.Client',{
-  clientId:10001,
-  name:'Acme corp',
-  phone:'+52-01-55-4444-3210',
-  website:'www.acmecorp.com',
-  status:'Active',
-  clientSince:'2010-01-01 14:35'
+   clientId:10001,
+   name:'Acme corp',
+   phone:'+52-01-55-4444-3210',
+   website:'www.acmecorp.com',
+   status:'Active',
+   clientSince:'2010-01-01 14:35'
 });
 console.log(myclient);
 console.log("My client's name is = " + myclient.data.name);
@@ -618,8 +618,8 @@ console.log("My client's info= " + nameClient + " - " + websiteClient);
 myclient.set('phone','+52-01-55-0001-8888'); // single value
 console.log("My client's new phone is = " + myclient.get('phone'));
 myclient.set({ //Multiple values
-  name: 'Acme Corp of AMERICA LTD.',
-  website:'www.acmecorp.net'
+   name: 'Acme Corp of AMERICA LTD.',
+   website:'www.acmecorp.net'
 });
 console.log("My client's name changed to = " + myclient.get("name"));
 console.log("My client's website changed to = " + myclient.get("website") );
@@ -657,17 +657,16 @@ Al definir un campo dentro del modelo, podemos definir dónde se tomarán los da
 
 ```js
 {
-  "success" :"true",
-  "id":"id",
-  "records":[
-    {
-      "id": 10001,
-      "name": "Acme corp2",
-      "phone": "+52-01-55-4444-3210",
-      "x0001":"acme_file.pdf"
-    }
-
-  ]
+   "success" :"true",
+   "id":"id",
+   "records":[
+      {
+         "id": 10001,
+         "name": "Acme corp2",
+         "phone": "+52-01-55-4444-3210",
+         "x0001":"acme_file.pdf"
+      }
+   ]
 }
 ```
 
@@ -678,10 +677,10 @@ Ext.define('Myapp.model.Client',{
 extend: 'Ext.data.Model',
 idProperty: 'clientId ',
 fields:[
-  {name: 'clientId', type: 'int'  },
-  {name: 'name'    , type: 'string'},
-  {name: 'phone'   , type: 'string'},
-  {name: 'contractFileName', type: 'string', mapping:'x0001'}
+   {name: 'clientId', type: 'int'  },
+   {name: 'name'    , type: 'string'},
+   {name: 'phone'   , type: 'string'},
+   {name: 'contractFileName', type: 'string', mapping:'x0001'}
 ]
 });
 ```
@@ -746,14 +745,14 @@ Vemos una sección de configuración donde definimos la ruta `Myapp:'appcode'`. 
 // JavaScript Document
 
 Ext.define('Myapp.model.ClientWithMapping',{
-	extend:'Ext.data.Model',  // step 1
-	idProperty:'clientId ',   // step 2
-	fields:[ // step 3
-		{name: 'clientId', type: 'int'	},
-		{name: 'name'    , type: 'string'},
-		{name: 'phone'   , type: 'string'},
-		{name: 'contractFileName', type: 'string', mapping: 'x0001' }
-	]	
+   extend:'Ext.data.Model',  // step 1
+   idProperty:'clientId ',   // step 2
+   fields:[ // step 3
+      {name: 'clientId', type: 'int'	},
+      {name: 'name'    , type: 'string'},
+      {name: 'phone'   , type: 'string'},
+      {name: 'contractFileName', type: 'string', mapping: 'x0001' }
+   ]	
 });
 ```
 
@@ -762,16 +761,16 @@ Ext.define('Myapp.model.ClientWithMapping',{
 ```js
 // JavaScript Document
 Ext.define('Myapp.store.customers.ClientsMapping',{
-	extend:'Ext.data.Store',
-	model: 'Myapp.model.ClientWithMapping',   
-	autoLoad:false,
-	proxy:{
-		type:'ajax',
-		url: 'serverside/mappings.json',
-		reader: {
-        	type:'json', rootProperty:'records'
-        }
-	}
+   extend:'Ext.data.Store',
+   model: 'Myapp.model.ClientWithMapping',   
+   autoLoad:false,
+   proxy:{
+      type:'ajax',
+      url: 'serverside/mappings.json',
+      reader: {
+         type:'json', rootProperty:'records'
+      }
+   }
 });
 ```
 
@@ -781,21 +780,21 @@ En este último archivo se usa `serverside/mappings.json` el cual tiene el sigui
 
 ```json
 {
-  "success" :"true",
-  "id":"id",
-  "records":[
-		{ 
-			"id": 10001,
-			"name": "Acme corp2",
-			"phone": "+52-01-55-4444-3210",
-			"x0001":"acme_file.pdf" 
-		},{
-			"id": 10002,
-			"name": "Candy Store LTD",
-			"phone": "+52-01-66-3333-3895",
-			"x0001":"candystore_14589_august_2015.doc" 
-		}
-	]
+   "success" :"true",
+   "id":"id",
+   "records":[
+      { 
+         "id": 10001,
+         "name": "Acme corp2",
+         "phone": "+52-01-55-4444-3210",
+         "x0001":"acme_file.pdf" 
+      },{
+         "id": 10002,
+         "name": "Candy Store LTD",
+         "phone": "+52-01-66-3333-3895",
+         "x0001":"candystore_14589_august_2015.doc" 
+      }
+   ]
 }
 ```
 
@@ -812,21 +811,21 @@ Ext.define('Myapp.model.Client',{
 extend:'Ext.data.Model',
 idProperty:'clientId ',
 fields:[
-  {name: 'clientId', type: 'int'  },
-  {name: 'name'    , type: 'string'},
-  {name: 'phone'   , type: 'string'},
-  {name: 'website' , type: 'string'},
-  {name: 'status'  , type: 'string'},
-  {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}
+   {name: 'clientId', type: 'int'  },
+   {name: 'name'    , type: 'string'},
+   {name: 'phone'   , type: 'string'},
+   {name: 'website' , type: 'string'},
+   {name: 'status'  , type: 'string'},
+   {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}
 ],
 validators:{
-  name:[
-    { type:'presence'}
-  ],
-  website:[
-    { type:'presence', allowEmpty:true},
-    { type:'length',  min: 5, max:250 }
-  ]
+   name:[
+      { type:'presence'}
+   ],
+   website:[
+      { type:'presence', allowEmpty:true},
+      { type:'length',  min: 5, max:250 }
+   ]
 }
 });
 ```
