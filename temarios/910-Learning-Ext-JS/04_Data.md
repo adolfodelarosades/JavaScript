@@ -368,6 +368,10 @@ Usando la propiedad **`params`**, podemos establecer un objeto de parámetros. E
 ?>
 ```
 
+Si cargamos este archivo en el navegador tenemos:
+
+![04-21](images/04-21.png)
+
 `910-Learning-Ext-JS-04-03-Ajax-Parametros.html`
 
 ```html
