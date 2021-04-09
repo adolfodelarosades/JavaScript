@@ -410,11 +410,9 @@ Si cargamos este archivo en el navegador tenemos:
 </html>  
 ```
 
-![04-18](images/04-18.png)
+![04-19](images/04-19.png)
 
 Como vemos tenemos un error por el CORS, pero gracias a esto vemos que pasa cuando existe un fallo `failure`, el cual muestra dos mensajes pero la forma de trabajar solo se muestra el segundo, como vimos en lecciones anteriores los mensajes no son bloqueantes, si comentamos el segundo mensaje nos presenta el primero.
-
-![04-19](images/04-19.png)
 
 Para solucionar el problema del CORS debemos añadir cabeceras dentro de nuestro archivo PHP, el cual nos queda así:
 
@@ -450,6 +448,8 @@ Como podemos observar el error de CORS a desaparecido y ahora se muestra el mens
 
 ### Configuración de timeout para las llamadas a Ajax request
 
+A veces, pero no todo el tiempo, el servidor puede tardar demasiado en responder, por lo que, de forma predeterminada, Ext JS tiene un tiempo configurado de 30 segundos para esperar la respuesta. Según nuestras necesidades, podemos disminuir o aumentar este tiempo estableciendo la propiedad de tiempo de espera en la configuración de la solicitud Ajax. El siguiente ejemplo nos muestra cómo:
+
 ```js
 Ext.Ajax.request({
   url: "serverside/myfirstparams.php",
@@ -467,13 +467,69 @@ Ext.Ajax.request({
 });
 ```
 
+Hemos aumentado la propiedad **`timeout`** de espera a 50 segundos (50000 milisegundos); ahora nuestra solicitud se eliminará después de 50 segundos de esperar la respuesta.
+
 > **TIP**
 > 
+> Puede asignar un valor de tiempo de espera global para toda la configuración de la aplicación, cambiando el valor en **`Ext.Ajax.timeout`** (por defecto tiene el valor de **`30000`**). El ejemplo anterior muestra cómo establecer tiempos de espera en llamadas independientes.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-04-Ajax-timeout.html`
+
+`910-Learning-Ext-JS-04-04-Ajax-timeout.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Ajax - timeout</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            Ext.Ajax.request({
+               url: "http://familiadelarosa.com/serverside/miprimerparametros.php",
+               method: 'POST',
+               params: {x:200, y:300},
+               timeout: 50000,
+               success: function(response,options){
+                  var data = Ext.decode(response.responseText);
+                  Ext.Msg.alert("Mensaje", data.msg);
+               },
+               failure: function(response,options){
+                  Ext.Msg.alert("Mensaje", 'Fallo del lado del servidor con código de estado: ' + response.status);
+                  //Ext.Msg.alert("Mensaje", 'Fallo del lado del servidor: ' + response.status);
+               }
+            });
+         });   
+      </script>
+   </head>
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+La salida es la misma que teniamos antes pero con un pequeño retraso.
+
+![04-22](images/04-22.png)
+
+Si buscamos en la documentación, encontraremos otras configuraciones, como el alcance de las devoluciones de llamada, encabezados, caché, etc. Deberíamos leer los documentos y jugar con esas configuraciones también, pero las que hemos cubierto aquí son las más importantes para aprender.
+
+Ahora sabemos cómo obtener datos usando Ajax, pero también necesitamos una forma de manejar esos datos. Ext JS nos proporciona un paquete de clases para gestionar nuestros datos de forma sencilla; pasemos a nuestro próximo tema.
 
 ## Modelos
 
+Los modelos representan objetos o entidades dentro de nuestra aplicación, por ejemplo, Clientes, Usuarios, Facturas, etc. Los data stores utilizarán esos modelos. Podemos definir tantos modelos como necesitemos dentro de nuestra aplicación. 
+
+Un modelo puede contener campos, validaciones y relaciones entre otros modelos. También podemos configurar un proxy para que persista y extraiga nuestros datos.
+
 > **NOTA:**
 > 
+> A partir de la versión 5.x, las definiciones de campo pueden ser opcionales a menos que necesite conversión, validaciones o establecer un tipo de datos implícito. Para obtener más información, consulte http://docs.sencha.com/extjs/5.1/whats_new/5.0/whats_new.html#Models.
+ 
+Para crear un modelo, escribamos el siguiente código:
 
 ```js
 Ext.define('Myapp.model.Client',{
@@ -490,8 +546,26 @@ fields:[// step 3
 });
 ```
 
-> **NOTA:**
+Como puede notar, estamos definiendo el modelo de la misma manera que definimos una clase; en el paso uno extendemos desde la clase **`Ext.data.Model`**, que es la encargada de agregar toda la funcionalidad a nuestros modelos.
+
+En el segundo paso, estamos definiendo la propiedad en nuestra respuesta JSON que contendrá el ID de cada instancia de registro. En este caso vamos a utilizar el campo **`clientId`**, pero si no definimos la configuración de **`clientId`**, el modelo automáticamente usará y generará una propiedad llamada **`id`** por defecto.
+
+En el tercer paso definimos los campos para nuestro modelo. El valor de esta propiedad es un array; cada elemento del array es un objeto que contiene la configuración de cada campo. En este caso, establecemos el nombre y el tipo de campo, y el último campo (fecha) contiene una propiedad `dateFormat`.
+
+> **NOTA**
 > 
+> Dependiendo del tipo de campo, podemos agregar algunas propiedades específicas. Por ejemplo, el campo de **`date`**, podemos agregar una propiedad **`dateFormat`**. Para ver más, consulte la documentación en la rama **`Ext.data.field`**.
+
+Los tipos de datos disponibles son los siguientes:
+
+* **`String`**
+* **`Integer`**
+* **`Float`** (recomendado para usar cuando usa números decimales)
+* **`Boolean`**
+* **`Date`** (recuerde establecer la propiedad dateFormat para garantizar un análisis de fecha correcto y la interpretación del valor de la fecha)
+* **`Auto`** (este campo implica que no se realiza ninguna conversión a los datos recibidos)
+
+Una vez que hayamos definido nuestro modelo, podemos crear un archivo HTML. Importemos la library Ext y nuestro archivo de clase de **`Client`** para probar nuestro modelo de la siguiente manera:
 
 ```js
 var myclient = Ext.create('Myapp.model.Client',{
@@ -506,6 +580,8 @@ console.log(myclient);
 console.log("My client's name is = " + myclient.data.name);
 console.log("My client's website is = " + myclient.data.name);
 ```
+
+Usando el método **`create`** podemos instanciar nuestra clase de modelo, el segundo parámetro es un objeto con los datos que contendrá nuestro modelo (registro virtual). Ahora, podremos usar los métodos **`get`** y **`set`** para leer y escribir cualquiera de los campos definidos:
 
 ```js
 // GET METHODS
@@ -524,6 +600,10 @@ console.log("My client's name changed to = " + myclient.get("name"));
 console.log("My client's website changed to = " + myclient.get("website") );
 ```
 
+El código anterior muestra cómo leer y escribir nuestros datos. El método **`set`** nos permite modificar un campo, o incluso muchos campos al mismo tiempo, pasando un objeto que contiene los nuevos valores.
+
+Si inspeccionamos la instancia de la **`invoice`** (factura), encontraremos que toda la información se encuentra en una propiedad llamada **`data`**. Siempre debemos usar los métodos **`get`** y **`set`** para leer y escribir nuestros modelos, pero si por alguna razón necesitamos tener acceso a todos los datos en nuestro modelo, podemos usar el objeto **`data`** de la siguiente manera:
+
 ```js
 //READ
 console.log("My client's name:" + myclient.data.name);
@@ -532,6 +612,8 @@ console.log("My client's website:" + myclient.data.website);
 myclient.data.name = "Acme Corp ASIA LTD.";
 myclient.data.website = "www.acmecorp.biz";
 ```
+
+Una buena alternativa a este código y una mejor manera de **`get`** y **`set`** datos es:
 
 ```js
 //READ
@@ -542,7 +624,11 @@ myclient.set("name", "Acme Corp ASIA LTD. ");
 myclient.set("website", "www.acmecorp.biz");
 ```
 
+Podemos leer y escribir cualquier campo en nuestro modelo. Sin embargo, establecer un nuevo valor de esta manera no es una buena práctica en absoluto. El método **`set`** realiza algunas tareas importantes al configurar el nuevo valor, como marcar nuestro modelo como sucio, guardar el valor anterior para que podamos rechazar o aceptar los cambios más tarde, y algunos otros pasos importantes.
+
 ### Mapeos
+
+Al definir un campo dentro del modelo, podemos definir dónde se tomarán los datos para un campo con el mapeo de propiedades. Digamos que es una ruta, un nombre alternativo, que Ext JS se utilizará para completar el campo (data) a partir de los datos recibidos del servidor, como un archivo JSON o un archivo XML. Echemos un vistazo al siguiente ejemplo de JSON:
 
 ```js
 {
@@ -560,6 +646,8 @@ myclient.set("website", "www.acmecorp.biz");
 }
 ```
 
+Aquí podemos ver en el ejemplo JSON (o quizás XML) que la respuesta viene con un campo con el nombre **`x0001`**. En algunas respuestas puede suceder que el nombre del campo tenga un código especial (según la base de datos o el diseño de los datos), pero en nuestro código, este campo es el archivo de contrato del cliente. Entonces, usando la propiedad de mapeo, podemos poblar el campo, estableciendo la propiedad de mapeo para nuestro campo, como el siguiente ejemplo:
+
 ```js
 Ext.define('Myapp.model.Client',{
 extend: 'Ext.data.Model',
@@ -573,7 +661,11 @@ fields:[
 });
 ```
 
+Como puede ver, estamos definiendo el campo `contractFileName`, que utilizará el campo de datos **`x0001`** de la respuesta; en nuestro código no es necesario hacer referencia a **`x0001`**; simplemente lo manejaremos en nuestro código como **`contractFileName`**. Para verlo en acción, ejecute el archivo **`mapping_01.html`** del código de ejemplo. Abra la ventana de su consola y verá algo similar a la siguiente captura de pantalla:
+
 ![04-04](images/04-04.png)
+
+En este momento no es necesario examinar todo el código. Al avanzar en este capítulo, comprenderá todo el código de este ejemplo. El propósito es que comprenda la propiedad de mapeo.
 
 ### Validadores
 
