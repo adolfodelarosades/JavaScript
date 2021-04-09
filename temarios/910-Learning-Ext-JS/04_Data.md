@@ -33,7 +33,8 @@ El data package es lo que nos permitirá cargar y guardar datos en nuestro códi
 
 Ext JS crea una capa abstracta con muchas clases y configuraciones; la idea es utilizar estas clases cuando se trata de información. Todos los widgets y componentes que muestran información utilizan el data package para manipular y presentar los datos fácilmente.
 
-> **NOTA:**
+> **NOTA**
+> 
 > Es importante mencionar que se requiere un servidor web para este capítulo y los siguientes. No importa cuál decida usar porque no estamos usando ninguna tecnología específica del lado del servidor.
 
 ## Ajax
@@ -58,6 +59,7 @@ Usando el método `request`, podemos hacer una llamada Ajax a nuestro servidor. 
 Es importante tener en cuenta que Ajax es asíncrono de forma predeterminada. Esto significa que una vez que se ejecuta el método de solicitud, el motor de JavaScript continuará ejecutando las líneas de código que lo siguen y no esperará hasta que el servidor responda. ***También puede ejecutar Ajax de forma síncrona, estableciendo la propiedad `Ext.Ajax.async = false`***.
 
 > **NOTA**
+> 
 > Para obtener más detalles, consulte http://docs.sencha.com/extjs/5.1/5.1.1-apidocs/#!/api/Ext.Ajax-cfg-async.
 
 En el código anterior, no hicimos nada cuando el servidor respondió a nuestra solicitud. Para obtener la fecha de respuesta, necesitamos configurar una función `callback` para que se ejecute cuando el servidor responda, y también tenemos funciones para `success` o `failure`. Modifiquemos nuestro ejemplo anterior para configurar esas callbacks:
@@ -93,6 +95,7 @@ En este punto, tenemos nuestros callbacks configurados, pero todavía no estamos
 ```
 
 > **TIP**
+> 
 > En la comunidad Ext JS, uno de los formatos preferidos para enviar y recibir datos al servidor es **JSON**; Ext JS también puede manejar XML. JSON son las siglas de **JavaScript Object Notation**. Si no está familiarizado con JSON, puede visitar http://www.json.org/ para comprender más sobre JSON.
  
 Para que la función `success` interactúe con los datos devueltos, necesitamos decodificar los datos JSON devueltos (que vienen en formato de texto) y convertir el texto en un objeto para que podamos acceder a sus propiedades en nuestro código. Cambiemos el siguiente código en el callback `success`:
@@ -127,6 +130,7 @@ Ext.Ajax.request({
 ```
 
 > **TIP**
+> 
 > Es importante que los archivos del lado del servidor devuelvan una respuesta adecuada y sin errores; esto significa que debemos asegurarnos de que los archivos del lado del servidor tengan la sintaxis adecuada y no se muestren advertencias o errores (PHP como ejemplo).
 > 
 > Además, es importante especificar el Header en el lado del servidor para garantizar el contenido adecuado. Por ejemplo, `header('Content-Type: application/json');`
@@ -316,7 +320,10 @@ echo '<?xml version="1.0" encoding="utf-8"?>
 
 
 ### Pasar parámetros a Ajax request
-AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+Por lo general, en nuestras aplicaciones necesitamos pasar algunos parámetros a la solicitud Ajax para obtener la información adecuada. Para pasar parámetros usaremos el siguiente código:
+
+
 ```js
 Ext.Ajax.request({
   url: "serverside/myfirstparams.php",
@@ -336,10 +343,106 @@ Ext.Ajax.request({
 });
 ```
 
+Usando la propiedad **`params`**, podemos establecer un objeto de parámetros. En este caso, enviaremos solo dos parámetros: **`x`** e **`y`**, pero podemos enviar tantos como necesitemos. Observe que establecemos la propiedad **`method`** con el valor **`POST`**; de forma predeterminada, Ext JS usa el valor **`GET`** para esta propiedad, y si usamos **`GET`**, los valores se incrustarán en la URL para la solicitud. Cuando ejecutamos este código, obtendremos la siguiente captura de pantalla:
+
 ![04-03](images/04-03.png)
 
 > **TIP**
-> 
+>
+> Tenga en cuenta que puede devolver cadenas en formato HTML (valor de **`msg`** en este caso) para brindar mejoras visuales a la respuesta si está utilizando **`Ext.Msg.alert`**
+ 
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-03-Ajax-Parametros.html`
+
+`miprimerparametros.php`
+
+```php
+<?php
+   header('Content-Type: application/json');
+   $information = array(
+      'success'=>true, 
+      'msg'=>'Mensaje de texto de respuesta con los siguientes parámetros:<br><b>x</b>=' . $_POST['x'] . ', <b>y</b>=' . $_POST['y'] . '', 
+      'x'=> $_POST['x'],
+      'y'=> $_POST['y']	
+   );
+   echo  json_encode( $information ); 
+?>
+```
+
+`910-Learning-Ext-JS-04-03-Ajax-Parametros.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Ajax - Parámetros</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.onReady(function(){
+            Ext.Ajax.request({
+               url: "http://familiadelarosa.com/serverside/miprimerparametros.php",
+               method: 'POST',
+               params: {
+                  x:200,
+                  y:300
+               },
+               success: function(response,options){
+                  var data = Ext.decode(response.responseText);
+                  Ext.Msg.alert("Mensaje", data.msg);
+               },
+               failure: function(response,options){
+                  Ext.Msg.alert("Mensaje", 'Fallo del lado del servidor con código de estado: ' + response.status);
+                  Ext.Msg.alert("Mensaje", 'Fallo del lado del servidor: ' + response.status);
+               }
+            });
+         });   
+      </script>
+   </head>
+   <body style="padding:10px;">  
+      
+   </body>
+</html>  
+```
+
+![04-18](images/04-18.png)
+
+Como vemos tenemos un error por el CORS, pero gracias a esto vemos que pasa cuando existe un fallo `failure`, el cual muestra dos mensajes pero la forma de trabajar solo se muestra el segundo, como vimos en lecciones anteriores los mensajes no son bloqueantes, si comentamos el segundo mensaje nos presenta el primero.
+
+![04-19](images/04-19.png)
+
+Para solucionar el problema del CORS debemos añadir cabeceras dentro de nuestro archivo PHP, el cual nos queda así:
+
+`miprimerparametros.php`
+
+```php
+<?php
+   header('Content-Type: application/json');
+   header('Access-Control-Allow-Origin: *');
+   header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+   header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+   header("Allow: GET, POST, OPTIONS, PUT, DELETE");
+   $method = $_SERVER['REQUEST_METHOD'];
+   if($method == "OPTIONS") {
+      die();
+   }
+  
+   $information = array(
+      'success'=>true, 
+      'msg'=>'Mensaje de texto de respuesta con los siguientes parámetros:<br><b>x</b>=' . $_POST['x'] . ', <b>y</b>=' . $_POST['y'] . '', 
+      'x'=> $_POST['x'],
+      'y'=> $_POST['y']	
+   );
+   echo  json_encode( $information ); 
+?>
+```
+
+La salida es:
+
+![04-20](images/04-20.png)
+
+Como podemos observar el error de CORS a desaparecido y ahora se muestra el mensaje con los parámetros que se le envian vía POST.
 
 ### Configuración de timeout para las llamadas a Ajax request
 
