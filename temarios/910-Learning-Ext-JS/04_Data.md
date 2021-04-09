@@ -556,6 +556,31 @@ En el tercer paso definimos los campos para nuestro modelo. El valor de esta pro
 > 
 > Dependiendo del tipo de campo, podemos agregar algunas propiedades específicas. Por ejemplo, el campo de **`date`**, podemos agregar una propiedad **`dateFormat`**. Para ver más, consulte la documentación en la rama **`Ext.data.field`**.
 
+#### 🔴 6️⃣ 💻 Mi versión 
+
+En nuestro proyecto se ha creado la siguiente estructura:
+
+![04-23](images/04-23.png)
+
+Dentro de `appcode` tenemos la carpeta `model` la cual va a contener todos nuestros modelos de clases. El primero que vemos es `Client.js`:
+
+```js
+// JavaScript Document
+
+Ext.define('Myapp.model.Client',{
+   extend:'Ext.data.Model',  // step 1
+   idProperty:'clientId ',   // step 2
+   fields:[ // step 3
+      {name: 'clientId', type: 'int'	},
+      {name: 'name'    , type: 'string'},
+      {name: 'phone'   , type: 'string'},
+      {name: 'website' , type: 'string'},
+      {name: 'status'  , type: 'string'},
+      {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}
+   ]	
+});
+```
+
 Los tipos de datos disponibles son los siguientes:
 
 * **`String`**
@@ -666,6 +691,119 @@ Como puede ver, estamos definiendo el campo `contractFileName`, que utilizará e
 ![04-04](images/04-04.png)
 
 En este momento no es necesario examinar todo el código. Al avanzar en este capítulo, comprenderá todo el código de este ejemplo. El propósito es que comprenda la propiedad de mapeo.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-05-Mapping.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Ajax - Mapping</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         Ext.Loader.setConfig({
+            enabled: true,
+            paths:{		
+               Myapp:'appcode'	
+            }	
+         });
+
+         Ext.require([
+            'Ext.data.*', 
+            'Myapp.model.ClientWithMapping',
+            'Myapp.store.customers.ClientsMapping'
+         ]);
+
+         Ext.onReady(function(){
+            
+            //Step 1
+            var store = Ext.create("Myapp.store.customers.ClientsMapping"); 
+            //counting the elements in the store
+            store.load(function(records, operation, success) {	
+               console.log('Registros cargados');
+               Ext.each(records, function(record, index, records){
+                  console.log('Cliente: '  +record.get("name")  +  ' - '  + record.get("contractFileName") );
+               });
+            });
+
+         });  
+      </script>
+   </head>
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+Vemos una sección de configuración donde definimos la ruta `Myapp:'appcode'`. Con `Ext.require([` indicamos los archivos que necesitamos, en este caso `'Myapp.model.ClientWithMapping'` y `'Myapp.store.customers.ClientsMapping'` los cuales tienen el siguiente código:
+
+`'Myapp.model.ClientWithMapping'` 
+
+```js
+// JavaScript Document
+
+Ext.define('Myapp.model.ClientWithMapping',{
+	extend:'Ext.data.Model',  // step 1
+	idProperty:'clientId ',   // step 2
+	fields:[ // step 3
+		{name: 'clientId', type: 'int'	},
+		{name: 'name'    , type: 'string'},
+		{name: 'phone'   , type: 'string'},
+		{name: 'contractFileName', type: 'string', mapping: 'x0001' }
+	]	
+});
+```
+
+`'Myapp.store.customers.ClientsMapping'
+
+```js
+// JavaScript Document
+Ext.define('Myapp.store.customers.ClientsMapping',{
+	extend:'Ext.data.Store',
+	model: 'Myapp.model.ClientWithMapping',   
+	autoLoad:false,
+	proxy:{
+		type:'ajax',
+		url: 'serverside/mappings.json',
+		reader: {
+        	type:'json', rootProperty:'records'
+        }
+	}
+});
+```
+
+En este último archivo se usa `serverside/mappings.json` el cual tiene el siguiente contenido:
+
+`serverside/mappings.json`
+
+```json
+{
+  "success" :"true",
+  "id":"id",
+  "records":[
+		{ 
+			"id": 10001,
+			"name": "Acme corp2",
+			"phone": "+52-01-55-4444-3210",
+			"x0001":"acme_file.pdf" 
+		},{
+			"id": 10002,
+			"name": "Candy Store LTD",
+			"phone": "+52-01-66-3333-3895",
+			"x0001":"candystore_14589_august_2015.doc" 
+		}
+	]
+}
+```
+
+Al cargar el archivo `910-Learning-Ext-JS-04-05-Mapping.html` en el navegador obtenemos la siguiente salida en la consola:
+
+![04-24](images/04-24.png)
+
+Vemos como se van entrelazando las diferentes piezas para poder obtener los resultados deseados.
 
 ### Validadores
 
