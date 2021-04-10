@@ -1181,7 +1181,16 @@ La salida que obtenemos es:
 
 ### Relaciones
 
+Podemos crear relaciones entre modelos para relacionar nuestros datos. Por ejemplo, un Cliente tiene muchos empleados de contacto, Servicios, sucursales y muchas más cosas. Cada elemento es un objeto con propiedades. Por ejemplo:
+
+* Employees para contacto (nombre, cargo, sexo, correo electrónico, teléfono, teléfono celular, etc.)
+* Services (identificación del servicio, nombre del servicio, precio del servicio, sucursal donde se brinda el servicio)
+
+Ext JS 5 amplía el soporte para crear asociaciones de uno a muchos, uno a uno y de muchos a muchos de una manera muy fácil.
+
 #### ASOCIACIONES ONE-TO-MANY 
+
+Las asociaciones de uno a varios se crean de la siguiente manera:
 
 ```js
 Ext.define('Myapp.model.Client',{
@@ -1196,6 +1205,12 @@ Ext.define('Myapp.model.Client',{
   }
 });
 ```
+
+Usando la propiedad **`hasMany`**, podemos definir la asociación. En este ejemplo, estamos asignando un array de objetos porque podemos crear tantas asociaciones como necesitemos. Cada objeto contiene una propiedad **`model`**, que define el modelo con la clase **`Client`** que se relacionará.
+
+Además, podemos definir el nombre de la función que se creará en nuestra clase **`Client`** para obtener los elementos relacionados. En este caso, utilizamos **`employees`**; si no definimos ningún nombre, Ext JS pluralizará (agregará una "s") el nombre del modelo hijo.
+
+Ahora necesitamos crear la clase **`Employee`**. Creemos un nuevo archivo ubicado en **`appcode/model/Employee.js`**:
 
 ```js
 Ext.define('Myapp.model.Employee',{
@@ -1212,9 +1227,9 @@ Ext.define('Myapp.model.Employee',{
 });
 ```
 
-```js
-yee. In order to test our relationship, we need to create an HTML file importing the Ext JS library and our two models. Then, we can test our models as follows:
+No hay nada nuevo en el código anterior, solo un modelo regular con algunos campos que describen un elemento de un empleado. Para probar nuestra relación, necesitamos crear un archivo HTML importando la library Ext JS y nuestros dos modelos. Luego, podemos probar nuestros modelos de la siguiente manera:
 
+```js
 var myclient = Ext.create('Myapp.model.ClientWithContacts',{
   id: 10001,
   name: 'Acme corp',
@@ -1236,8 +1251,16 @@ myclient.employees().each(function(record){
 });
 ```
 
+Los pasos se explican a continuación:
 
-#### ASOCIACIONES One-to-one
+1. Estamos creando la clase **`Client`** con algunos datos.
+2. Estamos ejecutando el método del empleado. Cuando definimos nuestra relación, establecemos el nombre de este método usando la propiedad **`name`** en la configuración de la asociación. Este método devuelve una instancia de **`Ext.data.Store`**; esta clase es una colección para gestionar modelos de forma sencilla. También agregamos dos objetos a la colección usando el método **`add`**; cada objeto contiene los datos del modelo **`Employee`**.
+3. Estamos iterando la colección de artículos de nuestro modelo **`Client`**. Usando el método **`get`**, imprimimos la descripción de cada modelo **`Employee`** en la consola; en este caso, solo tenemos dos modelos en nuestro store.
+
+
+#### ASOCIACIONES ONE-TO-ONE
+
+Para crear una asociación uno a uno, crearemos una nueva clase que tiene una relación uno a uno con un cliente o cliente:
 
 ```js
 Ext.define('Myapp.model.Contract',{
@@ -1249,7 +1272,8 @@ Ext.define('Myapp.model.Contract',{
     {name: 'documentType', type: 'string'}
   ]
 });
-As you can see this is a plain model. Now on the Customer class we will define it as follows:
+
+Como puede ver, este es un modelo sencillo. Ahora en la clase Cliente lo definiremos de la siguiente manera:
 
 Ext.define('Myapp.model.Customer',{
   extend:'Ext.data.Model',
@@ -1267,6 +1291,8 @@ fields:[
 });
 ```
 
+Si observa, agregamos un nuevo campo llamado **`contractInfo`**, pero en este caso, en lugar de la propiedad **`type`**, usamos la referencia de propiedad. Esta propiedad apuntará a la entidad **`Contract`**. Como en el ejemplo anterior, modifiquemos el código JS, como se muestra a continuación:
+
 ```js
 var myclient = Ext.create('Myapp.model.Customer',{
   id: 10001,
@@ -1283,12 +1309,182 @@ var myclient = Ext.create('Myapp.model.Customer',{
 });
 ```
 
+Notará que esta vez establecemos los datos directamente en la configuración del modelo en el código **`contractInfo: {...}`**. Entonces, ahora si verificas en la consola, tiene que aparecer algo como la siguiente captura de pantalla:
+
 ![04-07](images/04-07.png)
+
+Como puede ver, **`contractInfo`** es un objeto dentro de los datos que tiene los mismos campos definidos en el modelo **`Contract`**. Ahora, si no define **`contractInfo`** o alguna otra propiedad del objeto **`contractInfo`** , estas propiedades no se agregarán al modelo (registro). Como se muestra en el siguiente ejemplo, contractInfo no se definió y puede ver el resultado en la siguiente captura de pantalla (después de la segunda prueba):
 
 ![04-08](images/04-08.png)
 
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-08-Associations-01.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Associations 01</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">         
+                  
+         Ext.Loader.setConfig({
+            enabled: true,
+            paths:{
+               Myapp:'appcode'	
+            }	
+         });
+
+         Ext.require([
+            'Ext.data.*', 
+            'Myapp.model.Employee',
+            'Myapp.model.ClientWithContacts'
+         ]);
+
+         Ext.onReady(function(){
+            //step 1
+            var myclient = Ext.create('Myapp.model.ClientWithContacts',{ 
+            id  		: 10001,
+            name		: 'Acme corp',
+            phone		: '+52-01-55-4444-3210',
+            website   : 'www.acmecorp.com',
+            status    : 'Active',
+            clientSince: '2010-01-01 14:35'
+            });	
+            //Step 2
+            myclient.employees().add(
+               {id:101,clientId:10001, name:'Juan Perez', phone:'+52-05-2222-333',email:'juan@test.com',gender:'male'},
+               {id:102,clientId:10001, name:'Sonia Sanchez', phone:'+52-05-1111-444',email:'sonia@test.com',gender:'female'}		
+            );
+            //Step 3
+            myclient.employees().each(function(record){
+               console.log(record.get('name') + ' - ' + record.get('email') );
+            });
+
+         });
+      </script>
+   </head>
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+`'Myapp.model.Employee'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.model.Employee',{
+   extend:'Ext.data.Model',  
+   idProperty:'id ',   
+   fields:[
+      {name: 'id', type: 'int' },
+      {name: 'clientid'	, type: 'int'},
+      {name: 'name'    	, type: 'string'},
+      {name: 'phone'   	, type: 'string'},
+      {name: 'email'   	, type: 'string'},
+      {name: 'gender'  	, type: 'string'}
+   ]
+});
+```
+
+`'Myapp.model.ClientWithContacts'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.model.ClientWithContacts',{
+   extend:'Ext.data.Model',  // step 1
+   requires: ['Myapp.model.Employee'],
+   idProperty:'id ',   // step 2
+   fields:[ // step 3
+      {name: 'id', type: 'int'},
+      {name: 'name'    , type: 'string'},
+      {name: 'phone'   , type: 'string'},
+      {name: 'website' , type: 'string'},
+      {name: 'status'  , type: 'string'},
+      {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}
+   ],
+   hasMany:{
+      model:'Myapp.model.Employee', name:'employees',  associationKey: 'employees'
+   }
+});
+```
+
+![04-28](images/04-28.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-08-Associations-01.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Associations 02</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">         
+         
+         Ext.Loader.setConfig({
+            enabled: true,
+            paths:{
+               Myapp:'appcode'	
+            }	
+         });
+
+         Ext.require([
+            'Ext.data.*', 
+            'Myapp.model.Contract',
+            'Myapp.model.Customer'
+         ]);
+
+         Ext.onReady(function(){
+            //step 1
+            var myclient = Ext.create('Myapp.model.Customer',{ 
+            id  		: 10001,
+            name		: 'Acme corp',
+            phone		: '+52-01-55-4444-3210',
+            website   : 'www.acmecorp.com',
+            status    : 'Active',
+            clientSince: '2010-01-01 14:35', 
+            contractInfo:{id:444, contractId:'ct-001-444', documentType:'PDF' }
+            });	
+            
+            console.log(myclient.data);
+            console.log("Second test"); 
+            
+            var myclientx = Ext.create('Myapp.model.Customer',{ 
+            id  		: 10001,
+            name		: 'Acme corp',
+            phone		: '+52-01-55-4444-3210',
+            website   : 'www.acmecorp.com',
+            status    : 'Active',
+            clientSince: '2010-01-01 14:35'
+            });	
+            
+            console.log(myclientx.data); 
+
+
+         });
+      </script>
+   </head>
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+![04-29](images/04-29.png)
 
 ## Trabajando con store
+
+Como se mencionó anteriormente, un store es una colección de modelos que actúa como un caché de cliente para administrar nuestros datos localmente. Podemos utilizar esta colección para realizar tareas como ordenar, agrupar y filtrar los modelos de una forma muy sencilla. También podemos extraer datos de nuestro servidor utilizando uno de los proxies disponibles y un reader(lector) para interpretar la respuesta del servidor y completar la colección.
+
+Por lo general, se agrega un store a los widgets/components para mostrar datos. Los componentes como la grid, tree, combo box o data view utilizan un store para administrar los datos. Aprenderemos sobre estos componentes en capítulos futuros. Si creamos un widget personalizado, también deberíamos usar un store para administrar los datos. Por eso este capítulo es realmente importante; utilizamos modelos y tiendas para tratar los datos.
+
+Para crear un store, necesitamos usar la clase **`Ext.data.Store`**. El siguiente ejemplo utilizará el modelo **`Customer`** que ya hemos trabajado, y ampliará lel store para crear una colección de customers:
 
 ```js
 Ext.define('MyApp.store.Customers',{
@@ -1297,79 +1493,124 @@ Ext.define('MyApp.store.Customers',{
 });
 ```
 
+Los pasos se explican a continuación:
+
+* **Step 1**: Para definir un store, necesitamos extendernos desde la clase **`Ext.data.Store`**. Esta clase es responsable de tratar con los modelos.
+* **Step 2**: Asociamos el modelo que usará nuestra tienda. Es necesario especificar una clase **`model`** válida; en este caso, estamos usando nuestra clase **`Customer`** en la que hemos estado trabajando en el ejemplo anterior.
+ 
+Una vez que tengamos definida nuestra clase store, crearemos una página HTML para ejecutar nuestra prueba. Importemos la library **`Ext`**, nuestro modelo **`Customer`** y nuestro store **`Customer`**:
+
 ```js
 var store = Ext.create("MyApp.store.Customers");
 //counting the elements in the store
 console.log(store.count());
 ```
 
+Podemos usar el método **`create`** para crear una instancia de nuestra clase **`store`**; en este ejemplo, no necesitamos pasar ningún parámetro, pero podríamos hacerlo como cualquier otra clase.
+
+Si nos gustaría saber la cantidad de artículos que contiene nuestro store, podemos usar el método **`count`**. En este caso, estamos imprimiendo el número devuelto en la consola de JavaScript, que es cero, porque nuestro store está vacía en este momento.
+
 ### Añadiendo nuevos elementos
+
+Agregar elementos a la colección es muy simple. Necesitamos crear un modelo **`Customer`** con datos, y usaremos el método **`add`**  o **`insert`** para agregar el nuevo artículo a nuestro store, como se muestra en el siguiente código:
 
 ```js
 //Step 1 (define /create new model instance)
 var mynewcustomer = Ext.create('Myapp.model.Customer',{
-  id: 10001,
-  name: 'Acme corp',
-  phone: '+52-01-55-4444-3210',
-  website : 'www.acmecorp.com',
-  status: 'Active',
-  clientSince: '2010-01-01 14:35',
-  contractInfo:{
-    id:444,
-    contractId:'ct-001-444',
-    documentType:'PDF'
-  }
+   id: 10001,
+   name: 'Acme corp',
+   phone: '+52-01-55-4444-3210',
+   website : 'www.acmecorp.com',
+   status: 'Active',
+   clientSince: '2010-01-01 14:35',
+   contractInfo:{
+      id:444,
+      contractId:'ct-001-444',
+      documentType:'PDF'
+   }
 });
 store.add(mynewcustomer); //Step 2
 console.log("Records in store:" + store.getCount() );
 ```
 
+Los pasos se explican a continuación:
+
+* **Step 1:**: Creamos el modelo que queremos agregar a nuestro store; también establecemos valores para algunos de los campos.
+* **Step 2:**: Ejecutamos el método **`add`** para agregar nuestro modelo a la colección. Es importante saber que el uso del método **`add`** siempre insertará el modelo en la última posición de la colección.
+* 
+Finalmente, contamos nuestros elementos nuevamente y veremos un número **1** en nuestra consola JavaScript.
+
+También podemos agregar un nuevo elemento simplemente enviando un objeto que contenga los datos, y el método **`add`** creará la instancia del modelo para nosotros, como se muestra en el siguiente ejemplo:
+
 ```js
 //Method 2 for add Records
-  store.add({
-    id: 10002,
-    name: 'Candy Store LTD',
-    phone: '+52-01-66-3333-3895',
-    website : 'www.candyworld.com',
-    status: 'Active',
-    clientSince: '2011-01-01 14:35',
-    contractInfo:{
-      id:9998,
-      contractId:'ct-001-9998',
-      documentType:'DOCX'
-    }
-  });
-  console.log("Records in store:" + store.getCount());
+   store.add({
+      id: 10002,
+      name: 'Candy Store LTD',
+      phone: '+52-01-66-3333-3895',
+      website : 'www.candyworld.com',
+      status: 'Active',
+      clientSince: '2011-01-01 14:35',
+      contractInfo:{
+         id:9998,
+         contractId:'ct-001-9998',
+         documentType:'DOCX'
+      }
+   });
+   console.log("Records in store:" + store.getCount());
 ```
+
+Al ejecutar el código anterior, veremos un número **2** en la consola de JavaScript.
+
+Incluso podemos agregar muchos elementos a la vez pasando un array de modelos al método **`add`**, como se muestra en el siguiente ejemplo:
 
 ```js
 // Method 3 for add multiple records
-  var mynewcustomer = Ext.create('Myapp.model.Customer', { ...});
-  var mynewcustomerb = Ext.create('Myapp.model.Customer', {
-  ...});
-  store.add([mynewcustomer, mynewcustomerb]);
-  console.log("Records in store:" + store.getCount());
+   var mynewcustomer = Ext.create('Myapp.model.Customer', { ...});
+   var mynewcustomerb = Ext.create('Myapp.model.Customer', {
+   ...});
+   store.add([mynewcustomer, mynewcustomerb]);
+   console.log("Records in store:" + store.getCount());
 ```
+
+Hemos agregado dos modelos en la misma llamada al método, pero podemos pasar cualquier modelo que necesitemos en el array.
+
+Si vemos la consola, habrá un número **4** impreso porque tenemos cuatro elementos en nuestra colección. Como se mencionó anteriormente, si usamos el método **`add`**, el nuevo elemento se colocará en la última posición de la colección, pero ¿qué pasa si queremos agregar el nuevo elemento a la primera posición, o tal vez en otro lugar? Podemos usar el método **`insert`** para agregar el nuevo elemento donde sea que lo necesitemos.
 
 ### Recorrer los records/models en el store.
 
+Hasta ahora, sabemos cómo recuperar la cantidad de elementos en el store existente. Ahora podemos iterar a través de los elementos del store usando el método **`each`** de la siguiente manera:
+
 ```js
 store.each(function(record, index){
-  console.log(index, record.get("name"));
+   console.log(index, record.get("name"));
 });
 ```
 
+El método **`each`** recibe una función como primer parámetro. Esta función se ejecutará para cada registro del store; la función anónima recibe dos parámetros para nuestra conveniencia: los parámetros **`record`** e **`index`** para cada iteración.
+
+También podemos establecer el alcance donde se ejecutará la función anónima pasando un segundo parámetro al método **`each`** con el objeto donde se ejecutará la función anónima.
+
+En nuestro ejemplo anterior, solo imprimimos las propiedades **`index`** y **`name`** en nuestro modelo, pero podemos acceder a cualquier propiedad o método definido en nuestro modelo **`Customer`**.
+
 ### Recuperar los records en el store
 
+Una vez que tenemos contenido en nuestra tienda, podemos recuperar objetos o realizar una búsqueda de la colección de modelos. Hay varias formas de recuperar modelos. Veremos las formas más comunes.
+
 #### POR INDEX POSITION
+
+Si solo queremos obtener un modelo en una posición específica, podemos usar el método **`getAt`** del store de la siguiente manera:
 
 ```js
 var modelTest = store.getAt(2);
 console.log(modelTest.get("name"));
 ```
 
+En nuestro ejemplo anterior, obtenemos el modelo que está en la tercera posición de la colección. La primera posición en el store usa el índice **`0`**, por lo que si queremos obtener el tercer elemento, usamos el índice **`2`**. En nuestro ejemplo, el nombre impreso debería ser **Modern Cars of America**.
 
 #### PRIMER Y ÚLTIMO REGISTRO
+
+También existen métodos para recuperar el primer elemento de la colección y el último elemento; para esto, podemos ejecutar el método **`first`** y **`last`** de la clase store, como se muestra en el siguiente código:
 
 ```js
 var first = store.first();
@@ -1377,50 +1618,74 @@ var last = store.last();
 console.log(first.get("name"), last.get("name"));
 ```
 
+Nuestro código anterior imprimirá el nombre del primer y último elemento en nuestro store; en este caso, veremos el nombre de **Acme Corp** y **Extreme Sports Los Cabos**.
+
 #### POR RANGO
+
+Hay ocasiones en las que necesitamos obtener muchos registros a la vez, por lo que existe un método llamado **`getRange`** para recuperar una lista de registros. Podemos definir los límites, o incluso podemos obtener todos los registros de la colección, como se muestra en el siguiente fragmento de código:
 
 ```js
 var list = store.getRange(1,3);
 
 Ext.each(list,function(record,index){
-  console.log(index,record.get("name"));
+   console.log(index,record.get("name"));
 });
 ```
 
+En el código anterior, estábamos recuperando registros del número de índice **`1`** al número de índice **`3`**. Vamos a ver tres elementos en nuestra consola de JavaScript.
+
 #### POR ID
+
+Podemos recuperar un registro directamente por su ID, como se muestra en el siguiente código:
 
 ```js
 var record = store.getById(10001);
 console.log(modelTest.get("name"));
 ```
 
-### Eliminación de registros
+### Eliminación de Registros
+
+Hemos estado agregando y accediendo registros en nuestro store, pero si quisiéramos eliminar registros del store, tendríamos tres formas de hacer esta tarea:
 
 ```js
 store.remove(record);
 store.each(function(record,index){
-  console.log(index,record.get("name"));
+   console.log(index,record.get("name"));
 });
 ```
+
+Ejecutamos el método **`remove`** y pasamos el modelo desde donde queríamos eliminar el registro. En nuestro código anterior, pasábamos la variable **`model`** que creamos antes. Si miramos la consola de JavaScript, veremos que el primer registro ya no existe.
+
+También podemos eliminar muchos registros a la vez. Solo necesitamos pasar un array de modelos al método **`remove`**, y esos modelos se eliminarán de la tienda, como se muestra en el siguiente código:
 
 ```js
 store.remove([first,last]);
 store.each(function(record,index){
-  console.log(record.get("name"));
+   console.log(record.get("name"));
 });
 ```
+
+Cuando ejecutemos el código, veremos que los dos registros adicionales se han ido. No deberíamos ver esos nombres en la consola de JavaScript.
+
+Hay ocasiones en las que es posible que no tengamos la referencia al modelo que queremos eliminar. En esos casos, podemos eliminar un registro por su posición en la tienda, como se muestra en el siguiente código:
 
 ```js
 store.removeAt(2);
 store.each(function(record,index){
-  console.log(index,record.get("name"));
+   console.log(index,record.get("name"));
 });
 ```
+
+El método **`removeAt`** acepta un índice; el registro ubicado en esta posición será eliminado. Ahora solo podemos ver dos nombres en la consola de JavaScript.
+
+Si queremos eliminar todos los registros de nuestro store, solo necesitamos llamar al método **`removeAll`** y el store se borrará.
 
 ```js
 store.removeAll();
 console.log("Records:",store.count());
 ```
+
+En este momento, nuestro store está vacía. Si ejecutamos el método **`count`**, obtendremos cero como resultado. Ahora sabemos cómo agregar, recuperar y eliminar registros de nuestro store.
 
 ## Recuperando datos remotos
 
