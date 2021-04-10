@@ -756,7 +756,7 @@ Ext.define('Myapp.model.ClientWithMapping',{
 });
 ```
 
-`'Myapp.store.customers.ClientsMapping'
+`'Myapp.store.customers.ClientsMapping'`
 
 ```js
 // JavaScript Document
@@ -802,9 +802,13 @@ Al cargar el archivo `910-Learning-Ext-JS-04-05-Mapping.html` en el navegador ob
 
 ![04-24](images/04-24.png)
 
-Vemos como se van entrelazando las diferentes piezas para poder obtener los resultados deseados.
+Vemos como se van entrelazando las diferentes piezas para poder obtener los resultados deseados. 
+
+**NOTA:** En este ejemplo no hemos tenido problemas con el CORS, todos los archivos los tenemos localmente.
 
 ### Validadores
+
+Una buena característica desde la versión 4 de Ext JS es la capacidad de validar nuestros datos directamente en el modelo. Podemos definir reglas para cada campo y ejecutar las validaciones cuando sea necesario. Para definir validaciones en nuestros modelos, solo necesitamos definir una propiedad llamada validadores que contiene una serie de reglas que se ejecutarán cuando se ejecute el motor de validación. Agreguemos algunos validadores a nuestro modelo anterior de la siguiente manera:
 
 ```js
 Ext.define('Myapp.model.Client',{
@@ -829,6 +833,12 @@ validators:{
 }
 });
 ```
+
+Al agregar validaciones, usamos objetos para definir cada regla. La propiedad **`type`** define el tipo de regla que queremos agregar. Hay algunos tipos creados dentro de la library, como inclusión, exclusión, presencia, longitud, formato y e-mail; estas son validaciones muy comunes. También podemos agregar nuevos tipos de validaciones según sea necesario.
+
+Cuando definimos una regla, es necesario utilizar siempre las propiedades **`type`**, pero algunas reglas requieren el uso de otros parámetros adicionales. La propiedad **`type`** representa una función dentro de las subclases `Ext.data.validator`. Podemos leer la documentación de este objeto para ver qué parámetros específicos se necesitan para cada regla.
+
+Hagamos algunos cambios nuevos en nuestro archivo HTML anterior y guárdelos con un nuevo nombre:
 
 ```js
 //Step 1
@@ -863,24 +873,144 @@ if   (myclient.isValid()){//Step 4
 }
 ```
 
+Los pasos se explican a continuación:
+
+* **Step 1**: Creamos una instancia de nuestro modelo de cliente utilizando algunos datos.
+* **Step 2**: Ejecutamos el método **`isValid`**, que en este caso devuelve **`true`** porque toda la información es correcta.
+* **Step 3**: Cambiamos los valores del modelo (nombre y sitio web).
+* **Step 4**: Ejecutamos el método **`isValid`** nuevamente para probar los validadores; en este caso, el resultado será **`false`**.
+* **Step 5**: El método de **`validate`** (**`myclient.validate();`**) devolverá una colección con las validaciones fallidas. Luego, el código iterará esta colección para generar la salida de los campos y mensajes de error.
+
 > **NOTA:**
 > 
+> La colección devuelta por el método de validación es una instancia de la clase **`Ext.data.ErrorCollection`**, que se extiende desde **`Ext.util.MixedCollection`**. Por tanto, podemos utilizar cada método para iterar de forma sencilla.
+
+Cuando ejecutemos el ejemplo anterior veremos en la consola algunos mensajes según el flujo del código. Inicialmente, mostrará un mensaje que dice que las validaciones fueron exitosas. Después de cambiar los valores, los mensajes comenzarán a mostrar los errores en los campos de nombre y sitio web. Eche un vistazo a la siguiente captura de pantalla desde la ventana/herramienta de la consola:
 
 ![04-05](images/04-05.png)
 
-### Tipos de campos personalizados
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-06-Validation.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Validations 01</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">         
+         Ext.Loader.setConfig({
+            enabled: true,
+            paths:{
+               Myapp:'appcode'	
+            }	
+         });
+
+         Ext.require([
+            'Ext.data.*',
+            'Myapp.model.ClientWithValidations'
+         ]);
+
+         Ext.onReady(function(){
+            //step1
+            var myclient = Ext.create('Myapp.model.ClientWithValidations',{ 
+               clientId  : '10001',
+               name		: 'Acme corp',
+               phone		: '+52-01-55-4444-3210',
+               website   : 'www.acmecorp.com',
+               status    : 'Active',
+               clientSince: '2010-01-01 14:35'
+            });	
+
+            if 	(myclient.isValid()){  //step2
+               console.log("myclient model es correcto"); 
+            } 
+
+            console.log(myclient);
+            console.log("El name de mi cliente es = " + myclient.get('name') ); 
+            console.log("El website de mi cliente es = " + myclient.get('website') ); 		
+            
+            // SET methods 	//step3	
+            myclient.set('name','');  
+            myclient.set('website',''); 
+
+            if 	(myclient.isValid()){ 
+               console.log("myclient model es correcto"); 
+            } else {  //step4
+               console.log("myclient model tiene errores"); 
+               var errors = myclient.validate(); // Step 3
+               errors.each(function(error){
+                  console.log(error.field,error.message);
+               });
+            }					
+               
+         });
+      </script>
+   </head>
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+Estamos usando el archivo `'Myapp.model.ClientWithValidations'`:
+
+```js
+// JavaScript Document
+
+Ext.define('Myapp.model.ClientWithValidations',{
+   extend:'Ext.data.Model',  // step 1
+   idProperty:'clientId ',   // step 2
+   fields:[ // step 3
+      {name: 'clientId', type: 'int'	},
+      {name: 'name'    , type: 'string'},
+      {name: 'phone'   , type: 'string'},
+      {name: 'website' , type: 'string'},
+      {name: 'status'  , type: 'string'},
+      {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}
+   ],
+   validators:{
+      name:[
+         { type:'presence', message:'El name debe estar presente (mensaje personalizado)' }	 // allowEmpty:false, message:'Name must be  present'
+      ],
+      website:[
+         { type:'presence', allowEmpty:true},
+         { type:'length',  min: 5, max:250 }			
+      ]			
+   }	
+});
+```
+
+Al cargar el archivo en la consola se nos presenta lo siguiente:
+
+![04-25](images/04-25.png)
+![04-26](images/04-26.png)
+
+### Tipos de Campos Personalizados
+
+Por lo general, necesitamos usar algunos tipos de campos una y otra vez, en diferentes modelos de datos, en nuestra aplicación. En la Ext 4, existía la práctica de crear validadores personalizados. En la versión 5, se recomienda crear tipos de campos personalizados en lugar de validaciones personalizadas. Usando el siguiente código, crearemos un campo personalizado:
 
 ```js
 Ext.define('Myapp.fields.Status',{
-    extend: 'Ext.data.field.String',  //Step 1
-    alias: 'data.field.status',//Step 2
-    validators: {//Step 3
-        type: 'inclusion',
-        list: [ 'Active', 'Inactive'],
-        message: 'Is not a valid status value, please select the proper options[Active, Inactive]'
-    }
+   extend: 'Ext.data.field.String',  //Step 1
+   alias: 'data.field.status',//Step 2
+   validators: {//Step 3
+      type: 'inclusion',
+      list: [ 'Active', 'Inactive'],
+      message: 'Is not a valid status value, please select the proper options[Active, Inactive]'
+   }
 });
 ```
+
+Los pasos se explican a continuación:
+
+1. Extendemos el nuevo campo basado en `Ext.data.field.String`.
+2. Definimos el alias que tendrá este campo. Se recomienda que el alias no repita ni anule un nombre existente de las subclases de campo `Ext.data.field`.
+3. Configuramos los validadores que tendrá el campo.
+
+Hagamos algunos cambios en nuestro modelo Client:
 
 ```js
 Ext.define('Myapp.model.Client',{
@@ -900,35 +1030,154 @@ validators:{
 });
 ```
 
+En el modelo, hicimos el cambio **`{name: 'status', type: 'status'}`** usando el alias que establecimos en el campo personalizado (**`alias: 'data.field.status'`**). Ahora, creemos el código para la prueba:
+
 ```js
 var myclient = Ext.create('Myapp.model.Client',{
-  clientId: '10001',
-  name: 'Acme corp',
-  phone: '+52-01-55-4444-3210',
-  website: 'www.acmecorp.com',
-  status: 'Active',
-  clientSince: '2010-01-01 14:35'
+   clientId: '10001',
+   name: 'Acme corp',
+   phone: '+52-01-55-4444-3210',
+   website: 'www.acmecorp.com',
+   status: 'Active',
+   clientSince: '2010-01-01 14:35'
 });
 if(myclient.isValid()){
-  console.log("myclient model is correct");
+   console.log("myclient model is correct");
 }
 // SET methods
 myclient.set('status','No longer client');
 if(myclient.isValid()){
-  console.log("myclient model is correct");
+   console.log("myclient model is correct");
 } else {
-  console.log("myclient model has errors");
-  var errors = myclient.validate();
-  errors.each(function(error){
-    console.log(error.field,error.message);
-  });
+   console.log("myclient model has errors");
+   var errors = myclient.validate();
+   errors.each(function(error){
+      console.log(error.field,error.message);
+   });
 }
 ```
 
 > **TIP:**
 > 
+> Si no sabe cómo preparar el código, consulte los archivos **`customfields_01.html`** y **`customfields_01.js`** en la carpeta **`chapter_04`** del código fuente.
+
+Después de ejecutar nuestro archivo HTML, obtendremos el siguiente resultado en la pantalla de la consola:
 
 ![04-06](images/04-06.png)
+
+Como puede ver, **`myclient.set('status','No longer client');`** intenta usar un valor no definido para los valores aceptables definidos en el campo personalizado **`Myapp.fields.Status`**, por lo que esto nos dará un error de validación para el modelo.
+
+Con esta técnica, podemos crear y reutilizar muchos tipos de campos personalizados en muchos modelos en nuestra aplicación. Observe que podemos extendernos desde las siguientes clases: **`Ext.data.field.Field`**, **`Ext.data.field.Boolean`**, **`Ext.data.field.Date`**, **`Ext.data.field.Integer`**, **`Ext.data.field.Number`** y **`Ext.data.field.String`**
+
+Como hablamos en el Capítulo 2, *Conceptos básicos*, sobre la extensión de clases, es importante que elija qué clase extender de acuerdo con sus necesidades, para evitar el uso de código adicional innecesario si no lo necesita.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-07-Custom-Fields.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - custom fields 01</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">         
+         
+         Ext.Loader.setConfig({
+            enabled: true,
+            paths:{
+               Myapp:'appcode'	
+            }	
+         });
+
+         Ext.require([
+            'Ext.data.*',
+            'Myapp.fields.Status', 
+            'Myapp.model.ClientWithCustomFields'
+         ]);
+
+         Ext.onReady(function(){
+            //step1
+            var myclient = Ext.create('Myapp.model.ClientWithCustomFields',{ 
+            clientId  : '10001',
+            name		: 'Acme corp',
+            phone		: '+52-01-55-4444-3210',
+            website   : 'www.acmecorp.com',
+            status    : 'Active',
+            clientSince: '2010-01-01 14:35'
+            });	
+
+            if 	(myclient.isValid()){  //step2
+               console.log("myclient model es correcto"); 
+            } 
+            // SET methods 	//step3	
+            myclient.set('status','No longer client');	
+            if 	(myclient.isValid()){ 
+               console.log("myclient model es correcto"); 
+            } else {  //step4
+               console.log("myclient model tiene errores"); 
+               var errors = myclient.validate(); // Step 3
+               errors.each(function(error){
+                  console.log(error.field,error.message);
+               });
+            }					
+               
+         });
+      </script>
+   </head>
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+`'Myapp.fields.Status'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.fields.Status',{
+   extend: 'Ext.data.field.String',
+   alias: 'data.field.status',
+   validators: {
+      type: 'inclusion',
+      list: [ 'Active', 'Inactive'],
+      message: 'No es un valor de estado válido, seleccione las opciones adecuadas [Active,Inactive]'
+   }
+});
+```
+
+`'Myapp.model.ClientWithCustomFields'`
+
+```js
+// JavaScript Document
+
+Ext.define('Myapp.model.ClientWithCustomFields',{
+   extend:'Ext.data.Model',  
+   idProperty:'clientId ' , 
+   fields:[
+      {name: 'clientId', type: 'int'	},
+      {name: 'name'    , type: 'string'},
+      {name: 'phone'   , type: 'string'},
+      {name: 'website' , type: 'string'},
+      {name: 'status'  , type: 'status'}, //Using custom field 
+      {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}
+   ],
+   validators:{
+      name:[
+         { type:'presence', message:'El nombre debe estar presente (mensaje personalizado)' }	 // allowEmpty:false, message:'Name must be present'
+      ],
+      website:[
+         { type:'presence', allowEmpty:true},
+         { type:'length',  min: 5, max:250 }			
+      ]			
+   }	
+});
+```
+
+La salida que obtenemos es:
+
+![04-27](images/04-27.png)
 
 ### Relaciones
 
