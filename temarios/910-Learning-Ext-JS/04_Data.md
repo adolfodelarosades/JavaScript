@@ -556,31 +556,6 @@ En el tercer paso definimos los campos para nuestro modelo. El valor de esta pro
 > 
 > Dependiendo del tipo de campo, podemos agregar algunas propiedades específicas. Por ejemplo, el campo de **`date`**, podemos agregar una propiedad **`dateFormat`**. Para ver más, consulte la documentación en la rama **`Ext.data.field`**.
 
-#### 🔴 6️⃣ 💻 Mi versión 
-
-En nuestro proyecto se ha creado la siguiente estructura:
-
-![04-23](images/04-23.png)
-
-Dentro de `appcode` tenemos la carpeta `model` la cual va a contener todos nuestros modelos de clases. El primero que vemos es `Client.js`:
-
-```js
-// JavaScript Document
-
-Ext.define('Myapp.model.Client',{
-   extend:'Ext.data.Model',  // step 1
-   idProperty:'clientId ',   // step 2
-   fields:[ // step 3
-      {name: 'clientId', type: 'int'	},
-      {name: 'name'    , type: 'string'},
-      {name: 'phone'   , type: 'string'},
-      {name: 'website' , type: 'string'},
-      {name: 'status'  , type: 'string'},
-      {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}
-   ]	
-});
-```
-
 Los tipos de datos disponibles son los siguientes:
 
 * **`String`**
@@ -651,6 +626,106 @@ myclient.set("website", "www.acmecorp.biz");
 
 Podemos leer y escribir cualquier campo en nuestro modelo. Sin embargo, establecer un nuevo valor de esta manera no es una buena práctica en absoluto. El método **`set`** realiza algunas tareas importantes al configurar el nuevo valor, como marcar nuestro modelo como sucio, guardar el valor anterior para que podamos rechazar o aceptar los cambios más tarde, y algunos otros pasos importantes.
 
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-05-Model.html`
+
+En nuestro proyecto se ha creado la siguiente estructura:
+
+![04-23](images/04-23.png)
+
+Dentro de `appcode` tenemos la carpeta `model` la cual va a contener todos nuestros modelos de clases.
+
+`910-Learning-Ext-JS-04-05-Model.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Model 01</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">
+         
+         Ext.Loader.setConfig({
+            enabled: true,
+            paths:{
+               Myapp:'appcode'	
+            }	
+         });
+
+         Ext.require([
+            'Ext.data.*',
+            'Myapp.model.Client'
+         ]);
+
+         Ext.onReady(function(){
+            
+            var myclient = Ext.create('Myapp.model.Client',{
+            clientId: '10001',
+            name: 'Acme corp',
+            phone: '+52-01-55-4444-3210',
+            website: 'www.acmecorp.com',
+            status: 'Active',
+            clientSince: '2010-01-01 14:35'
+            });		
+               
+            console.log(myclient);
+            console.log("El nombre de mi cliente es = " + myclient.get('name') );  	
+	    //Alternative  = console.log("El nombre de mi cliente es = " + myclient.data.name );
+            console.log("El website de mi cliente es = " + myclient.get('website')); 	
+	    //Alternative  = console.log("El website de mi cliente es = " + myclient.data.website ); 		
+            console.log("El teléfono de mi cliente es = " +  myclient.get('phone')); 		
+            //Alternative  = console.log("El teléfono de mi cliente es = " + myclient.data.phone); 
+               
+            // GET Method
+            var nameClient = myclient.get('name'); 
+            var websiteClient = myclient.get('website'); 
+            console.log("La información de mi cliente = " + nameClient + " - " + websiteClient); 
+               
+            // SET methods 		
+            myclient.set('phone','+52-01-55-0001-8888'); // single value 
+            console.log("El nuevo teléfono de mi cliente es = " + myclient.get('phone')); 
+            // Alternative  
+            // console.log("El nuevo teléfono de mi cliente es = " + myclient.data.phone); 		
+                     
+            myclient.set({ //Multiple values
+               name: 'Acme Corp of AMERICA LTD.',
+               website:'www.acmecorp.net'
+            })
+            console.log("El nombre de mi cliente cambió a = " + myclient.data.name); 				
+            console.log("El sitio web de mi cliente cambió a = " + myclient.data.website); 		
+            
+         });  
+      </script>
+   </head>
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+`'Myapp.model.Client'`
+
+```js
+// JavaScript Document
+
+Ext.define('Myapp.model.Client',{
+   extend:'Ext.data.Model',  // step 1
+   idProperty:'clientId ',   // step 2
+   fields:[ // step 3
+      {name: 'clientId', type: 'int'	},
+      {name: 'name'    , type: 'string'},
+      {name: 'phone'   , type: 'string'},
+      {name: 'website' , type: 'string'},
+      {name: 'status'  , type: 'string'},
+      {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}
+   ]	
+});
+```
+
+![04-34](images/04-34.png)
+
 ### Mapeos
 
 Al definir un campo dentro del modelo, podemos definir dónde se tomarán los datos para un campo con el mapeo de propiedades. Digamos que es una ruta, un nombre alternativo, que Ext JS se utilizará para completar el campo (data) a partir de los datos recibidos del servidor, como un archivo JSON o un archivo XML. Echemos un vistazo al siguiente ejemplo de JSON:
@@ -691,7 +766,7 @@ Como puede ver, estamos definiendo el campo `contractFileName`, que utilizará e
 
 En este momento no es necesario examinar todo el código. Al avanzar en este capítulo, comprenderá todo el código de este ejemplo. El propósito es que comprenda la propiedad de mapeo.
 
-#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-05-Mapping.html`
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-06-Mapping.html`
 
 ```html
 <!DOCTYPE html>
@@ -800,7 +875,7 @@ En este último archivo se usa `serverside/mappings.json` el cual tiene el sigui
 
 Al cargar el archivo `910-Learning-Ext-JS-04-05-Mapping.html` en el navegador obtenemos la siguiente salida en la consola:
 
-![04-24](images/04-24.png)
+![04-35](images/04-35.png)
 
 Vemos como se van entrelazando las diferentes piezas para poder obtener los resultados deseados. 
 
@@ -889,7 +964,7 @@ Cuando ejecutemos el ejemplo anterior veremos en la consola algunos mensajes seg
 
 ![04-05](images/04-05.png)
 
-#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-06-Validation.html`
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-07-Validation.html`
 
 ```html
 <!DOCTYPE html>
@@ -985,8 +1060,8 @@ Ext.define('Myapp.model.ClientWithValidations',{
 
 Al cargar el archivo en la consola se nos presenta lo siguiente:
 
-![04-25](images/04-25.png)
-![04-26](images/04-26.png)
+![04-36](images/04-36.png)
+![04-37](images/04-37.png)
 
 ### Tipos de Campos Personalizados
 
@@ -1071,7 +1146,7 @@ Con esta técnica, podemos crear y reutilizar muchos tipos de campos personaliza
 
 Como hablamos en el Capítulo 2, *Conceptos básicos*, sobre la extensión de clases, es importante que elija qué clase extender de acuerdo con sus necesidades, para evitar el uso de código adicional innecesario si no lo necesita.
 
-#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-07-Custom-Fields.html`
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-08-Custom-Fields.html`
 
 ```html
 <!DOCTYPE html>
@@ -1177,7 +1252,8 @@ Ext.define('Myapp.model.ClientWithCustomFields',{
 
 La salida que obtenemos es:
 
-![04-27](images/04-27.png)
+![04-38](images/04-38
+.png)
 
 ### Relaciones
 
@@ -1317,7 +1393,7 @@ Como puede ver, **`contractInfo`** es un objeto dentro de los datos que tiene lo
 
 ![04-08](images/04-08.png)
 
-#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-08-Associations-01.html`
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-09-Associations-01.html`
 
 ```html
 <!DOCTYPE html>
@@ -1412,9 +1488,9 @@ Ext.define('Myapp.model.ClientWithContacts',{
 });
 ```
 
-![04-28](images/04-28.png)
+![04-39](images/04-39.png)
 
-#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-08-Associations-01.html`
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-10-Associations-02.html`
 
 ```html
 <!DOCTYPE html>
@@ -1453,7 +1529,7 @@ Ext.define('Myapp.model.ClientWithContacts',{
             });	
             
             console.log(myclient.data);
-            console.log("Second test"); 
+            console.log("Segundo test"); 
             
             var myclientx = Ext.create('Myapp.model.Customer',{ 
             id  		: 10001,
@@ -1475,9 +1551,44 @@ Ext.define('Myapp.model.ClientWithContacts',{
 </html>
 ```
 
-![04-29](images/04-29.png)
+`'Myapp.model.Contract'`
 
-## Trabajando con store
+```js
+// JavaScript Document.
+Ext.define('Myapp.model.Contract',{
+   extend:'Ext.data.Model',  
+   idProperty:'id',   
+   fields:[
+      {name: 'id', type: 'int' },
+      {name: 'contractId', type: 'string'},
+      {name: 'documentType', type: 'string'}	
+   ]
+});
+```
+
+`'Myapp.model.Customer'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.model.Customer',{
+   extend:'Ext.data.Model',  // step 1
+   requires: ['Myapp.model.Contract'],
+   idProperty:'id',   // step 2
+   fields:[ // step 3
+      {name: 'id'		 , type: 'int'},
+      {name: 'name'    , type: 'string'},
+      {name: 'phone'   , type: 'string'},
+      {name: 'website' , type: 'string'},
+      {name: 'status'  , type: 'string'},
+      {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}, 
+      {name: 'contractInfo' , reference: 'Contract', unique:true  }
+   ]
+});
+```
+
+![04-40](images/04-40.png)
+
+## Trabajando con Store
 
 Como se mencionó anteriormente, un store es una colección de modelos que actúa como un caché de cliente para administrar nuestros datos localmente. Podemos utilizar esta colección para realizar tareas como ordenar, agrupar y filtrar los modelos de una forma muy sencilla. También podemos extraer datos de nuestro servidor utilizando uno de los proxies disponibles y un reader(lector) para interpretar la respuesta del servidor y completar la colección.
 
@@ -1576,7 +1687,7 @@ Hemos agregado dos modelos en la misma llamada al método, pero podemos pasar cu
 
 Si vemos la consola, habrá un número **4** impreso porque tenemos cuatro elementos en nuestra colección. Como se mencionó anteriormente, si usamos el método **`add`**, el nuevo elemento se colocará en la última posición de la colección, pero ¿qué pasa si queremos agregar el nuevo elemento a la primera posición, o tal vez en otro lugar? Podemos usar el método **`insert`** para agregar el nuevo elemento donde sea que lo necesitemos.
 
-#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-10-Store-01.html`
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-11-Store-01.html`
 
 ```html
 <!DOCTYPE html>
@@ -1715,7 +1826,6 @@ Ext.define('Myapp.model.Customer',{
    ]
 });
 ```
-
             
 `'Myapp.store.Customers'`
 
@@ -1771,9 +1881,9 @@ Ext.define('Myapp.store.customers.Customers',{
 }
 ```
 
-![04-30](images/04-30.png)
+![04-41](images/04-41.png)
 
-### Recorrer los records/models en el store.
+### Recorrer los records/models en el Store.
 
 Hasta ahora, sabemos cómo recuperar la cantidad de elementos en el store existente. Ahora podemos iterar a través de los elementos del store usando el método **`each`** de la siguiente manera:
 
@@ -1988,7 +2098,7 @@ Tenemos un objeto que contiene una serie de objetos que contienen nuestra inform
 
 Ahora, si ejecutamos el test, veremos dos registros en la consola. Si ejecutamos el método **`count`** en nuestro store, veremos que solo contiene dos elementos.
 
-#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-11-Proxy-01.html`
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-12-Proxy-01.html`
 
 ```html
 <!DOCTYPE html>
@@ -2127,7 +2237,7 @@ Ext.define('Myapp.store.customers.Customers',{
 }
 ```
 
-![04-31](images/04-31.png)
+![04-42](images/04-42.png)
 
 ### Readers
 
@@ -2170,7 +2280,7 @@ Solo hemos modificado **`rootProperty`** usando un punto para obtener un nivel m
 
 Probemos nuestro código nuevamente (**`proxy_02.js`**) actualizando el navegador. Ahora, veremos el mismo resultado que antes.
 
-#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-12-Proxy-02.html`
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-13-Proxy-02.html`
 
 ```html
 <!DOCTYPE html>
@@ -2277,52 +2387,52 @@ Ext.define('Myapp.store.customers.CustomersNested',{
 
 ```js
 {
-	"success" :"true",
-	"id":"id",
-	"output":{
-		"appRecords":[
-			{
-				"id":"1",
-				"type":"1",
-				"value":"My app, version 1.0.1"	
-			},{
-				"id":"2",
-				"type":"1",
-				"value":"Visit support here: www.demo.com"
-			}		
-		],
-		"customerRecords":[
-			{ 
-				"id": 10001,
-				"name": "Acme corp2",
-				"phone": "+52-01-55-4444-3210",
-				"website": "www.acmecorp.com",
-				"status": "Active",
-				"clientSince": "2010-01-01 14:35", 
-				"contractInfo":{
-					"id":444, 
-					"contractId":"ct-001-444", 
-					"documentType":"PDF"
-				}
-			},{
-				"id": 10002,
-				"name": "Candy Store LTD",
-				"phone": "+52-01-66-3333-3895",
-				"website": "www.candyworld.com",
-				"status": "Active",
-				"clientSince": "2011-01-01 14:35", 
-				"contractInfo":{
-					"id":9998, 
-					"contractId":"ct-001-9998", 
-					"documentType":"DOCX" 
-				}
-			}
-		]
-	}
+   "success" :"true",
+   "id":"id",
+   "output":{
+      "appRecords":[
+         {
+            "id":"1",
+            "type":"1",
+            "value":"My app, version 1.0.1"	
+         },{
+            "id":"2",
+            "type":"1",
+            "value":"Visit support here: www.demo.com"
+         }		
+      ],
+      "customerRecords":[
+         { 
+            "id": 10001,
+            "name": "Acme corp2",
+            "phone": "+52-01-55-4444-3210",
+            "website": "www.acmecorp.com",
+            "status": "Active",
+            "clientSince": "2010-01-01 14:35", 
+            "contractInfo":{
+               "id":444, 
+               "contractId":"ct-001-444", 
+               "documentType":"PDF"
+            }
+         },{
+            "id": 10002,
+            "name": "Candy Store LTD",
+            "phone": "+52-01-66-3333-3895",
+            "website": "www.candyworld.com",
+            "status": "Active",
+            "clientSince": "2011-01-01 14:35", 
+            "contractInfo":{
+               "id":9998, 
+               "contractId":"ct-001-9998", 
+               "documentType":"DOCX" 
+            }
+         }
+      ]
+   }
 }
 ```
 
-![04-32](images/04-32.png)
+![04-43](images/04-43.png)
 
 #### XML READER(LECTOR XML)
 
@@ -2397,7 +2507,7 @@ El resultado es exactamente el mismo que cuando usamos el lector JSON, sin embar
 
 Al usar readers, podemos cambiar fácilmente de usar JSON o XML como nuestra fuente de datos. No tenemos que cambiar nada más en nuestro código, solo configure cada URL y reader correctamente.
 
-#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-13-Proxy-03.html`
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-14-Proxy-03.html`
 
 ```html
 <!DOCTYPE html>
@@ -2508,80 +2618,96 @@ Ext.define('Myapp.store.customers.CustomersXml',{
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
-	<success>true</success>
-	<total>2</total>
-	<customer>
-		<id>10001</id>
-		<name>Acme corp2</name>
-		<phone>+52-01-55-4444-3210</phone>
-		<website>www.acmecorp.com</website>
-		<status>Active</status>
-		<clientSince>2010-01-01 14:35</clientSince>
-		<contractInfo>
-			<id>444</id>
-			<contractId>ct-001-444</contractId>
-			<documentType>PDF</documentType>
-		</contractInfo>
-	</customer>
-	<customer>
-		<id>10002</id>
-		<name>Candy Store LTD</name>
-		<phone>+52-01-66-3333-3895</phone>
-		<website>www.candyworld.com</website>
-		<status>Active</status>
-		<clientSince>2011-01-01 14:35</clientSince>
-		<contractInfo>
-			<id>9998</id>
-			<contractId>ct-001-9998</contractId>
-			<documentType>DOCX</documentType>
-		</contractInfo>
-	</customer>
+   <success>true</success>
+   <total>2</total>
+   <customer>
+      <id>10001</id>
+      <name>Acme corp2</name>
+      <phone>+52-01-55-4444-3210</phone>
+      <website>www.acmecorp.com</website>
+      <status>Active</status>
+      <clientSince>2010-01-01 14:35</clientSince>
+      <contractInfo>
+         <id>444</id>
+         <contractId>ct-001-444</contractId>
+         <documentType>PDF</documentType>
+      </contractInfo>
+   </customer>
+   <customer>
+      <id>10002</id>
+      <name>Candy Store LTD</name>
+      <phone>+52-01-66-3333-3895</phone>
+      <website>www.candyworld.com</website>
+      <status>Active</status>
+      <clientSince>2011-01-01 14:35</clientSince>
+      <contractInfo>
+         <id>9998</id>
+         <contractId>ct-001-9998</contractId>
+         <documentType>DOCX</documentType>
+      </contractInfo>
+   </customer>
 </data>
 ```
 
-![04-33](images/04-33.png)
+![04-44](images/04-44.png)
 
-## Enviando datos
+## Enviando Datos
+
+Después de agregar, editar o modificar registros en la tienda, debemos enviar los datos a nuestro servidor. Ext JS nos permite hacer esto mediante el uso de una propiedad writer (tiene que establecerse en el proxy). Este writer codificará los datos según el tipo de writer(JSON o XML). Para archivar esto, creemos el archivo **`CustomersSending.js`** en la ruta **`appcode/store/customers`**. Usaremos los modelos anteriores que hemos creado y colocaremos el siguiente código:
 
 ```js
 Ext.define('Myapp.store.customers.CustomersSending',{
-  extend:'Ext.data.Store',
-  model: 'Myapp.model.Customer',
-  autoLoad:false,
-  autoSync:true,
-  proxy:{
-    type:'ajax',
-    url: 'serverside/customers.json',
-    api: {
-      read    : 'serverside/customers.json',
-      create  : 'serverside/process.php?action=new',
-      update  : 'serverside/process.php?action=update',
-      destroy : 'serverside/process.php?action=destroy'
-    },
-    reader: {
-    ()type:'json',
-      rootProperty:'records'
-          },
-    writer:{
-      type:'json',
-      encode:true,
-      rootProperty:'paramProcess',
-      allowSingle:false,
-      writeAllFields:true,
-      root:'records'
-    },
-    actionMethods:{
-      create: 'POST',
-      read: 'GET',
-      update: 'POST',
-      destroy: 'POST'
-    }
-  }
+   extend:'Ext.data.Store',
+   model: 'Myapp.model.Customer',
+   autoLoad:false,
+   autoSync:true,
+   proxy:{
+      type:'ajax',
+      url: 'serverside/customers.json',
+      api: {
+         read    : 'serverside/customers.json',
+         create  : 'serverside/process.php?action=new',
+         update  : 'serverside/process.php?action=update',
+         destroy : 'serverside/process.php?action=destroy'
+      },
+      reader: {
+         ()type:'json',
+         rootProperty:'records'
+      },
+      writer:{
+         type:'json',
+         encode:true,
+         rootProperty:'paramProcess',
+         allowSingle:false,
+         writeAllFields:true,
+         root:'records'
+      },
+      actionMethods:{
+         create: 'POST',
+         read: 'GET',
+         update: 'POST',
+         destroy: 'POST'
+      }
+   }
 });
 ```
 
+Los cambios notables realizados en el código son:
+
+1. **Establecemos la propiedad `api`**: En esta propiedad, estableceremos las URL para cada método de acción CRUD (crear, leer, actualizar y destruir).
+2. **Establecemos la propiedad `writer` como un objeto de configuración**: Aquí, las propiedades importantes en el objeto son:
+   * `type:'json'`: Esta propiedad enviará los datos en formato JSON al servidor.
+   * `encode`: Esta propiedad hará que Ext JS codifique la información antes de pasarla al servidor.
+   * `rootProperty`: Esta propiedad será el nombre del parámetro que contiene la información.
+   * `writeAllFields`: Esta propiedad pasará todos los registros al servidor. Si lo configuramos como **`false`**, se enviarán solo a los campos modificados.
+   
+3. **Establecemos la propiedad `ActionMethods`**: Esta propiedad establecerá cómo se enviarán los parámetros que son pasados por la tienda. En el ejemplo de código, configuramos el método **`POST`** para **`POST`**, **`create`**, **`update`**, y **`destroy`** configuramos **`GET`** para lectura.
+
 > **NOTA:**
 > 
+> Tenga en cuenta que **`create`**, **`update`**, y **`destroy`** se activarán cuando se lleve a cabo la acción adecuada con los datos. Por ejemplo, si agregamos un nuevo modelo/registro en el store, lanzará la acción **`create`**, codificando y pasando data set en la propiedad **`api`**.
+
+Ahora, creemos el archivo HTML **`sending_01.html`**, de la siguiente manera:
 
 ```html
 <!doctype html>
@@ -2598,6 +2724,8 @@ Ext.define('Myapp.store.customers.CustomersSending',{
 <body style="padding:10px;"></body>
 </html>
 ```
+
+Y finalmente, el archivo **`sending_01.js`** tiene el siguiente aspecto:
 
 ```js
 Ext.Loader.setConfig({
@@ -2658,9 +2786,248 @@ var store = Ext.create("Myapp.store.customers.CustomersSending"); //Step 1
 });
 ```
 
+En el **Step 1**, creamos la instancia del store. En el **Step 2**, cargamos los registros (load function); después de que se carguen los registros, se ejecutará la función callback. En este punto, el store tiene dos registros que provienen del archivo JSON. Entonces, estamos listos para comenzar con las operaciones de creación, actualización y eliminación.
+
+En el **Step 3**, creamos un modelo/registro; configuramos los datos de este modelo/registro, y luego los agregamos al store. Cuando establezcamos la propiedad **`autoSync: true`** en el store, Ext JS enviará los datos al servidor.
+
+En el **Step 4**, actualizamos un registro; en este caso, modificamos dos propiedades y luego llamamos al método **`endEdit()`** del modelo/registro. Una vez finalizado este método, el store lanzará la URL de actualización y pasará los datos al servidor.
+
+Y finalmente en el **Step 5**, seleccionamos el segundo modelo/registro del store con **`store.getAt(1)`**. Luego, le decimos al store que elimine el registro y el registro se elimina del store. Esto hará que Ext JS lance la URL **`destroy`** que establecimos.
+
+Eche un vistazo a la siguiente captura de pantalla y observe el comportamiento de la red:
+
 ![04-10](images/04-10.png)
+
+En la captura de pantalla, notará la llamada de solicitud para la acción **`update`**. También existe la variable **`paramProcess`** enviada al servidor que contiene todos los datos del modelo/registro actualizado. Ahora tenemos que trabajar en php (o server page), para que realice las acciones necesarias en la página del servidor.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-15-Sending-01.html`
+
+Todos los archivos de este ejemplo estan subidos en el servidor para evitar problemas del CORS.
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Sending 01</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">         
+              
+         Ext.Loader.setConfig({
+            enabled: true,
+            paths:{		
+               Myapp:'appcode'	
+            }	
+         });
+
+         Ext.require([
+            'Ext.data.*', 
+            'Myapp.model.Contract',
+            'Myapp.model.Customer',
+            'Myapp.store.customers.CustomersSending'
+         ]);
+
+         Ext.onReady(function(){
+            
+            var store = Ext.create("Myapp.store.customers.CustomersSending"); //Step 1
+            store.load({ // Step 2 cargar Store para obtener todos los registros 
+               scope: this,
+               callback: function(records, operation, success) {	
+                  console.log('Registros cargados');
+                  Ext.each(records, function(record, index, records){
+                     console.log( record.get("name")  + '  - '  + record.data.contractInfo.contractId );
+                  });	
+                  var test=11; 
+                  console.log('¡Empiece a añadir modelo/registro...!');
+                  // step 3 Agregar un registro
+                  var mynewCustomer = Ext.create('Myapp.model.Customer',{ 
+                     clientId  : '10003',
+                     name		: 'American Notebooks Corp',
+                     phone		: '+52-01-55-3333-2200',
+                     website   : 'www.notebooksdemo.com',
+                     status    : 'Active',
+                     clientSince: '2015-06-01 10:35',
+                     contractInfo:{
+                        "id":99990, 
+                        "contractId":"ct-00301-99990", 
+                        "documentType":"DOC" 
+                     }	  
+                  });	
+                  store.add(mynewCustomer);	
+                  
+                  // step 4 actualizar un registro
+                  
+                  console.log('Actualizando modelo/registro...!');
+                  var updateCustomerModel = store.getAt(0);
+                  updateCustomerModel.beginEdit(); 
+                  updateCustomerModel.set("website","www.acmecorpusa.com");
+                  updateCustomerModel.set("phone","+52-01-33-9999-3000");
+                  updateCustomerModel.endEdit();
+
+                  //updateCustomerModel.save(); 
+                  //store.commitChanges(); 
+                  //console.log('Sync records...!');
+                  
+                  // step 5 eliminar un registro 
+                  console.log('Borrar un modelo/registro ...!');	
+                  
+                  var deleteCustomerModel = store.getAt(1);
+                  store.remove(deleteCustomerModel);	
+                  //store.sync();
+                  
+               }
+            });
+
+         });
+      </script>
+   </head>
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+`'Myapp.model.Contract'`
+
+```js
+// JavaScript Document.
+Ext.define('Myapp.model.Contract',{
+   extend:'Ext.data.Model',  
+   idProperty:'id',   
+   fields:[
+      {name: 'id', type: 'int' },
+      {name: 'contractId', type: 'string'},
+      {name: 'documentType', type: 'string'}	
+   ]
+});
+```
+
+`'Myapp.model.Customer'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.model.Customer',{
+   extend:'Ext.data.Model',  // step 1
+   requires: ['Myapp.model.Contract'],
+   idProperty:'id',   // step 2
+   fields:[ // step 3
+      {name: 'id'		 , type: 'int'},
+      {name: 'name'    , type: 'string'},
+      {name: 'phone'   , type: 'string'},
+      {name: 'website' , type: 'string'},
+      {name: 'status'  , type: 'string'},
+      {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}, 
+      {name: 'contractInfo' , reference: 'Contract', unique:true  }
+   ]
+});
+```
+
+`'Myapp.store.customers.CustomersSending'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.store.customers.CustomersSending',{
+   extend:'Ext.data.Store',
+   model: 'Myapp.model.Customer',   
+   autoLoad:false,
+   autoSync:true, 
+   proxy:{
+      type:'ajax',
+      url: 'http://familiadelarosa.com/910-Learning-Ext-JS/serverside/customers.json',
+      api: { 
+         read    : 'http://familiadelarosa.com/910-Learning-Ext-JS/serverside/customers.json',
+         create  : 'http://familiadelarosa.com/910-Learning-Ext-JS/serverside/process.php?action=new',			
+         update  : 'http://familiadelarosa.com/910-Learning-Ext-JS/serverside/process.php?action=update',
+         destroy : 'http://familiadelarosa.com/910-Learning-Ext-JS/serverside/process.php?action=destroy'
+      },
+      reader: {
+         type:'json', 
+         rootProperty:'records'
+      },
+      writer:{
+         type:'json',  
+         encode:true, 
+         rootProperty:'paramProcess', 
+         allowSingle:false,
+         writeAllFields:true,
+         root:'records'
+      },
+      actionMethods:{
+         create: 'POST', 
+         read: 'GET', 
+         update: 'POST', 
+         destroy: 'POST'
+      }
+   }
+});
+```
+
+`customers.json`
+
+```json
+{
+   "success" :"true",
+   "id":"id",
+   "records":[
+      { 
+         "id": 10001,
+         "name": "Acme corp2",
+         "phone": "+52-01-55-4444-3210",
+         "website": "www.acmecorp.com",
+         "status": "Active",
+         "clientSince": "2010-01-01 14:35", 
+         "contractInfo":{
+            "id":444, 
+            "contractId":"ct-001-444", 
+            "documentType":"PDF" 
+         }
+      },{
+         "id": 10002,
+         "name": "Candy Store LTD",
+         "phone": "+52-01-66-3333-3895",
+         "website": "www.candyworld.com",
+         "status": "Active",
+         "clientSince": "2011-01-01 14:35", 
+         "contractInfo":{
+            "id":9998, 
+            "contractId":"ct-001-9998", 
+            "documentType":"DOCX" 
+         }
+      }
+   ]
+}
+```
+
+
+`process.php`
+
+```php
+<?php 
+
+   $response = array(
+      'test'=> 'this is a test', 
+      'post'=>$_POST, 
+      'get'=>$_GET, 
+      'request'=>$_REQUEST, 	
+   );	
+   echo json_encode($response); 
+
+?>
+```
+
+La salida que tenemos es:
+
+![04-45](images/04-45.png)
 
 ## Resumen
 
+En este capítulo, hemos estado trabajando con datos; aprendimos cómo crear modelos con campos, mapeos, validaciones y relaciones. También trabajamos con una colección de modelos usando la clase **`store`** y aprendimos los conceptos básicos para recuperar datos usando proxies, lectores JSON y lectores XML. En los próximos capítulos, aprenderemos cómo manejar funciones más avanzadas disponibles en los stores.
+
+Es importante mencionar que cada widget en Ext JS que muestra datos usa un store y modelos (Grids, Combos, Data views, etc.) para administrar todos los datos. Cuando modificamos un modelo en nuestro store, el widget actualizará automáticamente su vista. Por ejemplo, si tenemos un grid y queremos eliminar un registro, solo necesitamos usar el método **`remove`*** del store. Al hacer esto, el grid actualizará automáticamente las filas y las filas eliminadas ya no aparecerán.
+
+En el próximo capítulo, aprenderemos sobre los eventos y cómo podemos responder a la interacción del usuario. Hasta ahora, no hemos utilizado eventos, pero son una de las partes más importantes del mundo del desarrollo de JavaScript.
 
 
