@@ -1465,8 +1465,7 @@ Ext.define('Myapp.model.ClientWithContacts',{
             });	
             
             console.log(myclientx.data); 
-
-
+        
          });
       </script>
    </head>
@@ -1576,6 +1575,203 @@ Incluso podemos agregar muchos elementos a la vez pasando un array de modelos al
 Hemos agregado dos modelos en la misma llamada al método, pero podemos pasar cualquier modelo que necesitemos en el array.
 
 Si vemos la consola, habrá un número **4** impreso porque tenemos cuatro elementos en nuestra colección. Como se mencionó anteriormente, si usamos el método **`add`**, el nuevo elemento se colocará en la última posición de la colección, pero ¿qué pasa si queremos agregar el nuevo elemento a la primera posición, o tal vez en otro lugar? Podemos usar el método **`insert`** para agregar el nuevo elemento donde sea que lo necesitemos.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-10-Store-01.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Store 01</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">         
+              
+         Ext.Loader.setConfig({
+            enabled: true,
+            paths:{
+               Myapp:'appcode'	
+            }	
+         });
+
+         Ext.require([
+            'Ext.data.*', 
+            'Myapp.model.Contract',
+            'Myapp.model.Customer',
+            'Myapp.store.Customers'
+         ]);
+
+         Ext.onReady(function(){
+            
+            var store = Ext.create("Myapp.store.Customers",{});
+            //contando los elementos en el store
+            console.log(store.count());
+            
+            //Step 1 (definir/crear una nueva instancia de modelo)
+            var mynewcustomer = Ext.create('Myapp.model.Customer',{ 
+               id: 10001,
+               name: 'Acme corp',
+               phone: '+52-01-55-4444-3210',
+               website : 'www.acmecorp.com',
+               status: 'Active',
+               clientSince: '2010-01-01 14:35', 
+               contractInfo:{
+                  id:444, 
+                  contractId:'ct-001-444', 
+                  documentType:'PDF' 
+               }
+            });	
+            store.add(mynewcustomer); //Step 2
+            console.log("Registros en el store: " + store.getCount() );
+
+            //Method 2 for add Records 
+            store.add({
+               id: 10002,
+               name: 'Candy Store LTD',
+               phone: '+52-01-66-3333-3895',
+               website : 'www.candyworld.com',
+               status: 'Active',
+               clientSince: '2011-01-01 14:35', 
+               contractInfo:{
+                  id:9998, 
+                  contractId:'ct-001-9998', 
+                  documentType:'DOCX' 
+               }
+            });
+            console.log("Registros en el store: " + store.getCount() );
+
+            // Method 3 for add multiple records 
+            var mynewcustomer = Ext.create('Myapp.model.Customer',{ 
+               id: 10003,
+               name: 'Modern Cars of America',
+               phone: '+52-01-55-4444-8885',
+               website : 'www.coolcars.com',
+               status: 'Active',
+               clientSince: '2013-01-01 14:35', 
+               contractInfo:{
+                  id:10458, 
+                  contractId:'ct-001-10458', 
+                  documentType:'PDF' 
+               }
+            });	
+            var mynewcustomerb = Ext.create('Myapp.model.Customer',{ 
+               id: 10004,
+               name: 'Extreme Sports Los Cabos',
+               phone: '+52-01-33-1234-2345',
+               website : 'www.loscabosextremesports.com',
+               status: 'Active',
+               clientSince: '2014-01-01 14:35', 
+               contractInfo:{
+                  id:10666, 
+                  contractId:'ct-001-10666', 
+                  documentType:'PDF' 
+               }
+            });	
+            store.add([mynewcustomer, mynewcustomerb]);
+            console.log("Registros en el store: " + store.getCount() );
+
+         });
+      </script>
+   </head>
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+`'Myapp.model.Contract'`
+
+```js
+// JavaScript Document.
+Ext.define('Myapp.model.Contract',{
+   extend:'Ext.data.Model',  
+   idProperty:'id',   
+   fields:[
+      {name: 'id', type: 'int' },
+      {name: 'contractId', type: 'string'},
+      {name: 'documentType', type: 'string'}	
+   ]
+});
+```
+            
+`'Myapp.model.Customer'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.model.Customer',{
+   extend:'Ext.data.Model',  // step 1
+   requires: ['Myapp.model.Contract'],
+   idProperty:'id',   // step 2
+   fields:[ // step 3
+      {name: 'id'		 , type: 'int'},
+      {name: 'name'    , type: 'string'},
+      {name: 'phone'   , type: 'string'},
+      {name: 'website' , type: 'string'},
+      {name: 'status'  , type: 'string'},
+      {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}, 
+      {name: 'contractInfo' , reference: 'Contract', unique:true  }
+   ]
+});
+```
+
+            
+`'Myapp.store.Customers'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.store.customers.Customers',{
+   extend:'Ext.data.Store',
+   model: 'Myapp.model.Customer',   
+   autoLoad:false,
+   proxy:{
+      type:'ajax',
+      url: 'serverside/customers.json'
+      ,reader: {
+         type:'json', rootProperty:'records'
+      }
+   }
+});
+```
+
+`'serverside/customers.json'`
+
+```json
+{
+   "success" :"true",
+   "id":"id",
+   "records":[
+      { 
+         "id": 10001,
+         "name": "Acme corp2",
+         "phone": "+52-01-55-4444-3210",
+         "website": "www.acmecorp.com",
+         "status": "Active",
+         "clientSince": "2010-01-01 14:35", 
+         "contractInfo":{
+            "id":444, 
+            "contractId":"ct-001-444", 
+            "documentType":"PDF" 
+         }
+      },{
+         "id": 10002,
+         "name": "Candy Store LTD",
+         "phone": "+52-01-66-3333-3895",
+         "website": "www.candyworld.com",
+         "status": "Active",
+         "clientSince": "2011-01-01 14:35", 
+         "contractInfo":{
+            "id":9998, 
+            "contractId":"ct-001-9998", 
+            "documentType":"DOCX" 
+         }
+      }
+   ]
+}
+```
+
+![04-30](images/04-30.png)
 
 ### Recorrer los records/models en el store.
 
@@ -1687,150 +1883,224 @@ console.log("Records:",store.count());
 
 En este momento, nuestro store está vacía. Si ejecutamos el método **`count`**, obtendremos cero como resultado. Ahora sabemos cómo agregar, recuperar y eliminar registros de nuestro store.
 
-## Recuperando datos remotos
+## Recuperando Datos Remotos
+
+Hasta ahora, hemos estado trabajando con datos locales y codificando nuestra información para crear un almacén de registros. Pero en las aplicaciones del mundo real, tendremos nuestros datos en una base de datos, o tal vez obtengamos la información usando servicios web.
+
+Ext JS usa proxies para enviar y recuperar los datos hacia y desde la fuente. Podemos utilizar uno de los proxies disponibles para configurar nuestra tienda o modelo.
+
+Los proxies en Ext JS están a cargo de manejar los datos/información de un modelo de datos; podemos decir que el proxy es una clase que maneja y manipula los datos (analizando, organizando, etc.), por lo que la tienda puede leer y guardar o enviar datos al servidor.
+
+Un proxy usa un reader para decodificar los datos recibidos y un escritor para codificar los datos en el formato correcto y enviarlos a la fuente. Tenemos tres lectores disponibles para codificar y decodificar nuestros datos: los lectores Array, JSON y XML. Pero solo tenemos dos escritores disponibles; solo para JSON y XML.
+
+Hay muchos tipos de proxies a nuestra disposición. Si queremos cambiar nuestra fuente de datos, solo debemos cambiar el tipo de proxy y todo debería estar bien. Por ejemplo, podemos definir un proxy Ajax para nuestro store o modelo, y luego podemos cambiarlo por un proxy de almacenamiento local.
 
 ### Ajax proxy
 
+Para utilizar este proxy, necesitamos configurar un servidor web para realizar las solicitudes Ajax correctamente. Si no tenemos un servidor web para probar nuestro código, podemos usar el servidor WAMP o XAMPP (consulte el Capítulo 1, Introducción a Ext JS 5). Se requiere el uso de un servidor web para que podamos realizar solicitudes Ajax correctamente.
+
+Cuando tengamos todo listo, podemos modificar nuestro ejemplo anterior, donde creamos la clase **`Customers`** para agregar el proxy requerido.
+
 ```js
 Ext.define('Myapp.store.customers.Customers',{
-  extend:'Ext.data.Store',
-  model: 'Myapp.model.Customer',
-  proxy:{
-    type:'ajax',
-    url: 'serverside/customers.php',
-    reader: {
-      type:'json',
-      rootProperty:'records'
-    }
-  }
+   extend:'Ext.data.Store',
+   model: 'Myapp.model.Customer',
+   proxy:{
+      type:'ajax',
+      url: 'serverside/customers.php',
+      reader: {
+         type:'json',
+         rootProperty:'records'
+      }
+   }
 });
 ```
 
+El código anterior agrega una nueva propiedad al store llamada **`proxy`**. Estamos configurando un objeto de configuración que contiene tres propiedades. La propiedad **`type`** define el tipo de proxy que vamos a utilizar. En este caso, especificamos **`ajax`**, pero podemos usar cualquiera de los proxies disponibles.
+
+La propiedad **`url`** define el recurso que solicitaremos usando Ajax. Es importante mencionar que la URL debe estar en el mismo dominio para que no obtengamos ningún error al realizar la solicitud Ajax. Si planea usar una URL entre dominios, se recomienda que use el proxy JSONP, o si tiene control sobre el lado del servidor, habilite CORS.
+
+Para obtener más información sobre CORS, consulte las siguientes URL:
+
+* http://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+* https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+
+La tercera propiedad es el **`reader`**; esta propiedad es un objeto que contiene propiedades que especificarán cómo los datos serán handled (loaded) (manejados(cargados)) por Ext JS. Es importante que definamos un reader, de lo contrario el store no podrá cargar los datos correctamente.
+
+Entonces, en este punto, podemos cargar los datos de nuestro servidor web usando Ajax. Para probar nuestro código, creemos un archivo HTML importando la library Ext, nuestro(s) modelo(s) y nuestro store:
+
 ```js
 //Step 1
-  var store = Ext.create("Myapp.store.customers.Customers");
-  //Step 2
-  store.load(function(records, operation, success) {
+var store = Ext.create("Myapp.store.customers.Customers");
+//Step 2
+store.load(function(records, operation, success) {
 
-    console.log('loaded records');//Step 3
-    Ext.each(records, function(record, index, records){
+   console.log('loaded records');//Step 3
+   Ext.each(records, function(record, index, records){
       console.log( record.get("name")  + '  - '  + record.data.contractInfo.contractId );
-    });
-  });
+   });
+});
 ```
+
+Los pasos se explican a continuación:
+
+* **Step 1**: Creamos el store como de costumbre y guardamos la referencia en una variable.
+* **Step 2**: Ejecutamos el método **`load`**. Este método ejecuta internamente la operación de lectura, realiza la llamada Ajax al servidor y luego carga los datos en la tienda. La función que le damos al método **`load`** como parámetro es un callback que se ejecutará después de que los registros se carguen en el store. Lo estamos haciendo de esta manera porque Ajax es asíncrono y nunca sabemos cuándo responderá el servidor.
+* **Step 3**: El último paso recorre en iteración los registros del store e imprime el nombre de cada factura en la consola de JavaScript.
+
+Antes de ejecutar nuestro ejemplo, debemos crear el archivo serverside /customers.json. Usaremos JSON para codificar los datos, de la siguiente manera:
 
 ```js
 {
-  "success":true,
-  "id":"id",
-  "records":[
-    {
-      "id": 10001,
-      "name": "Acme corp2",
-      "phone": "+52-01-55-4444-3210",
-      "website": "www.acmecorp.com",
-      "status": "Active",
-      "clientSince": "2010-01-01 14:35",
-      "contractInfo":{
-        "id":444,
-        "contractId":"ct-001-444",
-        "documentType":"PDF"
+   "success":true,
+   "id":"id",
+   "records":[
+      {
+         "id": 10001,
+         "name": "Acme corp2",
+         "phone": "+52-01-55-4444-3210",
+         "website": "www.acmecorp.com",
+         "status": "Active",
+         "clientSince": "2010-01-01 14:35",
+         "contractInfo":{
+            "id":444,
+            "contractId":"ct-001-444",
+            "documentType":"PDF"
+         }
+      },{
+         "id": 10002,
+         "name": "Candy Store LTD",
+         "phone": "+52-01-66-3333-3895",
+         "website": "www.candyworld.com",
+         "status": "Active",
+         "clientSince": "2011-01-01 14:35",
+         "contractInfo":{
+            "id":9998,
+            "contractId":"ct-001-9998",
+            "documentType":"DOCX"
+         }
       }
-    },{
-      "id": 10002,
-      "name": "Candy Store LTD",
-      "phone": "+52-01-66-3333-3895",
-      "website": "www.candyworld.com",
-      "status": "Active",
-      "clientSince": "2011-01-01 14:35",
-      "contractInfo":{
-        "id":9998,
-        "contractId":"ct-001-9998",
-        "documentType":"DOCX"
-      }
-    }
-  ]
+   ]
 }
 ```
+
+Tenemos un objeto que contiene una serie de objetos que contienen nuestra información; cada objeto contiene las mismas propiedades que nuestro modelo **`Customer`**, y también la relación uno a uno del modelo **`Contract`**.
+
+Ahora, si ejecutamos el test, veremos dos registros en la consola. Si ejecutamos el método **`count`** en nuestro store, veremos que solo contiene dos elementos.
 
 ### Readers
 
+Los lectores le permiten a Ext JS entender cómo manejar la respuesta y llenar el store con modelos que contienen la información correcta.
+
+Como vimos en el ejemplo anterior usamos:
+
 ```js
 reader: {
-  type:'json',
-  rootProperty:'records'
+   type:'json',
+   rootProperty:'records'
 }
 ```
+
+La propiedad **`type`** define cómo se decodifica nuestra información. En este caso, estamos asignando el tipo **`json`** a la propiedad, pero también podemos usar el tipo **`xml`** o **`array`** si es necesario.
+
+**`rootProperty`** nos permite definir el nombre de la propiedad en la respuesta del servidor, donde se ubican todos los objetos que contienen la información de nuestros modelos. Esta propiedad debe ser un array en nuestra respuesta JSON. En este caso, establecemos **`records`** porque nuestra respuesta JSON usa ese nombre, pero podría ser cualquier cosa. Si tenemos objetos anidados, podemos usar un punto (.) Para ir tan profundo como necesitemos. Por ejemplo, supongamos que obtenemos la siguiente respuesta:
 
 ```js
 {
-  "success" :"true",
-  "id":"id",
-  "output":{
-    "appRecords":[{ our data .... }],
-    "customerRecords":[{ our data .... }]
-  }
+   "success" :"true",
+   "id":"id",
+   "output":{
+      "appRecords":[{ our data .... }],
+      "customerRecords":[{ our data .... }]
+   }
 }
 ```
+
+La respuesta anterior contiene el array de información dentro de la salida de un objeto; necesitamos configurar nuestro reader, por lo que debería poder leer esta respuesta correctamente. Necesitamos cambiar **`rootProperty`** de la siguiente manera:
 
 ```js
 reader: {
-  type:'json',
-  rootProperty:'output.customerRecords'
+   type:'json',
+   rootProperty:'output.customerRecords'
 }
 ```
 
+Solo hemos modificado **`rootProperty`** usando un punto para obtener un nivel más profundo. Podemos ir tan profundo como necesitemos. No importa cuántos niveles tengamos que recorrer, pero debemos asegurarnos de que estamos configurando esta configuración correctamente, apuntando al array de datos donde se completarán nuestros modelos.
+
+Probemos nuestro código nuevamente (**`proxy_02.js`**) actualizando el navegador. Ahora, veremos el mismo resultado que antes.
+
 #### XML READER(LECTOR XML)
+
+El lector XML realiza algunos cambios relativos a JSON, porque en este caso, necesitamos especificar algunas otras propiedades en el lector, para asegurarnos de que el XML sea interpretado correctamente por Ext JS. Eche un vistazo al siguiente código:
 
 ```js
 proxy:{
-    type:'ajax',
-    url: 'serverside/customers.xml',
-    reader: {
+   type:'ajax',
+   url: 'serverside/customers.xml',
+   reader: {
       type: 'xml',
       rootProperty: 'data',
       record:'customer',
       totalProperty: 'total',
       successProperty: 'success'
-    }
-  }
+   }
+}
 ```
+
+Solo hemos cambiado la propiedad **`url`** a nuestro reader, de modo que apunte a un archivo XML que contiene nuestra información, en lugar del archivo JSON. Las propiedades que estamos usando son las siguientes:
+
+* La propiedad **`type`** se estableció en **`xml`**. De esta forma, nuestro reader podrá leer correctamente la respuesta del servidor.
+* **`rootProperty`** define el Element(node) en XML que Ext JS comprobará para buscar registros (subnodos).
+* También agregamos **`record`**. Esta propiedad nos permite definir la etiqueta donde estará la información en la respuesta XML; en este caso, usamos **`customer`**.
+* Finalmente, agregamos **`totalProperty`** y **`successProperty`**, que son nodos que definen algunos valores que la tienda leerá para la funcionalidad.
+
+Ahora, creemos el archivo XML que contiene nuestra información. Este archivo debe llamarse **`serverside/customers.xml`** y contendrá el siguiente código:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
-  <success>true</success>
-  <total>2</total>
-  <customer>
-    <id>10001</id>
-    <name>Acme corp2</name>
-    <phone>+52-01-55-4444-3210</phone>
-    <website>www.acmecorp.com</website>
-    <status>Active</status>
-    <clientSince>2010-01-01 14:35</clientSince>
-    <contractInfo>
-      <id>444</id>
-      <contractId>ct-001-444</contractId>
-      <documentType>PDF</documentType>
-    </contractInfo>
-  </customer>
-  <customer>
-    <id>10002</id>
-    <name>Candy Store LTD</name>
-    <phone>+52-01-66-3333-3895</phone>
-    <website>www.candyworld.com</website>
-    <status>Active</status>
-    <clientSince>2011-01-01 14:35</clientSince>
-    <contractInfo>
-      <id>9998</id>
-      <contractId>ct-001-9998</contractId>
-      <documentType>DOCX</documentType>
-    </contractInfo>
-  </customer>
+   <success>true</success>
+   <total>2</total>
+   <customer>
+      <id>10001</id>
+      <name>Acme corp2</name>
+      <phone>+52-01-55-4444-3210</phone>
+      <website>www.acmecorp.com</website>
+      <status>Active</status>
+      <clientSince>2010-01-01 14:35</clientSince>
+      <contractInfo>
+         <id>444</id>
+         <contractId>ct-001-444</contractId>
+         <documentType>PDF</documentType>
+      </contractInfo>
+   </customer>
+   <customer>
+      <id>10002</id>
+      <name>Candy Store LTD</name>
+      <phone>+52-01-66-3333-3895</phone>
+      <website>www.candyworld.com</website>
+      <status>Active</status>
+      <clientSince>2011-01-01 14:35</clientSince>
+      <contractInfo>
+         <id>9998</id>
+         <contractId>ct-001-9998</contractId>
+         <documentType>DOCX</documentType>
+      </contractInfo>
+   </customer>
 </data>
 ```
 
+Primero, hemos definido el nodo raíz que contiene la información de las facturas. Este nodo raíz se llama **`data`**. Si cambiamos el nombre de este nodo, también deberíamos cambiar la propiedad **`root`** en nuestro reader para que coincida con este nodo.
+
+Cada nodo **`customer`** contiene los datos de nuestros modelos/registros. Hemos definido una nueva propiedad **`record`** en la configuración de nuestro reader para establecer el nombre del nodo, donde la información debe estar en nuestra respuesta XML.
+
+Ahora, probemos nuestros cambios actualizando nuestro navegador. Si todo va bien, veremos la misma respuesta que en los ejemplos anteriores. Eche un vistazo a la siguiente captura de pantalla:
+
 ![04-09](images/04-09.png)
+
+El resultado es exactamente el mismo que cuando usamos el lector JSON, sin embargo, si vamos al tab **Network** en las herramientas de los desarrolladores, podemos ver que en este caso, el servidor está respondiendo con XML.
+
+Al usar readers, podemos cambiar fácilmente de usar JSON o XML como nuestra fuente de datos. No tenemos que cambiar nada más en nuestro código, solo configure cada URL y reader correctamente.
 
 
 ## Enviando datos
