@@ -3021,6 +3021,10 @@ Ext.define('Myapp.store.customers.CustomersSending',{
 La salida que tenemos es:
 
 ![04-45](images/04-45.png)
+![04-46](images/04-46.png)
+![04-47](images/04-47.png)
+![04-48](images/04-48.png)
+![04-49](images/04-49.png)
 
 ## Resumen
 
