@@ -143,7 +143,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * Sending data
    * Summary
 
-5. Buttons and Toolbars
+5. [Buttons and Toolbars](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/910-Learning-Ext-JS/05-Buttons-and-Toolbars.md)
    * Event-driven development
    * Creating a simple button
       * Setting icons on buttons
