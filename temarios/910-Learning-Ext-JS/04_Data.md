@@ -1252,8 +1252,7 @@ Ext.define('Myapp.model.ClientWithCustomFields',{
 
 La salida que obtenemos es:
 
-![04-38](images/04-38
-.png)
+![04-38](images/04-38.png)
 
 ### Relaciones
 
