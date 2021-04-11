@@ -1988,6 +1988,147 @@ Tenemos un objeto que contiene una serie de objetos que contienen nuestra inform
 
 Ahora, si ejecutamos el test, veremos dos registros en la consola. Si ejecutamos el método **`count`** en nuestro store, veremos que solo contiene dos elementos.
 
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-11-Proxy-01.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Proxy 01</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">         
+              
+         Ext.Loader.setConfig({
+            enabled: true,
+            paths:{		
+               Myapp:'appcode'	
+            }	
+         });
+
+         Ext.require([
+            'Ext.data.*', 
+            'Myapp.model.Contract',
+            'Myapp.model.Customer',
+            'Myapp.store.customers.Customers'
+         ]);
+
+         Ext.onReady(function(){
+            
+            //Step 1
+            var store = Ext.create("Myapp.store.customers.Customers"); 
+            //Step 2
+            //contando los elementos en la tienda
+            store.load(function(records, operation, success) {	
+               console.log('Registros cargados');//Step 3
+               Ext.each(records, function(record, index, records){
+                  console.log( record.get("name")  + '  - '  + record.data.contractInfo.contractId );
+               });	
+               
+            });
+
+         });
+      </script>
+   </head>
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+`'Myapp.model.Contract'`
+
+```js
+// JavaScript Document.
+Ext.define('Myapp.model.Contract',{
+   extend:'Ext.data.Model',  
+   idProperty:'id',   
+   fields:[
+      {name: 'id', type: 'int' },
+      {name: 'contractId', type: 'string'},
+      {name: 'documentType', type: 'string'}	
+   ]
+});
+```
+
+`'Myapp.model.Customer'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.model.Customer',{
+   extend:'Ext.data.Model',  // step 1
+   requires: ['Myapp.model.Contract'],
+   idProperty:'id',   // step 2
+   fields:[ // step 3
+      {name: 'id'		 , type: 'int'},
+      {name: 'name'    , type: 'string'},
+      {name: 'phone'   , type: 'string'},
+      {name: 'website' , type: 'string'},
+      {name: 'status'  , type: 'string'},
+      {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}, 
+      {name: 'contractInfo' , reference: 'Contract', unique:true  }
+   ]
+});
+```
+
+`'Myapp.store.customers.Customers'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.store.customers.Customers',{
+   extend:'Ext.data.Store',
+   model: 'Myapp.model.Customer',   
+   autoLoad:false,
+   proxy:{
+      type:'ajax',
+      url: 'serverside/customers.json'
+      ,reader: {
+         type:'json', rootProperty:'records'
+      }
+   }
+});
+```
+
+`'serverside/customers.json'`
+
+```json
+{
+   "success" :"true",
+   "id":"id",
+   "records":[
+      { 
+         "id": 10001,
+         "name": "Acme corp2",
+         "phone": "+52-01-55-4444-3210",
+         "website": "www.acmecorp.com",
+         "status": "Active",
+         "clientSince": "2010-01-01 14:35", 
+         "contractInfo":{
+            "id":444, 
+            "contractId":"ct-001-444", 
+            "documentType":"PDF" 
+         }
+      },{
+         "id": 10002,
+         "name": "Candy Store LTD",
+         "phone": "+52-01-66-3333-3895",
+         "website": "www.candyworld.com",
+         "status": "Active",
+         "clientSince": "2011-01-01 14:35", 
+         "contractInfo":{
+            "id":9998, 
+            "contractId":"ct-001-9998", 
+            "documentType":"DOCX" 
+         }
+      }
+   ]
+}
+```
+
+![04-31](images/04-31.png)
+
 ### Readers
 
 Los lectores le permiten a Ext JS entender cómo manejar la respuesta y llenar el store con modelos que contienen la información correcta.
@@ -2028,6 +2169,160 @@ reader: {
 Solo hemos modificado **`rootProperty`** usando un punto para obtener un nivel más profundo. Podemos ir tan profundo como necesitemos. No importa cuántos niveles tengamos que recorrer, pero debemos asegurarnos de que estamos configurando esta configuración correctamente, apuntando al array de datos donde se completarán nuestros modelos.
 
 Probemos nuestro código nuevamente (**`proxy_02.js`**) actualizando el navegador. Ahora, veremos el mismo resultado que antes.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-12-Proxy-02.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Proxy 02</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">         
+              
+         Ext.Loader.setConfig({
+            enabled: true,
+            paths:{		
+               Myapp:'appcode'	
+            }	
+         });
+
+         Ext.require([
+            'Ext.data.*', 
+            'Myapp.model.Contract',
+            'Myapp.model.Customer',
+            'Myapp.store.customers.CustomersNested'
+         ]);
+
+         Ext.onReady(function(){
+            
+            //Step 1
+            var store = Ext.create("Myapp.store.customers.Customers"); 
+            //Step 2
+            //contando los elementos en la tienda
+            store.load(function(records, operation, success) {	
+               console.log('Registros cargados');//Step 3
+               Ext.each(records, function(record, index, records){
+                  console.log( record.get("name")  + '  - '  + record.data.contractInfo.contractId );
+               });	
+               
+            });
+
+         });
+      </script>
+   </head>
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+`'Myapp.model.Contract'`
+
+```js
+// JavaScript Document.
+Ext.define('Myapp.model.Contract',{
+   extend:'Ext.data.Model',  
+   idProperty:'id',   
+   fields:[
+      {name: 'id', type: 'int' },
+      {name: 'contractId', type: 'string'},
+      {name: 'documentType', type: 'string'}	
+   ]
+});
+```
+
+`'Myapp.model.Customer'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.model.Customer',{
+   extend:'Ext.data.Model',  // step 1
+   requires: ['Myapp.model.Contract'],
+   idProperty:'id',   // step 2
+   fields:[ // step 3
+      {name: 'id'		 , type: 'int'},
+      {name: 'name'    , type: 'string'},
+      {name: 'phone'   , type: 'string'},
+      {name: 'website' , type: 'string'},
+      {name: 'status'  , type: 'string'},
+      {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}, 
+      {name: 'contractInfo' , reference: 'Contract', unique:true  }
+   ]
+});
+```
+
+`'Myapp.store.customers.CustomersNested'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.store.customers.CustomersNested',{
+   extend:'Ext.data.Store',
+   model: 'Myapp.model.Customer',   
+   autoLoad:false,
+   proxy:{
+      type:'ajax',
+      url: 'serverside/customersnested.json'
+      ,reader: {
+         type:'json', rootProperty:'output.customerRecords'
+      }
+   }
+});
+```
+
+`'serverside/customersnested.json'`
+
+```js
+{
+	"success" :"true",
+	"id":"id",
+	"output":{
+		"appRecords":[
+			{
+				"id":"1",
+				"type":"1",
+				"value":"My app, version 1.0.1"	
+			},{
+				"id":"2",
+				"type":"1",
+				"value":"Visit support here: www.demo.com"
+			}		
+		],
+		"customerRecords":[
+			{ 
+				"id": 10001,
+				"name": "Acme corp2",
+				"phone": "+52-01-55-4444-3210",
+				"website": "www.acmecorp.com",
+				"status": "Active",
+				"clientSince": "2010-01-01 14:35", 
+				"contractInfo":{
+					"id":444, 
+					"contractId":"ct-001-444", 
+					"documentType":"PDF"
+				}
+			},{
+				"id": 10002,
+				"name": "Candy Store LTD",
+				"phone": "+52-01-66-3333-3895",
+				"website": "www.candyworld.com",
+				"status": "Active",
+				"clientSince": "2011-01-01 14:35", 
+				"contractInfo":{
+					"id":9998, 
+					"contractId":"ct-001-9998", 
+					"documentType":"DOCX" 
+				}
+			}
+		]
+	}
+}
+```
+
+![04-32](images/04-32.png)
 
 #### XML READER(LECTOR XML)
 
@@ -2102,6 +2397,149 @@ El resultado es exactamente el mismo que cuando usamos el lector JSON, sin embar
 
 Al usar readers, podemos cambiar fácilmente de usar JSON o XML como nuestra fuente de datos. No tenemos que cambiar nada más en nuestro código, solo configure cada URL y reader correctamente.
 
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-04-13-Proxy-03.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Proxy 03</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+
+      <script type = "text/javascript">         
+              
+         Ext.Loader.setConfig({
+            enabled: true,
+            paths:{		
+               Myapp:'appcode'	
+            }	
+         });
+
+         Ext.require([
+            'Ext.data.*', 
+            'Myapp.model.Contract',
+            'Myapp.model.Customer',
+            'Myapp.store.customers.CustomersXml'
+         ]);
+
+         Ext.onReady(function(){
+            //Step 1
+            var store = Ext.create('Myapp.store.customers.CustomersXml'); 
+            //Step 2
+            //contando los elementos en el store
+            store.load(function(records, operation, success) {	
+               console.log('Registros cargados');//Step 3
+               Ext.each(records, function(record, index, records){
+                  console.log( record.get("name")  + '  - '  + record.data.contractInfo.contractId );
+               });	
+               
+            });
+
+         });
+      </script>
+   </head>
+   <body style="padding:10px;">  
+      
+   </body>
+</html>
+```
+
+`'Myapp.model.Contract'`
+
+```js
+// JavaScript Document.
+Ext.define('Myapp.model.Contract',{
+   extend:'Ext.data.Model',  
+   idProperty:'id',   
+   fields:[
+      {name: 'id', type: 'int' },
+      {name: 'contractId', type: 'string'},
+      {name: 'documentType', type: 'string'}	
+   ]
+});
+```
+
+`'Myapp.model.Customer'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.model.Customer',{
+   extend:'Ext.data.Model',  // step 1
+   requires: ['Myapp.model.Contract'],
+   idProperty:'id',   // step 2
+   fields:[ // step 3
+      {name: 'id'		 , type: 'int'},
+      {name: 'name'    , type: 'string'},
+      {name: 'phone'   , type: 'string'},
+      {name: 'website' , type: 'string'},
+      {name: 'status'  , type: 'string'},
+      {name: 'clientSince' , type: 'date', dateFormat: 'Y-m-d H:i'}, 
+      {name: 'contractInfo' , reference: 'Contract', unique:true  }
+   ]
+});
+```
+
+`'Myapp.store.customers.CustomersXml'`
+
+```js
+// JavaScript Document
+Ext.define('Myapp.store.customers.CustomersXml',{
+   extend:'Ext.data.Store',
+   model: 'Myapp.model.Customer',   
+   autoLoad:false,
+   proxy:{
+      type:'ajax',
+      url: 'serverside/customers.xml',
+      reader: {
+         type: 'xml',
+         rootProperty: 'data',
+         record:'customer',
+         totalProperty: 'total',
+         successProperty: 'success'
+      }
+   }
+});
+```
+
+`'serverside/customers.xml'`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<success>true</success>
+	<total>2</total>
+	<customer>
+		<id>10001</id>
+		<name>Acme corp2</name>
+		<phone>+52-01-55-4444-3210</phone>
+		<website>www.acmecorp.com</website>
+		<status>Active</status>
+		<clientSince>2010-01-01 14:35</clientSince>
+		<contractInfo>
+			<id>444</id>
+			<contractId>ct-001-444</contractId>
+			<documentType>PDF</documentType>
+		</contractInfo>
+	</customer>
+	<customer>
+		<id>10002</id>
+		<name>Candy Store LTD</name>
+		<phone>+52-01-66-3333-3895</phone>
+		<website>www.candyworld.com</website>
+		<status>Active</status>
+		<clientSince>2011-01-01 14:35</clientSince>
+		<contractInfo>
+			<id>9998</id>
+			<contractId>ct-001-9998</contractId>
+			<documentType>DOCX</documentType>
+		</contractInfo>
+	</customer>
+</data>
+```
+
+![04-33](images/04-33.png)
 
 ## Enviando datos
 
