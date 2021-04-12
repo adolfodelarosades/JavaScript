@@ -1270,6 +1270,12 @@ Es importante decir que podemos agregar tantos niveles de submenús como necesit
 
 ## Toolbars
 
+Una vez que conocemos los conceptos básicos sobre botones y menús, podemos pasar al siguiente componente, que es el toolbar. Como es muy común en las aplicaciones que tienen toolbar para acceder a los módulos de nuestra aplicación, ventanas, etc., el componente de la barra de herramientas actúa como un contenedor donde podemos organizar nuestros botones de la manera que necesitamos.
+
+Desde la versión Ext JS 4, ha sido posible definir una toolbar en cualquiera de los cuatro lados de nuestros contenedores (north, south, east y west). También podemos agregar más toolbars a cada lado (más de una). Es importante mencionar que una toolbar se usa generalmente en contenedores como un panel, ventana o grid, o en subclases de contenedores en los que se puede colocar.
+
+Comencemos a crear un ejemplo básico de un toolbar en la parte superior de un panel. Entonces, creemos un archivo HTML, establezcamos la referencia a la library Ext JS y escribamos el siguiente código en la callback **`ready`** para DOM:
+
 ```js
 var myPanel = Ext.create( 'Ext.panel.Panel' ,{
    title: 'My first toolbar...',
@@ -1287,6 +1293,16 @@ var myPanel = Ext.create( 'Ext.panel.Panel' ,{
    renderTo:Ext.getBody()
 });
 ```
+AQUIIIIIIIIII
+Ahora, repasemos los pasos de este código:
+
+1. En el **`Step 1`**, definimos la propiedad **`dockedItems`**. Aquí podemos definir una matriz de componentes. Cualquier componente puede colocarse o acoplarse en cualquiera de los cuatro lados (izquierdo, superior, derecho o inferior).
+En el Paso 2, definimos dónde se acoplará la barra de herramientas. En este caso, la propiedad dock es igual a top. Si la propiedad del muelle falta o no está definida, de forma predeterminada, Ext JS la establecerá en la parte superior.
+Por lo general, las barras de herramientas se definen como elementos acoplados, pero podemos definir otros componentes, como cuadrículas, paneles y formularios, entre otros. Una cosa más para resaltar del código anterior es que, por defecto, los componentes en la matriz de elementos de la barra de herramientas son botones. Es por eso que no establecimos explícitamente un xtype.
+
+También podemos agregar cualquier otro componente a la barra de herramientas, como campo de texto, cuadro combinado y botón de radio.
+
+Agreguemos algunos botones más con íconos, como se muestra en el siguiente código:
 
 ```js
 items:[
