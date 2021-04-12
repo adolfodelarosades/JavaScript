@@ -643,60 +643,48 @@ Podemos definir cualquier número de listeners para el mismo evento, y cuando se
       </style>
       <script type = "text/javascript">
 
-        Ext.Loader.setConfig({
+	Ext.Loader.setConfig({
             enabled: true
         });
 
         Ext.require([
             'Ext.button.*',
-            'Ext.window.*'
+            'Ext.window.*'//'Ext.MessageBox'
         ]);
 
         Ext.onReady(function(){
                 
-            var myButtona = Ext.create('Ext.button.Button',{
-                text:'1st button',
+            var myButtonA = Ext.create('Ext.button.Button',{
+                text:'left icon',
                 iconCls:'addicon-16',
                 iconAlign:'left',
-                renderTo:'normalbuttons'
+                renderTo:Ext.getBody()
             });
             
-            myButtona.on('click',function(){
-                Ext.Msg.alert("Haga clic en el evento", "¡Ha hecho clic en el botón del icono izquierdo ...!");
+            myButtonA.on('click',function(){
+                Ext.Msg.alert("Haga clic en el evento", "¡Ha hecho clic en el botón left icon ...!");
             });
-            
-            var myButtonb = Ext.create('Ext.button.Button',{
-                text:'2nd button',
+
+            var myButtonB = Ext.create('Ext.button.Button',{
+                text:'top icon',
                 iconCls:'addicon-16',
-                renderTo:'normalbuttons'
+                iconAlign:'top',
+                renderTo:Ext.getBody()
             });
-            
-            var myButtonc = Ext.create('Ext.button.Button',{
-                text:'3th button',
+
+            var myButtonC = Ext.create('Ext.button.Button',{
+                text:'right icon',
                 iconCls:'addicon-16',
-                renderTo:'normalbuttons'
+                iconAlign:'right',
+                renderTo:Ext.getBody()
             });	
                 
-            var myButtond = Ext.create('Ext.button.Button',{
-                text:'4th button',
+            var myButtonD = Ext.create('Ext.button.Button',{
+                text:'bottom icon',
                 iconCls:'addicon-16',
-                renderTo:'normalbuttons'
+                iconAlign:'bottom',
+                renderTo:Ext.getBody()
             });	
-            
-            var mySegmentedbuttons = Ext.create('Ext.button.Segmented',{
-                renderTo:'segmentedbuttons',
-                vertical:false, 
-                items:[{
-                        xtype: 'button', text:'1st button', iconCls:'addicon-16'							
-                    },{
-                        text:'2nd button', iconCls:'addicon-16'						
-                    },{
-                        text:'3th button', iconCls:'addicon-16'						
-                    },{
-                        text:'4th button', iconCls:'addicon-16'						
-                    }
-                ]			
-            });
             
         });
 
@@ -713,9 +701,9 @@ Podemos definir cualquier número de listeners para el mismo evento, y cuando se
 </html>
 ```
 
-![05-29](images/05-29.png)
+![05-31](images/05-31.png)
 
-![05-30](images/05-30.png)
+![05-32](images/05-32.png)
 
 ## Botones Segmentados
 
