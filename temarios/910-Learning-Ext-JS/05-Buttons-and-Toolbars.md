@@ -637,6 +637,8 @@ dockedItems : [{
 }]
 ```
 
+![05-22](images/05-22.png)
+
 
 ![05-20](images/05-20.png)
 
@@ -646,10 +648,7 @@ dockedItems : [{
 
 ![05-21](images/05-21.png)
 
-![05-22](images/05-22.png)
 
-```js
-```
 ## Resumen 
 
 
