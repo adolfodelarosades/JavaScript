@@ -693,9 +693,9 @@ Podemos definir cualquier número de listeners para el mismo evento, y cuando se
    </head>
    <body style="padding:20px;">
 
-	    <div id="normalbuttons"></div>
-        <div>&nbsp;</div>
-        <div id="segmentedbuttons"></div>
+      <div id="normalbuttons"></div>
+      <div>&nbsp;</div>
+      <div id="segmentedbuttons"></div>
 
     </body>
 </html>
@@ -706,6 +706,10 @@ Podemos definir cualquier número de listeners para el mismo evento, y cuando se
 ![05-32](images/05-32.png)
 
 ## Botones Segmentados
+
+Una nueva incorporación en la versión 5 son los botones segmentados, que nos dan la posibilidad de mostrar botones como parte de un grupo. De hecho, el uso de botones segmentados es en realidad el uso de un contenedor específico para un grupo de botones. Para esto, necesitamos usar la clase **`Ext.button.Segmented`** tratándola de manera similar a cualquier contenedor (que se discutió en capítulos anteriores).
+
+Usando los archivos de ejemplo anteriores (**`button_04.js`** y **`button_04.html`**), creemos un duplicado de estos archivos y guárdelos con los nombres **`button_05.js`** y **`button_05.html`**. Ahora, cambiemos el título de los botones, eliminemos la propiedad iconAlign y agreguemos lo siguiente después de la última línea del código:
 
 ```js
 var mySegmentedbuttons = Ext.create('Ext.button.Segmented',{
@@ -723,11 +727,203 @@ var mySegmentedbuttons = Ext.create('Ext.button.Segmented',{
 });
 ```
 
+Ejecutemos el ejemplo en el navegador y obtendremos el siguiente resultado:
+
 ![05-07](images/05-07.png)
+
+Como puede observar, la segunda fila de botones es el contenedor de botones segmentado renderizado, y los botones se ven mejor que los de la primera fila (botones simples en la misma fila y no agrupados). Observe que el primer botón y el último botón en el contenedor de **botones segmentado** tienen esquinas redondeadas, en comparación con la primera fila donde cada botón tiene esquinas redondeadas.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-05-07-Button-06.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - buttons 06</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <style type="text/css">
+        .addicon-16{
+            background:transparent url('images/add_16x16.png') center 0 no-repeat !important; 
+        }
+      </style>
+      <script type = "text/javascript">
+
+        Ext.Loader.setConfig({
+            enabled: true
+        });
+
+        Ext.require([
+            'Ext.button.*',
+            'Ext.window.*'
+        ]);
+
+        Ext.onReady(function(){
+                
+            var myButtona = Ext.create('Ext.button.Button',{
+                text:'1st button',
+                iconCls:'addicon-16',
+                iconAlign:'left',
+                renderTo:'normalbuttons'
+            });
+            
+            myButtona.on('click',function(){
+                Ext.Msg.alert("Haga clic en el evento", "¡Ha hecho clic en el botón del icono izquierdo ...!");
+            });
+            
+            var myButtonb = Ext.create('Ext.button.Button',{
+                text:'2nd button',
+                iconCls:'addicon-16',
+                renderTo:'normalbuttons'
+            });
+            
+            var myButtonc = Ext.create('Ext.button.Button',{
+                text:'3th button',
+                iconCls:'addicon-16',
+                renderTo:'normalbuttons'
+            });	
+                
+            var myButtond = Ext.create('Ext.button.Button',{
+                text:'4th button',
+                iconCls:'addicon-16',
+                renderTo:'normalbuttons'
+            });	
+            
+            var mySegmentedbuttons = Ext.create('Ext.button.Segmented',{
+                renderTo:'segmentedbuttons',
+                vertical:false, 
+                items:[{
+                        xtype: 'button', text:'1st button', iconCls:'addicon-16'							
+                    },{
+                        text:'2nd button', iconCls:'addicon-16'						
+                    },{
+                        text:'3th button', iconCls:'addicon-16'						
+                    },{
+                        text:'4th button', iconCls:'addicon-16'						
+                    }
+                ]			
+            });
+            
+        });
+      </script>
+   </head>
+   <body style="padding:20px;">
+	
+	<div id="normalbuttons"></div>
+        <div>&nbsp;</div>
+        <div id="segmentedbuttons"></div>
+
+    </body>
+</html>
+```
+
+![05-33](images/05-33.png)
+
+Además, podemos establecer el grupo de forma vertical estableciendo la propiedad **`vertical:true`**. Consulte la siguiente captura de pantalla para comprender esto:
 
 ![05-08](images/05-08.png)
 
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-05-08-Button-07.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - buttons 07</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <style type="text/css">
+        .addicon-16{
+            background:transparent url('images/add_16x16.png') center 0 no-repeat !important; 
+        }
+      </style>
+      <script type = "text/javascript">
+
+        Ext.Loader.setConfig({
+            enabled: true
+        });
+
+        Ext.require([
+            'Ext.button.*',
+            'Ext.window.*'
+        ]);
+
+        Ext.onReady(function(){
+                
+            var myButtona = Ext.create('Ext.button.Button',{
+                text:'1st button',
+                iconCls:'addicon-16',
+                iconAlign:'left',
+                renderTo:'normalbuttons'
+            });
+            
+            myButtona.on('click',function(){
+                Ext.Msg.alert("Haga clic en el evento", "¡Ha hecho clic en el botón del icono izquierdo ...!");
+            });
+            
+            var myButtonb = Ext.create('Ext.button.Button',{
+                text:'2nd button',
+                iconCls:'addicon-16',
+                renderTo:'normalbuttons'
+            });
+            
+            var myButtonc = Ext.create('Ext.button.Button',{
+                text:'3th button',
+                iconCls:'addicon-16',
+                renderTo:'normalbuttons'
+            });	
+                
+            var myButtond = Ext.create('Ext.button.Button',{
+                text:'4th button',
+                iconCls:'addicon-16',
+                renderTo:'normalbuttons'
+            });	
+            
+            var mySegmentedbuttons = Ext.create('Ext.button.Segmented',{
+                renderTo:'segmentedbuttons',
+                vertical:true, 
+                items:[{
+                        xtype: 'button', text:'1st button', iconCls:'addicon-16'							
+                    },{
+                        text:'2nd button', iconCls:'addicon-16'						
+                    },{
+                        text:'3th button', iconCls:'addicon-16'						
+                    },{
+                        text:'4th button', iconCls:'addicon-16'						
+                    }
+                ]			
+            });
+            
+        });
+      </script>
+   </head>
+   <body style="padding:20px;">
+
+        <div id="normalbuttons"></div>
+        <div>&nbsp;</div>
+        <div id="segmentedbuttons"></div>
+
+    </body>
+</html>
+```
+
+![05-34](images/05-34.png)
+
+De forma predeterminada, la clase **`Ext.button.Segmented`** trata cada **item** como un botón. En el código de ejemplo, establecemos la propiedad **`xtype`** en el primer botón. Los otros tres botones no tienen esa propiedad y aún así, Ext JS trató cada elemento como un objeto de configuración de botón.
+
+Los botones segmentados, como puede ver, tienen principalmente un propósito de estética visual y dan una mejor apariencia. Según Sencha, esto es:
+
+*"Una presentación muy común para selección múltiple en dispositivos móviles"*.
+
 ## Agregar Menús
+
+Hay ocasiones en las que necesitamos crear un menú (o menús) para permitir al usuario elegir entre las opciones disponibles. Podemos lograr esto configurando la propiedad **`menu`** de los botones. Esto creará un menú flotante para el botón seleccionado, y se mostrará cuando el usuario haga clic en el botón.
+
+Creemos un botón que contenga un menú con opciones. Para el siguiente ejemplo, necesitamos crear una página HTML, importar la library Ext JS y escuchar el evento DOM **`ready`**. Dentro del callback, debemos modificar el código que crea nuestro botón, como se muestra aquí:
 
 ```js
 var myButton = Ext.create('Ext.button.Button',{
@@ -745,7 +941,78 @@ var myButton = Ext.create('Ext.button.Button',{
 });
 ```
 
+Como podemos ver en el código anterior, la propiedad **`menu`** recibe un array de objetos. Este array se utilizará para crear una instancia de la clase **`Ext.menu.Menu`**. Esta clase es responsable de administrar y mostrar el menú flotante.
+
+También es importante decir que cada objeto dentro del array usa el item **`menu`** como xtype predeterminado. Como resultado, deberíamos ver algo como lo que se muestra en la siguiente captura de pantalla cuando abrimos nuestro archivo HTML en nuestro navegador:
+
 ![05-09](images/05-09.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-05-09-Menu-01.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - menu 01</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <style type="text/css">
+        .addicon-16{
+		    background:transparent url('images/add_16x16.png') center 0 no-repeat !important; 
+        }
+        .addicon-24{
+            background:transparent url('images/add_24x24.png') center 0 no-repeat !important;
+        }
+        .addicon-32{
+            background:transparent url('images/add_32x32.png') center 0 no-repeat !important;
+        }
+      </style>
+      <script type = "text/javascript">
+
+        Ext.Loader.setConfig({
+            enabled: true
+        });
+
+        Ext.require([
+            'Ext.button.*',
+            'Ext.window.*'
+        ]);
+
+        Ext.onReady(function(){
+                
+            var myButton = Ext.create('Ext.button.Button',{
+                text:'Añadir método de pago...',
+                iconCls:'addicon-32',
+                iconAlign:'left',
+                scale:'large',
+                renderTo:'normalbuttons',
+                menu:[
+                    {text:'Master Card' },		
+                    {text:'Visa' },					
+                    {text:'PayPal' },		
+                    {text:'Other...' }					
+                ]
+            });
+            
+        });
+
+      </script>
+   </head>
+   <body style="padding:20px;">
+
+	    <div id="normalbuttons"></div>
+        <div>&nbsp;</div>
+        <div id="segmentedbuttons"></div>
+
+    </body>
+</html>
+```
+
+![05-35](images/05-35.png)
+
+En el código anterior, usamos objetos literales para crear nuestro menú. Si queremos usar constructores en lugar de literales, debemos crear una instancia de las clases **`Ext.menu.Menu`** y **`Ext.menu.Item`**, de la siguiente manera:
 
 ```js
 //Step 1
@@ -768,6 +1035,8 @@ var myButton = Ext.create('Ext.button.Button',{
 });
 ```
 
+En el **`Step 1`**, creamos una instancia de la clase **`Ext.menu.Item`**. En el **`Step 2`**, creamos una instancia de la clase **`Ext.menu.Menu`** y su propiedad **`items`** en el **`Step 3`** contiene un array mixta. El primer elemento es la variable **`menuItemA`**, el segundo es un constructor para la clase **`Ext.menu.Item`** y el tercero es un objeto de configuración que se convertirá en una clase **`Ext.menu.Item`**:
+
 ```js
 items : [ //Step 3
    menuItemA,  // Variable
@@ -778,7 +1047,85 @@ items : [ //Step 3
 ]
 ```
 
+Una vez que hemos creado nuestro menú, agregamos nuestra instancia a la propiedad **`menu`** del botón. Cuando se crea el botón, detecta que la propiedad **`menu`**  no es un array y es una instancia de la clase **`Menu`**.
+
+Como resultado, tenemos dos botones con un menú que contiene las mismas opciones, como se muestra en esta captura de pantalla:
+
 ![05-10](images/05-10.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-05-10-Menu-02.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - menu 02</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <style type="text/css">
+        .addicon-16{
+		    background:transparent url('images/add_16x16.png') center 0 no-repeat !important; 
+        }
+        .addicon-24{
+            background:transparent url('images/add_24x24.png') center 0 no-repeat !important;
+        }
+        .addicon-32{
+            background:transparent url('images/add_32x32.png') center 0 no-repeat !important;
+        }
+      </style>
+      <script type = "text/javascript">
+
+        Ext.Loader.setConfig({
+            enabled: true
+        });
+
+        Ext.require([
+            'Ext.button.*',
+            'Ext.window.*'
+        ]);
+
+        Ext.onReady(function(){
+                        
+            //Step 1
+            var menuItemA = Ext.create('Ext.menu.Item',{text:'Master card'});
+            //Step 2
+            var menu = Ext.create('Ext.menu.Menu',{
+            items : [	//Step 3
+                menuItemA,	 // Variable
+                Ext.create('Ext.menu.Item',{text:'American Express'}),  // constructor
+                {text:'Other...'} //object config 
+            ]
+            });
+            
+                
+            var myButton = Ext.create('Ext.button.Button',{
+                text:'Añadir método de pago...',
+                iconCls:'addicon-32',
+                iconAlign:'left',
+                scale:'large',
+                renderTo:'normalbuttons',
+                menu:menu
+            });
+            
+        });
+
+      </script>
+   </head>
+   <body style="padding:20px;">
+
+      <div id="normalbuttons"></div>
+      <div>&nbsp;</div>
+      <div id="segmentedbuttons"></div>
+
+    </body>
+</html>
+```
+
+![05-36](images/05-36.png)
+
+Agregar un menú es realmente fácil. Ahora, si queremos agregar alguna funcionalidad a estas opciones, necesitamos establecer un listener para cada elemento del menú. Si revisamos la documentación, veremos que la clase **`Ext.menu.Item`** contiene un evento **`click`**. Este es el evento que necesitamos escuchar, para realizar algunas acciones cuando se dispara. Sin embargo, hay muchas formas en las que podemos adjuntar controladores de eventos a un componente o widget. Para demostrar esto, agreguemos un poco más de código, como se muestra en el siguiente ejemplo:
 
 ```js
 var myButton = Ext.create('Ext.button.Button',{
@@ -813,13 +1160,113 @@ function onMenuItemClick (itemBtn, Event){
 }
 ```
 
+Ahora, echemos un vistazo a las opciones en el código:
+
+1. En la **`Option 1`**, agregamos una propiedad **`listeners`** al objeto de configuración que generará una alerta cuando se haga clic en él.
+2. En la **`Option 2`**, usamos una propiedad llamada **`handler`**. Esta propiedad vinculará el evento de clic al nombre de la función **`onMenuItemClick`** que se establece en la propiedad. Además, la función recibirá dos parámetros (**`item`** y **`event`**).
+3. En la **`Option 3`**, usamos nuevamente la propiedad **`listeners`**, pero para el evento click. Pasamos un objeto de configuración con dos propiedades: **`fn`** y **`single`**. La propiedad **`fn`** especificará la función a ejecutar, y **`single`** especificará que la ejecución solo se realizará una vez. Después de la primera ejecución, Ext JS eliminará el controlador de eventos(event handler).
+
 > **NOTA**
 > 
-> 
+> Es importante leer cómo agregar detectores de eventos en componentes o widgets, y probar las diferentes formas de lograrlo. No todo el tiempo necesitaremos utilizar las mismas formas; depende de la funcionalidad que necesite. Conocer las variaciones de add listeners puede evitar que tengamos que escribir mucho código adicional para aplicaciones.
+ 
+Es posible que haya notado que el segundo y el último elemento del menú tienen la propiedad **`handler: onMenuItemClick`**, por lo que ambos apuntan a la misma función. Esta función reconocerá qué botón se presionó/en el que se hizo clic accediendo a ellos con el parámetro **`itemBtn`** pasado a esa función. En este caso, necesitamos acceso solo a la propiedad **`text`**:
 
 ```js
 var optionString = itemBtn.text;
 ```
+
+Actualice el navegador, pruebe cada opción y vea cómo funcionan los listeners en cada botón.
+
+Es importante decir que podemos agregar tantos niveles de submenús como necesitemos usando la propiedad **`menu`**. Sin embargo, desde mi experiencia personal, no recomendaré poner en cascada sus menús con demasiada profundidad porque la experiencia del usuario se verá afectada.
+
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-05-10-Menu-02.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - menu 03</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <style type="text/css">
+        .addicon-16{
+            background:transparent url('images/add_16x16.png') center 0 no-repeat !important; 
+        }
+        .addicon-24{
+            background:transparent url('images/add_24x24.png') center 0 no-repeat !important;
+        }
+        .addicon-32{
+            background:transparent url('images/add_32x32.png') center 0 no-repeat !important;
+        }
+      </style>
+      <script type = "text/javascript">
+
+        Ext.Loader.setConfig({
+            enabled: true
+        });
+
+        Ext.require([
+            'Ext.button.*',
+            'Ext.window.*'
+        ]);
+
+        Ext.onReady(function(){
+                
+            var myButton = Ext.create('Ext.button.Button',{
+                text:'Añadir método de pago...',
+                iconCls:'addicon-32',
+                iconAlign:'left',
+                scale:'large',
+                renderTo:'normalbuttons',
+                menu:[{
+                        text:'Master Card',
+                        listeners:{  // Option 1
+                            click:function(){
+                                Ext.Msg.alert("Haga clic en el evento", "¡Seleccionó Master Card ...!");	
+                            }
+                        }			
+                    },{
+                        text:'Visa', //Option 2
+                        handler:onMenuItemClick
+                    },{
+                        text:'PayPal', 
+                        listeners:{ //Option 3
+                            'click':{fn:onMenuItemClick}
+                        }
+                    },{
+                        text:'Other...', 
+                        handler:onMenuItemClick
+                    }					
+                ]
+            });
+            function onMenuItemClick(itemBtn, Event){
+                var optionString = itemBtn.text;
+                Ext.Msg.alert("Haga clic en el evento", "Usted seleccionó" + optionString +  " ..!");	
+            }
+            
+        });
+
+
+      </script>
+   </head>
+   <body style="padding:20px;">
+
+	    <div id="normalbuttons"></div>
+        <div>&nbsp;</div>
+        <div id="segmentedbuttons"></div>
+
+    </body>
+</html>
+```
+
+![05-37](images/05-37.png)
+![05-38](images/05-38.png)
+![05-39](images/05-39.png)
+![05-40](images/05-40.png)
 
 ## Toolbars
 
