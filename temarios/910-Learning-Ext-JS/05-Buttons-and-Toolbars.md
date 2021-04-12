@@ -687,8 +687,7 @@ Podemos definir cualquier número de listeners para el mismo evento, y cuando se
             });	
             
         });
-
-
+	      
       </script>
    </head>
    <body style="padding:20px;">
@@ -1293,14 +1292,81 @@ var myPanel = Ext.create( 'Ext.panel.Panel' ,{
    renderTo:Ext.getBody()
 });
 ```
-AQUIIIIIIIIII
+
 Ahora, repasemos los pasos de este código:
 
-1. En el **`Step 1`**, definimos la propiedad **`dockedItems`**. Aquí podemos definir una matriz de componentes. Cualquier componente puede colocarse o acoplarse en cualquiera de los cuatro lados (izquierdo, superior, derecho o inferior).
-En el Paso 2, definimos dónde se acoplará la barra de herramientas. En este caso, la propiedad dock es igual a top. Si la propiedad del muelle falta o no está definida, de forma predeterminada, Ext JS la establecerá en la parte superior.
-Por lo general, las barras de herramientas se definen como elementos acoplados, pero podemos definir otros componentes, como cuadrículas, paneles y formularios, entre otros. Una cosa más para resaltar del código anterior es que, por defecto, los componentes en la matriz de elementos de la barra de herramientas son botones. Es por eso que no establecimos explícitamente un xtype.
+1. En el **`Step 1`**, definimos la propiedad **`dockedItems`**. Aquí podemos definir una matriz de componentes. Cualquier componente puede colocarse o acoplarse en cualquiera de los cuatro lados (**`left`**, **`top`**, **`right`** o **`bottom`**).
+2. En el **`Step 2`**, definimos dónde se acoplará la toolbar. En este caso, la propiedad **`dock`** es igual a **`top`**. Si la propiedad **`dock`** falta o no está definida, de forma predeterminada, Ext JS la establecerá en la parte **`top`**.
 
-También podemos agregar cualquier otro componente a la barra de herramientas, como campo de texto, cuadro combinado y botón de radio.
+Por lo general, las toolbar se definen como elementos acoplados, pero podemos definir otros componentes, como grids, paneles y formularios, entre otros. Una cosa más para resaltar del código anterior es que, por defecto, los componentes en el array **`items`** de la toolbar son botones. Es por eso que no establecimos explícitamente un xtype.
+
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-05-12-Toolbar-01.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Toolbar 01</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <style type="text/css">
+        .addicon-16{
+            background:transparent url('images/add_16x16.png') center 0 no-repeat !important; 
+        }
+        .addicon-24{
+            background:transparent url('images/add_24x24.png') center 0 no-repeat !important;
+        }
+        .addicon-32{
+            background:transparent url('images/add_32x32.png') center 0 no-repeat !important;
+        }
+      </style>
+      <script type = "text/javascript">
+
+        // JavaScript Document
+        Ext.Loader.setConfig({
+            enabled: true
+        });
+
+        Ext.require([
+            'Ext.button.*',
+            'Ext.toolbar.*',
+            'Ext.menu.*',
+            'Ext.window.*'	
+        ]);
+
+        Ext.onReady(function(){
+                    
+            var myPanel = Ext.create('Ext.panel.Panel',{
+                title:'Mi primera barra de herramientas ...', 
+                width:450,
+                height:200, 
+                dockedItems:[{ //Step 1
+                    xtype : 'toolbar',				
+                    dock: 'top', //Step 2
+                    items:[
+                        { text:'Nuevo record' },	
+                        { text:'Editar record' },				
+                        { text:'Eliminar record' }	
+                    ]
+                }],
+                renderTo:Ext.getBody()		
+            });		
+            
+        });
+
+      </script>
+   </head>
+   <body style="padding:20px;">
+   </body>
+</html>
+```
+
+![05-41](images/05-41.png)
+
+También podemos agregar cualquier otro componente a la toolbar, como **`textfield`**, **`combo box`** y **`radiobutton`**.
 
 Agreguemos algunos botones más con íconos, como se muestra en el siguiente código:
 
@@ -1315,6 +1381,8 @@ items:[
 ]
 ```
 
+Una vez que hemos realizado los cambios, necesitamos crear las clases CSS (reglas) que establecerán la imagen como fondo. Agreguemos las reglas a nuestro archivo HTML o archivo de estilo CSS:
+
 ```css
 .addicon-16{ background:transparent url('../images/add_16x16.png') center 0 no-repeat !important; }
 .deleteicon-16{ background:transparent url('../images/delete.png') center 0 no-repeat !important; }
@@ -1324,9 +1392,139 @@ items:[
 .export-16{ background:transparent url('../images/page_go.png') center 0 no-repeat !important; }
 ```
 
+Recuerde que puede cambiar imágenes o agregar más imágenes y clases CSS (reglas). Ejecutemos el navegador. Puede ver algo similar a esto:
+
 ![05-11](images/05-11.png)
 
+La captura de pantalla muestra los nuevos botones con un icono. De forma predeterminada, los iconos están alineados a la izquierda y los botones están alineados horizontalmente.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-05-13-Toolbar-02.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Toolbar 02</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+      <script type = "text/javascript">
+
+        // JavaScript Document
+        Ext.Loader.setConfig({
+            enabled: true
+        });
+
+        Ext.require([
+            'Ext.button.*',
+            'Ext.toolbar.*',
+            'Ext.menu.*',
+            'Ext.window.*'	
+        ]);
+
+        Ext.onReady(function(){
+                    
+            var myPanel = Ext.create('Ext.panel.Panel',{
+                title:'Mi primera barra de herramientas ...', 
+                width:600,
+                height:200, 
+                dockedItems:[{ //Step 1
+                    xtype : 'toolbar',				
+                    dock: 'top', //Step 2
+                    items:[
+                        { text:'Nuevo', iconCls:'addicon-16' },	
+                        { text:'Editar', iconCls:'editicon-16'  },				
+                        { text:'Eliminar', iconCls:'deleteicon-16' },
+                        { text:'Exportar', iconCls:'export-16' },
+                        { text:'Imprimir', iconCls:'print-16' },
+                        { text:'Ayuda', iconCls:'help-16' }	
+                    ]
+                }],
+                renderTo:Ext.getBody()		
+            });
+        });
+
+      </script>
+   </head>
+   <body style="padding:20px;">
+   </body>
+</html>
+```
+
+![05-42](images/05-42.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-05-14-Toolbar-03.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Toolbar 03</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+      <script type = "text/javascript">
+
+        // JavaScript Document
+        Ext.Loader.setConfig({
+            enabled: true
+        });
+
+        Ext.require([
+            'Ext.button.*',
+            'Ext.toolbar.*',
+            'Ext.menu.*',
+            'Ext.window.*'	
+        ]);
+
+        Ext.onReady(function(){
+                    
+        var myPanel = Ext.create('Ext.panel.Panel',{
+            title:'My first toolbar...', 
+            width:600,
+            height:200, 
+            dockedItems:[{ //Step 1
+                xtype : 'toolbar',				
+                dock: 'top', //Step 2
+                items:[
+                    { xtype:'buttongroup', 
+                    title:'Actions',
+                    items:[
+                        { text:'New', iconCls:'addicon-16' },	
+                        { text:'Edit', iconCls:'editicon-16'  },				
+                        { text:'Remove', iconCls:'deleteicon-16' }
+                    ]
+                    },{ 
+                    xtype:'buttongroup', 
+                    title:'Print / Export & Help',
+                    items:[			  
+                        { text:'Export', iconCls:'export-16' },
+                        { text:'Print', iconCls:'print-16' },
+                        { text:'Help', iconCls:'help-16' }	
+                    ]
+                    }
+                ]
+            }],
+            renderTo:Ext.getBody()		
+        });		
+            
+            
+        });
+
+      </script>
+   </head>
+   <body style="padding:20px;">
+   </body>
+</html>
+```
+
 ### Grupos de Botones de la Toolbars
+
+Una característica interesante de Ext JS es que podemos agrupar los botones de la toolbar gracias a la clase **`Ext.container.ButtonGroup`** o mediante el uso de **`xtype:'buttongroup'`**. Esta clase es una subclase de **`Ext.panel.Panel`** que nos permite agrupar botones en una toolbar. Nuevamente, cambiemos el código anterior para organizar nuestros botones en la toolbar, como lo hace el siguiente código:
 
 ```js
 var myPanel = Ext.create('Ext.panel.Panel',{
@@ -1359,7 +1557,78 @@ var myPanel = Ext.create('Ext.panel.Panel',{
 });
 ```
 
+Agregamos dos grupos de botones a la toolbar y, en lugar de agregar los botones directamente a la toolbar, lo hicimos en cada grupo de botones en la propiedad items. Además, definimos un título para cada grupo de botones. Ahora, echemos un vistazo a la siguiente captura de pantalla, que muestra el resultado:
+
 ![05-12](images/05-12.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-05-14-Toolbar-03.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Toolbar 03</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+      <script type = "text/javascript">
+
+        // JavaScript Document
+        Ext.Loader.setConfig({
+            enabled: true
+        });
+
+        Ext.require([
+            'Ext.button.*',
+            'Ext.toolbar.*',
+            'Ext.menu.*',
+            'Ext.window.*'	
+        ]);
+
+        Ext.onReady(function(){
+                    
+            var myPanel = Ext.create('Ext.panel.Panel',{
+                title:'Mi primera toolbar...', 
+                width:600,
+                height:200, 
+                dockedItems:[{ //Step 1
+                    xtype : 'toolbar',				
+                    dock: 'top', //Step 2
+                    items:[
+                        { xtype:'buttongroup', 
+                        title:'Acciones',
+                        items:[
+                            { text:'Nuevo', iconCls:'addicon-16' },	
+                            { text:'Editar', iconCls:'editicon-16'  },				
+                            { text:'Eliminar', iconCls:'deleteicon-16' }
+                        ]
+                        },{ 
+                        xtype:'buttongroup', 
+                        title:'Imprimir / Exportar & Ayuda',
+                        items:[			  
+                            { text:'Exportar', iconCls:'export-16' },
+                            { text:'Imprimir', iconCls:'print-16' },
+                            { text:'Ayuda', iconCls:'help-16' }	
+                        ]
+                        }
+                    ]
+                }],
+                renderTo:Ext.getBody()		
+            });		  
+        });
+
+      </script>
+   </head>
+   <body style="padding:20px;">
+   </body>
+</html>
+```
+
+![05-43](images/05-43.png)
+
+Por defecto, el **`buttongroup`** xtype creado ha colocado los botones horizontalmente (tres columnas para cada grupo). Podemos cambiar este aspecto usando la propiedad **`column`**:
 
 ```js
 var myPanel = Ext.create('Ext.panel.Panel',{
@@ -1396,7 +1665,85 @@ var myPanel = Ext.create('Ext.panel.Panel',{
 });
 ```
 
+En el código anterior, establecemos la propiedad **`columns`** en **`2`** en el primer grupo de botones. Esto significa que los botones de ese grupo se organizarán en dos columnas. Una cosa importante para observar de cerca es la propiedad **`rowspan`** del nuevo botón. Esta propiedad se establece en **`2`**, lo que significa que el nuevo botón utilizará dos filas. También modificamos el tamaño de algunos botones a **`large`** y actualizamos la propiedad **`iconCls`** para usar imágenes de tamaño 32 píxeles (width y height).
+
+Con estos pocos cambios implementados, tendremos un mejor diseño y botones organizados, lo que le dará a la interfaz de usuario final una apariencia y sensación muy elegante, como se muestra en esta captura de pantalla:
+
 ![05-13](images/05-13.png)
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-05-15-Toolbar-04.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Toolbar 04</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+      <script type = "text/javascript">
+
+        // JavaScript Document
+        Ext.Loader.setConfig({
+            enabled: true
+        });
+
+        Ext.require([
+            'Ext.button.*',
+            'Ext.toolbar.*',
+            'Ext.menu.*',
+            'Ext.window.*'	
+        ]);
+
+        Ext.onReady(function(){
+                    
+        var myPanel = Ext.create('Ext.panel.Panel',{
+            title:'Mi primera toolbar...', 
+            width:600,
+            height:200, 
+            dockedItems:[{ //Step 1
+                xtype : 'toolbar',				
+                dock: 'top', //Step 2
+                items:[
+                    { xtype:'buttongroup', 
+                    title:'Acciones',
+                    columns:2, 
+                    items:[
+                        { text:'Nuevo', iconCls:'addicon-32', scale:'large', rowspan:2, iconAlign:'top' },	
+                        { text:'Editar', iconCls:'editicon-16'  },				
+                        { text:'Eliminar', iconCls:'deleteicon-16' }
+                    ]
+                    },{ 
+                    xtype:'buttongroup', title:'Imprimir / Exportar & Ayuda',
+                    defaults:{ scale:'large', iconAlign:'top' },
+                    items:[			  
+                        { text:'Exportar', iconCls:'export-32' },
+                        { text:'Imprimir', iconCls:'print-32' }				
+                    ]			  
+                    },{ 
+                    xtype:'buttongroup', title:'Ayuda',
+                    items:[			  
+                        { text:'Ayuda', iconCls:'help-32', scale:'large', iconAlign:'bottom' }			
+                    ]			  
+                    }
+                ]
+            }],
+            renderTo:Ext.getBody()		
+        });		
+            
+            
+        });
+
+      </script>
+   </head>
+   <body style="padding:20px;">
+   </body>
+</html>
+```
+
+![05-44](images/05-44.png)
 
 ## La Breadcrumb Bar
 
