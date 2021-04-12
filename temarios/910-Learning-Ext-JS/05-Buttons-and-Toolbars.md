@@ -1747,6 +1747,10 @@ Con estos pocos cambios implementados, tendremos un mejor diseño y botones orga
 
 ## La Breadcrumb Bar
 
+Una nueva incorporación en Ext JS versión 5 es la breadcrumb bar. Esta barra muestra datos jerárquicos de un **`TreeStore`** como un rastro de botones de ruta de navegación. En el Capítulo 9, El *Tree Panel*, hablaremos sobre el tree store con más detalle y también veremos información más específica sobre **`TreeStore`**.
+
+Comencemos creando un nuevo archivo HTML y nuestro código JS. En primer lugar, debemos definir nuestra tienda que contiene datos para la barra de ruta de navegación con el siguiente código:
+
 ```js
 Ext.define('Myapp.sample.store.mainMenu', {
    extend: 'Ext.data.TreeStore',
@@ -1786,6 +1790,13 @@ Ext.define('Myapp.sample.store.mainMenu', {
 });
 ```
 
+Repasemos lo que hicimos en el código anterior paso a paso:
+
+* Nuestra nueva store/class, **`Myapp.sample.store.mainMenu`**, amplía la clase **`Ext.data.TreeStore`**.
+* La propiedad root dentro del store es el nodo inicial/data model que el **`TreeStore`** contendrá, y sus child nodes / data models están dentro de la propiedad children, que es un array de nodos o data models.
+
+Como puede observar, los datos dentro de la propiedad root (nodo) están estructurados en forma de árbol. Esto será interpretado por la breadcrumb bar para crear los botones, menús y submenús dentro de su cuerpo. Ahora, declaremos o creemos la breadcrumb bar de la siguiente manera:
+
 ```js
 //step 1
 var myMenuStore = Ext.create('Myapp.sample.store.mainMenu',{});
@@ -1804,7 +1815,19 @@ var myPanel = Ext.create('Ext.panel.Panel',{
 });
 ```
 
+El primer paso es la creación de una instancia previamente definida **`'Myapp.sample.store.mainMenu'`**, luego procedemos a crear el contenedor myPanel.
+
+Además, tal como declaramos la toolbar para el panel, ahora configuramos la breadcrumb bar estableciendo la propiedad **`xtype`** en **`breadcrumb`**. También observe que tenemos otras propiedades, como:
+
+* La propiedad **`store: myMenuStore`** le indica a la breadcrumb dónde va a recuperar los datos para crear sus componentes adecuados (botones, menús, etc.).
+* La propiedad **`showIcons:true`** controlará si se muestran o no iconos en los botones.
+* La propiedad **`selection`** establecerá el node/data model seleccionado inicialmente. Podemos usar **`root`** para configurar el primer elemento en el store, o en este caso, configuramos **`myMenuStore.getRoot().childNodes[2].childNodes[0]`**, que es seleccionar el nodo **`Submit a ticket`**, o modelo de datos.
+
+Ejecute el archivo en el navegador. Obtendremos algo similar a la siguiente captura de pantalla:
+
 ![05-14](images/05-14.png)
+
+Como puede ver, en este momento, la ruta de navegación muestra tres botones: **My App**, **Support** y **Submit a ticket**. Los dos primeros botones que ve contienen un menú que muestra sus elementos secundarios (los children definidos en el store). Además, puede notar que el primer y último botón tienen iconos grises. Estos son, de hecho, iconos predeterminados asignados por Ext JS. El segundo botón tiene un icono de ayuda que se definió en el store:
 
 ```js
 {
@@ -1817,9 +1840,14 @@ var myPanel = Ext.create('Ext.panel.Panel',{
 }
 ```
 
+Haga clic en el primer botón y verá desaparecer el segundo y el tercero, como se muestra en esta captura de pantalla:
+
 ![05-15](images/05-15.png)
 
 ![05-16](images/05-16.png)
+
+
+AQUUUUUUUUUIIIIIIIIIIIIIIIII
 
 ### Manejo de Selecciones en la Breadcrumb Bar
 
