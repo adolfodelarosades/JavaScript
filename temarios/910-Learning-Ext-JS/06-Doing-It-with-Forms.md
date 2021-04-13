@@ -485,28 +485,27 @@ Es importante tener en cuenta que si queremos usar estos eventos, debemos establ
 
 ```js
 createFields: function (){
-  var newItems=[];
-  // Step 1
-  var myTextField = Ext.create('Ext.form.field.Text',{
-     fieldLabel:'Name',
-     name:'firstname',
-     enableKeyEvents : true
-  });
-  // Step 2 (assign listener to the text field)
-  myTextField.on({
-    keyup:{
-      fn:function( thisField, evt, eOpts ){
-        if(evt.getCharCode() === evt.ENTER){
-        if (thisField.getValue()!=''){
-          Ext.Msg.alert('Alert','Welcome: '+
-thisField.getValue() );
-        }
-        }
+   var newItems=[];
+   // Step 1
+   var myTextField = Ext.create('Ext.form.field.Text',{
+      fieldLabel:'Name',
+      name:'firstname',
+      enableKeyEvents : true
+   });
+   // Step 2 (assign listener to the text field)
+   myTextField.on({
+      keyup:{
+         fn:function( thisField, evt, eOpts ){
+            if(evt.getCharCode() === evt.ENTER){
+               if (thisField.getValue()!=''){
+                  Ext.Msg.alert('Alert','Welcome: '+ thisField.getValue() );
+               }
+            }
+         }
       }
-    }
-  });
-  newItems.push( myTextField );
-  return newItems;
+   });
+   newItems.push( myTextField );
+   return newItems;
 }
 ```
 
@@ -566,28 +565,28 @@ Agreguemos el siguiente código a nuestra función **`createFields`**:
 
 ```js
 createFields: function (){
-  var newItems=[];
-  ...
-  newItems.push( myTextField );
-  var myAgeField = Ext.create('Ext.form.field.Number',{
-    fieldLabel:'Age',
-    name:'age',
-    minValue: 18,
-    maxValue: 70,
-    allowDecimals : false
-  });
-  var myIncomeField = Ext.create('Ext.form.field.Number',{
-    fieldLabel:'Income',
-    name:'income',
-    minValue: 0,
-    allowDecimals : true,
-    decimalPrecision : 2,
-    negativeText : 'The income cannot be negative..!',
-    msgTarget:'side'
-  });
-  newItems.push( myAgeField );
-  newItems.push( myIncomeField );
-  return newItems;
+   var newItems=[];
+   ...
+   newItems.push( myTextField );
+   var myAgeField = Ext.create('Ext.form.field.Number',{
+      fieldLabel:'Age',
+      name:'age',
+      minValue: 18,
+      maxValue: 70,
+      allowDecimals : false
+   });
+   var myIncomeField = Ext.create('Ext.form.field.Number',{
+      fieldLabel:'Income',
+      name:'income',
+      minValue: 0,
+      allowDecimals : true,
+      decimalPrecision : 2,
+      negativeText : 'The income cannot be negative..!',
+      msgTarget:'side'
+   });
+   newItems.push( myAgeField );
+   newItems.push( myIncomeField );
+   return newItems;
 }
 ```
 
@@ -626,7 +625,7 @@ Hay muchas más configuraciones para este campo, como la posibilidad de cambiar 
 > 
 > Incluso si aceptamos números (un  text field o un campo numérico), es importante establecer validaciones en el lado del servidor y nunca confiar en el lado del cliente. No utilizar la validación del lado del servidor puede estar sujeto a inyecciones de código.
 
-### El campo ComboBox
+### El Campo ComboBox
 
 El campo ComboBox es uno de los widgets más utilizados en Ext JS. Este tipo de campo nos permite mostrar una lista de opciones (seleccionar entrada). Es un componente muy flexible que podemos personalizar según nuestras necesidades.
 
@@ -925,13 +924,313 @@ Esto es muy similar a lo que hicimos con el checkbox group. Podemos definir tant
 
 Tenga en cuenta que en la radio con **`boxLabel:'Advanced'`**, establecemos una propiedad llamada **`checked`**. Esto nos permitirá configurar inicialmente el selected radio button.
 
-## El contenedor de campos
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-06-02-Form-02.html`
 
-```js
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Form 02</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+      <script type = "text/javascript">
+
+        // JavaScript Document
+        Ext.Loader.setConfig({
+            enabled: true,
+            paths:{
+                Myapp:'appcode'	
+            }	
+        });
+        Ext.require([
+            'Ext.form.*',
+            'Ext.toolbar.*',
+            'Ext.button.*',
+            'Myapp.view.AvailableFields01'
+        ]);
+        Ext.onReady(function(){
+            var mypanel = Ext.create('Myapp.view.AvailableFields01',{
+                renderTo: Ext.getBody()		
+            });
+        });
+
+      </script>
+   </head>
+   <body style="padding:6px;">
+   </body>
+</html>
 ```
 
+`'Myapp.view.AvailableFields01'`
+
 ```js
+/*
+ * File: app/view/AvailableFields01.js
+ */
+Ext.define('Myapp.view.AvailableFields01', {
+   extend: 'Ext.form.Panel',
+   alias: 'widget.availablefields01',
+   requires: ['Ext.form.*'],
+   height: 530, width:500,
+   bodyPadding: 6,
+   header: true,
+   title: 'Campos disponibles',
+   defaultType:'textfield',
+   defaults:{
+      anchor:'-18',
+      labelWidth:135, 
+      labelAlign:'right'	
+   },
+   initComponent: function() {
+      var me = this;
+      var myItems = me.createFields();
+      Ext.applyIf(me,{
+         items: myItems
+      });
+      me.callParent(arguments);									
+   }, 
+   createFields: function (){
+      var newItems=[];						
+      // Step 1 		
+      var myTextField = Ext.create('Ext.form.field.Text',{
+         fieldLabel:'Nombre',
+         name:'firstname',
+         enableKeyEvents : true,
+         minLength : 4,
+         minLengthText: 'El nombre es demasiado corto, necesitamos al menos {0} caracteres ...!',
+         maxLength : 25,
+         maxLengthText: 'El nombre es demasiado largo, la longitud máxima es de {0} caracteres.!'			 
+      });
+      // Step 2 (asign listener to the text field)
+      myTextField.on({
+         keyup:{
+            fn:function( thisField, evt, eOpts ){
+               if(evt.getCharCode() === evt.ENTER){
+                  if (thisField.getValue()!=''){ 
+                     Ext.Msg.alert('Alerta','Bienvenido: '+ thisField.getValue() );
+                  }
+               }
+            }				
+         }
+      });	
+      newItems.push( myTextField );		
+      var myAgeField = Ext.create('Ext.form.field.Number',{
+         fieldLabel:'Edad', name:'age', 
+         minValue: 18,
+         maxValue: 70,
+         allowDecimals : false,
+         hideTrigger:true		
+      });	
+	
+      var myIncomeField = Ext.create('Ext.form.field.Number',{
+         fieldLabel:'Ingreso', name:'income', 			
+         minValue: 0,
+         allowDecimals : true,  
+         decimalPrecision : 2,
+         negativeText : '¡Los ingresos no pueden ser negativos ...!',
+         msgTarget:'side', 
+         step: 500
+      });
+      newItems.push( myAgeField );
+      newItems.push( myIncomeField );
+		
+//              Combo Step 1  (store) 
+//		var occupationStore = Ext.create('Ext.data.Store',{
+//		  fields  : ['id','name'],
+//		  data	: [
+//			{id:1 ,name:'CEO'},
+//			{id:2 ,name:'Vicepresident'},
+//			{id:3 ,name:'Marketing manager'},
+//			{id:4 ,name:'Development manager'},
+//			{id:5 ,name:'Sales manager'}
+//		  ]
+//		});
+
+      var occupationStore = Ext.create('Ext.data.Store',{
+         fields  : ['id','name'],
+         autoLoad:true, 
+         proxy:{
+            type:'ajax' , 
+            url :'serverside/occupations.json', 
+            reader:{
+               type:'json',
+               root:'records'	
+            }			  
+         }
+      });
+		
+      //Combo Step 2  (create field) 		
+      var myFirstCombo  = Ext.create('Ext.form.field.ComboBox', {
+         fieldLabel: 'Ocupación',
+         store: occupationStore,
+         queryMode: 'local',
+         displayField: 'name',
+         valueField: 'id'
+      });	
+		
+      myFirstCombo.on('select',function(combo,records){
+         Ext.Msg.alert('Alerta', records.data.name /*records[0].get('name')*/);
+      });
+      newItems.push( myFirstCombo );
+		
+      var zonesStore = Ext.create('Ext.data.Store',{
+         fields  : ['id','name'],
+         data	: [
+            {id:1 ,name:'Zona A'},
+            {id:2 ,name:'Zona B'},
+            {id:3 ,name:'Zona C'},
+            {id:4 ,name:'Zona D'},
+            {id:5 ,name:'Zona E'}
+         ]
+      });	
+      var myFirstTag  =Ext.create('Ext.form.field.Tag', {
+         fieldLabel: 'Seleccionar zona',
+         store: zonesStore, 
+         displayField: 'name',
+         valueField: 'id',
+         filterPickList: true,
+         queryMode: 'local'
+      });
+      newItems.push( myFirstTag );
+		
+      var datefield = Ext.create('Ext.form.field.Date',{
+         fieldLabel: 'Cumpleaños',
+         name: 'birthday',
+         format:'d-M-Y', 
+         submitFormat:'Y-m-d'
+      });
+      newItems.push( datefield );
+	
+      var mysinglecheckbox = Ext.create('Ext.form.field.Checkbox',{
+         fieldLabel:' ',
+         labelSeparator:'',
+         boxLabel  : '¿ El empleado tiene pasatiempos?',
+         name    : 'hobbies'
+      });
+      newItems.push( mysinglecheckbox );
+	
+      var groupCheckboxes = Ext.create('Ext.form.CheckboxGroup',{
+         fieldLabel  : 'Hobbies',
+         columns    : 2,
+         items    : [
+            {name:'hobby',boxLabel:'Videojuegos',inputValue:'vg'},
+            {name:'hobby',boxLabel:'Deportes',inputValue:'sp'},
+            {name:'hobby',boxLabel:'Juegos de cartas',inputValue:'cg'},
+            {name:'hobby',boxLabel:'Películas',inputValue:'mv'},
+            {name:'hobby',boxLabel:'Recoger juguetes',inputValue:'ct'},
+            {name:'hobby',boxLabel:'Música',inputValue:'ms'},
+            {name:'hobby',boxLabel:'Otros...',inputValue:'ot'}
+         ]
+      });
+      newItems.push( groupCheckboxes );
+	
+      var radioYes = Ext.create('Ext.form.field.Radio',{
+         name  : 'option',		  
+         fieldLabel  : '¿Tiene un coche?',
+         labelSeparator : '',
+         boxLabel: 'Si',
+         inputValue  : true
+      }); 				
+      var radioNo = Ext.create('Ext.form.field.Radio',{
+         name    : 'option',
+         fieldLabel  : ' ',
+         labelSeparator : '',
+         //hideLabel:true, (NO FUNCIONA)   // instead of use :   fieldLabel  : ' ', labelSeparator : '',
+         boxLabel: 'No',
+         inputValue  : false
+      });
+      newItems.push( radioYes, radioNo  );
+	
+      var radioGroup  = {
+         xtype: 'radiogroup',
+         fieldLabel: 'Nivel de empleado',
+         columns: 2,
+         vertical:true,
+         items: [
+            { boxLabel: 'Principiante', name: 'rb', inputValue: '1' },
+            { boxLabel: 'Intermedio', name: 'rb', inputValue: '2'},
+            { boxLabel: 'Avanzado', name: 'rb', inputValue: '3', checked: true },
+            { boxLabel: 'Ninja', name: 'rb', inputValue: '4' }
+         ]
+      };
+      newItems.push( radioGroup );
+
+      var myFieldContainer = {
+         xtype: 'fieldcontainer',
+         height: '',
+         fieldLabel: 'Calzado/Talla',
+         layout: { type: 'hbox'},
+         items: [{
+            xtype: 'numberfield',
+            flex: 1,
+            fieldLabel: ''
+         },{
+            xtype: 'splitter'
+         },{
+            xtype: 'combobox',
+            flex: 1,
+            hideLabel:true,   // instead of use :   fieldLabel  : ' ', labelSeparator : '',
+            labelWidth: 10, 
+            store:Ext.create('Ext.data.Store',{
+               fields  : ['id','name'],
+               data	: [
+                  {id:1 ,name:'pequeña'},
+                  {id:2 ,name:'mediana'},
+                  {id:3 ,name:'grande'},
+                  {id:4 ,name:'Xl'},
+                  {id:5 ,name:'XXL'}
+               ]
+            }),
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'id'						
+         }
+         ]
+      };
+      newItems.push( myFieldContainer );
+      return newItems; 		
+   } 
+});
 ```
+
+`'serverside/occupations.json'`
+
+```json
+{
+   "success":true,
+   "id":"id",
+   "records":[
+      {"id":1 ,"name":"CEO"},
+      {"id":2 ,"name":"Vicepresident"},
+      {"id":3 ,"name":"Marketing manager"},
+      {"id":4 ,"name":"Development manager"},
+      {"id":5 ,"name":"Sales manager"}
+   ]
+}
+```
+
+![06-21](images/06-21.png)
+![06-22](images/06-22.png)
+![06-23](images/06-23.png)
+![06-24](images/06-24.png)
+![06-25](images/06-25.png)
+![06-26](images/06-26.png)
+![06-27](images/06-27.png)
+![06-28](images/06-28.png)
+![06-29](images/06-29.png)
+![06-30](images/06-30.png)
+![06-31](images/06-31.png)
+![06-32](images/06-32.png)
+![06-33](images/06-33.png)
+![06-34](images/06-34.png)
+![06-35](images/06-35.png)
+![06-36](images/06-36.png)
+![06-37](images/06-37.png)
+![06-38](images/06-38.png)
+
 ## Triggers
 
 ```js
