@@ -158,7 +158,7 @@ Este libro cubre muchas características y componentes nuevos de Ext JS 5. Al pr
    * The main menu for our application
    * Summary
 
-6. Doing It with Forms
+6. [Doing It with Forms](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/910-Learning-Ext-JS/06-Doing-It-with-Forms.md)
    * The form component
       * The anatomy of the fields
    * The available fields
