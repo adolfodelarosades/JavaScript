@@ -1847,9 +1847,14 @@ Haga clic en el primer botón y verá desaparecer el segundo y el tercero, como 
 ![05-16](images/05-16.png)
 
 
-AQUUUUUUUUUIIIIIIIIIIIIIIIII
+![05-13](images/05-13.png)
+
 
 ### Manejo de Selecciones en la Breadcrumb Bar
+
+Entonces, hemos creado la ruta de navegación, pero necesitamos una forma de controlarla cuando cambia la selección. La breadcrumb tiene el cambio de selección de eventos, que se activará cada vez que hagamos clic en un botón o en un elemento de menú creado dentro de la breadcrumb bar.
+
+Cambiemos la propiedad **`dockedItems`** al siguiente código para controlar el cambio de selección:
 
 ```js
 dockedItems:[{
@@ -1870,19 +1875,144 @@ dockedItems:[{
 }],
 ```
 
+Agregamos la propiedad **`listeners`** y configuramos el handler para **`selectionchange`**. La función recibirá tres parámetros. El primero es la instancia de la breadcrumb bar definida en **`mybreadcrumb`**, el segundo parámetro es el nodo seleccionado (data model) definido en el **`nodo`**, y el tercer parámetro es el objeto de opciones pasado al **`Ext.util.Observable.addListener`** definido en **`eOpts`**.
+
+Actualice el navegador y cambie las selecciones para ver la aplicación en acción, de la siguiente manera:
+
 ![05-17](images/05-17.png)
 
+Ahora, cuando cambiemos la selección, el contenido del panel se actualizará con el texto **`'This is the zone for:<b>' + node.data.text + '</b>'`**, donde **`node.data.text`** es el valor que establecimos previamente en cada uno de los children de la raíz en el store.
+
+Hasta ahora, como un nuevo componente en la versión 5, la breadcrumb es una buena adición cuando necesitamos menús, submenús enormes o muchas formas complejas de acceder a partes de nuestra aplicación. Usarlo en tabletas será un verdadero ahorro de espacio.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-05-16-Breadcrumb-01.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Breadcrumb 01</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+      <script type = "text/javascript">
+
+        // JavaScript Document
+        Ext.Loader.setConfig({
+            enabled: true
+        });
+
+        Ext.require([
+            'Ext.window.*', //'Ext.MessageBox',
+            'Ext.data.*', 
+            'Ext.button.*',
+            'Ext.toolbar.*',
+            'Ext.menu.*'
+        ]);
+
+        Ext.define('Myapp.sample.store.mainMenu', {
+            extend: 'Ext.data.TreeStore',
+            root: {
+                text: 'Mi app',
+                expanded: true,
+                children: [{
+                        text: 'Módulos',
+                        expanded: true,
+                        children: [
+                            { leaf:true, text: 'Empleados' }, 
+                            { leaf:true, text: 'Clientes' },
+                            { leaf:true, text: 'Productos'  }										
+                        ]
+                    },{
+                        text: 'Mercado',
+                        expanded: true,
+                        children: [
+                            { leaf:true, text: 'Ventas' },
+                            { leaf:true, text: 'Presupuestos' },
+                            { leaf:true, text: 'SEO' },
+                            { leaf:true, text: 'Estadísticas' }					
+                        ]
+                    },{
+                        text: 'Soporte', iconCls:'help-16', 
+                        children: [
+                            { leaf:true, text: 'Envía un ticket' },
+                            { leaf:true, text: 'Foro' },
+                            { leaf:true, text: 'Visite nuestro sitio web' }
+                        ]
+                    },
+                    { leaf:true, text: 'Informes' },
+                    { leaf:true, text: 'Gráficos' }
+                ]
+            }
+        });
+
+        Ext.onReady(function(){
+                    
+            var myMenuStore = Ext.create('Myapp.sample.store.mainMenu',{});				
+            var myPanel = Ext.create('Ext.panel.Panel',{
+                title:'Mi primer breadcrumb bar...', 
+                width:600,
+                height:200,
+                dockedItems:[{ //Step 1
+                    xtype : 'breadcrumb',
+                    dock: 'top', //Step 2
+                    store: myMenuStore, 
+                    showIcons: true, 
+                    selection: myMenuStore.getRoot().childNodes[2].childNodes[0], 
+                    listeners:{
+                        'selectionchange':{
+                            fn:function(mybreadcrumb, node, eOpts){
+                                var panel = mybreadcrumb.up('panel'); 
+                                panel.update( 'Esta es la zona para: <b>' +  node.data.text + '</b>' );
+                            },
+                            delay:200
+                        }				
+                    }		
+                }],
+                renderTo:Ext.getBody()		
+            });	            
+        });
+
+      </script>
+   </head>
+   <body style="padding:20px;">
+   </body>
+</html>
+```
+
+![05-48](images/05-48.png)
+![05-49](images/05-49.png)
+![05-50](images/05-50.png)
+![05-51](images/05-51.png)
+![05-52](images/05-52.png)
+![05-53](images/05-53.png)
+![05-54](images/05-54.png)
+
 ## El Menú Principal de Nuestra Aplicación
+
+En este punto, vamos a realizar un ejercicio para crear el menú principal de nuestra aplicación final. Hasta el momento, no hemos trabajado mucho en la aplicación en sí, principalmente porque has estado aprendiendo los conceptos básicos sobre el framework Ext, pero a partir de ahora, podemos enfocarnos más en piezas pequeñas que serán reutilizadas para nuestra aplicación final.
+
+La siguiente captura de pantalla muestra cómo debemos diseñar el menú principal para nuestra aplicación de gestión de facturas:
 
 ![05-18](images/05-18.png)
 
 > **NOTA**
 > 
-> 
+> Sencha Architect es muy útil para crear prototipos rápidamente y también para screen examples/wire framing. La captura de pantalla anterior se creó en Sencha Architect versión 3.1.x utilizando el tema clásico para una mejor comprensión de cómo se colocarán los componentes.
+
+Como podemos ver en la captura de pantalla, necesitamos crear una toolbar acoplada en la parte superior y otra toolbar acoplada en la parte inferior. La primera toolbar contendrá dos botones (cada uno con su propio menú) y un elemento de texto, **`Ext.toolbar.TextItem`**, para mostrar el nombre de usuario. La segunda toolbar, que estará acoplada en la parte inferior, tendrá un elemento de texto y un botón de ayuda en el lado derecho.
+
+Además, para este ejercicio, necesitaremos un componente que ocupe todo el espacio disponible en el navegador (cuerpo del documento). Hasta ahora, hemos estado usando paneles como contenedores, pero esta vez usaremos una Viewport.
+
+El componente **`Ext.container.Viewport`** ocupa todo el espacio disponible y siempre escucha el evento de cambio de tamaño del navegador de la ventana para volver a calcular las nuevas dimensiones cada vez que el usuario cambia el tamaño del navegador.
 
 > **NOTA**
 > 
-> 
+> Es una buena práctica tener solo una Viewport por aplicación, ya que este será nuestro espacio de trabajo dentro de la página web (documento).
+
+Comencemos por crear una clase que se extienda desde la clase **`Viewport`**. Como esto es solo un ejercicio, y luego reutilizaremos parte del código, no hay mucho de qué preocuparse por la ubicación de los archivos y otras cosas. Entonces, para crear la ventana gráfica, comencemos con este código:
 
 ```js
 Ext.define('MyApp.view.Viewport',{
@@ -1898,11 +2028,17 @@ Ext.define('MyApp.view.Viewport',{
 });
 ```
 
+La clase **`Viewport`** se extiende desde el componente contenedor, lo que significa que podemos usar cualquiera de los diseños disponibles. En este caso, vamos a utilizar un diseño de ajuste, porque queremos expandir los elementos secundarios de la ventana gráfica.
+
+Como se mencionó anteriormente, si queremos acoplar un componente a cualquiera de los cuatro lados, necesitamos usar un panel. El siguiente código agrega un panel vacío a la ventana gráfica como un child:
+
 ```js
 me.items = [{
    xtype: 'panel',
 }];
 ```
+
+Estamos usando el diseño(layout) **`fit`** para expandir el panel para que se ajuste a toda la Viewport. Ahora podemos configurar los items **`docked`** para este panel vacío y acoplar(dock) una toolbar en la parte superior:
 
 ```js
 dockedItems: [{
@@ -1932,13 +2068,24 @@ dockedItems: [{
 }]
 ```
 
+Como en los ejemplos de código anteriores (toolbar), ahora hemos agregado dos nuevos elementos a la toolbar, que son los siguientes:
+
+* **`tbfill`** o **`Ext.toolbar.Fill`**: Este es un elemento que actuará como un marcador de posición, lo que obligará a que los siguientes elementos se representen de la manera justificada a la derecha dentro del contenedor de la toolbar
+* **`tbText`** o **`Ext.toolbar.TextItem`**: Este es un elemento que muestra texto o HTML directamente en la toolbar
+
+Antes de probar, necesitamos declarar la instancia de la clase **`Viewport`** que definimos:
+
 ```js
 Ext.onReady(function(){
    Ext.create("MyApp.view.Viewport");
 });
 ```
 
+De hecho, Viewport no necesita la propiedad **`renderTo`**, porque automáticamente obtendrá el cuerpo del documento. Por el momento, necesitamos crear el archivo HTML y ejecutar el ejemplo. Obtendremos algo similar a la siguiente captura de pantalla:
+
 ![05-19](images/05-19.png)
+
+Ahora, creemos la toolbar inferior con este código:
 
 ```js
 dockedItems : [{
@@ -1955,18 +2102,112 @@ dockedItems : [{
 }]
 ```
 
+Como puede notar, agregamos otro elemento de la toolbar con la propiedad dock con un valor de bottom. Sus children son **`tbtext`**, **`tbfill`** y un objeto de configuración de botón que estará en el lado derecho de la toolbar. Actualice el navegador y verifique el resultado, de la siguiente manera:
+
 ![05-22](images/05-22.png)
 
+Podrás notar lo siguiente:
 
-![05-20](images/05-20.png)
+* El elemento de texto tiene la propiedad de texto establecida en **`<b>Status :</b>Connected`**, que es un texto HTML.
+* Cuando usamos el elemento **`tbfill`**, llena el espacio entre (empuja los siguientes componentes definidos a la derecha) el elemento anterior definido y el siguiente elemento definido después del elemento **`tbfill`**.
 
 > **TIP**
 > 
-> 
+> También podemos usar una flecha (->) para crear una instancia del elemento de clase **`tbfill/Ext.toolbar.Fill`**.
+
+Finalmente, debemos verificar cómo se ven los elementos del menú, como se muestra en la siguiente captura de pantalla:
+
+![05-20](images/05-20.png)
+
+También vea el menú debajo del botón Ayuda, como se muestra en esta captura de pantalla:
 
 ![05-21](images/05-21.png)
 
+Recuerde que en estos ejemplos, estamos usando el tema Neptune, por lo que cambiar los temas en Ext JS puede variar los resultados visuales de los botones y barras de herramientas.
+
+Además, es importante después de esta lección que pruebe cómo declarar controladores de eventos y cómo configurar elementos (como un objeto de configuración, un constructor y una matriz) de diferentes maneras. Esto le asegurará qué tipo de código necesita en algunos casos y le ahorrará tiempo de codificación en otros casos.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-05-17-Main-Menu-01.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Main menu excercise 01</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+      <script type = "text/javascript">
+
+        // JavaScript Document
+        Ext.define('MyApp.view.Viewport',{
+            extend:'Ext.container.Viewport',
+            layout:'fit',
+            initComponent   : function(){
+                var me = this;
+                me.items = [{
+                    xtype : 'panel'	,
+                        dockedItems : [
+                        {
+                            xtype : 'toolbar', dock:'top',
+                            items : [{
+                                text: 'Inicio', iconCls: 'home-16',
+                                menu:[
+                                    {text:'Categorías', iconCls:'categories-16'  },		
+                                    {text:'Productos', iconCls:'products-16'	},					
+                                    {text:'Clientes', iconCls:'clients-16' 	},		
+                                    {text:'Facturas', iconCls:'invoices-16' }			
+                                ]
+                            },{
+                            text: 'Ayuda', iconCls: 'help-16',
+                            menu: {
+                                    xtype: 'menu',
+                                    items: [
+                                        {xtype: 'menuitem', text: 'Envíe un ticket de soporte', iconCls:'help-16'},
+                                        {xtype: 'menuitem', text: 'Foro', iconCls:'help-16'},
+                                        {xtype: 'menuitem',text: 'Acerca de...', iconCls:'help-16'}
+                                    ]
+                                }
+                            }, 
+                            { xtype: 'tbfill' },
+                            { xtype: 'tbtext', text: 'Usuario: Brett Fravre'}
+                            ]
+                        },{
+                            xtype : 'toolbar', dock:'bottom',
+                            items : [
+                                { xtype: 'tbtext', text: '<b>Estado: </b>Conectado'},
+                                { xtype: 'tbfill' },
+                                { text:'', iconCls: 'help-16'}
+                            ]
+                        }
+                            /**/			
+                        ]	
+                }];
+                me.callParent();
+            }
+        });
+
+        Ext.onReady(function(){
+            Ext.create("MyApp.view.Viewport");
+        });
+
+      </script>
+   </head>
+   <body style="padding:0px;">
+   </body>
+</html>
+```
+
+![05-55](images/05-55.png)
+![05-56](images/05-56.png)
+![05-57](images/05-57.png)
 
 ## Resumen 
 
+En este capítulo, aprendió los conceptos básicos de cómo manejar eventos y cómo podemos agregar, disparar y escuchar eventos. También aprendió sobre botones, botones segmentados, menús, barras de herramientas y la nueva barra de ruta de navegación.
 
+En este punto, podemos usar **`addListener`** o los métodos **`on`** para agregar algunas acciones cuando se hace clic en botones y opciones, pero en los siguientes capítulos, aprenderá cómo escuchar eventos de una manera más conveniente.
+
+Además, creamos como ejercicio algunas toolbars y las usaremos en los próximos capítulos para nuestra aplicación final. En el próximo capítulo, aprenderá los conceptos básicos de los formularios que usan listeners y las diferentes formas de establecer elementos y propiedades dentro de los objetos de configuración.
