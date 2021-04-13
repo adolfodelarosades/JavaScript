@@ -1335,6 +1335,108 @@ Cuando se ejecuta el handler **`cleartext`**, se mostrará un mensaje de alerta 
 
 ![06-18](images/06-18.png)
 
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-06-03-Form-03.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Form 03</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+      <script type = "text/javascript">
+
+        // JavaScript Document
+        Ext.Loader.setConfig({
+            enabled: true,
+            paths:{
+                Myapp:'appcode'	
+            }	
+        });
+        Ext.require([
+            'Ext.form.*',
+            'Ext.toolbar.*',
+            'Ext.button.*',
+            'Myapp.view.TriggerFields01'
+        ]);
+        Ext.onReady(function(){
+            var mypanel = Ext.create('Myapp.view.TriggerFields01',{
+                renderTo: Ext.getBody()		
+            });
+        });
+
+      </script>
+   </head>
+   <body style="padding:6px;">
+   </body>
+</html>
+```
+
+`'Myapp.view.TriggerFields01'`
+
+```js
+/*
+ * File: app/view/AvailableFields01.js
+ */
+Ext.define('Myapp.view.TriggerFields01', {
+   extend: 'Ext.form.Panel',
+   alias: 'widget.TriggerFields01',
+   requires: ['Ext.form.*'],
+   height: 200, width:500,
+   bodyPadding: 6,
+   header: true,
+   title: 'Triggers',
+   defaultType:'textfield',
+   defaults:{
+      anchor:'-18',
+      labelWidth:150, 
+      labelAlign:'right'	
+   },
+   initComponent: function() {
+      var me = this;
+      var myItems = me.createFields();
+      Ext.applyIf(me,{
+         items: myItems
+      });
+      me.callParent(arguments);									
+   }, 
+   createFields: function (){
+      var newItems=[];						
+		
+      var myTriggers = Ext.create('Ext.form.field.Text', {
+         fieldLabel: 'Mi campo con Triggers',
+         triggers: {
+            searchtext: {
+               cls: 'x-form-search-trigger',
+               handler: function() {
+                  Ext.Msg.alert('Alerta', 'Se hizo clic en la búsqueda de activador');
+                  this.setValue('buscando texto ...');	
+               }
+            },
+            cleartext: {
+               cls: 'x-form-clear-trigger',
+               handler: function() {						
+                  Ext.Msg.alert('Alerta', 'Se hizo clic en el activador de borrado');
+                  this.setValue('');						
+               }
+            }
+         }
+      });
+      newItems.push( myTriggers );
+
+      return newItems; 		
+   } 
+});
+```
+
+![06-40](images/06-40.png)
+
+![06-41](images/06-41.png)
+
+
 ## Envío de Datos
 
 Hasta ahora, hemos visto cómo crear y configurar los componentes para recopilar datos utilizando los widgets disponibles, pero tenemos que hacer algo al respecto. Ext JS proporciona diferentes formas de enviar los datos capturados a nuestro servidor.
@@ -1407,6 +1509,133 @@ Puede comprobar cómo se pasan los parámetros, como se muestra en las ventanas 
 ![06-19](images/06-19.png)
 
 El código de servidor proporcionado aquí es solo un ejemplo y no está completo. La implementación de eso está más allá del alcance de este libro. Sin embargo, en función de los datos recibidos, puede tomar esa información y hacer lo que sea necesario con ella.
+
+#### 🔴 6️⃣ 💻 Mi versión `910-Learning-Ext-JS-06-04-Form-04.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Extjs - Form 04</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-neptune/resources/theme-neptune-all.css" rel = "stylesheet" />
+      <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+      <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+      <script type = "text/javascript">
+
+        // JavaScript Document
+        Ext.Loader.setConfig({
+            enabled: true,
+            paths:{
+                Myapp:'appcode'	
+            }	
+        });
+        Ext.require([
+            'Ext.form.*',
+            'Ext.toolbar.*',
+            'Ext.button.*',
+            'Myapp.view.CustomerForm02'
+        ]);
+        Ext.onReady(function(){
+            var mypanel = Ext.create('Myapp.view.CustomerForm02',{
+                title:'Enviando mi formulario...', 
+                renderTo: Ext.getBody()		
+            });
+        });
+
+      </script>
+   </head>
+   <body style="padding:6px;">
+   </body>
+</html>
+```
+
+`'Myapp.view.CustomerForm02'`
+
+```js
+/*
+ * File: app/view/CustomerForm01.js
+ */
+Ext.define('Myapp.view.CustomerForm02', {
+   extend: 'Ext.form.Panel',
+   alias: 'widget.customerform02',
+   requires: [
+      'Ext.form.*',
+      'Ext.toolbar.*',
+      'Ext.button.Button'
+   ],
+   height: 280,
+   width: 448,
+   animCollapse: true,
+   bodyPadding: 6,
+   collapsible: false,
+   header: true,
+   title: 'Cliente ( .... )',
+   defaultType:'textfield',
+   defaults:{
+      anchor:'-18',
+      labelWidth:90, 
+      labelAlign:'right'	
+   }, 	
+   items: [
+      {
+         xtype: 'numberfield', fieldLabel: 'Cliente ID', name:'cust_id',
+      },{
+         fieldLabel: 'Nombre', name:'cust_name'
+      },{
+         fieldLabel: 'Teléfono', name:'cust_phone'
+      },{
+         fieldLabel: 'Web site', name:'cust_website'
+      },{
+         xtype: 'datefield', fieldLabel: 'Cliente desde',
+         format:'d-M-Y', submitFormat:'Y-m-d',  name:'cust_since'			
+      }
+   ],
+   initComponent: function() {
+      var me = this;
+      me.dockedItems= [
+         {
+            xtype: 'toolbar',
+            dock: 'bottom',
+            items: [
+               {
+                  xtype: 'tbfill'
+               },{
+                  xtype: 'button',
+                  iconCls: 'save-16',
+                  text: 'Salvar...', 
+                  handler:function(){
+                  this.submitMyForm(); 	
+               }, 
+                  scope:this					
+               }
+            ]
+         }
+      ];	
+      Ext.applyIf(me,{});
+      me.callParent(arguments);									
+   }, 
+   submitMyForm:function (){
+      var me = this;
+      me.getForm().submit({
+         url    : 'http://familiadelarosa.com/910-Learning-Ext-JS/serverside/submitaction.php',
+         success: function(form,action){
+            Ext.Msg.alert('Success','Exitosamente guardado');
+         },
+         failure: function(form,action){
+            Ext.Msg.alert('Failure','Algo está mal');
+         }
+      });
+   }
+});
+```
+
+![06-42](images/06-42.png)
+
+![06-43](images/06-43.png)
+
+![06-45](images/06-44.png)
 
 ## Resumen   
 
