@@ -1231,18 +1231,187 @@ Ext.define('Myapp.view.AvailableFields01', {
 ![06-37](images/06-37.png)
 ![06-38](images/06-38.png)
 
+## El Contenedor de Campo
+
+Hay ocasiones en las que necesitamos agrupar más campos o componentes que no sean checkboxes y radio buttons. Ext JS proporciona un contenedor de campo para agrupar cualquier tipo de campo.
+
+Una de las ventajas de utilizar un contenedor de campo es la posibilidad de utilizar un diseño; podemos utilizar cualquiera de los diseños disponibles en el framework. Aprendió sobre diseños en capítulos anteriores.
+
+El siguiente código muestra cómo podemos agrupar un campo de texto y un combobox para mostrar estos campos en la misma línea. Ahora tenemos que agregar dos nuevos campos y el contenedor de campos:
+
+```js
+var myFieldContainer = {
+   xtype: 'fieldcontainer', //step 1
+   height: '',
+   fieldLabel: 'Shoes / Dress size',
+   layout: { type: 'hbox', align: 'stretch' }, //step 2
+   items: [{
+      xtype: 'numberfield',
+      flex: 1,
+      hideLabel:true
+   },{
+      xtype: 'splitter' //Step 3
+   },{
+      xtype: 'combobox',
+      flex: 1,
+      hideLabel:true,
+      labelWidth: 10,
+      store:Ext.create('Ext.data.Store',{
+         fields  : ['id','name'],
+         data: [
+            {id:1 ,name:'small'},
+            {id:2 ,name:'medium'},
+            {id:3 ,name:'large'},
+            {id:4 ,name:'Xl'},
+            {id:5 ,name:'XXL'}
+         ]
+      }),
+      queryMode: 'local',
+      displayField: 'name',
+      valueField: 'id'
+      }
+   ]
+};
+newItems.push( myFieldContainer );
+```
+
+Primero, definimos un objeto de configuración y establecimos la propiedad **`xtype`** en **`'fieldcontainer'`**. En el **`step 2`**, definimos la propiedad de diseño que **`fieldcontainer`** usará para los elementos que contiene. El layout utilizado fue **`flex`** para hacerlo flexible.
+
+En el tercer paso, creamos un objeto **`splitter`** (**`Ext.resizer.Splitter`**). De esta manera, podemos *crear un pequeño espacio* entre los dos campos. Finalmente, configuramos etiquetas invisibles usando **`hideLabel:true`** en las propiedades del **`combobox`** y **`numberfield`**, respectivamente.
+
+Esto se hizo porque **`fieldcontainer`** manejará la propiedad **`fieldLabel`** que se muestra en el formulario. El formulario que se muestra en esta captura de pantalla refleja los cambios en nuestro código:
+
+![06-17](images/06-17.png)
+
+Así es como podemos organizar los campos, de la forma que queramos. Usar el contenedor de campo es una excelente manera de realizar esta tarea. Podemos agregar tantos componentes como necesitemos y también usar cualquier diseño disponible para el componente contenedor de campo.
+
 ## Triggers
 
-```js
-```
+En la versión 5 de Ext JS, el campo **`Trigger`** quedó obsoleto y ahora los triggers se establecen dentro de los campos de texto. Entonces, ahora podemos agregar uno o varios triggers a un solo campo.
+
+Para trabajar con disparadores, escribamos el siguiente código:
 
 ```js
+var myTriggers = Ext.create( 'Ext.form.field.Text' , {
+   fieldLabel: 'My Field with triggers',
+   triggers: {
+      searchtext: {
+         cls: 'x-form-search-trigger',
+         handler: function() {
+            Ext.Msg.alert('Alert', 'Trigger search was clicked');
+            this.setValue('searching text...');
+         }
+      },
+      cleartext: {
+         cls: 'x-form-clear-trigger',
+         handler: function() {
+            Ext.Msg.alert('Alert', 'Trigger clear was clicked');
+            this.setValue('');
+         }
+      }
+   }
+});
+newItems.push( myTriggers );
 ```
-## Envío de datos
+
+Primero, creamos una instancia de la clase **`Ext.form.field.Text`** y configuramos la propiedad **`triggers`**, que será un objeto de configuración que define uno o más triggers. En este caso, definimos dos: **`searchtext`** y **`cleartext`**. Cada trigger tiene dos propiedades:
+
+* **`cls`**: Se utiliza para definir el icono que utilizará el trigger
+* **`handler`**: Esta es la función que se ejecutará cuando se haga clic en el trigger
+
+Ahora revisemos el handler de un trigger:
 
 ```js
+cleartext: {
+   cls: 'x-form-clear-trigger',
+   handler: function() {
+      Ext.Msg.alert('Alert', 'Trigger clear was clicked');
+      this.setValue('');
+   }
+}
 ```
 
+Cuando se ejecuta el handler **`cleartext`**, se mostrará un mensaje de alerta y luego **`this.setValue('');`** se ejecutará el código. Es importante mencionar que el alcance del controlador del trigger será el componente, que en este caso es la instancia de **`Ext.form.field.Text`** que creamos. Entonces, cuando **`this.setValue('');`** se ejecuta, borrará el value/text en el propio componente. Actualice el navegador y pruebe los controladores de cada activador. Verá algo similar a la siguiente captura de pantalla:
+
+![06-18](images/06-18.png)
+
+## Envío de Datos
+
+Hasta ahora, hemos visto cómo crear y configurar los componentes para recopilar datos utilizando los widgets disponibles, pero tenemos que hacer algo al respecto. Ext JS proporciona diferentes formas de enviar los datos capturados a nuestro servidor.
+
+La clase **`Ext.form.Panel`** contiene una instancia de la clase **`Ext.form.Basic`**. Esta clase se utiliza para administrar los datos dentro del formulario, como validaciones, configuraciones, recuperar datos de los campos, enviar y cargar datos desde el servidor, etc.
+
+Hagamos algunos pequeños cambios en nuestro primer formulario:
+
 ```js
+Ext.define('Myapp.view.CustomerForm02', {
+   ...
+   initComponent: function() {
+      var me = this;
+      me.dockedItems= [{
+         xtype: 'toolbar',
+         dock: 'bottom',
+         items: [
+            {
+               xtype: 'tbfill'
+            },{
+               xtype: 'button',
+               iconCls: 'save-16',
+               text: 'Save...',
+               handler:function(){  //step one
+                  this.submitMyForm();
+               },
+               scope:this
+            }
+         ]
+      }];
+      Ext.applyIf(me,{});
+      me.callParent(arguments);
+   },
+   submitMyForm:function (){ step 2
+      var me = this;
+      me.getForm().submit({
+         url:'serverside/submitaction.php',
+         success: function(form, action){
+            Ext.Msg.alert('Success', 'Successfully saved');
+         },
+         failure: function(form,action){
+            Ext.Msg.alert('Failure', 'Something is wrong');
+         }
+      });
+   }
+});
 ```
+
+Definimos un controlador en el botón **Save** y ejecutamos la función **`submitMyForm`** definida en el panel de formulario. Entonces, cuando se hace clic en el botón, se ejecuta la función **`submitMyForm`**.
+
+En el segundo paso, definimos la función **`submitMyForm`**. En esta función, obtenemos lo que está en la forma básica y luego ejecutamos el método **`submit`**. Este método recibe un objeto con la URL donde se realizará la solicitud AJAX y la success/failure callback.
+
+El método **`submit`** ejecuta una solicitud AJAX utilizando el método **`POST`** y envía todos los datos dentro del formulario (ya sea la entrada del usuario o los campos ocultos). La forma en que obtenemos estos parámetros en el lado del servidor depende de la tecnología que estemos utilizando.
+
+Por ejemplo, si estamos usando PHP, podemos usar algo como el siguiente código:
+
+```php
+<?php
+   $name  = $_POST['cust_name'];
+   $phone = $_POST['cust_phone'];
+....
+```
+
+> **NOTA**
+> 
+> Cuando maneja valores en los archivos del lado del servidor (PHP, ASP, etc.) debe tener cuidado de tratar y validar los valores **`POST`** para evitar inyecciones o intentos de piratería.
+
+Puede comprobar cómo se pasan los parámetros, como se muestra en las ventanas de la siguiente captura de pantalla:
+
+![06-19](images/06-19.png)
+
+El código de servidor proporcionado aquí es solo un ejemplo y no está completo. La implementación de eso está más allá del alcance de este libro. Sin embargo, en función de los datos recibidos, puede tomar esa información y hacer lo que sea necesario con ella.
+
 ## Resumen   
+
+En este capítulo, aprendió sobre los formularios y los campos básicos que puede usar para recopilar y editar datos. Tenemos muchas opciones y configuraciones disponibles, y podemos usarlas para personalizar nuestros formularios. El contenedor de campo es uno de los nuevos componentes agregados desde la versión 4 del marco Ext JS, y nos permite organizar los campos utilizando cualquiera de los diseños disponibles en el framework, lo que nos brinda un potente sistema de diseño.
+
+También aprendió sobre la nueva configuración de trigger en campos de texto y cómo enviar datos(submit data).
+
+En el siguiente capítulo, aprenderá sobre el componente grid. Este es uno de los widgets más potentes del framework porque es muy flexible, con muchos complementos y configuraciones.
