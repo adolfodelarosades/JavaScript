@@ -1635,7 +1635,9 @@ Ext.define('Myapp.view.CustomerForm02', {
 
 ![06-43](images/06-43.png)
 
-![06-45](images/06-44.png)
+![06-44](images/06-44.png)
+
+![06-45](images/06-45.png)
 
 ## Resumen   
 
