@@ -6,7 +6,7 @@
 * ISBN: 9781784390457
 * Topic: Ext JS
 
-![912-portada](images/912-portada.png)
+![912-portada](912-Mastering-Ext-JS-Second-Edition/images/912-portada.png)
 
 ### Descripción del libro
 
