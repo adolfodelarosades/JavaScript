@@ -30,3 +30,41 @@ El Capítulo 9, ***Adición de capacidades adicionales***, cubre cómo agregar f
 El Capítulo 10, ***Enrutamiento, soporte táctil y depuración***, demuestra cómo habilitar el enrutamiento en el proyecto; también se trata de depurar aplicaciones Ext JS, incluyendo lo que debemos tener cuidado y por qué es muy importante saber cómo depurar. También hablamos rápidamente sobre la transformación de proyectos de Ext JS en aplicaciones móviles (diseño receptivo y soporte táctil), algunas herramientas útiles que pueden ayudarlo en su trabajo diario como desarrollador, y también algunas recomendaciones sobre dónde encontrar complementos adicionales y de código abierto. para usar en proyectos Ext JS.
 
 El Capítulo 11, ***Preparación para Producción y los Temas***, trata sobre cómo personalizar un tema y crear interfaces de usuario personalizadas. También explora los pasos necesarios y los beneficios de empaquetar la aplicación en producción.
+
+## Que necesitas para este libro
+
+La siguiente es una lista del software que necesitará tener instalado antes de ejecutar los ejemplos del libro. La siguiente lista cubre el software exacto utilizado para implementar y ejecutar los ejemplos de este libro, pero puede utilizar cualquier software similar que ya haya instalado y que tenga las mismas funciones.
+
+Para un navegador con una herramienta de depuración, use lo siguiente:
+
+* Firefox con Firebug: https://www.mozilla.org/firefox/ y http://getfirebug.com/
+* Google Chrome: http://www.google.com/chrome
+
+Para un servidor web con soporte PHP, use lo siguiente:
+
+* Xampp: http://www.apachefriends.org/en/xampp.html
+
+Para la base de datos, use lo siguiente:
+
+* MySQL: http://dev.mysql.com/downloads/mysql/
+* MySQL Workbench: http://dev.mysql.com/downloads/tools/workbench/
+* Base de datos de muestra MySQL Sakila: http://dev.mysql.com/doc/index-other.html y http://dev.mysql.com/doc/sakila/en/index.html
+
+Para Sencha Cmd y las herramientas necesarias, utilice lo siguiente:
+
+* Sencha Cmd: http://www.sencha.com/products/sencha-cmd/download
+* Ruby 1.8 o 1.9: http://www.ruby-lang.org/en/downloads/
+* Sass: http://sass-lang.com/
+* Compass: http://compass-style.org/
+* Java JDK (versión 7 o posterior): http://www.oracle.com/technetwork/java/javase/downloads/index.html
+* Java environment variables: http://docs.oracle.com/javase/tutorial/essential/environment/paths.html
+* Apache ANT: http://ant.apache.org/bindownload.cgi
+* Apache ANT environment variable: http://ant.apache.org/manual/install.html
+Y, por supuesto, Ext JS: http://www.sencha.com/products/extjs/
+
+Usaremos Ext JS 5.0.1 en este libro.
+
+## Para quien es este libro
+
+Si es un desarrollador que está familiarizado con Ext JS y desea mejorar sus habilidades para crear aplicaciones web aún mejores, este es el libro para usted. Se requieren conocimientos básicos de JavaScript/HTML/CSS y cualquier lenguaje del lado del servidor (PHP, Java, C #, Ruby o Python).
+
