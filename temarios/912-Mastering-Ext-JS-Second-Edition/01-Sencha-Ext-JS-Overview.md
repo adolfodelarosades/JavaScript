@@ -109,36 +109,72 @@ También admite complementos como drag and drop entre árboles.
 
 > **NOTA**
 > 
-> 
+> Para obtener más información, consulte http://docs.sencha.com/extjs/5.0/apidocs/#!/api/Ext.tree.Panel and http://docs.sencha.com/extjs/5.0/components/trees.html.
 
 
-### Formularios
+### Forms
 
-> **NOTA**
-> 
-> 
-
-### Otros componentes
-### Diseños
+A continuación, tenemos el componente forms. Podemos implementar forms poderosas usando text, area y campos de números. También podemos usar date/month picker, checkboxes, radio buttons, comboboxes e incluso la carga de archivos(file upload). Todos los campos tienen el soporte básico de validación nativa (con mensajes de error para el usuario), como campos obligatorios y valor o longitud mínimo y máximo, pero podemos personalizar y crear fácilmente una validación personalizada (dirección IP por ejemplo).
 
 > **NOTA**
 > 
-> 
-### Paquete de datos
+> Para obtener más información, consulte http://docs.sencha.com/extjs/5.0/apidocs/#!/api/Ext.form.Panel and http://docs.sencha.com/extjs/5.0/components/forms.html.
+
+### Otros Componentes
+
+También tenemos los gráficos(charts). Podemos crear gráficos de columna, bar, line, area, scatter, pie, radial, gauge e incluso financieros. También podemos tener gráficos básicos, apilados, multiejes y 3D. Los gráficos también son alimentados por Store.
+
+Y, por supuesto, existen componentes básicos que ayudarán a que nuestra aplicación se vea aún mejor, como menús, tabs, panels, windows, alerts, toolbars, etc. Los componentes son compatibles con la **Web Accessibility Initiative – Accessible Rich Internet Applications (WAI-ARIA) ** y también admiten idiomas de derecha a izquierda.
+
+Parece bonito, ¿verdad? Cubriremos la mayoría de los componentes y sus capacidades a lo largo de los ejemplos de este libro.
+
+### Layouts
+
+Ext JS admite diferentes posibilidades. También tiene un excelente administrador de layout (solo cuando creamos una aplicación Ext JS usando su componente base, el Viewport. Para los componentes que se usan en forma independiente (renderizados en una etiqueta **`<div>`**, el administrador de layout no funciona cuando disminuir el tamaño de la ventana del navegador).
+
+Algunos de los diseños admitidos son Absolute layout (donde necesitamos usar las posiciones absolutas *x* e *y* del componente en la pantalla o dentro del componente); Accordion layout, Border layout, Card layout, Center layout, Column layout, Fit layout, Hbox y VBox layouts, y Table layouts..
+
+Los diseños que se utilizan más en las aplicaciones son Border, Card, Fit y HBox y VBox. También cubriremos diferentes diseños a través de los ejemplos de este libro.
 
 > **NOTA**
 > 
-> 
-### Las arquitecturas MVC y MVVM
+> Para obtener más información, consulte http://dev.sencha.com/ext/5.0.1/examples/kitchensink/#layouts and the layout.container package at http://docs.sencha.com/extjs/5.0/apidocs/#!/api/Ext.layout.container.Absolute.
+
+### Data package
+
+El Data package es uno de los paquetes más importantes del SDK de Ext JS. Los componentes de Ext JS, como grid, Tree e incluso el Form, se basan en datos.
+
+Los lenguajes del lado del servidor generalmente admiten datos bien. En Java, PHP, C # y otros lenguajes, podemos crear entidades conocidas como **Plain Old Java Object (POJOs), Persistent Domain Objects (PDOs) y Value Objects (VOs)**, y otros nombres que normalmente les damos a estas entidades. Ext JS admite datos, por lo que también representamos entidades en la interfaz.
+
+Básicamente hay tres piezas principales:
+
+* **Model:** Representa la entidad. Puede representar una clase que tenemos en el lado del servidor o una tabla de la base de datos. El modelo admite campos, validaciones, asociaciones (**OneToOne, OneToMany, ManyToMany**).
+* **Store:** Representa una colección de models. También admite grupos, filtrado y ordenación.
+* **Proxy:** Representa la forma en que nos vamos a conectar al servidor (o un almacenamiento local). Puede ser Ajax, REST, JSONP, Memory o HTML5 LocalStorage. Dentro del proxy, podemos definir **`Reader`** y **`Writer`**. El atributo **`Reader`** se encarga de decodificar los datos que recibimos del servidor (podemos definirlo si es JSON o XML, y también podemos definir su formato). El atributo **`Writer`** es responsable de codificar los datos que se enviarán al servidor; puede ser JSON o XML, y también podemos definir su formato. El Proxy se puede colocar dentro de un Model o un Store.
 
 > **NOTA**
 > 
+> Para obtener más información, lea http://docs.sencha.com/extjs/5.0/core_concepts/data_package.html.
+
+### Las Arquitecturas MVC y MVVM
+
+Mientras trabajamos con Ext JS, podemos elegir entre dos arquitecturas para nuestro código frontend: **Model View Controller (MVC)** y **Model View ViewModel (MVVM)**. También hay una tercera opción, que es un **híbrido** entre **MVC** y **MVVM**.
+
+A lo largo de este libro, aprenderemos más sobre MVC, MVVM y también el enfoque híbrido.
+
+> **NOTA**
 > 
+> Para obtener más información, lea http://docs.sencha.com/extjs/5.0/application_architecture/application_architecture.html.
+
 ### Apariencia de las aplicaciones Ext JS
 
+También podemos personalizar el tema de las aplicaciones Ext JS. La temática se basa en Sass y Compass. Nos sumergiremos en temas en el último capítulo de este libro.
+
 > **NOTA**
 > 
-> 
+> Para obtener más información, lea http://docs.sencha.com/extjs/5.0/core_concepts/theming.html.
+ 
+
 ## Instalación de Ext JS
 ### Requisitos previos para Ext JS y Sencha Cmd
 
