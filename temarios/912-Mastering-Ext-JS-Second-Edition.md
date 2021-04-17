@@ -43,7 +43,7 @@ Mastering Ext JS Second Edition
 * Table of Contents
 * Mastering Ext JS Second Edition
 * Credits
-* About the Author
+* [About the Author](912-Mastering-Ext-JS-Second-Edition/001-About-the-Author.md)
 * Acknowledgments
 * About the Reviewers
 * www.PacktPub.com
@@ -51,7 +51,7 @@ Mastering Ext JS Second Edition
       * Why subscribe?
       * Free access for Packt account holders
 
-* Preface
+* [Preface](912-Mastering-Ext-JS-Second-Edition/002-Preface.md)
    * What this book covers
    * What you need for this book
    * Who this book is for
@@ -63,10 +63,9 @@ Mastering Ext JS Second Edition
       * Piracy
       * Questions
 
-1. Sencha Ext JS Overview
+1. [Sencha Ext JS Overview](912-Mastering-Ext-JS-Second-Edition/01-Sencha-Ext-JS-Overview.md)
    * Understanding Sencha Ext JS
       * Architecture of Ext JS applications
-
 * Ext JS overview
    * Basic tutorial
    * Class system
