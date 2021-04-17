@@ -86,7 +86,7 @@ Mastering Ext JS Second Edition
    * IDE
 * Summary
 
-2. Getting Started
+2. [Getting Started](912-Mastering-Ext-JS-Second-Edition/02-Getting-Started.md)
    * Preparing the development environment
 * Presenting the application and its capabilities
    * The splash screen
