@@ -176,39 +176,71 @@ También podemos personalizar el tema de las aplicaciones Ext JS. La temática s
  
 
 ## Instalación de Ext JS
+
+Echemos un vistazo a cómo instalar Ext JS localmente. Este paso es necesario porque necesitaremos tener el SDK de Ext JS en nuestra computadora antes de crear la aplicación con **Sencha Cmd**.
+
 ### Requisitos previos para Ext JS y Sencha Cmd
+
+Antes de descargar Ext JS y Sencha Cmd, necesitamos configurar nuestra computadora para que esté lista. La siguiente es una lista del software necesario para que podamos crear una aplicación Ext JS:
+
+1. **Ruby 1.8 o 1.9**: La versión actual de Ruby es 2.x al momento de escribir esto. Para poder crear una aplicación Ext JS, necesitamos tener Ruby 1.8 o 1.9 instalado. Se requiere Ruby porque el motor de tematización utilizado por Ext JS se basa en Sass y Compass, que son Ruby gems. Para descargar e instalar Ruby, siga las instrucciones en https://www.ruby-lang.org/en/installation/.
+2. **Sass y Compass**: Estos no son CSS frameworks. Sass es una nueva forma de escribir CSS. Es posible utilizar variables y definir funciones y mixins. Es una alternativa a **Less** (tal vez haya trabajado con Less o haya oído hablar de él; Sass es muy similar). Después de descargar e instalar Ruby, instale también Sass. Las instrucciones se pueden encontrar en http://sass-lang.com/install (siga las instrucciones de la línea de comandos). Compass es un Sass framework y también es obligatorio. Instálelo también desde http://compass-style.org/install/. Sass y Compass son el corazón del motor de temas de Ext JS. Todo el CSS personalizado que vamos a crear para nuestra aplicación también será compilado por Sass/Compass.
+3. **Java JDK**: Si es un desarrollador de Java, probablemente ya tenga Java JDK instalado. De lo contrario, descargue y ejecute el instalador en http://www.oracle.com/technetwork/articles/javase/index-jsp-138363.html. Después de instalar Java JDK, también necesitamos configurar la variable de entorno JAVA_HOME. Las instrucciones se pueden encontrar en http://goo.gl/JFtKHF. Se requiere Java JDK debido a ANT, nuestro siguiente paso.
+4. **Apache ANT**: El motor Sencha Cmd para crear la aplicación y construirla se basa en ANT, una library de Java. Necesitamos descargar ANT de http://ant.apache.org/bindownload.cgi, descomprimirlo en un directorio de nuestra elección y configurar la variable de entorno ANT_HOME (http://ant.apache.org/manual/install. html).
+
+Podemos comprobar si tenemos el entorno correcto ejecutando los siguientes comandos en una aplicación de terminal:
 
 ![01-04](images/01-04.png)
 
-> **NOTA**
-> 
-> 
+Tenga en cuenta que la versión de Ruby instalada es 2.x, pero siempre que tenga una versión compatible 1.8 o 1.9 en su classpath, debería estar bien.
+
+El último paso es un servidor web. El más simple que podemos usar para ejecutar los ejemplos de este libro es Apache Xampp. Descargue y siga las instrucciones de instalación en https://www.apachefriends.org.
 
 > **NOTA**
 > 
-> 
+> Todo el software necesario para configurar el entorno mencionado en este libro está disponible para Linux, Windows y Mac OS.
 
 ### Descarga de Ext JS y Sencha Cmd
+
+Ahora que tenemos nuestro entorno configurado, podemos descargar Ext JS. Ext JS tiene diferentes tipos de licencia: comercial y de código abierto. Para este libro, usaremos el de código abierto. Puede descargar la versión de código abierto en http://www.sencha.com/products/extjs/details. Desplácese hasta el final de la página y seleccione **OPEN SOURCE GPL LICENSING**, como se muestra en la siguiente captura de pantalla:
 
 ![01-05](images/01-05.png)
 
 > **NOTA**
 > 
-> 
+> La última versión de Ext JS al momento de escribir este libro es 5.1.
+
+
+También necesitamos descargar e instalar Sencha Cmd desde http://www.sencha.com/products/sencha-cmd/download. Sencha Cmd es responsable de crear la aplicación y hacer, construir y compilar Sass y Compass para generar el CSS de la aplicación. Después de la instalación de Sencha Cmd, el comando sencha también estará disponible desde la aplicación de terminal.
+
+Después de descargar el SDK de Ext JS, descomprímalo dentro de la carpeta htdocs de Apache Xampp. Una vez que iniciemos el servidor Apache, podremos ejecutar los ejemplos de Ext JS desde nuestro entorno local:
+
 
 ![01-06](images/01-06.png)
 
-### Documentación sin conexión
+### Documentación Offline
+
+Mientras desarrollamos con Ext JS, consultaremos mucho la documentación. Siempre que mencionemos el nombre de un componente Ext JS en este libro, se recomienda que vaya a la documentación y le eche un vistazo. La documentación de Ext JS está disponible en http://docs.sencha.com/extjs/5.0/. Contiene guías (también se recomienda encarecidamente que dedique un tiempo a leer las guías antes de sumergirse en este libro, ya que las guías proporcionan conocimientos básicos sobre el marco) y enlaces a publicaciones de blogs y también a la documentación en sí. Como lo consultaremos mucho, también recomendamos instalar la documentación localmente. Para hacerlo, vaya a http://docs.sencha.com/, abra el menú Sencha Guides y seleccione el enlace de documentos sin conexión como se muestra en la siguiente captura de pantalla:
 
 ![01-07](images/01-07.png)
+
+Descomprima también los documentos dentro de la carpeta **`htdocs`** de Xampp y acceda a su **`localhost`**, como se muestra en la siguiente captura de pantalla:
 
 ![01-08](images/01-08.png)
 
 > **NOTA**
 > 
-> 
+> Un video tutorial con instrucciones paso a paso para configurar el entorno para Ext JS está disponible en http://youtu.be/B43bEnFBRRc.
 
 ### IDE
+
+Puede utilizar cualquier IDE o editor de su preferencia para desarrollar con Ext JS. Hay algunos editores que son muy populares: Sublime Text, Atom, Eclipse (si es un desarrollador de Java), Netbeans y Visual Studio (si es un desarrollador de C #), Notepad ++ y WebStorm, entre otros.
+
+Si está buscando la función de autocompletado, puede usar el complemento Sencha Eclipse que es parte de Sencha Complete (pagado) en http://www.sencha.com/products/complete/) o puede usar WebStorm (también pagado) en https://www.jetbrains.com/webstorm/).
+
+También está Sencha Architect (que también tiene la función de autocompletar). Es un editor de lo que ves es lo que obtienes (WYSIWYG) y es una gran herramienta Sencha que se puede usar con el IDE de tu preferencia (para desarrollar el código del lado del servidor de la aplicación).
+
+¡No dude en utilizar el editor o IDE con el que se sienta más cómodo para desarrollar el código fuente de este libro!
 
 ## Resumen
 
