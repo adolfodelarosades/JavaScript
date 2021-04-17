@@ -37,7 +37,7 @@ El siguiente diagrama encapsula el párrafo anterior:
 
 > **NOTA**
 > 
-> 
+> Si es un desarrollador de Java, puede encontrar un código de muestra sobre cómo integrar Java con Ext JS en http://goo.gl/rv76E2 y http://goo.gl/nNIRuQ.
 
 > **NOTA**
 > 
