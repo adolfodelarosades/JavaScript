@@ -21,3 +21,4 @@ Serie de varios cursos JavaScript.
 * [910 Learning Ext JS - Fourth Edition](temarios/910-Learning-Ext-JS-Fourth-Edition.md)
 * [912 Mastering Ext JS - Second Edition](temarios/912-Mastering-Ext-JS-Second-Edition.md)
 * [920 Ext JS 6 By Example](temarios/920-Ext-JS-6-By-Example.md)
+* [950 Ext JS 6.2.0](https://docs.sencha.com/extjs/6.2.0)
