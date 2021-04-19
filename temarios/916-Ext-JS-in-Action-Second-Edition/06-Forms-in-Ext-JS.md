@@ -6,7 +6,7 @@ Este capítulo cubre
 * Creación de plantillas ComboBox personalizadas
 * Crear un panel de formulario de diseño complejo
 
-Acaba de aprender a organizar los widgets de la interfaz de usuario con los distintos administradores de diseño en el marco Ext JS. A partir de aquí, comenzaremos a crear instancias y administrar elementos de formulario Ext JS. ¿Qué es una aplicación sin la participación del usuario?
+Acaba de aprender a organizar los widgets de la interfaz de usuario con los distintos layout managers en el framework Ext JS. A partir de aquí, comenzaremos a crear instancias y administrar elementos de formulario Ext JS. ¿Qué es una aplicación sin la participación del usuario?
 
 No debería sorprender que desarrollar y diseñar formularios sea una tarea común para los desarrolladores web. La gestión de la validación de formularios es para lo que se utilizó principalmente JavaScript hace unos años. Ext JS va más allá de la validación de formularios típica, basándose en los campos de entrada HTML básicos para agregar funciones para el desarrollador y mejorar la experiencia del usuario. Por ejemplo, supongamos que se requiere que un usuario ingrese HTML en un formulario. Usando un campo de entrada de área de texto listo para usar, el usuario tendría que escribir el contenido HTML a mano. Esto no es necesario con Ext JS HTML Editor, donde obtiene un campo de entrada WYSIWYG completo, lo que permite al usuario ingresar y manipular HTML con formato enriquecido fácilmente.
 
