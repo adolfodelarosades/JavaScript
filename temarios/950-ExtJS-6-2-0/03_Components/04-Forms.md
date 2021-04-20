@@ -2,9 +2,9 @@
 
 Un [Form Panel](https://docs.sencha.com/extjs/6.2.0/classic/Ext.form.Panel.html)  no es más que un [Panel](https://docs.sencha.com/extjs/6.2.0/classic/Ext.panel.Panel.html) básico con capacidades de manejo de formularios agregadas. Los Form Panels se pueden utilizar en toda una [aplicación](https://docs.sencha.com/extjs/6.2.0/classic/Ext.html#application) Ext siempre que sea necesario recopilar datos del usuario.
 
-Además, los Form Panels pueden utilizar cualquier [Container Layout], lo que proporciona una forma cómoda y flexible de gestionar el posicionamiento de sus campos. Los Form Panels también se pueden vincular a un [Model], lo que facilita la carga y el envío de datos al servidor.
+Además, los Form Panels pueden utilizar cualquier [Container Layout](), lo que proporciona una forma cómoda y flexible de gestionar el posicionamiento de sus campos. Los Form Panels también se pueden vincular a un [Model](), lo que facilita la carga y el envío de datos al servidor.
 
-Debajo del capó, un Form Panel envuelve un [Basic Form] que maneja todos sus servicios de administración de campos de entrada, validación, envío y carga de formularios. Esto significa que muchas de las opciones de configuración de un Basic Form se pueden utilizar directamente en un Form Panel.
+Debajo del capó, un Form Panel envuelve un [Basic Form]() que maneja todos sus servicios de administración de campos de entrada, validación, envío y carga de formularios. Esto significa que muchas de las opciones de configuración de un Basic Form se pueden utilizar directamente en un Form Panel.
 
 ## Basic Form Panel
 
@@ -38,13 +38,13 @@ Ext.create('Ext.form.Panel', {
 
 ![01-Form](images/01-Form.png)
 
-Este Form se representa en el cuerpo del documento y tiene tres [Fields]: "First Name", "Last Name" y "Date of Birth". Los campos se agregan al Form Panel utilizando la configuración de [items].
+Este Form se representa en el cuerpo del documento y tiene tres [Fields](): "First Name", "Last Name" y "Date of Birth". Los campos se agregan al Form Panel utilizando la configuración de [items]().
 
-La configuración [fieldLabel] define qué texto aparecerá en la etiqueta junto al campo, y la configuración del [name] se convierte en el atributo **`name`** del campo HTML subyacente.
+La configuración [fieldLabel]() define qué texto aparecerá en la etiqueta junto al campo, y la configuración del [name]() se convierte en el atributo **`name`** del campo HTML subyacente.
 
-Observe cómo este Form Panel tiene un [defaultType] de **'textfield'**. Esto significa que cualquiera de sus elementos que no tienen un [xtype] especificado (los campos "First Name" y "Last Name" en este ejemplo), son [Text Fields].
+Observe cómo este Form Panel tiene un [defaultType]() de **'textfield'**. Esto significa que cualquiera de sus elementos que no tienen un [xtype]() especificado (los campos "First Name" y "Last Name" en este ejemplo), son [Text Fields]().
 
-El campo "Date of Birth", por otro lado, tiene su **`xtype`** configurado explícitamente como **'datefield'**, lo que lo convierte en un [Date Field]. Los Date Field solo contienen datos de fecha válidos y vienen con un [DatePicker] para seleccionar una fecha.
+El campo "Date of Birth", por otro lado, tiene su **`xtype`** configurado explícitamente como **'datefield'**, lo que lo convierte en un [Date Field](). Los Date Field solo contienen datos de fecha válidos y vienen con un [DatePicker]() para seleccionar una fecha.
 
 
 ### 🔴 Basic Form Panel `01-Basic-Form-Panel.html`
