@@ -228,6 +228,164 @@ http://127.0.0.1:5500/950-ExtJS-6-2-0/API/CLASSIC/EXT/FORM/FIELD/03-ComboBox-Eve
 
 La configuración [multiSelect]() está obsoleta. Para selección múltiple, use [Ext.form.field.Tag]() o [Ext.view.MultiSelector]().
 
+### 🔴 ComboBox - Multiple Selection `04-ComboBox-Multiple.html`
+
+http://127.0.0.1:5500/950-ExtJS-6-2-0/API/CLASSIC/EXT/FORM/FIELD/04-ComboBox-Multiple.html
+
+`04-ComboBox-Multiple.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+    <title>ComboBox - Multiple Selection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-classic/resources/theme-classic-all.css" 
+         rel = "stylesheet" />
+      <script type = "text/javascript" 
+         src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/ext-all.js"></script>
+      
+      <script type = "text/javascript">
+         Ext.onReady(function() {
+            // El data store que contiene la lista de estados
+            var states = Ext.create('Ext.data.Store', {
+                fields: ['abbr', 'name'],
+                data : [
+                    {"abbr":"AL", "name":"Alabama"},
+                    {"abbr":"AK", "name":"Alaska"},
+                    {"abbr":"AZ", "name":"Arizona"}
+                ]
+            });
+
+            // Crear el combo box, attached al data store de los estados
+            Ext.create('Ext.form.ComboBox', {
+                fieldLabel: 'Elegir estado',
+                store: states,
+                queryMode: 'local',
+                displayField: 'name',
+                valueField: 'abbr',
+                padding:'5px',
+                width: 400,
+                multiSelect: true,
+                renderTo: Ext.getBody()
+            });
+         });
+      </script>
+   </head>
+   
+   <body></body>
+</html>
+```
+
+![13-ComboBox](images/13-ComboBox.png)
+
+### Filtered Stores
+
+Si tiene un local store que ya está filtrado, puede usar la opción de configuración [lastQuery]() para evitar que el store tenga el filtro borrado en la primera expansión.
+
+## Customized combobox
+
+Tanto el texto que se muestra en el menú desplegable como en el campo de texto se pueden personalizar fácilmente:
+
+```js
+var states = Ext.create('Ext.data.Store', {
+    fields: ['abbr', 'name'],
+    data : [
+        {"abbr":"AL", "name":"Alabama"},
+        {"abbr":"AK", "name":"Alaska"},
+        {"abbr":"AZ", "name":"Arizona"}
+    ]
+});
+
+Ext.create('Ext.form.ComboBox', {
+    fieldLabel: 'Choose State',
+    store: states,
+    queryMode: 'local',
+    valueField: 'abbr',
+    renderTo: Ext.getBody(),
+    // Template for the dropdown menu.
+    // Note the use of the "x-list-plain" and "x-boundlist-item" class,
+    // this is required to make the items selectable.
+    tpl: Ext.create('Ext.XTemplate',
+        '<ul class="x-list-plain"><tpl for=".">',
+            '<li role="option" class="x-boundlist-item">{abbr} - {name}</li>',
+        '</tpl></ul>'
+    ),
+    // template for the content inside text field
+    displayTpl: Ext.create('Ext.XTemplate',
+        '<tpl for=".">',
+            '{abbr} - {name}',
+        '</tpl>'
+    )
+});
+```
+
+![14-ComboBox](images/14-ComboBox.png)
+
+### 🔴 ComboBox - Customized `05-ComboBox-Customized.html`
+
+http://127.0.0.1:5500/950-ExtJS-6-2-0/API/CLASSIC/EXT/FORM/FIELD/05-ComboBox-Customized.html
+
+`05-ComboBox-Customized.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+    <title>ComboBox - Multiple Selection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-classic/resources/theme-classic-all.css" 
+         rel = "stylesheet" />
+      <script type = "text/javascript" 
+         src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/ext-all.js"></script>
+      
+      <script type = "text/javascript">
+         Ext.onReady(function() {
+            // El data store que contiene la lista de estados
+            var states = Ext.create('Ext.data.Store', {
+                fields: ['abbr', 'name'],
+                data : [
+                    {"abbr":"AL", "name":"Alabama"},
+                    {"abbr":"AK", "name":"Alaska"},
+                    {"abbr":"AZ", "name":"Arizona"}
+                ]
+            });
+
+            // Crear el combo box, attached al data store de los estados
+            Ext.create('Ext.form.ComboBox', {
+               fieldLabel: 'Elegir estado',
+               store: states,
+               queryMode: 'local',
+               displayField: 'name',
+               valueField: 'abbr',
+               padding:'5px',
+               renderTo: Ext.getBody(),
+               // Template para el menú desplegable.
+               // Note el uso de las clases "x-list-plain" y "x-boundlist-item",
+               // esto es necesario para que los elementos se puedan seleccionar.
+               tpl: Ext.create('Ext.XTemplate',
+                  '<ul class="x-list-plain">',
+                     '<tpl for=".">',
+                        '<li role="option" class="x-boundlist-item">{abbr} - {name}</li>',
+                     '</tpl>',
+                  '</ul>'
+               ),
+               // template para el contenido dentro del campo de texto
+               displayTpl: Ext.create('Ext.XTemplate',
+                  '<tpl for=".">',
+                     '{abbr} - {name}',
+                  '</tpl>'
+               )
+            });
+         });
+      </script>
+   </head>
+   
+   <body></body>
+</html>
+```
+
+![15-ComboBox](images/15-ComboBox.png)
 
 ## VARIOS EJEMPLOS de https://fiddle.sencha.com/
 
