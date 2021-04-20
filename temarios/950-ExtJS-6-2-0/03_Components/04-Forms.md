@@ -731,3 +731,176 @@ Ext.create('Ext.form.Panel', {
 
 ![06-Layout](/temarios/950-ExtJS-6-2-0/images/06-Layout.png)
 
+## Ejemplos de Formularios
+
+### 🔴 FORM SUBMIT 
+
+https://fiddle.sencha.com/#view/editor&fiddle/30pp
+
+http://127.0.0.1:5500/950-ExtJS-6-2-0/MISC/FORM-SUBMIT/app.html
+
+`app.html`
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- https://fiddle.sencha.com/#view/editor&fiddle/30pp -->
+        <title>FORM SUBMIT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+        <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-classic/resources/theme-classic-all.css" 
+            rel = "stylesheet" />
+        <script type = "text/javascript" 
+            src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/ext-all.js"></script>
+      
+        <script type = "text/javascript">
+            Ext.application({
+                name: 'Fiddle',
+                launch: function () {
+                    var form =   Ext.create('Ext.form.Panel', {
+                        title: 'Información del empleado',
+                        width: 300,
+                        bodyPadding: 10,
+                        margin: 20,
+                        renderTo: Ext.getBody(),
+                        items: [{
+                            xtype: 'form',
+                            reference: 'form',
+                            url:'https://fiddle.sencha.com/',
+                            items: [{
+                                xtype: 'numberfield',
+                                name: 'id',
+                                fieldLabel: 'ID de Empleado',
+                                allowBlank: false,
+                                maxValue: 99,
+                                minValue: 0
+                            }, {
+                                xtype: 'textfield',
+                                name: 'name',
+                                fieldLabel: 'Nombre',
+                                allowBlank: false
+                            },{
+                                xtype: 'textfield',
+                                name: 'address',
+                                fieldLabel: 'Dirección',
+                                allowBlank: false
+                            },{
+                                xtype: 'numberfield',
+                                name: 'salary',
+                                fieldLabel: 'Salario',
+                                maxValue: 100000,
+                                minValue: 0,
+                                allowBlank: false
+                            }],
+                            buttons: [{
+                                text: 'Enviar',
+                                formBind: true,
+                                listeners: {
+                                    click: function(btn){
+                                        debugger;
+                                        var formpanel = btn.up('form');
+                                        // var  form = formpanel.getForm();
+                                        // form.submit();
+                                        var values = formpanel.getForm().getValues();
+                                        //  var record = new store.recordType(values);
+                                        store.add(values);
+                                        store.save();
+                                    }
+                                }
+                            }]
+                        }]
+                    });
+
+                    // Model Section
+                    Ext.define('MyApp.model.MyModel', {
+                        extend: 'Ext.data.Model',
+                        alias: 'model.mymodel',
+
+                        requires: [
+                            'Ext.data.field.Integer',
+                            'Ext.data.field.String'
+                        ],
+
+                        fields: [
+                            {
+                                type: 'int',
+                                name: 'id'
+                            },
+                            {
+                                type: 'string',
+                                name: 'Name'
+                            },
+                            {
+                            type: 'string',
+                                name: 'Address'
+                            },
+                            {
+                            type: 'int',
+                            name: 'Salary'
+                            }
+                        ]
+                    });
+
+                    // Store Section
+                    var store =  Ext.create('Ext.data.Store', {
+                        storeId: 'simpsonsStore',
+                        fields:[ 'id', 'name', 'address', 'salary'],
+                        data: [
+                            { id:1, name: 'Lisa', address: 'Hyderaabad', salary: 10000 },
+                            { id:2, name: 'Bart', address: 'Banglore',   salary: 3000 },
+                            { id:3, name: 'Homer', address: 'Chennai',   salary: 9000 },
+                            { id:4, name: 'Marge', address: 'Vijayewada', salary: 8000 }
+                        ]
+                    });
+
+                    // Grid Section
+                    var grid = Ext.create({
+                        xtype: 'gridpanel',
+                        renderTo: Ext.getBody(),
+                        title: 'Grid de Empleados',
+                        collapsible: true,
+                        margin: 20,
+                        height: 300,
+                        width: 400,
+                        store:  store,
+                        columns: [{
+                            text: 'ID',
+                            dataIndex: 'id',
+                            flex: 1
+                        }, {
+                            text: 'Name',
+                            dataIndex: 'name',
+                            flex: 1
+                        },{
+                            text: 'Address',
+                            dataIndex: 'address'
+                        }, {
+                            text: 'Salary',
+                            dataIndex: 'salary'
+                        }],
+
+                        // when a record/row is selected load that record
+                        // to the Form Panel for editing
+                        listeners: {
+                            select: function (selModel, rec) {
+                                form.loadRecord(rec);
+                            }
+                        }
+                    });
+                }
+            });
+        </script>
+    </head>   
+    <body></body>
+</html>
+```
+
+![05-Form](/temarios/950-ExtJS-6-2-0/images/05-Form.png)
+
+![06-Form](/temarios/950-ExtJS-6-2-0/images/06-Form.png)
+
+![07-Form](/temarios/950-ExtJS-6-2-0/images/07-Form.png)
+
+![08-Form](/temarios/950-ExtJS-6-2-0/images/08-Form.png)
+
+![09-Form](/temarios/950-ExtJS-6-2-0/images/09-Form.png)
