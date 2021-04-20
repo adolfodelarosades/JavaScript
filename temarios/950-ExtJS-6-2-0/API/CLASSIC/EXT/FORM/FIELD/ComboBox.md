@@ -229,3 +229,158 @@ http://127.0.0.1:5500/950-ExtJS-6-2-0/API/CLASSIC/EXT/FORM/FIELD/03-ComboBox-Eve
 La configuración [multiSelect]() está obsoleta. Para selección múltiple, use [Ext.form.field.Tag]() o [Ext.view.MultiSelector]().
 
 
+## VARIOS EJEMPLOS de https://fiddle.sencha.com/
+
+
+### 🔴 COMBOBOX WITH MULTIPLE VALUE IN DISPLAY LISTCONFIG
+
+http://127.0.0.1:5500/950-ExtJS-6-2-0/MISC/COMBOBOX-WITH-MULTIPLE-VALUE-IN-DISPLAY-LISTCONFIG/app.html
+
+`app.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+    <title>COMBOBOX WITH MULTIPLE VALUE IN DISPLAY LISTCONFIG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-classic/resources/theme-classic-all.css" 
+         rel = "stylesheet" />
+      <script type = "text/javascript" 
+         src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/ext-all.js"></script>
+      
+      <script type = "text/javascript">
+         Ext.onReady(function() {
+            // El data store que contiene la lista de estados
+            var states = Ext.create('Ext.data.Store', {
+                fields: ['abbr', 'name'],
+                data : [
+                    {"abbr":"AL", "name":"Alabama"},
+                    {"abbr":"AK", "name":"Alaska"},
+                    {"abbr":"AZ", "name":"Arizona"},
+                    {"abbr":"IN", "name":"India"},
+                    {"abbr":"JH", "name":"Jharkhand"},
+                    {"abbr":"BI", "name":"Bihar"}
+                ]
+            });
+
+            // Crear el combo box, attached al data store de los estados
+            Ext.create('Ext.form.ComboBox', {
+                fieldLabel: 'Elegir estado',
+                store: states,
+                queryMode: 'local',
+                displayField: 'name',
+                valueField: 'abbr',
+                padding:'5px',
+                renderTo: Ext.getBody(),
+                listConfig: {
+                    loadingText: 'Cargando...',
+                    emptyText: 'No hay resultados.',
+                    getInnerTpl: function() {
+                        return '<table width="100%">'+
+                                    '<tr>'+
+                                        '<td style="vertical-align:top;width:100%">'+
+                                        '<span>{abbr} ({name}) </span>'+
+                                        '</td>'+
+                                    '</tr>'+
+                                '</table>';
+                    }
+                }
+            });
+         });
+      </script>
+   </head>
+   
+   <body></body>
+</html>
+```
+
+![08-ComboBox](images/08-ComboBox.png)
+![09-ComboBox](images/09-ComboBox.png)
+
+
+### 🔴 COMBOBOX ON REMOTE QUERY MODE WITH MULTIPLE/FORCE SELECTION ENABLED DOES NOT LOAD
+
+https://fiddle.sencha.com/#view/editor&fiddle/1rs5
+
+http://127.0.0.1:5500/950-ExtJS-6-2-0/MISC/COMBOBOX-ON-REMOTE-QUERY-MODE-WITH-MULTIPLE-FORCE-SELECTION-ENABLED-DOES-NOT-LOAD/app.html
+
+`app.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+    <title>COMBOBOX WITH MULTIPLE VALUE IN DISPLAY LISTCONFIG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-classic/resources/theme-classic-all.css" 
+         rel = "stylesheet" />
+      <script type = "text/javascript" 
+         src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/ext-all.js"></script>
+      
+      <script type = "text/javascript">
+         Ext.onReady(function() {
+            Ext.define('StateModel', {
+                  extend: 'Ext.data.Model',
+                  fields: ['id', 'abbr', 'state', 'description', 'country']
+            });
+
+            var store = Ext.create('Ext.data.Store', {
+                  model: 'StateModel',
+                  proxy: {
+                     type: 'ajax',
+                     url: 'states.json',
+                     reader: {
+                           type: 'array',
+                           root: 'data'
+                     }
+                  }
+            });
+            store.load();
+
+            // Crear el combo box, attached al data store de los estados
+            Ext.create('Ext.form.ComboBox', {
+                fieldLabel: 'Seleccionar varios estados',
+                store: store,
+                value: ['AL', 'AK', 'AR'],
+                queryMode: 'remote',
+                displayField: 'state',
+                valueField: 'abbr',
+                width: 500,
+                labelWidth: 130,
+                padding:'5px',
+                multiSelect: true,
+                forceSelection: true,
+                renderTo: Ext.getBody(),
+            });
+         });
+      </script>
+   </head>
+   
+   <body>
+    <h1>Ejemplo de ExtJs: Modo de Consulta Remota</h1>
+    <div>
+        En este ejemplo, los estados (Alabama, Alaska, Arkansas) deben seleccionarse cuando se carga la lista del cuadro combinado.
+    </div>
+    <br>
+    <div id="example-combobox"></div>
+
+   </body>
+</html>
+```
+
+![10-ComboBox](images/10-ComboBox.png)
+![11-ComboBox](images/11-ComboBox.png)
+![12-ComboBox](images/12-ComboBox.png)
+
+
+### 🔴 
+
+
+
+`app.html`
+
+```html
+```
+
+### 🔴 MULTIPLE COMBOBOX LIST (https://fiddle.sencha.com/#view/editor&fiddle/1tf1)
