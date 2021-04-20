@@ -120,8 +120,97 @@ Ext JS proporciona un conjunto de tipos de campo estándar listos para usar. Cua
 
 ### Validation
 
-```html
+#### 1. Built-in Validations
+
+Ext JS tiene soporte integrado para la validación en cualquier tipo de campo, y algunos campos tienen reglas de validación integradas.
+
+Por ejemplo, si se ingresa un valor en un [Date Field]() y ese valor no se puede convertir en un **`Date`**, el campo tendrá la clase CSS **`x-form-invalid-field`** agregada a su elemento HTML.
+
+Si es necesario, esta clase CSS se puede cambiar usando la configuración [invalidCls](). La adición de **`invalidCls`** agrega un borde rojo al campo de entrada (así como una decoración roja de "invalid underline" cuando se usa el Classic theme):
+
+![02-Form](images/02-Form.png)
+
+Un campo que contenga datos no válidos también mostrará un mensaje de error. De forma predeterminada, este mensaje se muestra como información sobre un tool tip:
+
+![03-Form](images/03-Form.png)
+
+Es fácil cambiar la ubicación del mensaje de error de un campo usando la configuración de [msgTarget](), y la configuración de [invalidText]() cambia el mensaje de error.
+
+Cada campo proporciona su propia implementación de **`invalidText`** y muchos admiten el reemplazo de token en el mensaje de error.
+
+Por ejemplo, en el texto **`invalidText`** de un Date Field, cualquier aparición de `"{0}"` se reemplazará con el valor del campo, y cualquier aparición de `"{1}"` se reemplazará con el [formato]() de fecha requerido.
+
+El siguiente código demuestra colocar el mensaje de error directamente debajo del campo y personalizar el texto del mensaje de error:
+
+```js
+{
+    xtype: 'datefield',
+    fieldLabel: 'Date of Birth',
+    name: 'birthDate',
+    msgTarget: 'under', // location of the error message
+    invalidText: '"{0}" bad. "{1}" good.' // custom error message text
+}
 ```
+
+![04-Form](images/04-Form.png)
+
+
+### 🔴 Built-in Validations `02-Basic-Form-Panel-Validation.html`
+
+http://127.0.0.1:5500/950-ExtJS-6-2-0/03-Components/04-Forms/02-Basic-Form-Panel-Validation.html
+
+`02-Basic-Form-Panel-Validation.html`
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+    <title>Primera Aplicación Extjs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-classic/resources/theme-classic-all.css" 
+         rel = "stylesheet" />
+      <script type = "text/javascript" 
+         src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/ext-all.js"></script>
+      
+      <script type = "text/javascript">
+         Ext.onReady(function() {
+            Ext.create('Ext.form.Panel', {
+                renderTo: document.body,
+                title: 'Formulario de Usuario',
+                height: 350,
+                width: 300,
+                bodyPadding: 10,
+                defaultType: 'textfield',
+                items: [
+                    {
+                        fieldLabel: 'Nombre',
+                        name: 'firstName'
+                    },
+                    {
+                        fieldLabel: 'Apellido',
+                        name: 'lastName'
+                    },
+                    {
+                        xtype: 'datefield',
+                        fieldLabel: 'Fecha de Nacimiento',
+                        name: 'birthDate',
+                        msgTarget: 'under', // ubicación del mensaje de error
+                        invalidText: '"{0}" mal. "{1}" bien.' // texto de mensaje de error personalizado
+                    }
+                ]
+            });
+         });
+      </script>
+   </head>
+   
+   <body></body>
+</html>
+```
+
+![02-Basic-Form-Panel-Validation](images/02-Basic-Form-Panel-Validation.png)
+
+#### 2. Custom Validations
+
 
 ```html
 ```
