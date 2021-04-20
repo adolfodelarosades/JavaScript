@@ -223,3 +223,9 @@ http://127.0.0.1:5500/950-ExtJS-6-2-0/API/CLASSIC/EXT/FORM/FIELD/03-ComboBox-Eve
 ```
 
 ![07-ComboBox](images/07-ComboBox.png)
+
+## Multiple Selection
+
+La configuración [multiSelect]() está obsoleta. Para selección múltiple, use [Ext.form.field.Tag]() o [Ext.view.MultiSelector]().
+
+
