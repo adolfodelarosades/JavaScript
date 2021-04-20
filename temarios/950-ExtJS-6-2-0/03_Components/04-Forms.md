@@ -626,5 +626,108 @@ Ahora vamos a simular que el usuario no se añadio.
 
 ![05-06-Submitting-a-Form](/temarios/950-ExtJS-6-2-0/images/05-06-Submitting-a-Form.png)
 
+### Binding a Form to a Model - Vincular un Formulario a un Modelo
 
+La clase [Model]() se utiliza en Ext JS para representar varios tipos de datos, así como para recuperar y actualizar datos en el servidor. Un Model que representa a un **User** definiría los campos que tiene un **User**, así como un [proxy]() para cargar y guardar datos:
+
+```js
+Ext.define('MyApp.model.User', {
+    extend: 'Ext.data.Model',
+    fields: ['firstName', 'lastName', 'birthDate'],
+    proxy: {
+        type: 'ajax',
+        api: {
+            read: 'data/get_user',
+            update: 'data/update_user'
+        },
+        reader: {
+            type: 'json',
+            root: 'users'
+        }
+    }
+});
+```
+
+Los datos se pueden cargar en un Form Panel directamente desde un Model utilizando el método [loadRecord]():
+
+```js
+MyApp.model.User.load(1, { // load user with ID of "1"
+    success: function(user) {
+        userForm.loadRecord(user); // when user is loaded successfully, load the data into the form
+    }
+});
+```
+
+Finalmente, en lugar de usar el método [submit]() para guardar los datos, el método [updateRecord]() del Form Panel se usa para actualizar el registro con los datos del formulario, y se llama al método [save]() del Model para guardar los datos en el servidor:
+
+```js
+Ext.create('Ext.form.Panel', {
+    ...
+    url: 'add_user',
+    items: [
+        ...
+    ],
+    buttons: [
+        {
+            text: 'Submit',
+            handler: function() {
+                var form = this.up('form'), // get the form panel
+                    record = form.getRecord(); // get the underlying model instance
+                if (form.isValid()) { // make sure the form contains valid data before submitting
+                    form.updateRecord(record); // update the record with the form data
+                    record.save({ // save the record to the server
+                        success: function(user) {
+                            Ext.Msg.alert('Success', 'User saved successfully.')
+                        },
+                        failure: function(user) {
+                            Ext.Msg.alert('Failure', 'Failed to save user.')
+                        }
+                    });
+                } else { // display error alert if the data is invalid
+                    Ext.Msg.alert('Invalid Data', 'Please correct form errors.')
+                }
+            }
+        }
+    ]
+});
+```
+
+### Layouts - Diseños
+
+Los Layouts se utilizan para manejar el tamaño y el posicionamiento de componentes en una aplicación Ext JS. Los Form Panels pueden utilizar cualquier [Container Layout](). Para obtener más información sobre diseños, consulte la [Layouts and Containers Guide]().
+
+Por ejemplo, colocar los campos en un formulario horizontalmente se puede hacer fácilmente usando un diseño [HBox]():
+
+
+```js
+Ext.create('Ext.form.Panel', {
+    renderTo: document.body,
+    title: 'User Form',
+    height: 300,
+    width: 585,
+    defaults: {
+        xtype: 'textfield',
+        labelAlign: 'top',
+        padding: 10
+    },
+    layout: 'hbox',
+    items: [
+        {
+            fieldLabel: 'First Name',
+            name: 'firstName'
+        },
+        {
+            fieldLabel: 'Last Name',
+            name: 'lastName'
+        },
+        {
+            xtype: 'datefield',
+            fieldLabel: 'Date of Birth',
+            name: 'birthDate'
+        }
+    ]
+});
+```
+
+![06-Layout](/temarios/950-ExtJS-6-2-0/images/06-Layout.png)
 
