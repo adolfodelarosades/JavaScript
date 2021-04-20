@@ -98,7 +98,7 @@ http://127.0.0.1:5500/950-ExtJS-6-2-0/03-Components/04-Forms/01-Basic-Form-Panel
 </html>
 ```
 
-![01-Basic-Form-Panel](images/01-Basic-Form-Panel.png)
+![01-Basic-Form-Panel](/temarios/950-ExtJS-6-2-0/images/01-Basic-Form-Panel.png)
 
 ## Fields
 
@@ -129,11 +129,11 @@ Por ejemplo, si se ingresa un valor en un [Date Field]() y ese valor no se puede
 
 Si es necesario, esta clase CSS se puede cambiar usando la configuración [invalidCls](). La adición de **`invalidCls`** agrega un borde rojo al campo de entrada (así como una decoración roja de "invalid underline" cuando se usa el Classic theme):
 
-![02-Form](images/02-Form.png)
+![02-Form](/temarios/950-ExtJS-6-2-0/images/02-Form.png)
 
 Un campo que contenga datos no válidos también mostrará un mensaje de error. De forma predeterminada, este mensaje se muestra como información sobre un tool tip:
 
-![03-Form](images/03-Form.png)
+![03-Form](/temarios/950-ExtJS-6-2-0/images/03-Form.png)
 
 Es fácil cambiar la ubicación del mensaje de error de un campo usando la configuración de [msgTarget](), y la configuración de [invalidText]() cambia el mensaje de error.
 
@@ -153,7 +153,7 @@ El siguiente código demuestra colocar el mensaje de error directamente debajo d
 }
 ```
 
-![04-Form](images/04-Form.png)
+![04-Form](/temarios/950-ExtJS-6-2-0/images/04-Form.png)
 
 
 ### 🔴 Built-in Validations `02-Basic-Form-Panel-Validation.html`
@@ -208,7 +208,7 @@ http://127.0.0.1:5500/950-ExtJS-6-2-0/03-Components/04-Forms/02-Basic-Form-Panel
 </html>
 ```
 
-![02-Basic-Form-Panel-Validation](images/02-Basic-Form-Panel-Validation.png)
+![02-Basic-Form-Panel-Validation](/temarios/950-ExtJS-6-2-0/images/02-Basic-Form-Panel-Validation.png)
 
 #### 2. Custom Validations
 
