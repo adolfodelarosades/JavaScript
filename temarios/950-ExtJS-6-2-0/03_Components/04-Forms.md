@@ -36,7 +36,8 @@ Ext.create('Ext.form.Panel', {
 });
 ```
 
-![01-Form](images/01-Form.png)
+![01-Form](/temarios/950-ExtJS-6-2-0/images/01-Form.png)
+https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/950-ExtJS-6-2-0/images/06fig01.jpeg
 
 Este Form se representa en el cuerpo del documento y tiene tres [Fields](): "First Name", "Last Name" y "Date of Birth". Los campos se agregan al Form Panel utilizando la configuración de [items]().
 
