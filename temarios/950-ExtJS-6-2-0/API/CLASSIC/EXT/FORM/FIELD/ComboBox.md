@@ -387,6 +387,8 @@ http://127.0.0.1:5500/950-ExtJS-6-2-0/API/CLASSIC/EXT/FORM/FIELD/05-ComboBox-Cus
 
 ![15-ComboBox](images/15-ComboBox.png)
 
+Consulte también la opción [listConfig] para obtener una configuración adicional del menú desplegable.
+
 ## VARIOS EJEMPLOS de https://fiddle.sencha.com/
 
 
