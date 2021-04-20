@@ -1,5 +1,7 @@
 # `Ext.form.field.ComboBox`
 
+![01-ComboBox](images/01-ComboBox.png)
+
 Un control de cuadro combinado con soporte para autocompletar, carga remota y muchas otras características.
 
 Un ComboBox es como una combinación de un campo <input> de texto HTML tradicional y un campo <select>; el usuario puede escribir libremente en el campo y / o elegir valores de una lista de selección desplegable. El usuario puede ingresar cualquier valor por defecto, incluso si no aparece en la lista de selección; para evitar valores de forma libre y restringirlos a elementos de la lista, establezca forceSelection en true.
