@@ -662,6 +662,7 @@ RETURNS: **`Ext.Container`**
 
    El contenedor del antepasado coincidente (o **`undefined`** si no se encontró ninguna coincidencia).
 
+<hr>
 
 Tambien usamos el método `prev()` de **`Ext.dom.Element`**
 
@@ -679,11 +680,12 @@ PARAMETROS
 
    **`true`** para devolver un nodo DOM sin formato en lugar de un **`Ext.dom.Element`**
 
-Defaults to: false
+   Por defecto es: **`false`**
 
 RETURNS : **`Ext.dom.Element/HTMLElement`**
 
 El sibling previo (**`Ext.dom.Element`** o HTMLElement si ***`returnDom`*** es **`true`**). O **`null`** si no se encuentra ninguna coincidencia.
+
 <hr>
 
 ![16-ComboBox](images/16-ComboBox.png)
