@@ -389,6 +389,38 @@ http://127.0.0.1:5500/950-ExtJS-6-2-0/API/CLASSIC/EXT/FORM/FIELD/05-ComboBox-Cus
 
 Consulte también la opción [listConfig] para obtener una configuración adicional del menú desplegable.
 
+## METHODS **370**
+
+<hr>
+
+**`up( [selector], [limit] ) : Ext.Container`** 
+
+Recorre la jerarquía de propiedad en busca de un componente ancestro que coincida con el selector simple pasado.
+
+Exemplo:
+
+```js
+var owningTabPanel = grid.up('tabpanel');
+```
+
+PARAMETROS
+
+* selector: **`String (opcional)`**
+
+   El selector simple para probar.
+
+* limit: **`String/Number/Ext.Component (opcional)`**
+
+   Este puede ser un selector en el que detener el escaneo ascendente, o un límite del número de pasos, o una referencia de componente para detener.
+
+RETURNS: **`Ext.Container`**
+
+   El contenedor del antepasado coincidente (o **`undefined`** si no se encontró ninguna coincidencia).
+
+<hr>
+
+
+
 ## VARIOS EJEMPLOS de https://fiddle.sencha.com/
 
 
