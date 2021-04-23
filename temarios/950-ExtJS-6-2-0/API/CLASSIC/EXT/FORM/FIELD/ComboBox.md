@@ -534,13 +534,102 @@ http://127.0.0.1:5500/950-ExtJS-6-2-0/MISC/COMBOBOX-ON-REMOTE-QUERY-MODE-WITH-MU
 ![12-ComboBox](images/12-ComboBox.png)
 
 
-### 🔴 
+### 🔴 EXAMPLES OF SELECTION WITH COMBOBOX AND MULTISELECT
 
-
+http://127.0.0.1:5500/950-ExtJS-6-2-0/MISC/EXAMPLES-OF-SELECTION-WITH-COMBOBOX-AND-MULTISELECT/app.html
 
 `app.html`
 
 ```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- https://fiddle.sencha.com/#view/editor&fiddle/2t74 -->
+        <title>EXAMPLES OF SELECTION WITH COMBOBOX AND MULTISELECT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+        <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-classic/resources/theme-classic-all.css" 
+            rel = "stylesheet" />
+        <script type = "text/javascript" 
+            src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/ext-all.js"></script>
+      
+        <script type = "text/javascript">
+            Ext.application({
+                name: 'Fiddle',
+
+                launch: function() {
+                    var store = Ext.create('Ext.data.Store', {
+                        fields: ['dataDictId', 'name'],
+                        data: [{
+                            'dataDictId': 'ab509a22-4ac1-4b7b-9038-b26cdc4621b0',
+                            "name": "Carpeta: String"
+                        }, {
+                            "dataDictId": "c9815448-86dc-46fa-860a-8d1a0300d202",
+                            'name': 'Estadísticas del paciente en reposo: Peso'
+                        }, {
+                            "dataDictId": "16d73de6-7f47-4c27-92e6-88f8c5f9907e",
+                            'name': 'Estadísticas del paciente en reposo: Altura'
+                        }, {
+                            "dataDictId": "996d4da2-c65c-4909-9068-488ca34bb5e8",
+                            'name': 'Estadísticas del paciente en ejercicio: Peso'
+                        }, {
+                            "dataDictId": "56a958f1-6f16-4ffd-8a3d-5ef257b6a474",
+                            'name': 'Ejercicio de estadísticas del paciente: Altura'
+                        }, {
+                            "dataDictId": "624999c4-b9f4-4092-9542-a2c7f9e85e22",
+                            'name': 'Índice de masa corporal en reposo'
+                        }, {
+                            "dataDictId": "3def9d61-6d49-4ba2-9d6d-780bf73a889a",
+                            'name': 'Ejercicio de índice de masa corporal'
+                        }]
+                    });
+                    Ext.create('Ext.form.Panel', {
+                        bodyPadding: 10,
+                        layout: 'anchor',
+                        title: 'Ejemplos de selección',
+                        defaults: {
+                            anchor: '100%',
+                            labelWidth: 125,
+                            editable: true,
+                            forceSelection: false,
+                        },
+                        items: [{
+                            xtype: 'combobox',
+                            name: 'ComboSingle',
+                            fieldLabel: 'Campo calculado',
+                            store: store,
+                            displayField: 'name',
+                            valueField: 'dataDictId',
+                            minChars: 2
+                        }, {
+                            xtype: 'fieldcontainer',
+                            margin: '0 0 20 0',
+                            layout: {
+                                type: 'hbox',
+                                pack: 'end'
+                            },
+                            items: [{
+                                xtype: 'button',
+                                text: 'Obtenga Valor',
+                                handler: function (btn) {
+                                    Ext.Msg.alert("Valor del dato seleccionado", btn.up('fieldcontainer').prev().getValue());
+                                }
+                            }]
+                        }],
+                        width: 400,
+                        height: 500,
+                        renderTo: Ext.getBody()
+                    });
+                }
+            });
+        </script>
+    </head>   
+    <body></body>
+</html>
 ```
+
+![16-ComboBox](images/16-ComboBox.png)
+![17-ComboBox](images/17-ComboBox.png)
+![18-ComboBox](images/18-ComboBox.png)
+![19-ComboBox](images/19-ComboBox.png)
 
 ### 🔴 MULTIPLE COMBOBOX LIST (https://fiddle.sencha.com/#view/editor&fiddle/1tf1)
