@@ -389,35 +389,9 @@ http://127.0.0.1:5500/950-ExtJS-6-2-0/API/CLASSIC/EXT/FORM/FIELD/05-ComboBox-Cus
 
 Consulte también la opción [listConfig] para obtener una configuración adicional del menú desplegable.
 
-## METHODS **370**
+## METHODS ****
 
-<hr>
 
-**`up( [selector], [limit] ) : Ext.Container`** 
-
-Recorre la jerarquía de propiedad en busca de un componente ancestro que coincida con el selector simple pasado.
-
-Exemplo:
-
-```js
-var owningTabPanel = grid.up('tabpanel');
-```
-
-PARAMETROS
-
-* selector: **`String (opcional)`**
-
-   El selector simple para probar.
-
-* limit: **`String/Number/Ext.Component (opcional)`**
-
-   Este puede ser un selector en el que detener el escaneo ascendente, o un límite del número de pasos, o una referencia de componente para detener.
-
-RETURNS: **`Ext.Container`**
-
-   El contenedor del antepasado coincidente (o **`undefined`** si no se encontró ninguna coincidencia).
-
-<hr>
 
 
 
@@ -658,6 +632,37 @@ http://127.0.0.1:5500/950-ExtJS-6-2-0/MISC/EXAMPLES-OF-SELECTION-WITH-COMBOBOX-A
     <body></body>
 </html>
 ```
+
+
+<hr>
+
+En este ejemplo se usa el el método **`up`** del botón que se describe a continuación:
+
+**`up( [selector], [limit] ) : Ext.Container`** 
+
+Recorre la jerarquía de propiedad en busca de un componente ancestro que coincida con el selector simple pasado.
+
+Exemplo:
+
+```js
+var owningTabPanel = grid.up('tabpanel');
+```
+
+PARAMETROS
+
+* selector: **`String (opcional)`**
+
+   El selector simple para probar.
+
+* limit: **`String/Number/Ext.Component (opcional)`**
+
+   Este puede ser un selector en el que detener el escaneo ascendente, o un límite del número de pasos, o una referencia de componente para detener.
+
+RETURNS: **`Ext.Container`**
+
+   El contenedor del antepasado coincidente (o **`undefined`** si no se encontró ninguna coincidencia).
+
+<hr>
 
 ![16-ComboBox](images/16-ComboBox.png)
 ![17-ComboBox](images/17-ComboBox.png)
