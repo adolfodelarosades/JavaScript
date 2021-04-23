@@ -662,6 +662,28 @@ RETURNS: **`Ext.Container`**
 
    El contenedor del antepasado coincidente (o **`undefined`** si no se encontró ninguna coincidencia).
 
+
+Tambien usamos el método `prev()` de **`Ext.dom.Element`**
+
+**`prev ( [selector], [returnDom] ) : Ext.dom.Element/HTMLElement`**
+
+Obtiene el sibling previo, omitiendo nodos de texto
+
+PARAMETROS
+
+* **`selector :  String (optional)`**
+
+   Busque el sibling previo que coincida con el selector simple pasado. Consulte **`Ext.dom.Query`** para obtener información sobre selectores simples.
+
+* **`returnDom :  Boolean (optional)`**
+
+   **`true`** para devolver un nodo DOM sin formato en lugar de un **`Ext.dom.Element`**
+
+Defaults to: false
+
+RETURNS : **`Ext.dom.Element/HTMLElement`**
+
+El sibling previo (**`Ext.dom.Element`** o HTMLElement si ***`returnDom`*** es **`true`**). O **`null`** si no se encuentra ninguna coincidencia.
 <hr>
 
 ![16-ComboBox](images/16-ComboBox.png)
