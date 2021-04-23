@@ -107,7 +107,7 @@ http://127.0.0.1:5500/950-ExtJS-6-2-0/03-Components/04-Forms/01-Basic-Form-Panel
 Ext JS proporciona un conjunto de tipos de campo estándar listos para usar. Cualquiera de los campos del namespace **`Ext.form.field`** se puede utilizar en un Form Panel. Para obtener más información, consulte la documentación de la API para cada tipo de campo:
 
 * **`Ext.form.field.Checkbox`**
-* **`Ext.form.field.ComboBox`**
+* [Ext.form.field.ComboBox](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/950-ExtJS-6-2-0/API/CLASSIC/EXT/FORM/FIELD/ComboBox.md)
 * **`Ext.form.field.Date`**
 * **`Ext.form.field.Display`**
 * **`Ext.form.field.File`**
