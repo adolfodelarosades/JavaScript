@@ -161,6 +161,588 @@
 ```
 
 
+IMAGE-LOAD-EXAMPLE
+
+```html
+<!DOCTYPE html>
+<html>
+   <head>
+    <title>ComboBox - Multiple Selection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+      <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-classic/resources/theme-classic-all.css" 
+         rel = "stylesheet" />
+      <script type = "text/javascript" 
+         src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/ext-all.js"></script>
+      
+      <script type = "text/javascript">
+         Ext.onReady(function() {
+
+            Ext.define('StateModel', {
+                  extend: 'Ext.data.Model',
+                  fields: ['id', 'abbr', 'state', 'description', 'country']
+            });
+
+            var store = Ext.create('Ext.data.Store', {
+                  model: 'StateModel',
+                  proxy: {
+                     type: 'ajax',
+                     url: 'states.json',
+                     reader: {
+                           type: 'array',
+                           root: 'data'
+                     }
+                  }
+            });
+            store.load();
+
+            // Crear el combo box, attached al data store de los estados
+            var cb = new Ext.create('Ext.form.ComboBox', {
+                fieldLabel: 'Seleccionar varios estados',
+                store: store,
+                value: ['AL', 'AK', 'AR'],
+                queryMode: 'remote',
+                displayField: 'state',
+                valueField: 'abbr',
+                width: 500,
+                labelWidth: 130,
+                padding:'5px',
+                multiSelect: true,
+                forceSelection: true,
+                //renderTo: Ext.getBody(),
+            });
+
+            Ext.create('Ext.form.Panel', {
+               renderTo: document.body,
+               title: 'Formulario de Usuario',
+               height: 350,
+               width: 800,
+               bodyPadding: 10,
+               defaultType: 'textfield',
+               url: 'http://familiadelarosa.com/950-ExtJS-6-2-0/serverside/add_user_02.php',
+               items: [
+                  {
+                        fieldLabel: 'Nombre',
+                        name: 'firstName',
+                        labelWidth: 130
+                  },
+                  {
+                        fieldLabel: 'Apellido',
+                        name: 'lastName',
+                        labelWidth: 130
+                  },
+                  {
+                     xtype: 'combobox',
+                     fieldLabel: 'Seleccionar varios estados',
+                     store: store,
+                     value: ['AR'],
+                     queryMode: 'remote',
+                     displayField: 'state',
+                     valueField: 'abbr',
+                     width: 500,
+                     labelWidth: 130,
+                     padding:'5px',
+                     forceSelection: true
+                  }
+               ],
+               buttons: [
+                  {
+                     text: 'Submit',
+                     handler: function() {
+                        var form = this.up('form'); // obtener el form panel
+                        if (form.isValid()) { // asegúrese de que el formulario contenga datos válidos antes de enviar
+                           form.submit({
+                                 success: function(form, action) {
+                                    Ext.Msg.alert('Éxitoso', action.result.msg);
+                                 },
+                                 failure: function(form, action) {
+                                    Ext.Msg.alert('Fallido', action.result.msg);
+                                 }
+                           });
+                        } else { // display error alert if the data is invalid
+                           Ext.Msg.alert('Datos no válidos', 'Corrija los errores de formulario')
+                        }
+                     }
+                  }
+               ]
+            });
+         });
+      </script>
+   </head>
+   
+   <body></body>
+</html>
+```
+
+
+IMAGE-UPLOAD-USING-EXTJS
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- https://fiddle.sencha.com/#view/editor&fiddle/30pp -->
+        <title>FORM SUBMIT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+        <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-classic/resources/theme-classic-all.css" 
+            rel = "stylesheet" />
+        <script type = "text/javascript" 
+            src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/ext-all.js"></script>
+      
+        <script type = "text/javascript">
+            // Image Upload Example
+// In this example we show the Form Panel along with some commonly used
+// input fields available from Ext JS.  But, we've also added a little bit
+// of additional functionality to show how the Form Panel can be easily
+// upload images using Extjs filefield.
+
+
+Ext.application({
+    name: 'Fiddle',
+
+    launch: function() {
+
+        if (!Ext.getStore("imagesUploadStore")) {
+            Ext.create('Ext.data.Store', {
+                id: 'imagesUploadStore',
+                fields: [{
+                    name: 'src'
+                }, {
+                    name: 'imageId'
+                }]
+            });
+        }
+        Ext.getStore("imagesUploadStore").removeAll();
+
+        var form = Ext.create({
+            xtype: 'form',
+            renderTo: Ext.getBody(),
+            title: 'Image Upload Form',
+            margin: 20,
+            bodyPadding: 12,
+            width: 500,
+            items: [{
+                xtype: 'fieldcontainer',
+                layout : 'hbox',
+                items : [{
+                            xtype: 'label',
+                             margin : '5 0 0 10',
+                            name: 'imagesLabel',
+                            text: 'Images'
+                        },
+                        {
+                            xtype: 'label',
+                            margin : '5 0 0 15',
+                            name: 'imageCount',
+                            text: '0 image(s) attached'
+                        },{
+                            xtype: 'filefield',
+                            hidden: true,
+                            buttonText: 'AddImage',
+                            width: 90,
+                            name: 'file',
+                            itemId: 'file',
+                            buttonOnly: true,
+                            listeners: {
+                                afterrender: function(filefield) {
+                                    filefield.fileInputEl.dom.multiple = true
+                                },
+                                change: function() {
+                                    var files = event.target.files;
+
+                                    for (var i = 0, f; f = files[i]; i++) {
+
+                                        if (!f.type.match('image.*')) {
+                                            continue;
+                                        }
+
+                                        var reader = new FileReader();
+
+                                        reader.onload = (function(theFile) {
+                                            return function(e) {
+                                            	var attachimage = false;
+                                                var imgStore = Ext.data.StoreManager.lookup('imagesUploadStore')
+                                                var imgStoreLength = imgStore.data.items.length;
+                                                if (imgStoreLength === 0) {
+                                                    imgStore.loadData([{
+                                                        'src': e.target.result,
+                                                        'imageId': Math.random()
+                                                    }], true);
+                                                } else {
+                                                    for (var idx = 0; idx < imgStoreLength; idx++) {
+                                                        if (e.target.result === imgStore.data.items[idx].data.src) {
+
+
+                                                            return;
+                                                        } else {
+                                                            attachimage = true;
+                                                        }
+                                                    }
+                                                    if (attachimage === true) {
+                                                        imgStore.loadData([{
+                                                            'src': e.target.result,
+                                                            'imageId': Math.random()
+                                                        }], true);
+                                                    }
+
+                                                }
+
+                                                var img = Ext.ComponentQuery.query('#imgView')[0];
+
+                                                img.setStore(imgStore);
+                                                img.refresh();
+
+                                            };
+                                        })(f);
+
+                                        // Read in the image file as a data URL.
+                                        reader.readAsDataURL(f);
+                                    }
+                                }
+
+                            }
+                        },{
+                            xtype: 'button',
+                            margin : '0 0 0 20',
+                            text: 'Attach/Remove Images...',
+                            listeners: {
+                                click: function(){
+                                    Ext.create('Ext.window.Window',{
+                                  	modal: true,
+                        			title: 'Image Upload',
+                        			titleAlign: 'center',
+                        			constrain: true,
+                        			autoDestroy: false,
+                        			closeAction: 'hide',			
+                        			closable: true,
+                        			width: 700,
+                        			height: 400,
+                        			bbar:[{ xtype: 'button', text: 'Done' ,handler:function(){}}],
+                        			tbar: [{xtype: 'button', text: 'Remove',itemId:'removebtnId',disabled:true,listeners : {
+                        			
+                        			            click : function(){
+                                            	    		   var selectedImg= Ext.ComponentQuery.query('[itemId=imgView]')[0].getSelection();
+                                            	    		   var imgStore = Ext.getStore('imagesUploadStore');
+                                            	    		   imgStore.remove(selectedImg);
+                                            	    		   Ext.ComponentQuery.query('[itemId=removebtnId]')[0].disable();
+                                            	    		   var img= Ext.ComponentQuery.query('#imgView')[0];
+                                            	    		   img.refresh();
+                                            	    	   }
+                        			       }},
+                        	    	       {xtype: 'button', text: 'Browse',cls:'imgBrowseCls',listeners : {
+                        	    	           click : function(){
+                            	    			   var uploadButton = Ext.ComponentQuery.query('#file')[0];
+                            	    			   uploadButton.el.dom.getElementsByTagName('input')[1].click();
+	    		   }    	    	       } }
+                        	    	   ],
+                                    items:[{
+                    	    		   xtype : 'dataview',
+                    	    		   itemId :'imgView',
+                    	    		   scrollable : true,
+                    	    		   store: Ext.data.StoreManager.lookup('imagesUploadStore') ,
+                    	    		   width : 700,
+                    	    		   deferEmptyText: false,
+                    	    		   itemSelector: 'div.thumb-wrap',
+                    	    		   multiSelect: true,
+                    	    		   selectedCls:'imgSelctCls',
+                    	    		   tpl: [
+                    	    		         '<tpl for=".">',
+                    	    		         '<div  class="thumb-wrap">',
+                    	    		         '<div style ="float :left;"><img class="imgUploadCls" src="{src}" ></div>',
+                    	    		         '</div>',
+                    	    		         '</tpl>'
+                    	    		         ],
+                    	    		         height: 310,
+                    	    		         emptyText: '<div style="text-align: center;">No images to display.</div>',
+                    	    		         listeners : {
+                    	    		        	 select: function(){
+                    	    		        	
+                    	    		        	      var selectedImg= Ext.ComponentQuery.query('[itemId=imgView]')[0].getSelection();
+                    	    		        		 if(selectedImg.length>0 ){
+                    	    		        			 Ext.ComponentQuery.query('[itemId=removebtnId]')[0].enable();
+                    	    		        		 }
+                    	    		        		 else{
+                    	    		        			 Ext.ComponentQuery.query('[itemId=removebtnId]')[0].disable();
+                    	    		        		 }
+                    	    		        	
+                    	    		        	 },
+                    	    		        	 deselect:function(){
+                    	    		        	     Ext.ComponentQuery.query('[itemId=removebtnId]')[0].disable();
+                    	    		        	 }
+                    	    		        }
+                    	    	        }]
+                                     }).show();
+                                }
+                            }
+                        }]
+            }]
+        });
+
+
+    }
+});
+        </script>
+    </head>   
+    <body></body>
+</html>
+```
+
+IMAGE-WIDTH-HEIGHT
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- https://fiddle.sencha.com/#view/editor&fiddle/30pp -->
+        <title>FORM SUBMIT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+        <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-classic/resources/theme-classic-all.css" 
+            rel = "stylesheet" />
+        <script type = "text/javascript" 
+            src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/ext-all.js"></script>
+      
+        <script type = "text/javascript">
+            Ext.application({
+    name : 'Fiddle',
+
+    launch : function() {
+        Ext.create('Ext.Img', {
+            src: 'https://www.sencha.com/wp-content/uploads/2019/06/productPage-tab-develop-ExtJS-KitchenSink.png',
+            style: {
+                maxWidth: "50px",
+                maxHeight: "70px",
+            },
+            listeners: {
+                render: function() {
+                    this.mon(this.getEl(), 'load', function(e) {
+                        var w = this.getWidth();
+                        var h = this.getHeight();
+                        // Center vertically/horizontally
+                        this.setX(Math.round((100 - w) / 2));
+                        this.setY(Math.round((100 - h) / 2));
+                        
+                    });
+                }
+            },
+            renderTo: Ext.getBody()
+        });
+    }
+});
+        </script>
+    </head>   
+    <body></body>
+</html>
+```
+
+IMAGEUPLOADER
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- https://fiddle.sencha.com/#view/editor&fiddle/30pp -->
+        <title>FORM SUBMIT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+        <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-classic/resources/theme-classic-all.css" 
+            rel = "stylesheet" />
+        <script type = "text/javascript" 
+            src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/ext-all.js"></script>
+      
+        <script type = "text/javascript">
+            Ext.application({
+                name: 'Fiddle',
+                launch: function () {
+                    new Ext.container.Container({
+                        renderTo: Ext.getBody(),
+                        width: 400,
+                        height: 400,
+                        layout: {
+                            type: 'vbox',
+                            align: 'stretch'
+                        },
+                        viewModel: {},
+                        items: [
+                            {
+                                xclass: 'Ext.form.field.File',
+                                fieldLabel: 'Choose Picture',
+                                listeners: {
+                                    change (field) {
+                                        const dom = Ext.getDom(field.fileInputEl);
+                                        const container = field.up('container');
+                                        const viewModel = container.getViewModel();
+                                        const reader = new FileReader();
+
+                                        reader.onload = e => viewModel.set('imgData', e.target.result);
+
+                                        reader.readAsDataURL(dom.files[ 0 ]);
+                                    }
+                                }
+                            },
+                            {
+                                xclass: 'Ext.Img',
+                                flex: 1,
+                                bind: {
+                                    src: '{imgData}'
+                                }
+                            }
+                        ]
+                        
+                    })
+                    , Ext.define('com.view.common.ImageViewer', {
+                        extend: 'Ext.panel.Panel',    
+                        xtype: 'imageviewer',
+                        autoScroll : true,
+                        layout: 'border', 
+                        items:[{
+                            xtype: 'displayfield',
+                            cellCls: 'fo-table-row-td',
+                            fieldStyle: 'text-align:center; font-size:large; font-weight:bold;',
+                            value : 'No Image!'
+                        }],
+                        initComponent: function () {
+                            var me = this;
+                            if(Ext.isEmpty(me.__PARAMS)){
+                                me.callParent(null);
+                                return;
+                            }
+                            var imageList = me.__PARAMS;       
+                            var repImage = imageList[0].SRC;
+                            var repTitle = imageList[0].FILE_NAME;
+                            
+                            Ext.apply(me, {
+                                items: [{
+                                    xtype: 'panel',
+                                    layout: {
+                                        type :'vbox',
+                                        align: 'stretch'
+                                    },
+                    //				margin : 10,
+                                    title: repTitle,
+                                    name : 'PHOTO_TITLE',
+                                    split: true,
+                                    collapsible: true,
+                                    region: 'center',
+                                    frame: false,
+                                    scrollable: 'y',
+                                    hideCollapseTool: true,
+                                    header: true,  
+                                    items: [{
+                                        xtype : 'image',
+                                        src : repImage,
+                                        autoRender : true
+                                    }]               
+                                },{
+                                    xtype: 'panel',
+                    //				margin : 10,
+                                    padding : 1,
+                                    title:'Photo List',
+                                    name : 'PHOTO_LIST',
+                                    split: true,
+                                    collapsible: true,
+                                    region: 'east',
+                                    frame: false,
+                                    scrollable: 'y',
+                    //                hideCollapseTool: true,
+                                    header: true,
+                                    layout: {
+                                        type :'vbox',
+                                        align: 'stretch'
+                                    },
+                                    items: [{
+                                        xtype: 'dataview',    
+                                        itemSelector: 'div.thumb-wrap',
+                                        overItemCls: 'overImangeView',
+                                        emptyText: 'No images available',
+                                        store: Ext.create('Ext.data.Store', {
+                                            fields: [],
+                                            autoLoad: true,
+                                            data: imageList
+                                        }),    		        
+                                        listeners: {
+                                            itemclick: function(cmp, value){                     
+                                                var photoPanel = cmp.up('panel').up('panel').down('[name=PHOTO_TITLE]');
+                                                photoPanel.setTitle(value.data.FILE_NAME);
+                                                photoPanel.items.items[0].setSrc(value.data.SRC);
+                                                photoPanel.setScrollable('y');
+                                            }
+                                        },
+                                        tpl: new Ext.XTemplate(
+                                                '<tpl for=".">',
+                                                '<div style="width: 160px; margin: 10px;" class="thumb-wrap">',
+                                                '<li data-tooltip="{FILE_INFO}" class="{[xindex  === 1 ? "selected" : ""]} imagetooltip"><img src="{SRC}" style="height: 150px; width: 160px;"/></li>',
+                                                '<br/><span><div style="font-weight: bold; text-align: center;">[{FILE_NAME}]</div></span>',
+                                                '</div>',
+                                            '</tpl>'
+                                        )    			
+                                    }]
+                                }]		    
+                            });
+                            me.callParent(arguments);
+                        }
+                    });    
+                }
+            });
+        </script>
+    </head>   
+    <body></body>
+</html>
+```
+
+MY-IMAGEN
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- https://fiddle.sencha.com/#view/editor&fiddle/30pp -->
+        <title>FORM SUBMIT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+        <link href = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/classic/theme-classic/resources/theme-classic-all.css" 
+            rel = "stylesheet" />
+        <script type = "text/javascript" 
+            src = "https://cdnjs.cloudflare.com/ajax/libs/extjs/6.2.0/ext-all.js"></script>
+      
+        <script type = "text/javascript">
+
+        Ext.define('MyImage.view.MyImg', {
+            extend: 'Ext.Img',
+
+            height: 201,
+            renderTo: 'Ext.getBody(),',
+            width: 400,
+            src: 'https://www.sencha.com/wp-content/uploads/2019/06/productPage-tab-develop-ExtJS-KitchenSink.png',
+            title: 'Image Tooltip',
+
+            initComponent: function() {
+                var me = this;
+
+                me.callParent(arguments);
+            }
+
+        });
+
+        // @require @packageOverrides
+        Ext.Loader.setConfig({
+            enabled: true
+        });
+
+
+        Ext.application({
+            views: [
+                'MyImg'
+            ],
+            name: 'MyImage',
+
+            launch: function() {
+                Ext.create('MyImage.view.MyImg', {renderTo: Ext.getBody()});
+            }
+
+        });
+        </script>
+    </head>   
+    <body></body>
+</html>
+```
+
 
 # 800 Sencha ExtJS y XEditor
 
