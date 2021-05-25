@@ -1,3 +1,6 @@
+![image](https://user-images.githubusercontent.com/23094588/119517890-4c5fbd00-bd78-11eb-92e6-17cfb7c61b69.png)
+
+
 # 800 Sencha ExtJS y XEditor
 
 ### Lista de Recursos de Sencha ExtJS
