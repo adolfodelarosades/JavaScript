@@ -1,5 +1,157 @@
 ![image](https://user-images.githubusercontent.com/23094588/119517890-4c5fbd00-bd78-11eb-92e6-17cfb7c61b69.png)
 
+```html
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<s:head/>
+		<sj:head locale="es" jqueryui="true" jquerytheme="%{getText('tema.jquery')}"/>
+
+		<script type="text/javascript" src="<s:url value="/js/comun.js"/>"></script>
+
+	   	<link href="<s:url value="/css/estilosXopus.css"/>" rel="stylesheet" type="text/css" />
+	   	
+	   	<script>
+		   	window.onload = function() {
+		   		
+		   		var node = parent.dialogArguments.node;
+		   		var urlImagen = parent.dialogArguments.value; 
+
+		   		var imagen = node.selectSingleNode("//imagenes/imagen[@nombre = '"+urlImagen+"']");
+		   		
+				if (imagen != null) {
+					$("#thumbnail").attr("src", "data:image/jpeg;base64,"+imagen.getAttribute("contenido"));
+				} else if (urlImagen != "") {
+   		            $("#thumbnail").attr("src", replaceHost(urlImagen));
+		   		}
+		   		
+		   		$("#ancho").val(node.getAttribute("width"));
+		   		$("#alto").val(node.getAttribute("height"));
+		   		$("#titulo").val(node.getAttribute("title"));
+		   		$("#textoAlternativo").val(node.getAttribute("alt"));
+		   	};
+	
+	   		function aceptar() {
+	   			
+	   			if ($("#fichero").val()) {
+		   			var nodoEdicion = parent.Editor.getActiveDocument().selectSingleNode("/edicion");
+		   			
+		   			var formData = new FormData($("#formUpload")[0]);
+		   			formData.append("idDocumento", nodoEdicion.getAttribute("idDocumento"));
+		
+		   		    $.ajax({
+		   		        url: "subirImagen",
+		   		        type: "post",
+		   		        data: formData,
+		   		        async: false,
+		   		        success: function (data) {
+		   		        	
+		   		        	if (data.url) {
+		   		        		//Se comprueba si la imagen anterior estaba embebida, en cuyo caso se elimina el contenido
+   		        				var imagen = nodoEdicion.selectSingleNode("xml-fragment/imagenes/imagen[@nombre = '"+parent.dialogArguments.value+"']");
+		   		        		
+								if (imagen != null) {
+									imagen.getParentNode().removeChild(imagen);
+								}
+
+								parent.choose({
+							  		src: data.url,
+							  		width: $("#ancho").val().trim()?$("#ancho").val().trim():null,
+							  		height: $("#alto").val().trim()?$("#alto").val().trim():null,
+							  		title: $("#titulo").val().trim()?$("#titulo").val().trim():null,
+							  		alt: $("#textoAlternativo").val().trim()?$("#textoAlternativo").val().trim():null
+						  		});
+		   		        	} else {
+		   		        		$("#errorSubida").html(data.error);
+		   		        		$("#errorSubida").css("display", "block");
+		   		        	}
+		   		        },
+		   		        cache: false,
+		   		        contentType: false,
+		   		        processData: false
+		   		    });
+	   			} else if (parent.dialogArguments.value != ""){
+			  		parent.choose({
+			  			src: parent.dialogArguments.value,
+				  		width: $("#ancho").val().trim()?$("#ancho").val().trim():null,
+				  		height: $("#alto").val().trim()?$("#alto").val().trim():null,
+				  		title: $("#titulo").val().trim()?$("#titulo").val().trim():null,
+				  		alt: $("#textoAlternativo").val().trim()?$("#textoAlternativo").val().trim():null,
+			  		});
+	   			} else {
+	   				parent.dialogArguments.node.getParentNode().removeChild(parent.dialogArguments.node);
+	   				parent.Editor.getModalDialog().close();
+	   			}
+
+	   		}
+	   		
+	   		function preview(input) {
+	   			
+	   			if (input.files && input.files[0]) {
+	   		        var reader = new FileReader();
+
+	   		        reader.onload = function (e) {
+	   		            $("#thumbnail").attr("src", replaceHost(e.target.result));
+	   		        }
+
+	   		        reader.readAsDataURL(input.files[0]);
+	        		$("#errorSubida").css("display", "none");
+	   		    }
+	   		}
+	   	</script>
+	   	
+	</head>
+
+	<body>
+		<s:form id="formUpload" name="formUpload" method="POST" enctype="multipart/form-data" theme="simple" action="subirImagen" >
+			<table>
+			<tr>
+				<td>
+					<s:label for="titulo" key="titulo"/>
+				</td>
+				<td>
+					<s:textfield name="titulo" id="titulo" size="50"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<s:label for="textoAlternativo" key="textoAlternativo"/>
+				</td>
+				<td>
+					<s:textfield name="textoAlternativo" id="textoAlternativo" size="50"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<s:label title="%{getText('ayuda.fichero.img')}" for="fichero" key="fichero"/><s:file id="fichero" name="fichero" accept="image/jpeg,image/gif,image/png" title="%{getText('ayuda.fichero.img')}" size="50" labelposition="top" onchange="preview(this)"/>
+					<div id="errorSubida" style="display:none" class="marcoXopus rojo"/>
+				</td>
+				<td rowspan="2">
+					<img id="thumbnail" src="" alt="Vista previa" class="thumbnail" style="min-width: 100px; min-height: 100px;max-width: 200px; max-height: 200px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<s:label for="ancho" key="ancho"/><s:textfield name="ancho" id="ancho" size="4"/>
+					<s:label for="alto" key="alto"/><s:textfield name="alto" id="alto" size="4"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<sj:a button="true" onclick="aceptar();" cssClass="botonSmall" cssStyle="margin-top: 20px;float: right;"><s:text name="Aceptar"/></sj:a>
+				</td>
+			</tr>
+			</table>
+		</s:form>
+	</body>
+</html>
+```
+
+
 
 # 800 Sencha ExtJS y XEditor
 
