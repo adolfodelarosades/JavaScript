@@ -1,5 +1,14 @@
 ![image](https://user-images.githubusercontent.com/23094588/119517890-4c5fbd00-bd78-11eb-92e6-17cfb7c61b69.png)
 
+![image](https://user-images.githubusercontent.com/23094588/119518302-b0828100-bd78-11eb-90ed-9edcc3aef7e6.png)
+
+![image](https://user-images.githubusercontent.com/23094588/119518711-11aa5480-bd79-11eb-9645-a0b5753309ca.png)
+
+![image](https://user-images.githubusercontent.com/23094588/119518941-47e7d400-bd79-11eb-8d86-0b5ae82e8242.png)
+
+![image](https://user-images.githubusercontent.com/23094588/119519121-749beb80-bd79-11eb-92a1-5fc67cb44ff9.png)
+
+
 ```html
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
