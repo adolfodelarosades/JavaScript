@@ -91,153 +91,178 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
 
 ### Part II: It’s an Object-Oriented World
 
-11. Console Logging Basics
-Meet the Console
-Displaying the Console
-If You Want to Follow Along
-Console Logging 101
+#### 11. Console Logging Basics
 
-12. Of Pizza, Types, Primitives, and Objects
-Let’s First Talk About Pizza
-From Pizza to JavaScript!
-What Are Objects?
-The Predefined Objects Roaming Around in JavaScript
+* Meet the Console
+* Displaying the Console
+* If You Want to Follow Along
+* Console Logging 101
 
-13. Arrays
-Creating an Array
-Accessing Array Values
-Adding Items to Your Array
-Removing Items from the Array
-Finding Items in the Array
-Merging Arrays
-Mapping, Filtering, and Reducing Arrays
-The Old School Way
-Modifying Each Array Item with Map
-Getting One Value from an Array of Items
-A Short Foray into Functional Programming
+#### 12. Of Pizza, Types, Primitives, and Objects
 
-14. Strings
-The Basics
-String Properties and Methods
+* Let’s First Talk About Pizza
+* From Pizza to JavaScript!
+* What Are Objects?
+* The Predefined Objects Roaming Around in JavaScript
 
-15. When Primitives Behave Like Objects
-Strings Aren’t the Only Problem
-Let’s Pick on Strings Anyway
-Why This Matters
+#### 13. Arrays
 
-16. Numbers
-Using a Number
-Operators
-Incrementing and Decrementing
-Hexadecimal and Octal Values
-Special Values—Infinity and NaN
-The Math Object
-Random Numbers
+* Creating an Array
+* Accessing Array Values
+* Adding Items to Your Array
+* Removing Items from the Array
+* Finding Items in the Array
+* Merging Arrays
+* Mapping, Filtering, and Reducing Arrays
+* The Old School Way
+* Modifying Each Array Item with Map
+* Getting One Value from an Array of Items
+* A Short Foray into Functional Programming
 
-17. Getters and Setters
-A Tale of Two Properties
-Meet Getters and Setters
+#### 14. Strings
 
-18. A Deeper Look at Objects
-Meet the Object
-Creating Custom Objects
-The this Keyword
+* The Basics
+* String Properties and Methods
 
-19. Extending Built-In Objects
-Say Hello to prototype...again—Sort of!
-Extending Built-in Objects is Controversial
+#### 15. When Primitives Behave Like Objects
 
-20. Using Classes
-The Class Syntax and Object Creation
-Extending Objects
+* Strings Aren’t the Only Problem
+* Let’s Pick on Strings Anyway
+* Why This Matters
 
-21. Booleans and the Stricter === and !== Operators
-The Boolean Object
-The Boolean Function
-Strict Equality and Inequality Operators
+#### 16. Numbers
 
-22. Null and Undefined
-Null
-Undefined
+* Using a Number
+* Operators
+* Incrementing and Decrementing
+* Hexadecimal and Octal Values
+* Special Values—Infinity and NaN
+* The Math Object
+* Random Numbers
 
-Part III: Working with the DOM
+#### 17. Getters and Setters
 
-23. All About JSON (aka JavaScript Object Notation)
-What Is JSON?
-Looking Inside a JSON Object
-Reading JSON Data
-Writing JSON Data?
+* A Tale of Two Properties
+* Meet Getters and Setters
 
-24. JS, the Browser, and the DOM
-What HTML, CSS, and JavaScript Do
-HTML Defines the Structure
-Prettify My World, CSS!
-It’s JavaScript Time!
-Meet the Document Object Model
+#### 18. A Deeper Look at Objects
 
-25. Finding Elements in the DOM
-Meet the querySelector Family
-It Really Is the CSS Selector Syntax
+* Meet the Object
+* Creating Custom Objects
+* The this Keyword
 
-26. Modifying DOM Elements
-DOM Elements Are Objects—Sort of!
-Let’s Actually Modify DOM Elements
+#### 19. Extending Built-In Objects
 
-27. Styling our Content
-Why Would We Set Styles Using JavaScript?
-A Tale of Two Styling Approaches
-Checking Whether a Class Value Exists
+* Say Hello to prototype...again—Sort of!
+* Extending Built-in Objects is Controversial
 
-28. Traversing the DOM
-Finding Your Way Around
-Putting It All Together
+#### 20. Using Classes
 
-29. Creating and Removing DOM Elements
-Creating Elements
-Removing Elements
-Cloning Elements
+* The Class Syntax and Object Creation
+* Extending Objects
 
-30. In-Browser Developer Tools
-Meet the Developer Tools
+#### 21. Booleans and the Stricter === and !== Operators
 
-Part IV: Dealing with Events
+* The Boolean Object
+* The Boolean Function
+* Strict Equality and Inequality Operators
 
-31. Events
-What Are Events?
-Events and JavaScript
-A Simple Example
-The Event Arguments and the Event Type
+#### 22. Null and Undefined
 
-32. Event Bubbling and Capturing
-Event Goes Down. Event Goes Up.
-Meet the Phases
-Who Cares?
-Event, Interrupted
+* Null
+* Undefined
 
-33. Mouse Events
-Meet the Mouse Events
-The MouseEvent Properties
-Dealing with the Mouse Wheel
+### Part III: Working with the DOM
 
-34. Keyboard Events
-Meet the Keyboard Events
-Using These Events
-The Keyboard Event Properties
-Some Examples
+#### 23. All About JSON (aka JavaScript Object Notation)
 
-35. Page Load Events and Other Stuff
-The Things That Happen During Page Load
-The DOMContentLoaded and load Events
-Scripts and Their Location in the DOM
-Script Elements—Async and Defer
+* What Is JSON?
+* Looking Inside a JSON Object
+* Reading JSON Data
+* Writing JSON Data?
 
-36. Handling Events for Multiple Elements
-How to Do All of This
+#### 24. JS, the Browser, and the DOM
 
-37. Conclusion
+* What HTML, CSS, and JavaScript Do
+* HTML Defines the Structure
+* Prettify My World, CSS!
+* It’s JavaScript Time!
+* Meet the Document Object Model
 
-Glossary
+#### 25. Finding Elements in the DOM
 
-Index
-Code Snippets
+* Meet the querySelector Family
+* It Really Is the CSS Selector Syntax
+
+#### 26. Modifying DOM Elements
+
+* DOM Elements Are Objects—Sort of!
+* Let’s Actually Modify DOM Elements
+
+#### 27. Styling our Content
+
+* Why Would We Set Styles Using JavaScript?
+* A Tale of Two Styling Approaches
+* Checking Whether a Class Value Exists
+
+#### 28. Traversing the DOM
+
+* Finding Your Way Around
+* Putting It All Together
+
+#### 29. Creating and Removing DOM Elements
+
+* Creating Elements
+* Removing Elements
+* Cloning Elements
+
+#### 30. In-Browser Developer Tools
+
+* Meet the Developer Tools
+
+### Part IV: Dealing with Events
+
+#### 31. Events
+
+* What Are Events?
+* Events and JavaScript
+* A Simple Example
+* The Event Arguments and the Event Type
+
+#### 32. Event Bubbling and Capturing
+
+* Event Goes Down. Event Goes Up.
+* Meet the Phases
+* Who Cares?
+* Event, Interrupted
+
+#### 33. Mouse Events
+
+* Meet the Mouse Events
+* The MouseEvent Properties
+* Dealing with the Mouse Wheel
+
+#### 34. Keyboard Events
+
+* Meet the Keyboard Events
+* Using These Events
+* The Keyboard Event Properties
+* Some Examples
+
+#### 35. Page Load Events and Other Stuff
+
+* The Things That Happen During Page Load
+* The DOMContentLoaded and load Events
+* Scripts and Their Location in the DOM
+* Script Elements—Async and Defer
+
+#### 36. Handling Events for Multiple Elements
+
+* How to Do All of This
+
+#### 37. Conclusion
+
+### Glossary
+### Index
+### Code Snippets
 
