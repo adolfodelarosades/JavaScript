@@ -34,7 +34,7 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
    * Parlez-vous JavaScript?
    * Contacting Me/Getting Help
 
-#### [1. Hello, World!](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/01-Hello-World.md)
+#### 1. [Hello, World!](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/01-Hello-World.md)
 
 * What Is JavaScript?
 * Hello, World!
