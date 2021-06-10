@@ -5,6 +5,7 @@
 * by Kirupa Chinnathambi
 * Publisher: Que
 * Release Date: November 2019
+* Pages: 464
 * ISBN: 9780136204213
 * Topic: JavaScript
 
