@@ -12,6 +12,10 @@ Serie de varios cursos JavaScript.
 * [500 Curso de Chrome DevTools: Herramientas para el desarrollo](temarios/500_Curso_de_Chrome_DevTools_Herramientas_para_el_desarrollo.md)
 * [510 Webpack Básico](temarios/510-Webpack-Basico.md)
 
+
+# Books Java Script
+* [700 JavaScript Absolute Beginner's Guide, 2nd Edition](temarios/700-JavaScript-Absolute-Beginners-Guide-2nd-Edition.md)
+
 # Sencha
 
 * [800 Sencha ExtJS y XEditor](temarios/800-Sencha-ExtJS.md)
@@ -22,3 +26,5 @@ Serie de varios cursos JavaScript.
 * [912 Mastering Ext JS - Second Edition](temarios/912-Mastering-Ext-JS-Second-Edition.md)
 * [920 Ext JS 6 By Example](temarios/920-Ext-JS-6-By-Example.md)
 * [950 Ext JS 6.2.0](temarios/950-ExtJS-6-2-0.md)
+
+
