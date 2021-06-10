@@ -8,6 +8,7 @@
 * Pages: 464
 * ISBN: 9780136204213
 * Topic: JavaScript
+* Recursos: https://www.informit.com/store/javascript-absolute-beginners-guide-9780136502890
 
 ### Descripción del libro
 
