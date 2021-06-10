@@ -9,8 +9,8 @@
 * ISBN: 9780136204213
 * Topic: JavaScript
 * Recursos: https://www.informit.com/store/javascript-absolute-beginners-guide-9780136502890
-*           https://www.pearson.com/us/higher-education/program/Chinnathambi-Java-Script-Absolute-Beginner-s-Guide-2nd-Edition/PGM2736540.html
-*           https://www.kirupa.com/
+            https://www.pearson.com/us/higher-education/program/Chinnathambi-Java-Script-Absolute-Beginner-s-Guide-2nd-Edition/PGM2736540.html
+            https://www.kirupa.com/
 
 ### Descripción del libro
 
