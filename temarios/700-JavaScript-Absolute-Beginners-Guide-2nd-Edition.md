@@ -30,7 +30,7 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
 * About the Author
 * Figure Credits
 
-* Introduction
+* [Introduction](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/00-Introduction.md)
    * Parlez-vous JavaScript?
    * Contacting Me/Getting Help
 
