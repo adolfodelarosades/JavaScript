@@ -4,61 +4,52 @@
 * Hello, World!
 * Looking at the Code: Statements and Functions
 
-En este capítulo
 
-• Descubra por qué JavaScript es fantástico
+### En este capítulo
 
-• Mojarse los pies creando un ejemplo sencillo
-
-• Obtenga una vista previa de lo que puede esperar en los capítulos siguientes
+* Descubra por qué JavaScript es fantástico
+* Mojarse los pies creando un ejemplo sencillo
+* Obtenga una vista previa de lo que puede esperar en los capítulos siguientes
 
 HTML se trata de mostrar cosas. CSS se trata de hacer que las cosas se vean bien. Entre los dos, puede crear algunas cosas bastante ingeniosas como el ejemplo del clima que puede ver en http://bit.ly/kirupaWeather. La Figura 1.1 muestra cómo se ve este ejemplo del clima.
 
 ![01fig01.jpg](images/01fig01.jpg)
 
-FIGURA 1.1
-
-Un ejemplo de clima colorido que destaca un diseño diseñado completamente usando solo CSS.
+FIGURA 1.1 *Un ejemplo de clima colorido que destaca un diseño diseñado completamente usando solo CSS*.
 
 A pesar de lo ingeniosos que parecen los sitios construidos usando solo CSS y HTML, serán bastante estáticos. No se adaptan ni reaccionan a lo que estás haciendo. Con esos dos, es casi como ver una repetición de un gran episodio de Seinfeld una y otra vez. Es divertido por un tiempo, pero eventualmente se vuelve aburrido. Hoy en día, la Web no es estática. Los sitios que usa con frecuencia (como los de la Figura 1.2) tienen un cierto nivel de interactividad y personalización que va mucho más allá de lo que HTML y CSS pueden proporcionar por sí mismos.
 
 ![01fig02.jpg](images/01fig02.jpg)
 
-FIGURA 1.2
-
-Ejemplos de varios sitios web que dependen en gran medida de JavaScript para su correcto funcionamiento.
+FIGURA 1.2 *Ejemplos de varios sitios web que dependen en gran medida de JavaScript para su correcto funcionamiento.*
 
 Para que su contenido cobre vida, necesitará ayuda externa. ¡Lo que necesitas es JavaScript!
 
-### ¿QUÉ ES JAVASCRIPT?
+## ¿QUÉ ES JAVASCRIPT?
 
 JavaScript es un lenguaje de programación moderno que es un par de HTML y CSS. En pocas palabras, le permite agregar interactividad a su documento. Una breve lista de cosas que puede hacer con JavaScript incluye:
 
-Escuche eventos como un clic del mouse y haga algo.
-
-Modifique el HTML y CSS de su página después de que se haya cargado.
-
-Haz que las cosas se muevan por la pantalla de formas interesantes.
-
-Crea juegos increíbles que funcionen en el navegador como Cut the Rope.
-
-Comunicar datos entre el servidor y el navegador.
-
-Le permite interactuar con una cámara web, un micrófono y otros dispositivos.
+* Escuche eventos como un clic del mouse y haga algo.
+* Modifique el HTML y CSS de su página después de que se haya cargado.
+* Haz que las cosas se muevan por la pantalla de formas interesantes.
+* Crea juegos increíbles que funcionen en el navegador como Cut the Rope.
+* Comunicar datos entre el servidor y el navegador.
+* Le permite interactuar con una cámara web, un micrófono y otros dispositivos.
 
 ....¡y mucho más! La forma en que escribe JavaScript es bastante simple, algo así. Juntas palabras que a menudo se parecen al inglés de todos los días para decirle a tu navegador qué hacer. El siguiente ejemplo muestra un JavaScript antiguo y recién salido del horno:
 
-Haga clic aquí para ver la imagen del código
-
+```js
 let defaultName = "JavaScript";
 
-function sayHello (nombre) {
-  si (nombre == nulo) {
-    alert ("Hola," + defaultName + "!");
-  } demás {
-    alert ("Hola," + nombre + "!");
+function sayHello(name) {
+  if (name == null) {
+    alert("Hello, " + defaultName + "!");
+  } else {
+    alert("Hello, " + name + "!");
   }
 }
+```
+
 No se preocupe si no sabe lo que eso significa. Solo preste atención a cómo se ve el código. Observe que ve muchas palabras en inglés como function, if, else, alert, name. Además de las palabras en inglés, también tiene muchos símbolos y caracteres extraños de las partes de su teclado que probablemente nunca notará. Pronto los notará mucho y también comprenderá completamente lo que hace todo en este código.
 
 De todos modos, esa es suficiente información de fondo por ahora. Si bien esperaría que ahora proporcione un historial de JavaScript y las personas y empresas detrás de hacerlo funcionar, no voy a aburrirlo con cosas como esa. En cambio, quiero que se ensucie las manos escribiendo algo de JavaScript. Al final de este tutorial, quiero que haya creado algo dulce y simple que muestre algo de texto en su navegador.
@@ -83,6 +74,8 @@ Guarde este archivo recién creado yendo a Archivo | Ahorrar. Se le pedirá que 
 
 Haga clic aquí para ver la imagen del código
 
+```js
+```
 <! DOCTYPE html>
 <html>
 
@@ -115,6 +108,9 @@ Pestaña titulada en Visual Studio Code.
 
 Si todo salió bien, ¡debería ver una página en blanco! No, no hay nada de malo aquí. Si bien nuestra página tiene contenido, no hay nada visible. Eso está bien, lo arreglaremos en breve. La clave para hacer esta corrección es volver a su editor de código y concentrarse en la etiqueta <script> que ve en la parte inferior de su HTML:
 
+  
+```js
+```  
 <script>
 
 </script>
@@ -122,6 +118,9 @@ La etiqueta de secuencia de comandos actúa como un contenedor donde puede coloc
 
 Haga clic aquí para ver la imagen del código
 
+```js
+```
+  
 <script>
   alert ("¡hola, mundo!");
 </script>
@@ -140,6 +139,8 @@ Acaba de escribir una declaración de JavaScript muy simple. Una declaración es
 
 Haga clic aquí para ver la imagen del código
 
+```js
+```  
 alert ("¡hola, mundo!");
 Puede darse cuenta de que algo es una declaración mirando el último carácter que contiene. Por lo general, es un punto y coma (;) como lo que ve aquí.
 
@@ -150,7 +151,8 @@ Para ser más precisos, la palabra alerta es algo que se conoce como función. U
 Volviendo a nuestro ejemplo, el texto que desea mostrar es ¡hola, mundo! Y observe cómo lo estoy especificando. Envuelvo las palabras entre comillas:
 
 Haga clic aquí para ver la imagen del código
-
+```js
+```
 <script>
   alert ("¡hola, mundo!");
 </script>
@@ -159,7 +161,8 @@ Siempre que se trate de texto (más comúnmente conocido como cadenas), siempre 
 Vayamos un paso más allá. En lugar de mostrar hola, mundo !, cambie el texto que está mostrando para decir su nombre y apellido. Aquí hay un ejemplo de cómo se ve mi código cuando uso mi nombre:
 
 Haga clic aquí para ver la imagen del código
-
+```js
+```
 <script>
   alerta ("¡Kirupa Chinnathambi!");
 </script>
@@ -180,3 +183,5 @@ En este tutorial, creó un ejemplo simple que lo ayudó a familiarizarse con la 
 En el futuro, al final de cada capítulo, es posible que incluso vea un conjunto de enlaces a recursos externos escritos por mí o por otras personas. Estos recursos le brindarán más detalles o una perspectiva diferente sobre lo que aprendió, junto con oportunidades para poner en práctica su aprendizaje con ejemplos más complejos. Piense en lo que ve en este libro como un punto de partida para cosas más grandiosas y asombrosas.
 
 Si tiene alguna pregunta sobre el contenido aquí, publique en los foros en https://forum.kirupa.com para obtener ayuda realmente rápida tanto de mí como de algunos de los desarrolladores más geniales de la web.
+```js
+```
