@@ -14,21 +14,24 @@ En este capítulo
 
 HTML se trata de mostrar cosas. CSS se trata de hacer que las cosas se vean bien. Entre los dos, puede crear algunas cosas bastante ingeniosas como el ejemplo del clima que puede ver en http://bit.ly/kirupaWeather. La Figura 1.1 muestra cómo se ve este ejemplo del clima.
 
-Imagen
+![01fig01.jpg](images/01fig01.jpg)
+
 FIGURA 1.1
 
 Un ejemplo de clima colorido que destaca un diseño diseñado completamente usando solo CSS.
 
 A pesar de lo ingeniosos que parecen los sitios construidos usando solo CSS y HTML, serán bastante estáticos. No se adaptan ni reaccionan a lo que estás haciendo. Con esos dos, es casi como ver una repetición de un gran episodio de Seinfeld una y otra vez. Es divertido por un tiempo, pero eventualmente se vuelve aburrido. Hoy en día, la Web no es estática. Los sitios que usa con frecuencia (como los de la Figura 1.2) tienen un cierto nivel de interactividad y personalización que va mucho más allá de lo que HTML y CSS pueden proporcionar por sí mismos.
 
-Imagen
+![01fig02.jpg](images/01fig02.jpg)
+
 FIGURA 1.2
 
 Ejemplos de varios sitios web que dependen en gran medida de JavaScript para su correcto funcionamiento.
 
 Para que su contenido cobre vida, necesitará ayuda externa. ¡Lo que necesitas es JavaScript!
 
-¿QUÉ ES JAVASCRIPT?
+### ¿QUÉ ES JAVASCRIPT?
+
 JavaScript es un lenguaje de programación moderno que es un par de HTML y CSS. En pocas palabras, le permite agregar interactividad a su documento. Una breve lista de cosas que puede hacer con JavaScript incluye:
 
 Escuche eventos como un clic del mouse y haga algo.
@@ -70,7 +73,8 @@ Se necesita familiaridad básica con el desarrollo web Para comenzar a escribir 
 El documento HTML
 Lo primero que necesita es un documento HTML. Este documento albergará el JavaScript que estará escribiendo. Inicie su editor de código favorito. Si no tiene uno, le animo a que utilice Visual Studio Code. Una vez que haya iniciado su editor de código favorito, siga adelante y cree un nuevo archivo. En Visual Studio Code, verá una pestaña que dice Sin título similar a la captura de pantalla de la Figura 1.3.
 
-Imagen
+![01fig03.jpg](images/01fig03.jpg)
+
 FIGURA 1.3
 
 Pestaña Untitled-1 en Visual Studio Code.
@@ -103,7 +107,8 @@ Una vez que haya agregado este HTML, guarde su documento para confirmar estos ca
 
 En el Explorador de archivos o en el Finder, navegue hasta su Escritorio para py haga doble clic en hello_world.htm. Verá aparecer su navegador predeterminado y mostrar el nombre de este archivo. Debería ver algo parecido a lo que se muestra en la Figura 1.4.
 
-Imagen
+![01fig04.jpg](images/01fig04.jpg)
+
 FIGURA 1.4
 
 Pestaña titulada en Visual Studio Code.
@@ -122,7 +127,8 @@ Haga clic aquí para ver la imagen del código
 </script>
 Guarde su archivo HTML y ejecútelo en su navegador. Observe lo que verá una vez que su página se haya cargado. Debería ver aparecer un cuadro de diálogo que se parece a la Figura 1.5.
 
-Imagen
+![01fig05.jpg](images/01fig05.jpg)
+  
 FIGURA 1.5
 
 Su cuadro de diálogo Hola mundo debería verse así.
@@ -159,7 +165,8 @@ Haga clic aquí para ver la imagen del código
 </script>
 Si ejecuta su aplicación, verá que su nombre aparece en el cuadro de diálogo (Figura 1.6).
 
-Imagen
+![01fig06.jpg](images/01fig06.jpg)
+  
 FIGURA 1.6
 
 El cuadro de diálogo ahora muestra su nombre.
