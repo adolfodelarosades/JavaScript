@@ -208,6 +208,9 @@ Lo que tenemos aquí es nuestra función `alert`. Probablemente ya lo hayamos vi
 Para permanecer local, solo de este capítulo, otra función que analizamos brevemente y que toma argumentos es nuestra función `showDistance`:
 
 ```js
+function showDistance(speed, time) {
+   alert(speed * time);
+}
 ```
 
 Mira, puedes saber cuándo una función toma argumentos mirando la declaración de la función en sí:
@@ -340,7 +343,7 @@ Lo que ha visto hasta ahora son ejemplos de cómo se usan comúnmente las funcio
 
 Si tiene alguna pregunta sobre el contenido aquí, ¡no se preocupe! Publique en los foros en https://forum.kirupa.com para obtener ayuda rápida tanto de mí como de algunos de los desarrolladores más inteligentes de la web.
 
-## 🔴 💻 `03-01-Function-Hello.html`
+## 🔴 💻 `03-01-Function-Simple.html`
 
 ```html
 <!DOCTYPE html>
@@ -349,7 +352,7 @@ Si tiene alguna pregunta sobre el contenido aquí, ¡no se preocupe! Publique en
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>03-01-Function-Hello</title>
+    <title>03-01-Function-Simple</title>
 </head>
 <body>
     <script>
@@ -362,19 +365,98 @@ Si tiene alguna pregunta sobre el contenido aquí, ¡no se preocupe! Publique en
 </html>
 ```
 
-![image](https://user-images.githubusercontent.com/23094588/121676484-fc416400-cab4-11eb-938a-f4f0859097c2.png)
+![image](https://user-images.githubusercontent.com/23094588/121684142-98bc3400-cabe-11eb-9bf7-2183d29408c7.png)
 
-## 🔴 💻 `03-02-.html`
 
-```html
-```
 
-## 🔴 💻 `03-03-.html`
+## 🔴 💻 `03-02-Funcion-Con-Argumentos.html`
 
 ```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-02-Funcion-Con-Argumentos</title>
+</head>
+<body>
+    <script>
+        function showDistance (speed, time) {
+            alert (speed * time);
+        }
+
+        showDistance(10, 5);
+    </script>
+</body>
+</html>
 ```
 
-## 🔴 💻 `03-04-.html`
+![image](https://user-images.githubusercontent.com/23094588/121684241-bab5b680-cabe-11eb-9df5-8bfa719922e1.png)
+
+
+## 🔴 💻 `03-03-Funcion-Con-Return.html`
 
 ```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-03-Funcion-Con-Return</title>
+</head>
+<body>
+    <script>
+        function getDistance(speed, time) {
+            let distance = speed * time;
+            return distance;                                            
+        }
+        let myDistance = getDistance(10, 5);
+        alert(myDistance);
+    </script>
+</body>
+</html>
 ```
+
+![image](https://user-images.githubusercontent.com/23094588/121684405-ecc71880-cabe-11eb-8a6b-75dfe65f7d7c.png)
+
+
+## 🔴 💻 `03-04-Funcion-Con-Return-Anticipado.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-04-Funcion-Con-Return-Anticipado</title>
+</head>
+<body>
+    <script>
+        function getDistance(speed, time) {
+            let distance = speed * time;
+            return distance;
+            if (speed < 0) {
+                distance *= -1;
+            }
+        }
+
+        function doSomething() {
+            let foo = "Nothing interesting";
+            return;
+        }
+
+        doSomething();
+
+        let myDistance = getDistance(10, 5);
+        alert(myDistance);
+
+    </script>
+    
+</body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/121684488-08322380-cabf-11eb-9cfe-9f4b4985287f.png)
