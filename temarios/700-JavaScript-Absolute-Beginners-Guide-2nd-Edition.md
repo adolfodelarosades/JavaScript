@@ -46,7 +46,7 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
 
 ### Part I: The Basic Stuff
 
-#### 2. Values and Variables
+#### 2. [Values and Variables](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/02-Values-and-Variables.md)
 
 * Using Variables
 * More Variable Stuff
