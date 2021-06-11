@@ -59,7 +59,7 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
 * Takes Arguments
 * Creating a Function that Returns Data
 
-#### 4. Conditional Statements: if, Else, and Switch
+#### 4. [Conditional Statements: if, Else, and Switch](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/04-Conditional-Statements.md)
 
 * The If / Else Statement
 * Switch Statements
