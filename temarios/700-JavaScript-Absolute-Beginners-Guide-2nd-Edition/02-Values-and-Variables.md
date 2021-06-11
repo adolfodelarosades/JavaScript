@@ -151,24 +151,28 @@ myText = undefined;
 alert(myText);
 ```
 
-Si tiene experiencia trabajando con lenguajes que son más estrictos y no permiten que las variables almacenen una variedad de tipos de datos, ***esta indulgencia es una de las características que la gente ama y odia de JavaScript***. Dicho esto, JavaScript proporciona una forma de restringir el cambio del valor de una variable después de inicializarla. Esa restricción viene en forma de la palabra clave const que podemos declarar e inicializar nuestras variables con:
+Si tiene experiencia trabajando con lenguajes que son más estrictos y no permiten que las variables almacenen una variedad de tipos de datos, ***esta indulgencia es una de las características que la gente ama y odia de JavaScript***. Dicho esto, JavaScript proporciona una forma de restringir el cambio del valor de una variable después de inicializarla. Esa restricción viene en forma de la palabra clave `const` que podemos declarar e inicializar nuestras variables con:
 
 ```js
+const siteURL = "https://www.google.com";
+alert(siteURL);
 ```
 
-Al confiar en const, no podemos cambiar el valor de siteURL a otro que no sea https://www.google.com. JavaScript se quejará si intentamos hacer eso. Existen algunos errores al usar la palabra clave const, pero hace un gran trabajo en general para prevenir modificaciones accidentales de una variable. Para esas trampas molestas, las cubriremos en pedazos cuando sea el momento adecuado.
+Al confiar en `const`, no podemos cambiar el valor de `siteURL` a otro que no sea **https://www.google.com**. JavaScript se quejará si intentamos hacer eso. Existen algunos errores al usar la palabra clave `const`, pero hace un gran trabajo en general para prevenir modificaciones accidentales de una variable. Para esas trampas molestas, las cubriremos cuando sea el momento adecuado.
 
-Sugerencia de imagen
+> ![tip](images/tip.jpg) **Tip**
+> 
+> **Saltar adelante: alcance variable**
+>
+> Ahora que sabe cómo declarar e inicializar variables, un tema muy importante es el de la visibilidad. Necesita saber cuándo y dónde una variable que declaró se puede usar en su código. La frase general para esto se conoce como **alcance variable - variable scope**. Si tiene curiosidad por saber más al respecto, puede avanzar y leer el Capítulo 8, "Alcance variable".
 
-Saltar adelante: alcance variable
+<hr>
 
-Ahora que sabe cómo declarar e inicializar variables, un tema muy importante es el de la visibilidad. Necesita saber cuándo y dónde una variable que declaró se puede usar en su código. La frase general para esto se conoce como alcance variable. Si tiene curiosidad por saber más al respecto, puede avanzar y leer el Capítulo 8, "Alcance variable".
-
-El Mínimo Absoluto
+### El Mínimo Absoluto
 
 Los valores almacenan datos y las variables actúan como una forma fácil de hacer referencia a esos datos. Hay muchos detalles interesantes sobre los valores, pero esos son detalles que no necesita aprender en este momento. Solo sepa que JavaScript le permite representar una variedad de valores, como texto y números, sin mucho alboroto.
 
-Para que sus valores sean más memorables y reutilizables, declare variables. Declaras variables usando la palabra clave let y un nombre de variable. Si desea inicializar la variable a un valor predeterminado, siga todo eso con un signo igual (=) y el valor con el que desea inicializar su variable. 
+Para que sus valores sean más memorables y reutilizables, declare variables. Declaras variables usando la palabra clave `let` y un **nombre de variable**. Si desea inicializar la variable a un valor predeterminado, siga todo eso con un signo igual (`=`) y el valor con el que desea inicializar su variable. 
 
 ## 🔴 💻 `01-02-Hello-World-con-Variables.html`
 
