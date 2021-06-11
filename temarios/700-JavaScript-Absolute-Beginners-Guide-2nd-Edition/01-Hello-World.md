@@ -177,3 +177,23 @@ Bastante sencillo, ¿verdad? Puede reemplazar el contenido de su cadena con todo
 > 
 > Si tiene alguna pregunta sobre el contenido aquí, publique en los foros en https://forum.kirupa.com para obtener ayuda realmente rápida tanto de mí como de algunos de los desarrolladores más geniales de la web.
 
+## 🔴 💻 `01-01-Hello_World.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-01-Hello_World</title>
+</head>
+<body>
+    <script>
+        alert("Hola, mundo!");
+    </script>
+</body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/121644514-60ebc700-ca93-11eb-9884-0e185bfaf56a.png)
