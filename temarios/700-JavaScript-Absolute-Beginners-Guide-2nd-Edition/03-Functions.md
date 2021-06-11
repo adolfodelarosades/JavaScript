@@ -6,18 +6,16 @@
 * Takes Arguments
 * Creating a Function that Returns Data
 
-3. Funciones
 En este capítulo
 
-• Descubra cómo las funciones le ayudan a organizar y agrupar mejor su código
-
-• Comprenda cómo las funciones hacen que su código sea reutilizable
-
-• Descubrir la importancia de los argumentos de función y cómo usarlos.
+* Descubra cómo las funciones le ayudan a organizar y agrupar mejor su código
+* Comprenda cómo las funciones hacen que su código sea reutilizable
+* Descubrir la importancia de los argumentos de función y cómo usarlos.
 
 Hasta ahora, todo el código que hemos escrito realmente no contenía estructura. Estaba simplemente ... allí:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
 alert ("¡hola, mundo!");
 No hay nada de malo en tener un código como este. Esto es especialmente cierto si nuestro código se compone de una sola declaración. La mayoría de las veces, sin embargo, ese nunca será el caso. Nuestro código rara vez será tan simple cuando usamos JavaScript en el mundo real para cosas del mundo real.
@@ -38,45 +36,27 @@ Calculando la distancia.
 
 La versión de JavaScript de eso se verá de la siguiente manera:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-sea ​​velocidad = 10;
-dejar tiempo = 5;
-alerta (velocidad * tiempo);
+
+
 Tenemos dos variables llamadas velocidad y tiempo, y cada una almacena un número. La función de alerta muestra el resultado de multiplicar los valores almacenados por las variables de velocidad y tiempo. Esta es una traducción bastante literal de la ecuación de distancia que acabamos de ver.
 
 Supongamos que queremos calcular la distancia para obtener más valores. Usando solo lo que hemos visto hasta ahora, nuestro código se vería de la siguiente manera:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-sea ​​velocidad = 10;
-dejar tiempo = 5;
-alerta (velocidad * tiempo);
 
-sea ​​speed1 = 85;
-sea ​​time1 = 1,5;
-alerta (velocidad1 * tiempo1);
 
-sea ​​speed2 = 12;
-deje time2 = 9;
-alerta (velocidad2 * tiempo2);
-
-sea ​​speed3 = 42;
-deje time3 = 21;
-alerta (speed3 * time3);
 No sé ustedes, pero esto parece turrible. Nuestro código es innecesariamente detallado y repetitivo. Como vimos anteriormente cuando estábamos aprendiendo sobre variables, la repetición hace que nuestro código sea más difícil de mantener y también nos hace perder el tiempo.
 
 Todo este problema se puede resolver muy fácilmente usando lo que veremos mucho aquí, funciones:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-function showDistance (velocidad, tiempo) {
-  alerta (velocidad * tiempo);
-}
-showDistance (10, 5);
-showDistance (85, 1,5);
-showDistance (12, 9);
-showDistance (42, 21);
 No se preocupe demasiado por lo que hace este código todavía. Solo sepa que este fragmento de código más pequeño hace todo lo que todas esas líneas de código hicieron antes sin todos los efectos secundarios negativos. Aprenderemos todo sobre las funciones y cómo hacen todas las cosas interesantes que hacen, comenzando ... ahora mismo ... ¡ahora!
 
 ¡Adelante!
@@ -95,45 +75,19 @@ La mejor manera de aprender sobre las funciones es sumergirse y comenzar a usarl
 
 A continuación se muestra un ejemplo de cómo se ve una función muy simple:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-function sayHello () {
-  alert ("¡hola!");
-}
 Sin embargo, no basta con tener una función definida. Nuestra función necesita ser llamada, y podemos hacerlo agregando la siguiente línea después:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-function sayHello () {
-  alert ("¡hola!");
-}
-di hola();
 Para ver todo esto por ti mismo, crea un nuevo documento HTML (llámalo functions_sayhello.htm) y agrega lo siguiente:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-<! DOCTYPE html>
-<html>
-
-<cabeza>
-  <meta charset = "utf-8">
-  <title> ¡Di hola! </title>
-
-  <estilo>
-
-  </style>
-</head>
-
-<cuerpo>
-  <script>
-    function sayHello () {
-      alert ("¡hola!");
-    }
-    di hola();
-  </script>
-</body>
-
-</html>
 Si escribió todo esto y obtuvo una vista previa de su página en su navegador, verá ¡hola! desplegado. Lo único que necesita saber ahora es que nuestro código funciona. A continuación, veamos por qué funciona el código dividiendo la función sayHello en fragmentos individuales y analizándolos con mayor detalle.
 
 En primer lugar, vemos la palabra clave de función iniciando las cosas como en la Figura 3.3.
@@ -182,17 +136,16 @@ Ahora, lo que acabamos de ver es un vistazo a una función muy simple. En las si
 CREANDO UNA FUNCIÓN QUE TOMA ARGUMENTOS
 El ejemplo anterior de sayHello fue bastante simple:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-function sayHello () {
-  alert ("¡hola!");
-}
-di hola();
 Llamamos a una función y la función hace algo. Esa simplificación en sí misma no es fuera de lo común. Todas las funciones funcionan así. Lo que es diferente son los detalles sobre cómo se invocan las funciones, de dónde obtienen sus datos, etc. El primer detalle de este tipo que veremos involucra funciones que toman argumentos.
 
 Comencemos con un ejemplo simple y familiar:
 
-alert ("mi argumento");
+```js
+```
+
 Lo que tenemos aquí es nuestra función de alerta. Probablemente ya lo hayamos visto unas pocas (o unas pocas docenas) de veces. Lo que hace esta función es tomar lo que se conoce como un argumento para averiguar qué mostrar realmente cuando se llama. Llamar a la función de alerta con un argumento de mi argumento da como resultado la pantalla que se muestra en la Figura 3.8.
 
 Imagen
@@ -204,31 +157,23 @@ El argumento es lo que hay entre los paréntesis de apertura y cierre al llamar 
 
 Para permanecer local, solo de este capítulo, otra función que analizamos brevemente y que toma argumentos es nuestra función showDistance:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-function showDistance (velocidad, tiempo) {
-  alerta (velocidad * tiempo);
-}
 Mira, puedes saber cuándo una función toma argumentos mirando la declaración de la función en sí:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-function showDistance (velocidad, tiempo) {
-  alerta (velocidad * tiempo);
-}
 Lo que solía ser un paréntesis vacío después del nombre de la función ahora contendrá información sobre la cantidad de argumentos que su función necesita junto con algunas sugerencias sobre los valores que tomarán sus argumentos.
 
 Para showDistance, podemos inferir que esta función toma dos argumentos. El primer argumento corresponde a la velocidad y el segundo argumento corresponde al tiempo.
 
 Especificamos sus argumentos para la función como parte de la llamada a la función:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-function showDistance (velocidad, tiempo) {
-  alerta (velocidad * tiempo);
-}
-
-showDistance (10, 5);
 En nuestro caso, llamamos showDistance y especificamos los valores que queremos pasar a su función entre paréntesis (Figura 3.9).
 
 Imagen
@@ -267,58 +212,44 @@ En general, para que el código que está escribiendo sea más claro, debe propo
 CREANDO UNA FUNCIÓN QUE DEVUELVE DATOS
 La última variante de función que veremos es una que devuelve algunos datos al nombre que sea. Esto es lo que queremos hacer. Tenemos nuestra función showDistance y sabemos que tiene el siguiente aspecto:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-function showDistance (velocidad, tiempo) {
-  alerta (velocidad * tiempo);
-}
 En lugar de tener nuestro showDistancefunción calcula la distancia y la muestra como una alerta, queremos almacenar ese valor para algún uso futuro. Queremos hacer algo como esto:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-let myDistance = showDistance (10, 5);
 La variable myDistance almacenará los resultados del cálculo que hace la función showDistance.
 
 La palabra clave de retorno
 La forma en que devuelve datos de una función es utilizando la palabra clave return. Creemos una nueva función llamada getDistance que se ve idéntica a showDistance con la única diferencia de lo que sucede cuando la función se ejecuta hasta su finalización:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-function getDistance (velocidad, tiempo) {
-  sea ​​distancia = velocidad * tiempo;
-  distancia de regreso;
-}
 Observe que todavía estamos calculando la distancia multiplicando la velocidad y el tiempo. En lugar de mostrar una alerta, devolvemos la distancia (almacenada por la variable de distancia).
 
 Para llamar a la función getDistance, podemos simplemente llamarla como parte de la inicialización de una variable:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-let myDistance = getDistance (10, 5);
 Cuando se llama a la función getDistance, se evalúa y devuelve un valor numérico que luego se asigna a la variable myDistance. Eso es todo al respecto.
 
 Salida anticipada de la función
 Una vez que nuestra función llega a la palabra clave return, detiene todo lo que está haciendo en ese punto, devuelve cualquier valor que haya especificado a la persona que llama y sale:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-function getDistance (velocidad, tiempo) {
-  sea ​​distancia = velocidad * tiempo;
-  distancia de regreso;
-  si (velocidad <0) {
-    distancia * = -1;
-  }
-}
 No se alcanzará ningún código que exista después de nuestra declaración de devolución. Será como si ese código nunca hubiera existido.
 
 En la práctica, usaremos la instrucción return para terminar una función después de que haya hecho lo que queríamos que hiciera. Esa función podría devolver un valor a la persona que llama como vio en los ejemplos anteriores, o esa función podría simplemente salir:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-function doSomething () {
-  let foo = "Nada interesante";
-  regreso;
-}
 El uso de la palabra clave return para devolver un valor es opcional. La palabra clave return se puede usar de forma independiente como vemos aquí para salir de la función. Si una función no especifica nada para devolver, en su lugar se devuelve un valor predeterminado indefinido.
 
 El Mínimo Absoluto
