@@ -51,7 +51,7 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
 * Using Variables
 * More Variable Stuff
 
-#### 3. Functions
+#### 3. [Functions](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/03-Functions.md)
 
 * What Is a Function?
 * A Simple Function
