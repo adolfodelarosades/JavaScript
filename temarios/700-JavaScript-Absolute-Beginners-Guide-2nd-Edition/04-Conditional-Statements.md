@@ -32,12 +32,31 @@ La declaración condicional más común que usaremos en nuestro código es la **
 
 **FIGURA 4.2** *Cómo funciona la sentencia if.*
 
-Para darle sentido a esto, echemos un vistazo a un ejemplo simple de una declaración if / else en acción. Cree un nuevo documento HTML y agregue el siguiente marcado y código en él:
+Para darle sentido a esto, echemos un vistazo a un ejemplo simple de una declaración `if`/`else` en acción. Cree un nuevo documento HTML y agregue el siguiente marcado y código en él:
 
 ```html
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf-8">
+   <title>If/Else Statements</title>
+</head>
+
+<body>
+   <script>
+      let safeToProceed = true;
+      if (safeToProceed) {
+         alert("You shall pass!");
+      } else {
+         alert("You shall not pass!");
+      }
+   </script>
+</body>
+</html>
 ```
 
-Guarde este documento con el nombre if_else.htm y obtenga una vista previa en su navegador. Si todo funcionó como se esperaba, verá una alerta con el texto ¡Pasará! mostrado (Figura 4.3).
+Guarde este documento con el nombre `if_else.htm` y obtenga una vista previa en su navegador. Si todo funcionó como se esperaba, verá una alerta con el texto ¡Pasará! mostrado (Figura 4.3).
 
 ![04fig03.jpg](images/04fig03.jpg)
 
@@ -45,25 +64,40 @@ Guarde este documento con el nombre if_else.htm y obtenga una vista previa en su
 
 El código responsable de hacer que esto funcione son las siguientes líneas de nuestro ejemplo:
 
-```html
+```js
+let safeToProceed = true;
+
+if (safeToProceed) {
+   alert("You shall pass!");
+} else {
+   alert("You shall not pass!");
+}
 ```
 
-Nuestra expresión (lo que sigue a la palabra clave si finalmente se evalúa como verdadera o falsa) es la variable safeToProceed. Esta variable se inicializa a verdadera, por lo que la parte verdadera de nuestra declaración if se activó.
+Nuestra **expresión** (lo que sigue a la palabra clave si finalmente se evalúa como **true** o **false**) es la variable `safeToProceed`. Esta variable se inicializa a **true**, por lo que la parte verdadera de nuestra declaración if se activó.
 
-Ahora, continúe y cambie el valor de la variable safeToProceed de verdadero a falso:
+Ahora, continúe y cambie el valor de la variable `safeToProceed` de **true** a **false**):
 
 ```html
+let safeToProceed = true;                                        
+
+if (safeToProceed) {
+   alert("You shall pass!");
+} else {
+   alert("You shall not pass!");
+}
 ```
 
-Esta vez, cuando ejecute este código, verá una alerta con el texto ¡No pasará! porque nuestra expresión ahora se evalúa como falsa (Figura 4.4).
+Esta vez, cuando ejecute este código, verá una alerta con el texto **You shall not pass!** porque nuestra expresión ahora se evalúa como **false** (Figura 4.4).
 
 ![04fig04.jpg](images/04fig04.jpg)
 
-**FIGURA 4.4** *La alerta que recibe cuando la expresión se evalúa como falsa.*
+**FIGURA 4.4** *La alerta que recibe cuando la expresión se evalúa como false.*
 
 Hasta ahora, todo esto probablemente parece realmente aburrido. Una gran parte de la razón de esto se debe a que no hemos subido la perilla de complejidad para enfocarnos en escenarios más realistas. Lo abordaremos a continuación analizando las condiciones en profundidad.
 
-Conozca a los operadores condicionales
+### Conozca a los Operadores Condicionales
+
 En la mayoría de los casos, nuestra expresión rara vez será una variable simple configurada como verdadera o falsa como en nuestro ejemplo anterior. Nuestra expresión involucrará lo que se conoce como operadores condicionales que nos ayudan a comparar entre dos o más expresiones para establecer un resultado verdadero o falso.
 
 El formato general de tales expresiones se muestra en la Figura 4.5.
