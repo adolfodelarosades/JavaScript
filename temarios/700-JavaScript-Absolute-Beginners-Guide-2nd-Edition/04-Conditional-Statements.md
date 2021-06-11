@@ -96,11 +96,9 @@ Esta vez, cuando ejecute este código, verá una alerta con el texto **You shall
 
 Hasta ahora, todo esto probablemente parece realmente aburrido. Una gran parte de la razón de esto se debe a que no hemos subido la perilla de complejidad para enfocarnos en escenarios más realistas. Lo abordaremos a continuación analizando las condiciones en profundidad.
 
-AQUIIIIIIIII
-
 ### Conozca a los Operadores Condicionales
 
-En la mayoría de los casos, nuestra expresión rara vez será una variable simple configurada como verdadera o falsa como en nuestro ejemplo anterior. Nuestra expresión involucrará lo que se conoce como operadores condicionales que nos ayudan a comparar entre dos o más expresiones para establecer un resultado verdadero o falso.
+En la mayoría de los casos, nuestra expresión rara vez será una variable simple configurada como **true** o **false** como en nuestro ejemplo anterior. Nuestra expresión involucrará lo que se conoce como **operadores condicionales** que nos ayudan a comparar entre dos o más expresiones para establecer un resultado **true** o **false**.
 
 El formato general de tales expresiones se muestra en la Figura 4.5.
 
@@ -108,49 +106,108 @@ El formato general de tales expresiones se muestra en la Figura 4.5.
 
 **FIGURA 4.5** *Formato general de expresiones de operadores condicionales.*
 
-El operador (también conocido como operador condicional) define una relación entre una expresión. El objetivo final es devolver un verdadero o falso para que nuestra declaración if sepa qué bloque de código ejecutar. La clave para que todo esto funcione son los propios operadores condicionales. Se muestran en la Tabla 4.1.
+El **operador** (también conocido como **operador condicional**) define una relación entre una expresión. El objetivo final es devolver un **true** o **false** para que nuestra declaración `if` sepa qué bloque de código ejecutar. La clave para que todo esto funcione son los propios operadores condicionales. Se muestran en la Tabla 4.1.
 
-TABLA 4.1 Operadores
+**TABLA 4.1** Operadores
 
-Operador Cuando es cierto
-== Si la primera expresión se evalúa como algo que es igual a la segunda expresión.
-> = Si la primera expresión se evalúa como algo mayor o igual que la segunda expresión.
-> Si la primera expresión se evalúa como algo mayor que la segunda expresión.
-<= Si la primera expresión se evalúa como algo menor o igual que la segunda expresión.
-<Si la primera expresión evalúa tes a algo que es menor que la segunda expresión.
-! = Si la primera expresión se evalúa como algo que no es igual a la segunda expresión.
-&& Si la primera expresión y la segunda expresión se evalúan como verdaderas.
-|| Si la primera expresión o la segunda expresión se evalúan como verdadera.
-Tomemos nuestra comprensión general de los operadores condicionales y hagámosla más específica mirando otro ejemplo ... como el siguiente con nuestro código relevante relacionado con el if resaltado:
+Operador | Cuando es `true`
+---------------------------
+`==`     | Si la primera expresión se evalúa como algo que es igual a la segunda expresión.
+`>=`     | Si la primera expresión se evalúa como algo mayor o igual que la segunda expresión.
+`>`      | Si la primera expresión se evalúa como algo mayor que la segunda expresión.
+`<=`     | Si la primera expresión se evalúa como algo menor o igual que la segunda expresión.
+`<`      | Si la primera expresión evalúa tes a algo que es menor que la segunda expresión.
+`!=`     | Si la primera expresión se evalúa como algo que no es igual a la segunda expresión.
+`&&`     | Si la primera expresión y la segunda expresión se evalúan como verdaderas.
+`||`     | Si la primera expresión o la segunda expresión se evalúan como verdadera.
 
-```html
-```
-
-Dediquemos un momento a comprender qué está pasando exactamente. Tenemos una variable llamada speedLimit que se inicializa a 55. Luego tenemos una función llamada amISpeeding que toma un argumento llamado speed. Dentro de esta función, tenemos una declaración if cuya expresión verifica si el valor de velocidad pasado es mayor o igual (¡Hola> = operador condicional!) Al valor almacenado por la variable speedLimit:
+Tomemos nuestra comprensión general de los operadores condicionales y hagámosla más específica mirando otro ejemplo ... como el siguiente con nuestro código relevante relacionado con el `if` resaltado:
 
 ```html
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf-8">
+   <title>Are you speeding?</title>
+</head>
+
+<body>
+   <script>
+      let speedLimit = 55;
+
+      function amISpeeding(speed) {
+         if (speed >= speedLimit) {                                    
+            alert("Yes. You are speeding.");                            
+         } else {                                                      
+            alert("No. You are not speeding. What's wrong with you?");  
+         }                                                             
+      }
+
+      amISpeeding(53);
+      amISpeeding(72);
+  </script>
+</body>
+
+</html>
 ```
 
-Lo último que hace nuestro código es llamar a la función amISpeeding pasando algunos valores para la velocidad:
+Dediquemos un momento a comprender qué está pasando exactamente. Tenemos una variable llamada `speedLimit` que se inicializa a **55**. Luego tenemos una función llamada `amISpeeding` que toma un argumento llamado `speed`. Dentro de esta función, tenemos una declaración `if` cuya expresión verifica si el valor `speed` pasado es mayor o igual (Hello >= conditional operator!) Al valor almacenado por la variable `speedLimit`:
 
-```html
+```js
+function amISpeeding(speed) {
+   if (speed >= speedLimit) {                                       
+      alert("Yes. You are speeding.");
+   } else {
+      alert("No. You are not speeding. What's wrong with you?");
+   }
+}
 ```
 
-Cuando llamamos a esta función con una velocidad de 53, la expresión speed> = speedLimit se evalúa como falsa. La razón es que 53 no es mayor o igual que el valor almacenado de speedLimit que es 55. Esto dará como resultado una alerta que muestra que no está acelerando.
+Lo último que hace nuestro código es llamar a la función `amISpeeding` pasando algunos valores para la velocidad:
 
-Lo contrario sucede cuando llamamos amISpeeding con una velocidad de 72. En este caso, estamos acelerando y la condición se evalúa como verdadera. También aparecerá una alerta que nos indicará que estamos acelerando.
+```js
+amISpeeding(53);
+amISpeeding(72);
+```
 
-Crear expresiones más complejas
-Lo que necesita saber acerca de estas expresiones es que pueden ser tan simples o tan complejas como pueda hacerlas. Pueden estar formados por variables, llamadas a funciones o valores brutos. Incluso pueden estar formados por combinaciones de variables, llamadas a funciones o valores sin procesar, todos separados mediante cualquiera de los operadores que vio anteriormente. Lo único que debe asegurarse es que su expresión finalmente se evalúe como verdadera o falsa.
+Cuando llamamos a esta función con una velocidad de **53**, la expresión `speed >= speedLimit` se evalúa como **false**. La razón es que **53** no es mayor o igual que el valor almacenado de `speedLimit` que es **55**. Esto dará como resultado una alerta que muestra que no está acelerando.
+
+Lo contrario sucede cuando llamamos `amISpeeding` con una velocidad de **72**. En este caso, estamos acelerando y la condición se evalúa como **true**. También aparecerá una alerta que nos indicará que estamos acelerando.
+
+### Crear Expresiones más Complejas
+
+Lo que necesita saber acerca de estas expresiones es que pueden ser tan simples o tan complejas como pueda hacerlas. Pueden estar formados por variables, llamadas a funciones o valores brutos. Incluso pueden estar formados por combinaciones de variables, llamadas a funciones o valores sin procesar, todos separados mediante cualquiera de los operadores que vio anteriormente. Lo único que debe asegurarse es que su expresión finalmente se evalúe como **true** o **false**.
 
 Aquí hay un ejemplo un poco más complicado:
 
-```html
+```js
+let xPos = 300;
+let yPos = 150;
+
+function sendWarning(x, y) {
+   if ((x < xPos) && (y < yPos)) {
+      alert("Adjust the position");
+   } else {
+      alert("Things are fine!");
+   }
+}
+
+sendWarning(500, 160);
+sendWarning(100, 100);
+sendWarning(201, 149);
 ```
+AQUIIIIIIIIIIIII
+Observe cómo se ve nuestra condición dentro de la declaración `if` de `sendWarning`:
 
-Observe cómo se ve nuestra condición dentro de la declaración if de sendWarning:
-
-```html
+```js
+function sendWarning(x, y) {
+   if ((x < xPos) && (y < yPos)) {                         
+      alert("Adjust the position");
+   } else {
+                alert("Things are fine!");
+        }
+}
 ```
 
 Aquí se hacen tres comparaciones. El primero es si x es menor que xPos. El segundo es si y es menor que yPos. La tercera comparación es ver si la primera declaración y la segunda declaración se evalúan como verdaderas para permitir que el operador && devuelva una verdadera también. Podemos encadenar muchas series de declaraciones condicionales dependiendo de lo que estemos haciendo. Lo complicado, además de aprender lo que hacen todos los operadores, es asegurarse de que cada condición y subcondición esté debidamente aislada mediante paréntesis.
@@ -304,3 +361,38 @@ Si tiene alguna pregunta sobre el contenido aquí, ¡no se preocupe! Ser feliz. 
 ```
 
 ![image](https://user-images.githubusercontent.com/23094588/121712471-104c8c00-cadc-11eb-91ea-1b9dd66351f2.png)
+
+## 🔴 💻 `04-02-Operadores-Condicionales.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-02-Operadores-Condicionales</title>
+</head>
+<body>
+    <script>
+        let speedLimit = 55;
+
+        function amISpeeding(speed) {
+            if (speed >= speedLimit) {                                    
+                alert("Si. Si vas a exceso de velocidad. ¿Qué sucede contigo?");                            
+            } else {                                                      
+                alert("No. No vas a exceso de velocidad.");  
+            }                                                             
+        }
+
+        amISpeeding(53);
+        amISpeeding(72);
+    </script>
+</body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/121742071-a514b100-caff-11eb-9287-1981993eb112.png)
+
+![image](https://user-images.githubusercontent.com/23094588/121742221-d5f4e600-caff-11eb-88f2-d9534e9a43de.png)
+
