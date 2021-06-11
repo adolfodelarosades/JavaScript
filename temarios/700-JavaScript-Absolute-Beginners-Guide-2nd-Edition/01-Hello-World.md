@@ -177,7 +177,7 @@ Bastante sencillo, ¿verdad? Puede reemplazar el contenido de su cadena con todo
 > 
 > Si tiene alguna pregunta sobre el contenido aquí, publique en los foros en https://forum.kirupa.com para obtener ayuda realmente rápida tanto de mí como de algunos de los desarrolladores más geniales de la web.
 
-## 🔴 💻 `01-01-Hello_World.html`
+## 🔴 💻 `01-01-Hello-World.html`
 
 ```html
 <!DOCTYPE html>
