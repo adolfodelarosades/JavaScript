@@ -78,7 +78,7 @@ Nuestra **expresión** (lo que sigue a la palabra clave si finalmente se evalúa
 
 Ahora, continúe y cambie el valor de la variable `safeToProceed` de **true** a **false**):
 
-```html
+```js
 let safeToProceed = true;                                        
 
 if (safeToProceed) {
@@ -95,6 +95,8 @@ Esta vez, cuando ejecute este código, verá una alerta con el texto **You shall
 **FIGURA 4.4** *La alerta que recibe cuando la expresión se evalúa como false.*
 
 Hasta ahora, todo esto probablemente parece realmente aburrido. Una gran parte de la razón de esto se debe a que no hemos subido la perilla de complejidad para enfocarnos en escenarios más realistas. Lo abordaremos a continuación analizando las condiciones en profundidad.
+
+AQUIIIIIIIII
 
 ### Conozca a los Operadores Condicionales
 
@@ -276,3 +278,29 @@ Estas elecciones son alimentadas por condiciones que deben evaluarse como verdad
 En este capítulo, aprendimos la mecánica de cómo trabajar con declaraciones if / else y sus (más o menos) primos relacionados, las declaraciones switch. En capítulos futuros, nos verá usando estas declaraciones de manera muy casual, como si las conociéramos desde hace años, por lo que estará muy familiarizado con cómo escribir estas declaraciones para cuando llegue al final de este libro.
 
 Si tiene alguna pregunta sobre el contenido aquí, ¡no se preocupe! Ser feliz. Publica en los foros en https://forum.kirupa.com para obtener ayuda realmente rápida tanto de mí como de algunos de los mejores desarrolladores de la web.
+
+## 🔴 💻 `04-01-if_else.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-01-if_else</title>
+</head>
+<body>
+    <script>
+        let safeToProceed = true;
+        if (safeToProceed) {
+           alert("¡Pasarás!");
+        } else {
+           alert("¡No pasarás!");
+        }
+    </script>
+</body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/121712471-104c8c00-cadc-11eb-91ea-1b9dd66351f2.png)
