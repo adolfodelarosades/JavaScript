@@ -103,7 +103,7 @@ En el Explorador de archivos o en el Finder, navegue hasta donde se almanezo el 
 
 **FIGURA 1.4** *Pestaña titulada en Visual Studio Code.*
 
-Si todo salió bien, ¡debería ver una página en blanco! No, no hay nada de malo aquí. Si bien nuestra página tiene contenido, no hay nada visible. Eso está bien, lo arreglaremos en breve. La clave para hacer esta corrección es volver a su editor de código y concentrarse en la etiqueta <script> que ve en la parte inferior de su HTML:
+Si todo salió bien, ¡debería ver una página en blanco! No, no hay nada de malo aquí. Si bien nuestra página tiene contenido, no hay nada visible. Eso está bien, lo arreglaremos en breve. La clave para hacer esta corrección es volver a su editor de código y concentrarse en la etiqueta `<script>` que ve en la parte inferior de su HTML:
 
   
 ```js
@@ -128,54 +128,52 @@ Guarde su archivo HTML y ejecútelo en su navegador. Observe lo que verá una ve
 
 Si este es su primer intento de escribir JavaScript, ¡enhorabuena! Ahora, veamos lo que acaba de hacer.
 
-MIRANDO EL CÓDIGO: DECLARACIONES Y FUNCIONES
-Acaba de escribir una declaración de JavaScript muy simple. Una declaración es un conjunto lógico de instrucciones que le indican a su navegador qué hacer. Una aplicación típica tendrá muchas MUCHAS declaraciones. En nuestro caso, solo tenemos uno:
+### MIRANDO EL CÓDIGO: DECLARACIONES Y FUNCIONES
 
-Haga clic aquí para ver la imagen del código
+Acaba de escribir una **sentencia** de JavaScript muy simple. Una sentencia es un conjunto lógico de instrucciones que le indican a su navegador qué hacer. Una aplicación típica tendrá muchas MUCHAS declaraciones. En nuestro caso, solo tenemos uno:
 
 ```js
+alert("hello, world!");
 ```  
-alert ("¡hola, mundo!");
-Puede darse cuenta de que algo es una declaración mirando el último carácter que contiene. Por lo general, es un punto y coma (;) como lo que ve aquí.
+
+Puede darse cuenta de que algo es una sentencia mirando el último carácter que contiene. Por lo general, es un punto y coma (;) como lo que ve aquí.
 
 Dentro de una declaración, verá todo tipo de jerga JavaScript cobarde. Nuestro código, a pesar de ser solo una línea, no es una excepción. Tienes una cosa extraña llamada alerta que hace acto de presencia. Este es un ejemplo de una palabra inglesa común que se comporta de manera similar en el mundo de JavaScript. Se encarga de llamar su atención mostrando algún texto.
 
-Para ser más precisos, la palabra alerta es algo que se conoce como función. Utilizará funciones todo el tiempo; una función es básicamente un fragmento de código reutilizable que hace algo. El "algo" que hace podría ser definido por usted, definido por alguna biblioteca de terceros que esté utilizando, o podría ser definido por el propio marco de JavaScript. En nuestro caso, el código que le da a su función de alerta la habilidad mágica de mostrar un diálogo con un mensaje que le pasa vive en lo profundo del navegador. Todo lo que realmente necesita saber es que si desea utilizar la función de alerta, simplemente llámela y pase el texto que desea que se muestre. Todo lo demás está cuidado por ti.
+Para ser más precisos, la palabra `alert` es algo que se conoce como **función**. Utilizará funciones todo el tiempo; una función es básicamente un fragmento de código reutilizable que hace algo. El "algo" que hace podría ser definido por usted, definido por alguna librería de terceros que esté utilizando, o podría ser definido por el propio framework de JavaScript. En nuestro caso, el código que le da a su función de alerta la habilidad mágica de mostrar un diálogo con un mensaje que le pasa vive en lo profundo del navegador. Todo lo que realmente necesita saber es que si desea utilizar la función `alert`, simplemente llámela y pase el texto que desea que se muestre.
 
-Volviendo a nuestro ejemplo, el texto que desea mostrar es ¡hola, mundo! Y observe cómo lo estoy especificando. Envuelvo las palabras entre comillas:
+Volviendo a nuestro ejemplo, el texto que desea mostrar es **hello, world!** Y observe cómo lo estoy especificando. Envuelvo las palabras entre comillas:
 
-Haga clic aquí para ver la imagen del código
+
 ```js
-```
 <script>
-  alert ("¡hola, mundo!");
+   alert("hello, world!");
 </script>
-Siempre que se trate de texto (más comúnmente conocido como cadenas), siempre lo envolverá entre comillas simples o dobles. Sé que parece extraño, pero cada lenguaje de programación tiene sus propias peculiaridades. Esta es una de las muchas peculiaridades que verá a medida que explore JavaScript. Veremos las cadenas con mayor detalle en breve; por ahora, solo disfruta de la vista.
+```
+
+Siempre que se trate de texto (más comúnmente conocido como **strings**), siempre lo envolverá entre comillas simples o dobles. Sé que parece extraño, pero cada lenguaje de programación tiene sus propias peculiaridades. Esta es una de las muchas peculiaridades que verá a medida que explore JavaScript. Veremos las cadenas con mayor detalle en breve; por ahora, solo disfruta de la vista.
 
 Vayamos un paso más allá. En lugar de mostrar hola, mundo !, cambie el texto que está mostrando para decir su nombre y apellido. Aquí hay un ejemplo de cómo se ve mi código cuando uso mi nombre:
 
-Haga clic aquí para ver la imagen del código
 ```js
-```
 <script>
-  alerta ("¡Kirupa Chinnathambi!");
+   alert("Kirupa Chinnathambi!");
 </script>
+```
+
 Si ejecuta su aplicación, verá que su nombre aparece en el cuadro de diálogo (Figura 1.6).
 
 ![01fig06.jpg](images/01fig06.jpg)
   
-FIGURA 1.6
-
-El cuadro de diálogo ahora muestra su nombre.
+**FIGURA 1.6** *El cuadro de diálogo ahora muestra su nombre.*
 
 Bastante sencillo, ¿verdad? Puede reemplazar el contenido de su cadena con todo tipo de cosas: el nombre de su mascota, su programa de televisión favorito, etc., JavaScript lo mostrará.
 
-El Mínimo Absoluto
+> **El Mínimo Absoluto**
+> 
+> En este tutorial, creó un ejemplo simple que lo ayudó a familiarizarse con la escritura de código JavaScript. Como parte de familiarizarte, te lancé muchos conceptos y términos. Ciertamente, no espero que los conozca o los recuerde a todos ahora. En futuros tutoriales, seleccionaremos cada parte interesante de lo que ha visto hasta ahora y la explicaremos con más detalle. Después de todo, estoy bastante seguro de que eventualmente querrás hacer cosas en JavaScript que vayan más allá de mostrar texto de una manera ridículamente molesta usando un cuadro de diálogo.
+> 
+> En el futuro, al final de cada capítulo, es posible que incluso vea un conjunto de enlaces a recursos externos escritos por mí o por otras personas. Estos recursos le brindarán más detalles o una perspectiva diferente sobre lo que aprendió, junto con oportunidades para poner en práctica su aprendizaje con ejemplos más complejos. Piense en lo que ve en este libro como un punto de partida para cosas más grandiosas y asombrosas.
+> 
+> Si tiene alguna pregunta sobre el contenido aquí, publique en los foros en https://forum.kirupa.com para obtener ayuda realmente rápida tanto de mí como de algunos de los desarrolladores más geniales de la web.
 
-En este tutorial, creó un ejemplo simple que lo ayudó a familiarizarse con la escritura de código JavaScript. Como parte de familiarizarte, te lancé muchos conceptos y términos. Ciertamente, no espero que los conozca o los recuerde a todos ahora. En futuros tutoriales, seleccionaremos cada parte interesante de lo que ha visto hasta ahora y la explicaremos con más detalle. Después de todo, estoy bastante seguro de que eventualmente querrás hacer cosas en JavaScript que vayan más allá de mostrar texto de una manera ridículamente molesta usando un cuadro de diálogo.
-
-En el futuro, al final de cada capítulo, es posible que incluso vea un conjunto de enlaces a recursos externos escritos por mí o por otras personas. Estos recursos le brindarán más detalles o una perspectiva diferente sobre lo que aprendió, junto con oportunidades para poner en práctica su aprendizaje con ejemplos más complejos. Piense en lo que ve en este libro como un punto de partida para cosas más grandiosas y asombrosas.
-
-Si tiene alguna pregunta sobre el contenido aquí, publique en los foros en https://forum.kirupa.com para obtener ayuda realmente rápida tanto de mí como de algunos de los desarrolladores más geniales de la web.
-```js
-```
