@@ -22,17 +22,15 @@ No hay nada de malo en tener un código como este. Esto es especialmente cierto 
 
 Para resaltar esto, digamos que queremos mostrar la distancia que ha viajado algo (Figura 3.1).
 
-Imagen
-FIGURA 3.1
+![03fig01](images/03fig01.jpg)
 
-Distancia viajada.
+**FIGURA 3.1** *Distancia viajada.*
 
 Si recuerda de la escuela, la distancia se calcula multiplicando la velocidad que algo ha viajado por el tiempo que tomó (Figura 3.2).
 
-Imagen
-FIGURA 3.2
+![03fig02](images/03fig02.jpg)
 
-Calculando la distancia.
+**FIGURA 3.2** *Calculando la distancia.*
 
 La versión de JavaScript de eso se verá de la siguiente manera:
 
@@ -92,48 +90,44 @@ Si escribió todo esto y obtuvo una vista previa de su página en su navegador, 
 
 En primer lugar, vemos la palabra clave de función iniciando las cosas como en la Figura 3.3.
 
-Imagen
-FIGURA 3.3
+![03fig03](images/03fig03.jpg)
 
-La palabra clave de la función.
+**FIGURA 3.3** *La palabra clave de la función.*
 
 Esta palabra clave le dice al motor de JavaScript que se encuentra en lo más profundo de su navegador que trate todo este bloque de código como algo que tiene que ver con funciones.
 
 Después de la palabra clave de función, especificamos el nombre real de la función seguido de algunos paréntesis de apertura y cierre, () como en la Figura 3.4.
 
-Imagen
-FIGURA 3.4
+![03fig04](images/03fig04.jpg)
 
-El nombre de la función y los paréntesis.
+**FIGURA 3.4** *El nombre de la función y los paréntesis.*
 
 Completando nuestra declaración de función están los corchetes de apertura y cierre que encierran cualquier declaración que podamos tener adentro (Figura 3.5).
 
-Imagen
-FIGURA 3.5
+![03fig05](images/03fig05.jpg)
 
-Los corchetes de apertura y cierre.
+**FIGURA 3.5** *Los corchetes de apertura y cierre.*
 
 Lo final es el contentos de nuestra función: los enunciados que hacen que nuestra función sea realmente funcional (Figura 3.6).
 
-Imagen
-FIGURA 3.6
+![03fig06](images/03fig06.jpg)
 
-El contenido de la función.
+**FIGURA 3.6** *El contenido de la función.*
 
 En nuestro caso, el contenido es la función de alerta que muestra un diálogo con la palabra ¡hola! desplegado.
 
 Lo último que hay que mirar es la llamada a la función (Figura 3.7).
 
-Imagen
-FIGURA 3.7
+![03fig07](images/03fig07.jpg)
 
-La llamada a la función.
+**FIGURA 3.7** *La llamada a la función.*
 
 La llamada a la función suele ser el nombre de la función que queremos llamar (también conocida como invocar) seguido de nuevo por el paréntesis. Sin nuestra llamada a la función, la función que creamos no hace nada. Es la llamada a la función la que despierta nuestra función y la hace hacer cosas.
 
 Ahora, lo que acabamos de ver es un vistazo a una función muy simple. En las siguientes secciones, nos basaremos en lo que acabamos de aprender y veremos ejemplos de funciones cada vez más realistas.
 
 CREANDO UNA FUNCIÓN QUE TOMA ARGUMENTOS
+
 El ejemplo anterior de sayHello fue bastante simple:
 
 ```js
@@ -148,10 +142,9 @@ Comencemos con un ejemplo simple y familiar:
 
 Lo que tenemos aquí es nuestra función de alerta. Probablemente ya lo hayamos visto unas pocas (o unas pocas docenas) de veces. Lo que hace esta función es tomar lo que se conoce como un argumento para averiguar qué mostrar realmente cuando se llama. Llamar a la función de alerta con un argumento de mi argumento da como resultado la pantalla que se muestra en la Figura 3.8.
 
-Imagen
-FIGURA 3.8
+![03fig08](images/03fig08.jpg)
 
-Visualización del argumento.
+**FIGURA 3.8** *Visualización del argumento.*
 
 El argumento es lo que hay entre los paréntesis de apertura y cierre al llamar a la función de alerta. La función de alerta es solo una de las muchas funciones disponibles para usted que toman argumentos, y muchas funciones que crea también tomarán argumentos.
 
@@ -176,32 +169,29 @@ Especificamos sus argumentos para la función como parte de la llamada a la func
 
 En nuestro caso, llamamos showDistance y especificamos los valores que queremos pasar a su función entre paréntesis (Figura 3.9).
 
-Imagen
-FIGURA 3.9
+![03fig09](images/03fig09.jpg)
 
-Valores que queremos pasar a la función.
+**FIGURA 3.9** *Valores que queremos pasar a la función.*
 
 Debido a que proporcionamos más de un argumento, podemos separar los argumentos individuales con una coma. Ah, y antes de que me olvide de mencionar esto, el orden en el que especifiques tus argumentos es importante.
 
 Veamos todo esto con mayor detalle comenzando con el diagrama de la figura 3.10.
 
-Imagen
-FIGURA 3.10
+![03fig10](images/03fig10.jpg)
 
-Un diagrama de la llamada a la función.
+**FIGURA 3.10** *Un diagrama de la llamada a la función.*
 
 Cuando se llama a la función showDistance, pasa un 10 para el argumento de velocidad y un 5 para el argumento de distancia. Ese mapeo, como se muestra en el diagrama anterior, se basa completamente en el orden.
 
 Una vez que los valores que ingresa como argumentos llegan a nuestra función, los nombres que especificamos para los argumentos se tratan como nombres de variable como se muestra en la Figura 3.11.
 
-Imagen
-FIGURA 3.11
+![03fig11](images/03fig11.jpg)
 
-Los nombres de los argumentos funcionan como variables.
+**FIGURA 3.11** *Los nombres de los argumentos funcionan como variables.*
 
 Podemos usar estos nombres de variables para hacer referencia fácilmente a los valores almacenados por los argumentos dentro de nuestra función sin ninguna preocupación en el mundo.
 
-Nota de imagen
+![note](images/note.jpg) **Nota**
 
 Número de argumentos no coincidente
 
