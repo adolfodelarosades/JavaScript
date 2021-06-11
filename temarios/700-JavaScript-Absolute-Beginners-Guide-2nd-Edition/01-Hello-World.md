@@ -15,13 +15,13 @@ HTML se trata de mostrar cosas. CSS se trata de hacer que las cosas se vean bien
 
 ![01fig01.jpg](images/01fig01.jpg)
 
-FIGURA 1.1 *Un ejemplo de clima colorido que destaca un diseño diseñado completamente usando solo CSS*.
+**FIGURA 1.1** *Un ejemplo de clima colorido que destaca un diseño diseñado completamente usando solo CSS*.
 
 A pesar de lo ingeniosos que parecen los sitios construidos usando solo CSS y HTML, serán bastante estáticos. No se adaptan ni reaccionan a lo que estás haciendo. Con esos dos, es casi como ver una repetición de un gran episodio de Seinfeld una y otra vez. Es divertido por un tiempo, pero eventualmente se vuelve aburrido. Hoy en día, la Web no es estática. Los sitios que usa con frecuencia (como los de la Figura 1.2) tienen un cierto nivel de interactividad y personalización que va mucho más allá de lo que HTML y CSS pueden proporcionar por sí mismos.
 
 ![01fig02.jpg](images/01fig02.jpg)
 
-FIGURA 1.2 *Ejemplos de varios sitios web que dependen en gran medida de JavaScript para su correcto funcionamiento.*
+**FIGURA 1.2** *Ejemplos de varios sitios web que dependen en gran medida de JavaScript para su correcto funcionamiento.*
 
 Para que su contenido cobre vida, necesitará ayuda externa. ¡Lo que necesitas es JavaScript!
 
@@ -42,95 +42,89 @@ JavaScript es un lenguaje de programación moderno que es un par de HTML y CSS. 
 let defaultName = "JavaScript";
 
 function sayHello(name) {
-  if (name == null) {
-    alert("Hello, " + defaultName + "!");
-  } else {
-    alert("Hello, " + name + "!");
-  }
+   if (name == null) {
+      alert("Hello, " + defaultName + "!");
+   } else {
+      alert("Hello, " + name + "!");
+   }
 }
 ```
 
-No se preocupe si no sabe lo que eso significa. Solo preste atención a cómo se ve el código. Observe que ve muchas palabras en inglés como function, if, else, alert, name. Además de las palabras en inglés, también tiene muchos símbolos y caracteres extraños de las partes de su teclado que probablemente nunca notará. Pronto los notará mucho y también comprenderá completamente lo que hace todo en este código.
+No se preocupe si no sabe lo que eso significa. Solo preste atención a cómo se ve el código. Observe que ve muchas palabras en inglés como `function, if, else, alert, name`. Además de las palabras en inglés, también tiene muchos símbolos y caracteres extraños de las partes de su teclado que probablemente nunca notará. Pronto los notará mucho y también comprenderá completamente lo que hace todo en este código.
 
 De todos modos, esa es suficiente información de fondo por ahora. Si bien esperaría que ahora proporcione un historial de JavaScript y las personas y empresas detrás de hacerlo funcionar, no voy a aburrirlo con cosas como esa. En cambio, quiero que se ensucie las manos escribiendo algo de JavaScript. Al final de este tutorial, quiero que haya creado algo dulce y simple que muestre algo de texto en su navegador.
 
-¡HOLA MUNDO!
+## HELLO, WORLD!
+
 En este momento, es posible que no se sienta un poco preparado para comenzar a escribir código. Esto es especialmente cierto si no está muy familiarizado con la programación en general. Como pronto descubrirá, JavaScript no es tan molesto y complicado como a menudo pretende ser. Empecemos.
 
-Sugerencia de imagen
+> ![tip.jpg](images/tip.jpg) Tip
+> 
+> Se necesita familiaridad básica con el desarrollo web para comenzar a escribir JavaScript, debe tener una familiaridad básica con la creación de una página web, el uso de un editor de código y la adición de algo de HTML y CSS. Si no está muy familiarizado con los conceptos básicos en torno a esto, le animo a que lea primero el capítulo ***Cómo crear su primera página web***. Eso lo preparará muy bien para lo que verá a continuación.
 
-Se necesita familiaridad básica con el desarrollo web Para comenzar a escribir JavaScript, debe tener una familiaridad básica con la creación de una página web, el uso de un editor de código y la adición de algo de HTML y CSS. Si no está muy familiarizado con los conceptos básicos en torno a esto, le animo a que lea primero el capítulo Cómo crear su primera página web. Eso lo preparará muy bien para lo que verá a continuación.
+### El documento HTML
 
-El documento HTML
-Lo primero que necesita es un documento HTML. Este documento albergará el JavaScript que estará escribiendo. Inicie su editor de código favorito. Si no tiene uno, le animo a que utilice Visual Studio Code. Una vez que haya iniciado su editor de código favorito, siga adelante y cree un nuevo archivo. En Visual Studio Code, verá una pestaña que dice Sin título similar a la captura de pantalla de la Figura 1.3.
+Lo primero que necesita es un documento HTML. Este documento albergará el JavaScript que estará escribiendo. Inicie su editor de código favorito. Si no tiene uno, le animo a que utilice Visual Studio Code. Una vez que haya iniciado su editor de código favorito, siga adelante y cree un nuevo archivo. En Visual Studio Code, verá una pestaña que dice **Untitled** similar a la captura de pantalla de la Figura 1.3.
 
 ![01fig03.jpg](images/01fig03.jpg)
 
-FIGURA 1.3
+**FIGURA 1.3** *Pestaña Untitled-1 en Visual Studio Code.*
 
-Pestaña Untitled-1 en Visual Studio Code.
+Guarde este archivo recién creado yendo a File | Save. Se le pedirá que le dé un nombre a este archivo y especifique dónde le gustaría guardarlo. Asigne a este archivo el nombre **`hello_world.htm`** y guárdelo en su escritorio. Una vez que haya guardado este archivo, agregue el siguiente HTML en él:
 
-Guarde este archivo recién creado yendo a Archivo | Ahorrar. Se le pedirá que le dé un nombre a este archivo y especifique dónde le gustaría guardarlo. Asigne a este archivo el nombre hello_world.htm y guárdelo en su escritorio. Una vez que haya guardado este archivo, agregue el siguiente HTML en él:
-
-Haga clic aquí para ver la imagen del código
-
-```js
-```
-<! DOCTYPE html>
+```html
+<!DOCTYPE html>
 <html>
 
-<cabeza>
-  <meta charset = "utf-8">
-  <title> Aquí va un título interesante </title>
+<head>
+   <meta charset="utf-8">
+   <title>An Interesting Title Goes Here</title>
 
-  <estilo>
+   <style>
 
-  </style>
+   </style>
 </head>
 
-<cuerpo>
-  <script>
+<body>
+   <script>
 
-  </script>
+   </script>
 
 </body>
 
 </html>
+```
+
 Una vez que haya agregado este HTML, guarde su documento para confirmar estos cambios. Es hora de echar un vistazo a cómo se ve nuestra página en nuestro navegador.
 
-En el Explorador de archivos o en el Finder, navegue hasta su Escritorio para py haga doble clic en hello_world.htm. Verá aparecer su navegador predeterminado y mostrar el nombre de este archivo. Debería ver algo parecido a lo que se muestra en la Figura 1.4.
+En el Explorador de archivos o en el Finder, navegue hasta donde se almanezo el archivo y haga doble clic en **`hello_world.htm`**. Verá aparecer su navegador predeterminado y mostrar el nombre de este archivo. Debería ver algo parecido a lo que se muestra en la Figura 1.4.
 
 ![01fig04.jpg](images/01fig04.jpg)
 
-FIGURA 1.4
-
-Pestaña titulada en Visual Studio Code.
+**FIGURA 1.4** *Pestaña titulada en Visual Studio Code.*
 
 Si todo salió bien, ¡debería ver una página en blanco! No, no hay nada de malo aquí. Si bien nuestra página tiene contenido, no hay nada visible. Eso está bien, lo arreglaremos en breve. La clave para hacer esta corrección es volver a su editor de código y concentrarse en la etiqueta <script> que ve en la parte inferior de su HTML:
 
   
 ```js
-```  
 <script>
 
 </script>
-La etiqueta de secuencia de comandos actúa como un contenedor donde puede colocar cualquier JavaScript que desee ejecutar dentro de él. Lo que queremos hacer es mostrar las palabras ¡hola, mundo! en un cuadro de diálogo que aparece cuando carga su página HTML. Para que esto suceda, dentro de la región de su script, agregue la siguiente línea:
+```  
 
-Haga clic aquí para ver la imagen del código
+El tag `script` actúa como un contenedor donde puede colocar cualquier JavaScript que desee ejecutar dentro de él. Lo que queremos hacer es mostrar las palabras **`hello, world!`** en un cuadro de diálogo que aparece cuando carga su página HTML. Para que esto suceda, dentro de la región de su script, agregue la siguiente línea:
 
 ```js
-```
-  
 <script>
-  alert ("¡hola, mundo!");
-</script>
+   alert("hello, world!");
+</script>  
+```
+
 Guarde su archivo HTML y ejecútelo en su navegador. Observe lo que verá una vez que su página se haya cargado. Debería ver aparecer un cuadro de diálogo que se parece a la Figura 1.5.
 
 ![01fig05.jpg](images/01fig05.jpg)
   
-FIGURA 1.5
-
-Su cuadro de diálogo Hola mundo debería verse así.
+**FIGURA 1.5** *Su cuadro de diálogo Hola mundo debería verse así.*
 
 Si este es su primer intento de escribir JavaScript, ¡enhorabuena! Ahora, veamos lo que acaba de hacer.
 
