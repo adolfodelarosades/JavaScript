@@ -174,7 +174,7 @@ Los valores almacenan datos y las variables actúan como una forma fácil de hac
 
 Para que sus valores sean más memorables y reutilizables, declare variables. Declaras variables usando la palabra clave `let` y un **nombre de variable**. Si desea inicializar la variable a un valor predeterminado, siga todo eso con un signo igual (`=`) y el valor con el que desea inicializar su variable. 
 
-## 🔴 💻 `01-02-Hello-World-con-Variables.html`
+## 🔴 💻 `02-01-Hello-World-con-Variables.html`
 
 ```html
 <!DOCTYPE html>
@@ -194,6 +194,56 @@ Para que sus valores sean más memorables y reutilizables, declare variables. De
 </html>
 ```
 
-![image](https://user-images.githubusercontent.com/23094588/121650835-45d08580-ca9a-11eb-87c6-60d817e38f29.png)
+![image](https://user-images.githubusercontent.com/23094588/121655569-ff315a00-ca9e-11eb-8668-eff22073f20c.png)
+
+## 🔴 💻 `02-02-Hello-World-con-Variables.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-02-Hello-World-con-Variables</title>
+</head>
+<body>
+    <script>
+        let myText;
+        myText = "hello, world!";
+        myText = 99;
+        myText = 4 * 10;
+        myText = true;
+        myText = undefined;
+        alert(myText);
+    </script>
+</body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/121655670-11ab9380-ca9f-11eb-9867-90291149ebdb.png)
+
+
+## 🔴 💻 `02-03-Hello-World-con-Constantes.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-02-Hello-World-con-Variables</title>
+</head>
+<body>
+    <script>
+        const siteURL = "https://www.google.com";
+        alert(siteURL);
+    </script>
+</body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/121655892-3e5fab00-ca9f-11eb-906d-50b239a30a4d.png)
 
 
