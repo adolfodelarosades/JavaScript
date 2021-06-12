@@ -385,61 +385,139 @@ Con todo esto dicho, si tuviera que ejecutar este código, verá una ventana de 
 ![04fig06.jpg](images/04fig06.jpg)
 
 **FIGURA 4.6** *Ventana de alerta.*
-AQUIIIIIII
-Puede modificar el valor de la variable de color a otros valores válidos para ver la ejecución de los otros bloques de casos. A veces, el valor de ningún bloque de casos coincidirá con el resultado de evaluar una expresión. En esos casos, su declaración de cambio simplemente no hará nada. Si desea especificar un comportamiento predeterminado, agregue un bloque predeterminado:
 
-```html
+Puede modificar el valor de la variable de `color` a otros valores válidos para ver la ejecución de los otros bloques de casos. A veces, el valor de ningún bloque de casos coincidirá con el resultado de evaluar una expresión. En esos casos, su declaración `switch` simplemente no hará nada. Si desea especificar un comportamiento predeterminado, agregue un bloque `default`:
+
+```js
+switch (color) {                                     
+  case "yellow":
+    alert("yellow color");
+    break;
+  case "red":
+    alert("red color");
+    break;
+  case "blue":
+    alert("blue color");
+    break;
+  case "green":
+    alert("green color");
+    break;
+  case "black":
+    alert("black color");
+    break;
+  default:                                           
+    alert("no known color specified");               
+    break;                                           
+}
 ```
 
-Tenga en cuenta que el bloque predeterminado se ve un poco diferente a sus otras declaraciones de casos. En realidad, no contiene la palabra caso.
+Tenga en cuenta que el bloque `default` se ve un poco diferente a sus otras declaraciones de casos. En realidad, no contiene la palabra `case`.
 
-Similitud con una declaración If / Else
-Al principio, vimos que una instrucción de cambio se usa para evaluar condiciones, al igual que la instrucción if / else en la que pasamos la mayor parte de nuestro tiempo aquí. Dado que esta es una acusación importante, analicemos esto con más detalle, primero mirando cómo se vería una declaración if si se tradujera literalmente en una declaración de cambio.
+#### Similitud con una declaración If/Else
 
-Supongamos que tenemos una declaración if que se ve de la siguiente manera:
+Al principio, vimos que una instrucción `switch` se usa para evaluar condiciones, al igual que la instrucción `if`/`else` en la que pasamos la mayor parte de nuestro tiempo aquí. Dado que esta es una acusación importante, analicemos esto con más detalle, primero mirando cómo se vería una declaración `if` si se tradujera literalmente en una declaración `switch`.
 
-```html
+Supongamos que tenemos una declaración `if` que se ve de la siguiente manera:
+
+```js
+let number = 20;
+
+if (number > 10) {
+  alert("yes");
+} else {
+  alert("nope");
+}
 ```
 
-Debido a que el valor de nuestra variable numérica es 20, nuestro enunciado if se evaluará como verdadero. Parece bastante sencillo. Ahora, convierta esto en una declaración de cambio:
+Debido a que el valor de nuestra variable `number` es 20, nuestro enunciado `if` se evaluará como `true`. Parece bastante sencillo. Ahora, convierta esto en una `switch`:
 
-```html
+```js
+switch (number > 10) {
+  case true:
+    alert("yes");
+    break;
+  case false:
+    alert("nope");
 ```
 
-Observe que nuestra expresión es número> 10. El valor de caso para los bloques de casos se establece en verdadero o falso. Debido a que el número> 10 se evalúa como verdadero, se ejecuta el código dentro del bloque de caso verdadero. Si bien su expresión en este caso no fue tan simple como leer un valor de color almacenado en una variable como en la sección anterior, nuestra visión de cómo funcionan las declaraciones de cambio aún no ha cambiado. Nuestras expresiones pueden ser tan complejas como desee. Si evalúan algo que pueda coincidir dentro de un valor de caso, entonces todo es dorado ... ¡como un vellón!
+Observe que nuestra expresión es **number > 10**. El valor de caso para los bloques de casos se establece en `true` o `false`. Debido a que **number > 10** se evalúa como `true`, se ejecuta el código dentro del bloque de caso `true`. Si bien su expresión en este caso no fue tan simple como leer un valor de color almacenado en una variable como en la sección anterior, nuestra visión de cómo funcionan las declaraciones switch aún no ha cambiado. Nuestras expresiones pueden ser tan complejas como desee. Si evalúan algo que pueda coincidir dentro de un valor de caso, entonces todo es dorado ... ¡como un vellón!
 
-Ahora, veamos un ejemplo un poco más complicado. Esta vez, convertiremos nuestra declaración de cambio anterior que involucra colores en declaraciones if / else equivalentes. La declaración de cambio que usamos anteriormente tiene el siguiente aspecto:
+Ahora, veamos un ejemplo un poco más complicado. Esta vez, convertiremos nuestra declaración `switch` anterior que involucra colores en declaraciones `if`/`else` equivalentes. La declaración de cambio que usamos anteriormente tiene el siguiente aspecto:
 
-```html
+```js
+let color = "green";
+
+switch (color) {
+  case "yellow":
+    alert("yellow color");
+    break;
+  case "red":
+    alert("red color");
+    break;
+  case "blue":
+    alert("blue color");
+    break;
+  case "green":
+    alert("green color");
+    break;
+  case "black":
+    alert("black color");
+    break;
+  default:
+    alert("no color specified");
+    break;
+}
 ```
 
-Esta declaración de cambio convertida en una serie de declaraciones if / else se vería así:
+Esta declaración `switch` convertida en una serie de declaraciones `if`/`else` se vería así:
 
 ```html
+let color = "green";
+
+if (color == "yellow") {
+  alert("yellow color");
+} else if (color == "red") {
+  alert("red color");
+} else if (color == "blue") {
+  alert("blue color");
+} else if (color == "green") {
+  alert("green color");
+} else if (color == "black") {
+  alert("black color");
+} else {
+  alert("no color specified";
+}
 ```
 
-Como podemos ver, las declaraciones if / else son muy similares a las declaraciones switch y viceversa. El bloque de caso predeterminado se convierte en un bloque else. La relación entre la expresión y el valor del caso en una instrucción switch se combina en condiciones if / else en una instrucción if / else.
+Como podemos ver, las declaraciones `if`/`else` son muy similares a las declaraciones `switch` y viceversa. El bloque `default` se convierte en un bloque `else`. La relación entre la expresión y el valor del caso en una instrucción `switch` se combina en condiciones `if`/`else` en una instrucción `if`/`else`.
 
-DECIDIR QUÉ UTILIZAR
+## DECIDIR QUÉ UTILIZAR
 
-En la sección anterior, vimos lo intercambiables que son las declaraciones switch y las declaraciones if / else. Cuando tenemos dos formas de hacer algo muy similar, es natural querer saber cuándo es apropiado usar una sobre la otra. En pocas palabras, use el que prefiera. Hay muchos argumentos en la web sobre cuándo usar switch frente a if / else, y la única cosa es que todos no son concluyentes.
+En la sección anterior, vimos lo intercambiables que son las declaraciones `switch` y las declaraciones `if`/`else`. Cuando tenemos dos formas de hacer algo muy similar, es natural querer saber cuándo es apropiado usar una sobre la otra. En pocas palabras, use el que prefiera. Hay muchos argumentos en la web sobre cuándo usar `switch` frente a `if`/`else`, y la única cosa es que todos no son concluyentes.
 
-Mi preferencia personal es ir con lo que sea más legible. Si observa las comparaciones anteriores entre las declaraciones switch y if / else, notará que si tiene muchas condiciones, su declaración switch tiende a verse un poco más limpia. Ciertamente es menos detallado y un poco más legible. Cuál es su punto de corte para decidir cuándo cambiar (¡ja!) Entre el uso de una declaración de cambio y una declaración if / else depende completamente de usted. Tiendo a trazar la línea alrededor de cuatro o cinco condiciones.
+Mi preferencia personal es ir con lo que sea más legible. Si observa las comparaciones anteriores entre las declaraciones `switch` y `if`/`else`, notará que si tiene muchas condiciones, su declaración `switch` tiende a verse un poco más limpia. Ciertamente es menos detallado y un poco más legible. Cuál es su punto de corte para decidir cuándo cambiar (¡ja!) Entre el uso de una declaración `switch` y una declaración `if`/`else` depende completamente de usted. Tiendo a trazar la línea alrededor de cuatro o cinco condiciones.
 
-En segundo lugar, una declaración de cambio funciona mejor cuando está evaluando un n expresión y hacer coincidir el resultado con un valor. Si está haciendo algo más complejo que involucra condiciones extrañas, verificación de valor, etc., probablemente quiera usar algo diferente. ¡Eso podría involucrar algo incluso más diferente que una declaración if / else, por cierto! Hablaremos de esas cosas diferentes más adelante.
+En segundo lugar, una declaración `switch` funciona mejor cuando está evaluando una expresión y hacer coincidir el resultado con un valor. Si está haciendo algo más complejo que involucra condiciones extrañas, verificación de valor, etc., probablemente quiera usar algo diferente. ¡Eso podría involucrar algo incluso más diferente que una declaración `if`/`else`, por cierto! Hablaremos de esas *cosas diferentes* más adelante.
 
-Para terminar con todo esto, la guía anterior sigue en pie: use lo que quiera. Si forma parte de un equipo con pautas de codificación, sígalas. Hagas lo que hagas, sé constante. Hace que su vida, así como la vida de cualquier otra persona que trabaje en su código, sea un poco más fácil. Por lo que vale, personalmente nunca he estado en una situación en la que tuviera que usar una declaración de cambio. Su experiencia puede ser diferente.
+Para terminar con todo esto, la guía anterior sigue en pie: use lo que quiera. Si forma parte de un equipo con pautas de codificación, sígalas. Hagas lo que hagas, sé constante. Hace que su vida, así como la vida de cualquier otra persona que trabaje en su código, sea un poco más fácil. Por lo que vale, personalmente nunca he estado en una situación en la que tuviera que usar una declaración `switch`. Su experiencia puede ser diferente.
 
-El Mínimo Absoluto
+<hr>
 
-Si bien la creación de verdadera inteligencia artificial va más allá del alcance de este libro, puede escribir código para ayudar a su aplicación a tomar decisiones. Este código casi siempre tomará la forma de una declaración if / else en la que le proporciona al navegador un conjunto de opciones que debe tomar:
+### El Mínimo Absoluto
 
-```html
+Si bien la creación de verdadera inteligencia artificial va más allá del alcance de este libro, puede escribir código para ayudar a su aplicación a tomar decisiones. Este código casi siempre tomará la forma de una declaración `if`/`else` en la que le proporciona al navegador un conjunto de opciones que debe tomar:
+
+```js
+let loginStatus = false;
+
+if (name == "Admin") {
+  loginStatus = true;
+}
 ```
 
-Estas elecciones son alimentadas por condiciones que deben evaluarse como verdaderas o falsas.
+Estas elecciones son alimentadas por condiciones que deben evaluarse como `true` o `false`.
 
-En este capítulo, aprendimos la mecánica de cómo trabajar con declaraciones if / else y sus (más o menos) primos relacionados, las declaraciones switch. En capítulos futuros, nos verá usando estas declaraciones de manera muy casual, como si las conociéramos desde hace años, por lo que estará muy familiarizado con cómo escribir estas declaraciones para cuando llegue al final de este libro.
+En este capítulo, aprendimos la mecánica de cómo trabajar con declaraciones `if`/`else` y sus (más o menos) primos relacionados, las declaraciones `switch`. En capítulos futuros, nos verá usando estas declaraciones de manera muy casual, como si las conociéramos desde hace años, por lo que estará muy familiarizado con cómo escribir estas declaraciones para cuando llegue al final de este libro.
 
 Si tiene alguna pregunta sobre el contenido aquí, ¡no se preocupe! Ser feliz. Publica en los foros en https://forum.kirupa.com para obtener ayuda realmente rápida tanto de mí como de algunos de los mejores desarrolladores de la web.
 
@@ -574,7 +652,6 @@ Si tiene alguna pregunta sobre el contenido aquí, ¡no se preocupe! Ser feliz. 
 ![image](https://user-images.githubusercontent.com/23094588/121768112-94deef00-cb5c-11eb-88a9-e94d9ed835e1.png)
 
 
-
 ## 🔴 💻 `04-05-If-Else-If-Else.html`
 
 ```html
@@ -653,6 +730,44 @@ Si tiene alguna pregunta sobre el contenido aquí, ¡no se preocupe! Ser feliz. 
 ![image](https://user-images.githubusercontent.com/23094588/121768239-86dd9e00-cb5d-11eb-822c-e676def3a69c.png)
 
 ![image](https://user-images.githubusercontent.com/23094588/121768253-9bba3180-cb5d-11eb-97e1-78262b83e3a8.png)
+
+
+## 🔴 💻 `04-07-Switch-A-If.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-06-Switch</title>
+</head>
+<body>
+    <script>
+        let color = "green";
+
+        if (color == "yellow") {
+            alert("color yellow");
+        } else if (color == "red") {
+            alert("color red");
+        } else if (color == "blue") {
+            alert("color blue");
+        } else if (color == "green") {
+            alert("color green");
+        } else if (color == "black") {
+            alert("color black");
+        } else {
+            alert("sin color conocido especificado");
+        }
+    </script>
+</body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/121769105-0a998980-cb62-11eb-91b6-09c1a73c6339.png)
+
+![image](https://user-images.githubusercontent.com/23094588/121769119-1be29600-cb62-11eb-8bfd-86ab5687b384.png)
 
 
 
