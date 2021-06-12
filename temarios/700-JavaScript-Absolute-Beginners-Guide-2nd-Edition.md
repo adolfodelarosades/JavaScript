@@ -65,7 +65,7 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
 * Switch Statements
 * Deciding Which to Use
 
-#### 5. Looping with for, While, and Do...While!
+#### 5. [Looping with for, While, and Do...While!](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/05-Looping-with-for-While-and-Do-While.md)
 
 * The for Loop
 * Some for Loop Examples
