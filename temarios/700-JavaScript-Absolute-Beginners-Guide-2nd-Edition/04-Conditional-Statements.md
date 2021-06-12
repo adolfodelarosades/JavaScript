@@ -216,70 +216,176 @@ Todo lo que estamos describiendo aquí y en la sección anterior cae bajo el par
 
 ### Variaciones en la declaración If/Else
 
-Casi hemos terminado con la declaración if. Lo último que vamos a hacer es mirar a algunos de sus parientes.
+Casi hemos terminado con la declaración `if`. Lo último que vamos a hacer es mirar a algunos de sus parientes.
 
-La declaración de si solo
-La primera es la declaración if solo que no tiene su compañero else:
+#### La declaración `if` sola
 
-```html
+La primera es la declaración `if` sola que no tiene su compañero `else`:
+
+```js
+if (weight > 5000) {
+   alert("No free shipping for you!");
+}
 ```
 
-En este caso, si la expresión se evalúa como verdadera, entonces genial. Si la expresión se evalúa como falsa, entonces su código simplemente omite la alerta y se mueve a donde debe ir a continuación. El bloque else es completamente opcional cuando se trabaja con sentencias if. Para contrastar la declaración si solo, tenemos nuestro próximo pariente ...
+En este caso, si la expresión se evalúa como **true**, entonces genial. Si la expresión se evalúa como **false**, entonces su código simplemente omite la alerta y se mueve a donde debe ir a continuación. El bloque `else` es completamente opcional cuando se trabaja con sentencias `if`. Para contrastar la declaración `if` solo, tenemos nuestro próximo pariente ...
 
-La temida declaración If / Else-If / Else
-No todo puede ser ordenado y agrupados en una sola declaración if o if / else. Para ese tipo de situaciones, puede encadenar declaraciones if juntas utilizando la palabra clave else if. En lugar de explicar esto con más detalle, veamos un ejemplo:
+#### La temida declaración If/Else-If/Else
 
-```html
+No todo puede ser ordenado y agrupados en una sola declaración `if` o `if`/`else`. Para ese tipo de situaciones, puede encadenar declaraciones `if` juntas utilizando la palabra clave `else if`. En lugar de explicar esto con más detalle, veamos un ejemplo:
+
+```js
+if (position < 100) {
+   alert("Do something!");
+} else if ((position >= 200) && (position < 300)) {
+   alert("Do something else!");
+} else {
+   alert("Do something even more different!");
+}
 ```
 
-Si la primera declaración if se evalúa como verdadera, entonces nuestro código se ramifica en la primera alerta. Si la primera declaración if es falsa, entonces nuestro código evalúa la declaración else if para ver si las expresiones en ella se evalúan como verdaderas o falsas. Esto se repite hasta que nuestro código llega al final. En otras palabras, nuestro código simplemente navega hacia abajo a través de cada declaración if y else if hasta que una de las expresiones se evalúa como verdadera:
+Si la primera declaración `if` se evalúa como **true**, entonces nuestro código se ramifica en la primera alerta. Si la primera declaración `if` es **false**, entonces nuestro código evalúa la declaración `else if` para ver si las expresiones en ella se evalúan como **true** o **false**. Esto se repite hasta que nuestro código llega al final. En otras palabras, nuestro código simplemente navega hacia abajo a través de cada declaración `if` y `else if` hasta que una de las expresiones se evalúa como **true**:
 
-```html
+```js
+if (condition) {
+  ...
+} else if (condition) {
+  ...
+} else if (condition) {
+  ...
+} else if (condition) {
+  ...
+} else if (condition) {
+  ...
+} else if (condition) {
+  ...
+} else {
+  ...
+}
 ```
 
-Si ninguna de las declaraciones tiene expresiones que se evalúen como verdaderas, se ejecuta el código dentro del bloque else (si existe). Si no hay otro bloque, entonces el código simplemente pasará al siguiente conjunto de código que vive más allá de todas estas declaraciones if. Entre las expresiones más complejas y las declaraciones if / else if, puede representar prácticamente cualquier decisión que su código deba evaluar.
+Si ninguna de las declaraciones tiene expresiones que se evalúen como **true**, se ejecuta el código dentro del bloque `else` (si existe). Si no hay otro bloque `else`, el código simplemente pasará al siguiente conjunto de código que vive más allá de todas estas declaraciones `if`. Entre las expresiones más complejas y las declaraciones `if`/`else if`, puede representar prácticamente cualquier decisión que su código deba evaluar.
 
-Uf
-Y con esto, ha aprendido todo lo que hay que saber sobre la declaración if. Es hora de pasar a una especie completamente diferente de declaración condicional ...
+#### Uf
 
-DECLARACIONES DE INTERRUPTOR
+Y con esto, ha aprendido todo lo que hay que saber sobre la declaración `if`. Es hora de pasar a una especie completamente diferente de declaración condicional ...
 
-En un mundo lleno de hermosas declaraciones if, else y else if, la necesidad de otra forma de lidiar con los condicionales puede parecer innecesaria. Las personas que escribieron código en máquinas del tamaño de una habitación y probablemente caminaron cuesta arriba en la nieve (con lobos persiguiéndolos) no estuvieron de acuerdo, por lo que tenemos lo que se conoce como declaraciones de cambio. ¿Qué son? ¡Vamos a averiguarlo!
+## DECLARACIONES SWITCH
 
-Uso de una declaración de cambio
-Vamos a ir al grano y mirar el código primero. La estructura básica de una declaración de cambio es la siguiente:
+En un mundo lleno de hermosas declaraciones `if`, `else` y `else if`, la necesidad de otra forma de lidiar con los condicionales puede parecer innecesaria. Las personas que escribieron código en máquinas del tamaño de una habitación y probablemente caminaron cuesta arriba en la nieve (con lobos persiguiéndolos) no estuvieron de acuerdo, por lo que tenemos lo que se conoce como declaraciones `switch`. ¿Qué son? ¡Vamos a averiguarlo!
 
-```html
+### Uso de una declaración `switch`
+
+Vamos a ir al grano y mirar el código primero. La estructura básica de una declaración `switch` es la siguiente:
+
+```js
+switch (expression) {
+  case value1:
+    statement;
+    break;
+  case value2:
+    statement;
+    break;
+  case value3:
+    statement;
+    break;
+  default:
+    statement;
+    break;
+}
 ```
 
-Lo que no se debe olvidar nunca es que una declaración de cambio no es más que una declaración condicional que prueba si algo es verdadero o falso. Ese algo es una variación de si el resultado de evaluar la expresión es igual a un valor de caso. Hagamos que esta explicación tenga sentido mirando un ejemplo mejor:
+Lo que no se debe olvidar nunca es que una declaración `switch` no es más que una declaración condicional que prueba si *algo* es **true** o **false**. Ese *algo* es una variación de si el **resultado de evaluar la `expression` es igual a `case` value**. Hagamos que esta explicación tenga sentido mirando un ejemplo mejor:
 
-```html
+```js
+let color = "green";
+
+switch (color) {
+  case "yellow":
+    alert("yellow color");
+    break;
+  case "red":
+    alert("red color");
+    break;
+  case "blue":
+    alert("blue color");
+    break;
+  case "green":
+    alert("green color");
+    break;
+  case "black":
+    alert("black color");
+    break;
+  default:
+    alert("no known color specified");
+    break;
+}
 ```
 
-En este ejemplo simple, tenemos una variable llamada color cuyo valor se establece en verde:
+En este ejemplo simple, tenemos una variable llamada `color` cuyo valor se establece a `green`:
 
-```html
+```js
+let color = "green";
 ```
 
-La variable de color también es lo que especificamos como nuestra expresión para la declaración de cambio:
+La variable `color` también es lo que especificamos como nuestra expresión para la declaración `switch`:
 
-```html
+```js
+switch (color) {                                       
+  case "yellow":
+    alert("yellow color");
+    break;
+  case "red":
+    alert("red color");
+    break;
+  case "blue":
+    alert("blue color");
+    break;
+  case "green":
+    alert("green color");
+    break;
+  case "black":
+    alert("black color");
+    break;
+  default:
+    alert("no known color specified");
+    break;
+}
 ```
 
-Nuestra declaración de cambio contiene una colección de bloques de casos. Solo uno de estos bloques se verá afectado y su código se ejecutará. La forma en que se elige este elegido es haciendo coincidir el valor de caso de un bloque con el resultado de evaluar la expresión. En nuestro caso, debido a que nuestras expresiones se evalúan con un valor de verde, se ejecuta el código dentro del bloque de caso cuyo valor de caso también es verde:
+Nuestra declaración `switch`  contiene una colección de bloques `case`. Solo uno de estos bloques se verá afectado y su código se ejecutará. La forma en que se elige este elegido es haciendo coincidir el valor de caso de un bloque con el resultado de evaluar la expresión. En nuestro caso, debido a que nuestras expresiones se evalúan con un valor de **gree**, se ejecuta el código dentro del bloque de caso cuyo valor de caso también es **gree**:
 
-```html
+```js
+switch (color) {                                       
+  case "yellow":
+    alert("yellow color");
+    break;
+  case "red":
+    alert("red color");
+    break;
+  case "blue":
+    alert("blue color");
+    break;
+  case "green":                                        
+    alert("green color");                              
+    break;                                             
+  case "black":
+    alert("black color");
+    break;
+  default:
+    alert("no known color specified");
+    break;
+}
 ```
 
-Tenga en cuenta que solo se ejecuta el código dentro del bloque de caso verde. Eso es gracias a la palabra clave break que finaliza ese bloque. Cuando su código llega a la ruptura, sale de todo el bloque de interruptores y continúa ejecutando el código que se encuentra debajo de él. Si no especificó la palabra clave break, aún ejecutará el código dentro del bloque de caso verde. La diferencia es que luego pasará a la next bloque de mayúsculas y minúsculas (el negro en nuestro ejemplo) y ejecute cualquier código que esté allí. A menos que presione otra palabra clave de interrupción, su código se moverá a través de cada bloque de caso hasta que llegue al final.
+Tenga en cuenta que **solo** se ejecuta el código dentro del bloque de caso **green**. Eso es gracias a la palabra clave `break` que finaliza ese bloque. Cuando su código llega al `break`, sale de todo el bloque `switch` y continúa ejecutando el código que se encuentra debajo de él. Si no especificó la palabra clave `break`, aún ejecutará el código dentro del bloque de caso **green**. La diferencia es que luego pasará al siguiente bloque (el **black** en nuestro ejemplo) y ejecute cualquier código que esté allí. A menos que exista otro `break`, su código se moverá a través de cada bloque de caso hasta que llegue al final.
 
 Con todo esto dicho, si tuviera que ejecutar este código, verá una ventana de alerta que se parece a la Figura 4.6.
 
 ![04fig06.jpg](images/04fig06.jpg)
 
 **FIGURA 4.6** *Ventana de alerta.*
-
+AQUIIIIIII
 Puede modificar el valor de la variable de color a otros valores válidos para ver la ejecución de los otros bloques de casos. A veces, el valor de ningún bloque de casos coincidirá con el resultado de evaluar una expresión. En esos casos, su declaración de cambio simplemente no hará nada. Si desea especificar un comportamiento predeterminado, agregue un bloque predeterminado:
 
 ```html
@@ -434,3 +540,120 @@ Si tiene alguna pregunta sobre el contenido aquí, ¡no se preocupe! Ser feliz. 
 ![image](https://user-images.githubusercontent.com/23094588/121766083-d7e69580-cb4f-11eb-96fd-52ccfd405d59.png)
 
 ![image](https://user-images.githubusercontent.com/23094588/121766083-d7e69580-cb4f-11eb-96fd-52ccfd405d59.png)
+
+![image](https://user-images.githubusercontent.com/23094588/121768099-7d076b00-cb5c-11eb-9530-d1140f7978b5.png)
+
+
+## 🔴 💻 `04-04-If-Solo.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-04-If-Solo</title>
+</head>
+<body>
+    <script>
+        function myShipping(weight){
+            if (weight > 5000) {
+                alert("¡Sin envío gratis para ti!");
+            }
+        }
+        myShipping(1000);
+        myShipping(10000);
+    </script>
+</body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/121768074-6a8d3180-cb5c-11eb-8822-423e513a72e1.png)
+
+![image](https://user-images.githubusercontent.com/23094588/121768112-94deef00-cb5c-11eb-88a9-e94d9ed835e1.png)
+
+
+
+## 🔴 💻 `04-05-If-Else-If-Else.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-05-If-Else-If-Else</title>
+</head>
+<body>
+    <script>
+        function myPosition(position) {
+            if (position < 100) {
+                alert("¡Hacer algo!");
+            } else if ((position >= 200) && (position < 300)) {
+                alert("¡Hacer algo más!");
+            } else {
+                alert("¡Haz algo aún más diferente!");
+            }
+        }
+        myPosition(99);
+        myPosition(150);
+        myPosition(999);
+    </script>
+</body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/121768155-e9826a00-cb5c-11eb-9496-2671b319e693.png)
+
+![image](https://user-images.githubusercontent.com/23094588/121768160-facb7680-cb5c-11eb-880a-6573c0ec32d1.png)
+
+
+## 🔴 💻 `04-06-Switch.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-06-Switch</title>
+</head>
+<body>
+    <script>
+        let color = "green";
+
+        switch (color) {
+        case "yellow":
+            alert("color yellow");
+            break;
+        case "red":
+            alert("color red");
+            break;
+        case "blue":
+            alert("color blue");
+            break;
+        case "green":
+            alert("color green");
+            break;
+        case "black":
+            alert("color black");
+            break;
+        default:
+            alert("sin color conocido especificado");
+            break;
+        }
+    </script>
+</body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/121768239-86dd9e00-cb5d-11eb-822c-e676def3a69c.png)
+
+![image](https://user-images.githubusercontent.com/23094588/121768253-9bba3180-cb5d-11eb-97e1-78262b83e3a8.png)
+
+
+
+
