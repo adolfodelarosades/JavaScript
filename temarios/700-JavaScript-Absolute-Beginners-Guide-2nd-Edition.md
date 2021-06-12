@@ -71,22 +71,22 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
 * Some for Loop Examples
 * The Other Loops
 
-#### 6. Commenting Your Code...FTW!
+#### 6. [Commenting Your Code...FTW!](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/06-Commenting-Your-Code-FTW.md)
 
 * What Are Comments?
 * Commenting Best Practices
 
-#### 7. Timers
+#### 7. [Timers](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/07-Timers.md)
 
 * Delaying with setTimeout
 
-#### 8. Variable Scope
+#### 8. [Variable Scope](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/08-Variable-Scope.md)
 
 * Global Scope
 * Local Scope
 * Miscellaneous Scoping Shenanigans
 
-#### 9. Closures
+#### 9. [Closures](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/09-Closures.md)
 
 * Functions within Functions
 * When the Inner Functions Aren’t Self-Contained
