@@ -197,7 +197,7 @@ sendWarning(500, 160);
 sendWarning(100, 100);
 sendWarning(201, 149);
 ```
-AQUIIIIIIIIIIIII
+
 Observe cómo se ve nuestra condición dentro de la declaración `if` de `sendWarning`:
 
 ```js
@@ -205,16 +205,17 @@ function sendWarning(x, y) {
    if ((x < xPos) && (y < yPos)) {                         
       alert("Adjust the position");
    } else {
-                alert("Things are fine!");
-        }
+      alert("Things are fine!");
+   }
 }
 ```
 
-Aquí se hacen tres comparaciones. El primero es si x es menor que xPos. El segundo es si y es menor que yPos. La tercera comparación es ver si la primera declaración y la segunda declaración se evalúan como verdaderas para permitir que el operador && devuelva una verdadera también. Podemos encadenar muchas series de declaraciones condicionales dependiendo de lo que estemos haciendo. Lo complicado, además de aprender lo que hacen todos los operadores, es asegurarse de que cada condición y subcondición esté debidamente aislada mediante paréntesis.
+Aquí se hacen tres comparaciones. El primero es si `x` es menor que `xPos`. El segundo es si `y` es menor que `yPos`. La tercera comparación es ver si la **primera declaración** y la **segunda declaración** se evalúan como **true** para permitir que el operador `&&` devuelva **true** también. Podemos encadenar muchas series de declaraciones condicionales dependiendo de lo que estemos haciendo. Lo complicado, además de aprender lo que hacen todos los operadores, es asegurarse de que cada condición y subcondición esté debidamente aislada mediante paréntesis.
 
-Todo lo que estamos describiendo aquí y en la sección anterior cae bajo el paraguas de la lógica booleana. Si no está familiarizado con este tema, le recomiendo que lea el excelente artículo de quirksmode sobre este tema exacto.
+Todo lo que estamos describiendo aquí y en la sección anterior cae bajo el paraguas de la **Lógica Booleana**. Si no está familiarizado con este tema, le recomiendo que lea el [excelente artículo de quirksmode](https://www.quirksmode.org/js/boolean.html) sobre este tema exacto.
 
-Variaciones en la declaración If / Else
+### Variaciones en la declaración If/Else
+
 Casi hemos terminado con la declaración if. Lo último que vamos a hacer es mirar a algunos de sus parientes.
 
 La declaración de si solo
@@ -396,3 +397,40 @@ Si tiene alguna pregunta sobre el contenido aquí, ¡no se preocupe! Ser feliz. 
 
 ![image](https://user-images.githubusercontent.com/23094588/121742221-d5f4e600-caff-11eb-88f2-d9534e9a43de.png)
 
+## 🔴 💻 `04-03-Expresiones-Mas-Complejas.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04-03-Expresiones-Mas-Complejas.html</title>
+</head>
+<body>
+    <script>
+        let xPos = 300;
+        let yPos = 150;
+
+        function sendWarning(x, y) {
+            if ((x < xPos) && (y < yPos)) {
+                alert("¡Las cosas están bien!");
+
+            } else {
+                alert("Ajustar la posición");
+            }
+        }
+
+        sendWarning(500, 160);
+        sendWarning(100, 100);
+        sendWarning(201, 149);
+    </script>
+</body>
+</html>
+```
+![image](https://user-images.githubusercontent.com/23094588/121766095-ec2a9280-cb4f-11eb-8798-139d3563e503.png)
+
+![image](https://user-images.githubusercontent.com/23094588/121766083-d7e69580-cb4f-11eb-96fd-52ccfd405d59.png)
+
+![image](https://user-images.githubusercontent.com/23094588/121766083-d7e69580-cb4f-11eb-96fd-52ccfd405d59.png)
