@@ -123,7 +123,7 @@ En lugar de agregar marcas // delante de cada línea como un animal, podemos usa
 
 En la mayoría de las aplicaciones, usaremos una combinación de comentarios de una sola línea y de varias líneas, según lo que intentemos documentar. Esto significa wNecesitamos estar familiarizados con ambos enfoques de comentarios.
 
-> [tip.jpg](imagen/tip.jpg) **Tip**
+> ![tip.jpg](imagen/tip.jpg) **Tip**
 
 **Comentarios de estilo JSDoc**
 
