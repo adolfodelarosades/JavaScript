@@ -4,9 +4,8 @@
 
 En este capítulo
 
-• Aprenda a retrasar la ejecución de su código
-
-• Descubra varias formas de ejecutar su código repetidamente sin bloquear toda su aplicación
+* Aprenda a retrasar la ejecución de su código
+* Descubra varias formas de ejecutar su código repetidamente sin bloquear toda su aplicación
 
 De forma predeterminada, nuestro código se ejecuta sincrónicamente. Esa es una forma elegante de decir que cuando una declaración necesita ejecutarse, se ejecuta inmediatamente. No hay "y", "si" ni "pero" al respecto. El concepto de retrasar la ejecución o aplazar el trabajo para más adelante no forma parte del comportamiento predeterminado de JavaScript. Vimos esto cuando miramos los bucles antes. El bucle se ejecuta a la velocidad del rayo sin demora entre cada iteración. Eso es genial para hacer cálculos rápidos, pero no es genial si queremos hacer una actualización a un ritmo más mesurado (¡también más lento!).
 
@@ -14,26 +13,25 @@ De forma predeterminada, nuestro código se ejecuta sincrónicamente. Esa es una
 
 ¡Adelante!
 
-RETRASO CON SETTIMEOUT
+## RETRASO CON SETTIMEOUT
+
 La función setTimeout nos permite retrasar la ejecución de algún código. La forma en que lo usamos es bastante agradable. Esta función nos permite especificar qué código ejecutar y cuántos milisegundos esperar antes de que se ejecute el código que especificamos. Poniéndolo en JavaScript, se verá así:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-let timeoutID = setTimeout (someFunction, delayInMilliseconds);
 Yendo un poco más a un ejemplo, si quisiéramos llamar a una función llamada showAlert después de 5 segundos, la declaración setTimeout se vería de la siguiente manera:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-function showAlert () {
-  alerta ("muu!");
-}
-
-dejar timeoutID = setTimeout (showAlert, 5000);
 ¿Guay, verdad? Ahora, hablemos de algo menos interesante que debemos cubrir para que esté completo. Ese algo tiene que ver con la variable timeID que se inicializa en nuestra función setTimeout. No está ahí por accidente. Si alguna vez quisiéramos acceder a este temporizador setTimeout nuevamente, necesitamos una forma de referenciarlo. Al asociar una variable con nuestra declaración setTimeout, podemos lograrlo fácilmente.
 
 Ahora, es posible que se pregunte por qué querríamos hacer referencia a un temporizador una vez que lo hayamos creado. No hay demasiadas razones. La única razón que se me ocurre es cancelar el temporizador. Para setTimeout, eso se logra convenientemente usando la función clearTimeout y pasando el ID de tiempo de espera como argumento:
 
-clearTimeout (timeoutID);
+```js
+```
+
 Si nunca planea cancelar su temporizador, puede usar setTimeout directamente sin que sea parte de la inicialización de la variable.
 
 Hablemos de cuándo lo usaríamos comúnmente en el mundo real. Desarrollo de UI. Cuando estamos desarrollando UI, diferir alguna acción para un momento posterior es inusualmente común. Aquí hay algunos ejemplos con los que me encontré el mes pasado:
@@ -51,48 +49,28 @@ La siguiente función de temporizador que veremos es setInterval. La función se
 
 Así es como usaría la función setInterval:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-let intervalID = setInterval (someFunction, delayInMilliseconds);
 Excepto por el nombre de la función, la forma en que usa setInterval es incluso idéntica a setTimeout. El primer argumento especifica el código en línea o la función que le gustaría ejecutar. El segundo argumento especifica cuánto tiempo esperar antes de que su código vuelva a repetirse. Opcionalmente, también puede inicializar la función setInterval en una variable para almacenar un ID de intervalo, un ID que luego puede usar para hacer cosas interesantes como cancelar el bucle. ¡¡¡Hurra!!!
 
 ¡OK! Ahora que hemos visto todo eso, aquí hay un ejemplo de este código en funcionamiento para hacer un bucle en una función llamada drawText con un retraso de 2 segundos entre cada bucle:
 
-Haga clic aquí para ver la imagen del código
+```html
+```
 
-<! DOCTYPE html>
-<html>
-
-<cabeza>
-  <meta charset = "utf-8">
-  <title> ¡Muéstrame algo de texto! </title>
-</head>
-
-<cuerpo>
-  <script>
-    dejar thingToPrint = "";
-
-    function drawText () {
-      thingToPrint + = "#";
-      document.writeln (thingToPrint);
-    }
-
-    setInterval (drawText, 2000);
-  </script>
-</body>
-
-</html>
 Si deseamos cancelar el bucle, podemos usar la función clearInterval con el nombre apropiado:
 
-clearInterval (ID de intervalo);
+```js
+```
+
 Su uso es similar a su equivalente clearTimeout t. Pasamos el ID de la instancia del temporizador setInterval que obtuvimos opcionalmente mientras configuramos nuestro setInterval en primer lugar.
 
 En la vida real, setInterval fue la función principal que tuvo durante más tiempo para crear animaciones en JavaScript. Para obtener 30 o 60 fotogramas por segundo, haría algo de la siguiente manera jugando con el valor del tiempo de retardo:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-// 1000 dividido por 60 es el valor de milisegundos para 60 fps
-setInterval (moveCircles, 1000/60);
 Para ver setInterval en acción en algunos otros ejemplos realistas en este sitio, consulte la parte inferior del artículo Creando un control deslizante de contenido dulce (https://www.kirupa.com/html5/creating_a_sweet_content_slider.htm) así como el artículo Creando un Reloj analógico (https://www.kirupa.com/html5/create_an_analog_clock_using_the_canvas.htm) artículo. ¡Ambos cuentan con setInterval de manera bastante prominente!
 
 Animando suavemente con requestAnimationFrame
@@ -102,23 +80,16 @@ Cuando tiene un código destinado a animar algo en la pantalla, desea asegurarse
 
 La forma en que usamos esta función comienza un poco similar a setTimeout y setInterval:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-let requestID = requestAnimationFrame (someFunction);
 La única diferencia real es que no especificamos un valor de duración. La duración se calcula automáticamente en función de la velocidad de fotogramas actual, si la pestaña actual está activa o no, si su dispositivo está funcionando con batería o no, y una gran cantidad de otros factores que van más allá de lo que podemos controlar o comprender.
 
 De todos modos, este uso de la función requestAnimationFrame es simplemente la versión del libro de texto. En la vida real, rara vez hará una sola llamada a requestAnimationFrame de esta manera. La clave para todas las animaciones creadas en JavaScript es un bucle de animación, y es este bucle al que queremos lanzar requestAnimationFrame. El resultado de ese lanzamiento tiene el siguiente aspecto:
 
-Haga clic aquí para ver la imagen del código
+```js
+```
 
-function animationLoop () {
-  // código relacionado con la animación
-
-  requestAnimationFrame (animationLoop)
-}
-
-// ¡Comienza nuestro bucle de animación!
-animationLoop ();
 Tenga en cuenta que nuestro requestAnimationFrame especifica que la función animationLoop se llama la próxima vez que el navegador decide volver a pintar. Parece que la función requestAnimationFrame llama a animationLoop directamente, lo cual no es el caso. Eso no es un error en el código. Si bien este tipo de referencia circular casi garantizaría un navegador congelado / bloqueado, la implementación de requestAnimationFrame lo evita. En cambio, garantiza que la función animationLoop se llame la cantidad justa de veces necesarias para garantizar que las cosas se dibujen en la pantalla para crear animaciones fluidas y fluidas. Lo hace sin congelar el resto de la funcionalidad de la aplicación.
 
 Para obtener más información sobre requestAnimationFrame y su uso principal para crear animaciones impresionantes, debe consultar todo el contenido en la sección Animaciones en JavaScript. En esa sección, también profundizo en requestAnimationFrame más allá de los aspectos más destacados que hemos visto aquí.
