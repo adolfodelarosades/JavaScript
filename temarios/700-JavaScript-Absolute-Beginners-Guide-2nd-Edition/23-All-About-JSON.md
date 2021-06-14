@@ -235,7 +235,7 @@ Nuestra propiedad `devices` representa un array:
 
 ![image](https://user-images.githubusercontent.com/23094588/121820344-91e61a80-cc92-11eb-8153-6f73a1d32f97.png)
 
-Los Arrys almacenan una colección ordenada de cero o más valores que puede recorrer en iteración, y están separados por la notación de corchetes. Dentro de un array, puede usar cualquiera de los tipos JSON que hemos visto hasta ahora ... ¡incluidos otros arrays!
+Los Arrays almacenan una colección ordenada de cero o más valores que puede recorrer en iteración, y están separados por la notación de corchetes. Dentro de un array, puede usar cualquiera de los tipos JSON que hemos visto hasta ahora ... ¡incluidos otros arrays!
 
 ### Null
 
