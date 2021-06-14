@@ -5,7 +5,6 @@
 * Reading JSON Data
 * Writing JSON Data
 
-<span style="color:blue">some *blue* text</span>.
 
 En este capítulo
 
