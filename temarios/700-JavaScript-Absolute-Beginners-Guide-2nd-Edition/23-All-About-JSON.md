@@ -289,44 +289,54 @@ Ambas líneas devolverán un valor de **Kirupa**. No hay una respuesta correcta 
 
 Similar a lo que vio anteriormente, para acceder al valor almacenado por `lastName`, puede hacer esto:
 
-AQUIIIIIIIIIIIIIIIIIII
-
+```js
 exampleJSON.lastName;
-
-Para propiedades simples que almacenan valores simples, la vida es bastante simple. La única complicación MUY menor con la que se encontrará es cuando trabaje con valores más complejos compuestos por objetos y matrices. Para leer un valor almacenado dentro de un Objeto, simplemente siga punteando en cada propiedad hasta que llegue a la propiedad que almacena el valor que le interesa.
-
-Así es como se verá intentar acceder al valor almacenado por la propiedad userID:
-
-```json
 ```
 
-Las matrices no son diferentes, pero eventualmente tendrá que cambiar a la notación de matriz una vez que llegue a la propiedad que almacena los valores de su matriz. Si quisiéramos acceder al valor del modelo del primer dispositivo en la matriz de dispositivos, podemos escribir algo que se vea de la siguiente manera:
+Para propiedades simples que almacenan valores simples, la vida es bastante simple. La única complicación MUY menor con la que se encontrará es cuando trabaje con valores más complejos compuestos por Objects y Arrays. Para leer un valor almacenado dentro de un Objeto, simplemente siga punteando en cada propiedad hasta que llegue a la propiedad que almacena el valor que le interesa.
+
+Así es como se verá intentar acceder al valor almacenado por la propiedad `userID`:
 
 ```json
+exampleJSON.special.userID;
 ```
 
-Debido a que la propiedad de los dispositivos se refiere a una matriz, también puede realizar operaciones estereotipadas similares a una matriz, como las siguientes:
+Los Arrays no son diferentes, pero eventualmente tendrá que cambiar a la notación de array  una vez que llegue a la propiedad que almacena los valores de su array. Si quisiéramos acceder al valor del modelo del primer dispositivo en el array de dispositivos, podemos escribir algo que se vea de la siguiente manera:
 
 ```json
+exampleJSON.devices[0].model;
 ```
 
-Para reiterar lo que vio en la sección anterior, sus valores JSON pueden ser cadenas, números, objetos, matrices, valores booleanos o nulos. Todo lo que JavaScript admite para un tipo de datos determinado que encuentre dentro de su objeto JSON, puede aprovecharlo fácilmente.
+Debido a que la propiedad `devices` se refiere a un array, también puede realizar operaciones estereotipadas similares a un array, como las siguientes:
 
-Analizar datos de aspecto JSON en JSON real
-En nuestro ejemplo, teníamos nuestros datos JSON claramente definidos dentro de la variable exampleJSON. No hay duda en la mente de nadie de que lo que estamos tratando es de un objeto JS real que se representa mediante la semántica JSON.
+```json
+let devicesArray = exampleJSON.devices;
+
+for (let i = 0; i < devicesArray.length; i++) {
+  let type = devicesArray[i].type;
+  let model = devicesArray[i].model;
+
+  // do something interesting with this data!
+}
+```
+
+Para reiterar lo que vio en la sección anterior, sus valores JSON pueden ser strings, numbers, objects, arrays, booleans, o nulls. Todo lo que JavaScript admite para un tipo de datos determinado que encuentre dentro de su objeto JSON, puede aprovecharlo fácilmente.
+
+## Parsing JSON-looking Data into Actual JSON - Analizar datos de aspecto JSON en JSON real
+
+En nuestro ejemplo, teníamos nuestros datos JSON claramente definidos dentro de la variable `exampleJSON`. No hay duda en la mente de nadie de que lo que estamos tratando es de un objeto JS real que se representa mediante la semántica JSON.
 
 Con escenarios del mundo real, ese no siempre será el caso. Sus datos JSON pueden provenir de una variedad de fuentes diferentes, y no todas devolverán los datos JSON en este formato viable que vimos. Muchos devolverán datos JSON como texto sin formato. Tendrá algo que parece un objeto JSON, pero no podrá interactuar con los datos como lo haría cuando trabaja con un objeto JSON real.
 
-Para lidiar con esto, tiene el método JSON.parse que toma sus datos JSON "falsos" como argumento:
+Para lidiar con esto, tiene el método **`JSON.parse`** que toma sus datos JSON "falsos" como argumento:
 
-```js
-```
+![image](https://user-images.githubusercontent.com/23094588/121872626-c9da7580-cd05-11eb-96c0-e5e81cfabfa6.png)
 
-Como puede ver en nuestra línea resaltada, este método toma cualquier dato de aspecto JSON con el que termine y lo convierte en un objeto JSON real con el que puede trabajar más fácilmente. Siempre que trabajo con datos JSON de una fuente externa, siempre uso JSON.parse solo para estar seguro.
+Como puede ver en nuestra línea resaltada, este método toma cualquier dato de aspecto JSON con el que termine y lo convierte en un objeto JSON real con el que puede trabajar más fácilmente. Siempre que trabajo con datos JSON de una fuente externa, siempre uso `JSON.parse` solo para estar seguro.
 
 ## ESCRIBIR DATOS JSON?
 
-Acabamos de tener una sección dedicada por completo a leer valores de datos JSON. Parecería lógico tener también una sección que se centre en escribir datos JSON. Resulta que escribir datos JSON no es tan popular a menos que esté guardando datos JSON en un archivo o haciendo algo con servicios web. Si está realizando cualquiera de estas tareas, estadísticamente está desarrollando en Node o escribiendo código en un lenguaje de programación que no sea JavaScript.
+Acabamos de tener una sección dedicada por completo a leer valores de datos JSON. Parecería lógico tener también una sección que se centre en escribir datos JSON. Resulta que escribir datos JSON no es tan popular a menos que esté guardando datos JSON en un archivo o haciendo algo con servicios web. Si está realizando cualquiera de estas tareas, ***estadísticamente está desarrollando en Node o escribiendo código en un lenguaje de programación que no sea JavaScript***.
 
 Para el desarrollo de front-end, no puedo pensar en demasiados casos en los que la información sobre cómo escribir JSON sería útil. Si se encuentra con una situación poco común en la que necesita hacer algo más que leer datos JSON, ¡mi recomendación es que use Google!
 
@@ -334,6 +344,6 @@ Para el desarrollo de front-end, no puedo pensar en demasiados casos en los que 
 
 ### El Mínimo Absoluto
 
-En un momento dado, este artículo se habría centrado en XML. Incluso hoy en día, XML sigue siendo muy popular como formato de archivo para almacenar o comunicar información. Solo en un mundo donde el navegador web es el rey (también conocido como el mundo en el que vivimos) es donde JSON es extremadamente popular. Fuera de los sitios web, las aplicaciones web y los servicios web basados ​​en REST, tratar con datos en formato JSON no es tan popular. ¡Debe tener esto en cuenta cuando se encuentre en situaciones más antiguas y menos centradas en la web!
+En un momento dado, este capítulo se habría centrado en XML. Incluso hoy en día, XML sigue siendo muy popular como formato de archivo para almacenar o comunicar información. Solo en un mundo donde el navegador web es el rey (también conocido como el mundo en el que vivimos) es donde JSON es extremadamente popular. Fuera de los sitios web, las aplicaciones web y los servicios web basados en REST, tratar con datos en formato JSON no es tan popular. ¡Debe tener esto en cuenta cuando se encuentre en situaciones más antiguas y menos centradas en la web!
 
 Si tiene alguna pregunta relacionada con JSON o sobre cualquier otra cosa, diríjase y publique en los foros en https://forum.kirupa.com.
