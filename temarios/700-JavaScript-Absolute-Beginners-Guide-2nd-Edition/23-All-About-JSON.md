@@ -309,7 +309,7 @@ exampleJSON.devices[0].model;
 
 Debido a que la propiedad `devices` se refiere a un array, también puede realizar operaciones estereotipadas similares a un array, como las siguientes:
 
-```json
+```js
 let devicesArray = exampleJSON.devices;
 
 for (let i = 0; i < devicesArray.length; i++) {
