@@ -219,7 +219,7 @@ Los valores booleanos son fáciles:
 
 ![image](https://user-images.githubusercontent.com/23094588/121820137-61ea4780-cc91-11eb-8a59-3e4c5dd38163.png)
 
-Los valores pueden ser **true** o **false**. Una cosa a tener en cuenta: las mayúsculas son importantes. Tanto el **true** y **false** deben estar en minúsculas. Está prohibido usar mayúsculas y minúsculas (**true** o **false**) o en mayúsculas (**TRUE** o **FALSE**).
+Los valores pueden ser **true** o **false**. Una cosa a tener en cuenta: las mayúsculas son importantes. Tanto el **true** y **false** deben estar en minúsculas. Está prohibido usar mayúsculas y minúsculas (**True** o **False**) o en mayúsculas (**TRUE** o **FALSE**).
 
 ### Objects
 
