@@ -12,7 +12,7 @@ En este capítulo
 * Aprenda a invocar un bloque de código inmediatamente
 * Lleve nuestro conocimiento del alcance más allá mediante la creación de datos privados.
 
-Cuando se trata de almacenar, recuperar o transmitir datos, hay un montón de formatos de archivo y estructuras de datos que puede utilizar. Probablemente haya utilizado archivos de texto, documentos de Word, hojas de cálculo de Excel, archivos zip, etc. para tratar los distintos tipos de datos que maneja. En el frente web, hay un formato que reina sobre todos los demás. Corre más rápido. Salta más alto. Tiene un pelaje más brillante (y más peludo). Ese formato se conoce como **JSON**, abreviatura de **JavaScript Object Notation**.
+Cuando se trata de almacenar, recuperar o transmitir datos, hay un montón de formatos de archivo y estructuras de datos que puede utilizar. Probablemente haya utilizado archivos de texto, documentos de Word, hojas de cálculo de Excel, archivos zip, etc. para tratar los distintos tipos de datos que maneja. *En el frente web, hay un formato que reina sobre todos los demás. Corre más rápido. Salta más alto. Tiene un pelaje más brillante (y más peludo)*. Ese formato se conoce como **JSON**, abreviatura de **JavaScript Object Notation**.
 
 En este artículo, aprenderemos todo sobre lo que hace que los objetos JSON sean increíbles. Veremos en detalle lo que contienen y cómo puede leer valores de ellos como parte de sus propias implementaciones.
 
