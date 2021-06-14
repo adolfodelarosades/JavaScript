@@ -227,7 +227,7 @@ Aquí es donde las cosas se ponen un poco interesantes:
 
 ![image](https://user-images.githubusercontent.com/23094588/121820249-1be1b380-cc92-11eb-9d86-87173843ed6f.png)
 
-Los objetos contienen una colección de nombres y valores de propiedad, y están separados del resto de su contenido, con llaves. ¿Ver? ¿No fue un poco interesante?
+Los objetos contienen una colección de nombres y valores de propiedad, y están separados del resto de su contenido, con llaves. ¿No fue un poco interesante?
 
 ### Arrays
 
