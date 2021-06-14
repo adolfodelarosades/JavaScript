@@ -182,7 +182,7 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
 
 ### Part III: Working with the DOM
 
-#### [23. All About JSON (aka JavaScript Object Notation)](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/23-All-About-JSON.md)
+#### [23. All About JSON (aka JavaScript Object Notation)](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/23-All-About-JSON.md) :+1:
 
 * What Is JSON?
 * Looking Inside a JSON Object
