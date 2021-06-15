@@ -197,7 +197,7 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
 * It’s JavaScript Time!
 * Meet the Document Object Model
 
-#### 25. Finding Elements in the DOM
+#### 25. [Finding Elements in the DOM](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/25-Finding-Elements-in-the-DOM.md)
 
 * Meet the querySelector Family
 * It Really Is the CSS Selector Syntax
