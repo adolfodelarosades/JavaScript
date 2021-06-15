@@ -111,108 +111,97 @@ Supongamos que queremos cambiar el texto que aparece en el elemento `h1` de nues
 
 ![image](https://user-images.githubusercontent.com/23094588/122034719-14c1bf00-cdd2-11eb-821d-a3d90be7993c.png)
 
-AQUIIIIIIII
-
 Si realiza este cambio y obtiene una vista previa en el navegador, verá lo que se muestra en la Figura 26.5.
 
 ![26fig05.jpg](images/26fig05.jpg)
 
 **FIGURA 26.5** *Cambiar el valor del texto de un encabezado.*
 
-Veamos qué hicimos exactamente para provocar este cambio. El primer paso para modificar cualquier elemento HTML en JavaScript es obtener primero una referencia a él:
+Veamos qué hicimos exactamente para provocar este cambio. **El primer paso para modificar cualquier elemento HTML en JavaScript es obtener primero una referencia a él**:
 
-Haga clic aquí para ver la imagen del código
+```js
+let headingElement = document.querySelector("#bigMessage");
+```
 
-let headerElement = document.querySelector ("# bigMessage");
-Aquí es donde entran nuestros viejos amigos querySelector y querySelectorAll. Como veremos más adelante, también tenemos formas indirectas de referenciar un elemento. Sin embargo, el enfoque directo que se muestra aquí es el que usaremos cuando tenga una idea muy específica de qué elemento o elementos desea apuntar.
+Aquí es donde entran nuestros viejos amigos `querySelector` y `querySelectorAll`. Como veremos más adelante, también tenemos formas indirectas de referenciar un elemento. Sin embargo, el enfoque directo que se muestra aquí es el que usaremos cuando tenga una idea muy específica de qué elemento o elementos desea apuntar.
 
-Una vez que tenemos la referencia al elemento, podemos simplemente establecer la propiedad textContent en él:
+Una vez que tenemos la referencia al elemento, podemos simplemente establecer la propiedad `textContent` en él:
 
-Haga clic aquí para ver la imagen del código
+```js
+headingElement.textContent = "Oppa Gangnam Style!";
+```
 
-headerElement.textContent = "¡Estilo Oppa Gangnam!";
-La propiedad textContent se puede leer como cualquier variable para mostrar el valor actual. También podemos establecer la propiedad como si estuviéramos aquí para cambiar el valor que está almacenado actualmente. Después de que se haya ejecutado esta línea, el valor original de nuestro marcado de ¿Qué está sucediendo? será reemplazado en el DOM por lo que especificamos en JavaScript.
+La propiedad `textContent` se puede leer como cualquier variable para mostrar el valor actual. También podemos establecer la propiedad como si estuviéramos aquí para cambiar el valor que está almacenado actualmente. Después de que se haya ejecutado esta línea, el valor original de nuestro marcado de **What’s happening?** será reemplazado en el DOM por lo que especificamos en JavaScript.
 
-Valores de atributo
-Una de las principales formas en que nuestros elementos HTML se distinguen es a través de sus atributos y los valores que estos atributos almacenan. Por ejemplo, los atributos src y alt son los que distinguen los siguientes tres elementos de imagen:
+### Valores de Atributo
 
-Haga clic aquí para ver la imagen del código
+Una de las principales formas en que nuestros elementos HTML se distinguen es a través de sus atributos y los valores que estos atributos almacenan. Por ejemplo, los atributos `src` y `alt` son los que distinguen los siguientes tres elementos de imagen:
 
-<img src = "images / lol_panda.png" alt = "¡Panda estornudante!" />
-<img src = "images / cat_cardboard.png" alt = "¡Gato deslizándose dentro de la caja!" />
-<img src = "images / dog_tail.png" alt = "¡Perro persiguiendo su cola!" />
-Se puede acceder a cada atributo HTML (incluidos los datos personalizados *) a través de las propiedades que proporciona el DOM. Para ayudarnos a lidiar con los atributos, nuestros elementos exponen los métodos getAttribute y setAttribute que se explican por sí mismos.
+```html
+<img src="images/lol_panda.png" alt="Sneezing Panda!"/>
+<img src="images/cat_cardboard.png" alt="Cat sliding into box!"/>
+<img src="images/dog_tail.png" alt="Dog chasing its tail!"/>
+```
 
-El método getAttribute nos permite especificar el nombre de un atributo en el elemento en el que vive. Si se encuentra el atributo, este método devolverá el valor asociado con ese atributo. A continuación se muestra un ejemplo:
+Se puede acceder a cada atributo HTML (incluidos los datos personalizados `data-*`) a través de las propiedades que proporciona el DOM. Para ayudarnos a lidiar con los atributos, nuestros elementos exponen los métodos `getAttribute` y `setAttribute` que se explican por sí mismos.
 
-Haga clic aquí para ver la imagen del código
+El método `getAttribute` nos permite especificar el nombre de un atributo en el elemento en el que vive. Si se encuentra el atributo, este método devolverá el valor asociado con ese atributo. A continuación se muestra un ejemplo:
 
-<cuerpo>
-  <h1 id = "bigMessage" class = "highlight summer"> ¿Qué está pasando? </h1>
+```html
+<body>
+   <h1 id="bigMessage" class="highlight summer">What's happening?</h1>
 
-  <script>
-    let headerElement = document.querySelector ("h1");
-    console.log (headerElement.getAttribute ("id")); // bigMessage
+   <script>
+      let headingElement = document.querySelector("h1");
+      console.log(headingElement.getAttribute("id")); // bigMessage
+   </script>
+</body>
+```
+
+En este fragmento, observe que estamos obteniendo el valor del atributo `id` en nuestro elemento `h1`. Si especificamos un nombre de atributo que no existe, obtendremos un buen valor **`null`**. Lo contrario de obtener el valor de un atributo es establecer el valor. Para establecer el valor, usaríamos el método `setAttribute` con el nombre apropiado. Usamos este método llamando a `setAttribute` en el elemento que queremos afectar y especificando tanto el nombre del atributo como el valor que ese atributo almacenará.
+
+Aquí hay un ejemplo de `setAttribute` en funcionamiento:
+
+![image](https://user-images.githubusercontent.com/23094588/122037688-1ccf2e00-cdd5-11eb-8f5c-56b8b1712145.png)
+
+Estamos configurando (bueno ... ¡sobrescribiendo en realidad!) el atributo `class` en nuestro elemento `h1` para **bar foo**. La función `setAttribute` no realiza ninguna validación para garantizar que el atributo que estamos configurando sea válido para el elemento en el que lo estamos configurando. Nada nos impide hacer algo tonto de la siguiente manera:
+
+![image](https://user-images.githubusercontent.com/23094588/122037965-6750aa80-cdd5-11eb-9e19-7ed41ac38be6.png)
+
+Nuestro elemento `h1` no contiene un atributo `src`, pero podemos salirse con la suya al especificarlo. Cuando nuestro código se ejecuta, nuestro elemento `h1` incluso lucirá el atributo `src` ... probablemente de manera muy incómoda.
+
+Hay algo que necesito aclarar antes de continuar. En los ejemplos sobre cómo usar `setAttribute` y `getAttribute`, elegí `id` y `class`. Para estos dos atributos, tenemos otra forma de establecerlos. Debido a lo comunes que son los atributos `id` y `class` de configuración, nuestros elementos HTML exponen las propiedades `id` y `className` directamente:
+
+```html
+<body>
+   <h1 id="bigMessage" class="highlight summer">What's happening?</h1>
+
+   <script>
+      let headingElement = document.querySelector("h1");
+      console.log(headingElement.id); // bigMessage
+
+      headingElement.className = "bar foo";
   </script>
 </body>
-En este fragmento, observe que estamos obteniendo el valor del atributo id en nuestro elemento h1. Si especificamos un nombre de atributo que no existe, obtendremos un buen valor de nulo. Lo contrario de obtener el valor de un atributo es establecer el valor. Para establecer el valor, usaríamos el método setAttribute con el nombre apropiado. Usamos este método llamando a setAttribute en el elemento que queremos afectar y especificando tanto el nombre del atributo como el valor que ese atributo almacenará.
+```
 
-Aquí hay un ejemplo de setAttribute en funcionamiento:
+Volviendo a nuestro ejemplo, observe que cambié de usar `getAttribute` y `setAttribute` a usar las propiedades `id` y `className` en su lugar. El resultado final es idéntico. La única diferencia es que tenía una forma directa de establecer estos valores de atributo sin tener que usar `getAttribute` o `setAttribute`. Ahora, antes de continuar, tengo que decir algo extraño: sí ... no podemos usar `class` en JavaScript para referirnos al atributo de clase porque `class` tiene un significado completamente diferente que tiene que ver con tratar con objetos. Es por eso que usamos `className` en su lugar.
 
-Haga clic aquí para ver la imagen del código
+> ![tip.jpg](images/tip.jpg)
+> 
+> Hay una forma mucho mejor de establecer valores de clase además de usar `className`. De esa manera es a través de la propiedad `classList` mucho más impresionante de la que aprenderá todo en el próximo capítulo.
 
-<cuerpo>
-  <h1 id = "bigMessage" class = "highlight summer"> ¿Qué está pasando? </h1>
+<hr>
 
-  <script>
-    let headerElement = document.querySelector ("h1");
-    headerElement.setAttribute ("clase", "bar foo");
-  </script>
-</body>
-Estamos configurando (bueno ... ¡sobrescribiendo en realidad!) El atributo de clase en nuestro elemento h1 para bar foo. La función setAttribute no realiza ninguna validación para garantizar que el atributo que estamos configurando sea válido para el elemento en el que lo estamos configurando. Nada nos impide hacer algo tonto de la siguiente manera:
-
-Haga clic aquí para ver la imagen del código
-
-<cuerpo>
-  <h1 id = "bigMessage" class = "highlight summer"> ¿Qué está pasando? </h1>
-
-  <script>
-    let headerElement = document.querySelector ("h1");
-    headerElement.setAttribute ("src", "http://www.kirupa.com");
-  </script>
-</body>
-Nuestro elemento h1 no contiene un atributo src, pero podemos salirse con la suya al especificarlo. Cuando nuestro código se ejecuta, nuestro elemento h1 incluso lucirá el atributo src ... probablemente de manera muy incómoda.
-
-Hay algo que necesito aclarar antes de continuar. En los ejemplos sobre cómo usar setAttribute y getAttribute, elegí id y class. Para estos dos atributos, tenemos otra forma de establecerlos. Debido a lo comunes que son los atributos id y class de configuración, nuestros elementos HTML exponen las propiedades id y className directamente:
-
-Haga clic aquí para ver code imagen
-
-<cuerpo>
-  <h1 id = "bigMessage" class = "highlight summer"> ¿Qué está pasando? </h1>
-
-  <script>
-    let headerElement = document.querySelector ("h1");
-    console.log (headerElement.id); // bigMessage
-
-    headerElement.className = "bar foo";
-  </script>
-</body>
-Volviendo a nuestro ejemplo, observe que cambié de usar getAttribute y setAttribute a usar las propiedades id y className en su lugar. El resultado final es idéntico. La única diferencia es que tenía una forma directa de establecer estos valores de atributo sin tener que usar getAttribute o setAttribute. Ahora, antes de continuar, tengo que decir algo extraño: sí ... no podemos usar class en JavaScript para referirnos al atributo de clase porque clase tiene un significado completamente diferente que tiene que ver con tratar con objetos. Es por eso que usamos className en su lugar.
-
-Sugerencia de imagen
-
-Hay una forma mucho mejor de establecer valores de clase además de usar className. De esa manera es a través de la propiedad classList mucho más impresionante de la que aprenderá todo en el próximo capítulo.
-
-El Mínimo Absoluto
+### El Mínimo Absoluto
 
 Puede parecer un poco extraño terminar nuestra discusión sobre la modificación de elementos DOM en este punto. Si bien cambiar el texto de un elemento y los valores de los atributos es muy popular, no son de ninguna manera los únicos tipos importantes de modificaciones que realizará. La razón para terminar en este suspenso es porque manipular el DOM y usar las propiedades y métodos de un elemento para lograr nuestra tarea es fundamental para todo lo que veremos. En los capítulos siguientes, verá mucho más de lo que ha visto aquí.
 
 Su principal conclusión de este capítulo es que los cambios de DOM que realice casi siempre adoptarán una de las dos formas siguientes:
 
-Establecer una propiedad
+* Setting una propiedad
+* Calling a un método
 
-Llamar a un método
-
-Los métodos textContent, setAttribute y getAttribute que vio aquí cubren ambos enfoques, y verá muchos más de ellos y sus amigos en breve.
+Los métodos `textContent`, `setAttribute` y `getAttribute` que vio aquí cubren ambos enfoques, y verá muchos más de ellos y sus amigos en breve.
 
 ¡Este es un tema bastante pesado! Si tiene alguna pregunta, no se demore en recibir una respuesta. Publique en los foros en https://forum.kirupa.com lo antes posible.
