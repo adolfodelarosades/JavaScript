@@ -6,45 +6,46 @@
 
 En este capítulo
 
-• Aprenda a buscar elementos en el DOM.
-
-• Utilice la sintaxis del selector de CSS para un descubrimiento de elementos más inteligente
+* Aprenda a buscar elementos en el DOM.
+* Utilice la sintaxis del selector de CSS para un descubrimiento de elementos más inteligente
 
 Como vimos en el capítulo anterior, nuestro DOM no es más que una estructura en forma de árbol (ver Figura 25.1) compuesta por todos los elementos que existen en nuestro documento HTML.
 
-Imagen
-FIGURA 25.1
+![25fig01.jpg](images/25fig01.jpg)
 
-Sí. ¡Parece una estructura en forma de árbol, de acuerdo!
+**FIGURA 25.1** *Sí. ¡Parece una estructura en forma de árbol, de acuerdo!**
 
 Ese detalle es solo un poco importante. Lo importante es que tiene todos estos elementos HTML flotando alrededor de los que desea acceder y leer datos o modificarlos. Hay muchas formas de encontrar estos elementos HTML. Después de todo, estos elementos están dispuestos en una estructura en forma de árbol, y si hay algo que a los científicos de la computación les gusta hacer es descubrir formas locas de correr arriba y abajo de un árbol para encontrar algo.
 
-No te someteré a esa tortura ... todavía. En este capítulo, aprenderá a usar dos funciones integradas llamadas querySelector y querySelectorAll para resolver una buena parte de todas sus necesidades de búsqueda DOM.
+No te someteré a esa tortura ... todavía. En este capítulo, aprenderá a usar dos funciones integradas llamadas `querySelector` y `querySelectorAll` para resolver una buena parte de todas sus necesidades de búsqueda DOM.
 
 ¡Adelante!
 
-CONOCE A LA FAMILIA QUERYSELECTOR
-Para ayudar a explicar la maravilla que querySelector y querySelectorAll aportan a la mesa, eche un vistazo al siguiente HTML:
+## CONOCE A LA FAMILIA `QUERYSELECTOR`
 
-Haga clic aquí para ver la imagen del código
+Para ayudar a explicar la maravilla que `querySelector` y `querySelectorAll` aportan a la mesa, eche un vistazo al siguiente HTML:
 
-<div id = "main">
-  <div class = "pictureContainer">
-    <img class = "theImage" src = "smiley.png" height = "300" width = "150" />
-  </div>
-  <div class = "pictureContainer">
-    <img class = "theImage" src = "tongue.png" height = "300" width = "150" />
-  </div>
-  <div class = "pictureContainer">
-    <img class = "theImage" src = "meh.png" height = "300" width = "150" />
-  </div>
-  <div class = "pictureContainer">
-    <img class = "theImage" src = "sad.png" height = "300" width = "150" />
-  </div>
+```html
+<div id="main">
+   <div class="pictureContainer">
+      <img class="theImage" src="smiley.png" height="300" width="150" />
+   </div>
+   <div class="pictureContainer">
+      <img class="theImage" src="tongue.png" height="300" width="150" />
+   </div>
+   <div class="pictureContainer">
+      <img class="theImage" src="meh.png" height="300" width="150" />
+   </div>
+   <div class="pictureContainer">
+      <img class="theImage" src="sad.png" height="300" width="150" />
+   </div>
 </div>
-En este ejemplo, tiene un div con un id de main, y luego tiene cuatro elementos div e img, cada uno con un valor de clase de pictureContainer y theImage respectivamente. En las siguientes secciones, configuraremos las funciones querySelector y querySelectorAll sueltas en este HTML y veremos qué sucede.
+```
 
-querySelector
+En este ejemplo, tiene un `div` con un `id` **main**, y luego tiene cuatro elementos `div` e `img`, cada uno con una `class` con valor de `pictureContainer` y `theImage` respectivamente. En las siguientes secciones, configuraremos las funciones `querySelector` y `querySelectorAll` sueltas en este HTML y veremos qué sucede.
+
+### `querySelector`
+
 La función querySelector básicamente funciona de la siguiente manera:
 
 Haga clic aquí para ver la imagen del código
