@@ -183,3 +183,76 @@ El DOM es la pieza de funcionalidad más importante que tiene para trabajar con 
 Ahora, conocer el DOM es solo parte de la diversión. En realidad, usar su funcionalidad para interactuar con su documento web es la otra parte mucho más importante y divertida. Cuando esté listo, pase (o pase) al siguiente capítulo donde iremos más lejos.
 
 Si tiene alguna pregunta sobre este o cualquier otro tema, publique en los foros en https://forum.kirupa.com.
+
+### 🔴 💻 `24-01-HTML-CSS-JS.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="sea otter, kid, stuff" name="keywords">
+    <meta content="Sometimes, sea otters are awesome!" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24-01-HTML-CSS-JS</title>
+    <link href="css/foo.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="container">
+       <img src="images/seaOtter.jpg" width="200px" height="200px" />
+ 
+       <h1>¡Lo que esta nutria de mar le hizo a este niño te hará reír!</h1>
+ 
+       <p class="bodyText">
+          Nulla tristique, justo eget semper viverra,
+          massa arcu congue tortor, ut vehicula urna mi
+          in lorem. Quisque aliquam molestie dui, at tempor
+          turpis porttitor nec. Aenean id interdum urna.
+          Curabitur mi ligula, hendrerit at semper sed,
+          feugiat a nisi.
+       </p>
+ 
+       <div class="submitButton">
+          Más
+       </div>
+    </div>
+    <script src="stuff.js"></script>
+ </body>
+ 
+ </html>
+</html>
+```
+
+`foo.css`
+
+```css
+body {
+    font-family: "Arial";
+    background-color: #CCCFFF;
+  }
+  #container {
+    margin-left: 30%;
+  }
+  #container img {
+    padding: 20px;
+  }
+  #container h1 {
+    font-size: 56px;
+    font-weight: 500;
+  }
+  #container p.bodyText {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .submitButton {
+    display: inline-block;
+    border: 5px solid #669900;
+    background-color: #7BB700;
+    padding: 10px;
+    width: 150px;
+    font-weight: 800;
+  }
+```
+
+![image](https://user-images.githubusercontent.com/23094588/122017800-94e02880-cdc2-11eb-81fa-6b0d30098bae.png)
