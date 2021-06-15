@@ -189,7 +189,7 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
 * Reading JSON Data
 * Writing JSON Data?
 
-#### 24. JS, the Browser, and the DOM
+#### 24. [JS, the Browser, and the DOM](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/24-JS-the-Browser-and-the-DOM.md)
 
 * What HTML, CSS, and JavaScript Do
 * HTML Defines the Structure
