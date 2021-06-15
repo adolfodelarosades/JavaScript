@@ -202,7 +202,7 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
 * Meet the querySelector Family
 * It Really Is the CSS Selector Syntax
 
-#### 26. Modifying DOM Elements
+#### 26. [Modifying DOM Elements](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/26-Modifying-DOM-Elements.md)
 
 * DOM Elements Are Objects—Sort of!
 * Let’s Actually Modify DOM Elements
