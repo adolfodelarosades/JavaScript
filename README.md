@@ -7,6 +7,9 @@ Serie de varios cursos JavaScript.
 * [020 JavaScript De Cero Hasta los Detalles](temarios/020-JavaScript-De-Cero-Hasta-los-Detalles.md)
 * [100 JavaScript Moderno: Guía para dominar el lenguaje](temarios/100-JavaScript-Moderno.md)
 
+# Laurence Svekis
+* [101 JavaScript AJAX 30 Projects Fetch Web APIs JSON coding](temarios/101-JavaScript-AJAX-30-Projects-Fetch-Web-APIs-JSON-coding.md)
+
 # OpenWebinars
 
 * [500 Curso de Chrome DevTools: Herramientas para el desarrollo](temarios/500_Curso_de_Chrome_DevTools_Herramientas_para_el_desarrollo.md)
