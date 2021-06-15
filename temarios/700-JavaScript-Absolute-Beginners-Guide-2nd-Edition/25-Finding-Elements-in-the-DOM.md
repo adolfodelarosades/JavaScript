@@ -129,3 +129,54 @@ Las funciones `querySelector` y `querySelectorAll` son extremadamente útiles en
 Antes de terminar, hay una cosa más sobre la que me gustaría hablar contigo. En toda esta emoción de búsqueda de elementos faltaban las funciones `getElementById`, `getElementsByTagName` y `getElementsByClassName`. En el pasado, estas eran las funciones que habría utilizado para encontrar elementos en su DOM. Las funciones `querySelector` y `querySelectorAll` son las soluciones presentes y futuras para encontrar elementos, así que no te preocupes más por las funciones `getElement*`. En este momento, el único desaire contra las funciones `querySelector` y `querySelectorAll` es el rendimiento. La función `getElementById` sigue siendo bastante rápida y puede ver la comparación usted mismo aquí: https://jsperf.com/getelementbyid-vs-queryselector/11.
 
 Como dijo una vez una persona sabia, la vida es demasiado corta para perder tiempo aprendiendo sobre las funciones antiguas de JavaScript ... ¡incluso si son un poco más rápidas!
+
+### 🔴 💻 `25-01-querySelector-y-querySelectorAll.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25-01-querySelector-y-querySelectorAll</title>
+</head>
+<body>
+    <div id="main">
+        <div class="pictureContainer">
+           <img class="theImage" src="images/smile.png" height="150" width="150" />
+        </div>
+        <div class="pictureContainer">
+           <img class="theImage" src="images/tongue.jpg" height="150" width="150" />
+        </div>
+        <div class="pictureContainer">
+           <img class="theImage" src="images/meh.jpg" height="150" width="150" />
+        </div>
+        <div class="pictureContainer">
+           <img class="theImage" src="images/sad.png" height="150" width="150" />
+        </div>
+     </div>
+
+     <script>
+        let elementMain = document.querySelector("#main");
+        let elementPictureContainer = document.querySelector(".pictureContainer");
+
+        console.log('id: ' + elementMain.getAttribute('id'));
+        console.log('class: ' + elementPictureContainer.getAttribute('class'));
+
+        let images = document.querySelectorAll(".theImage");
+        for (let i = 0; i < images.length; i++) {
+           let image = images[i];
+           console.log('image ' + i + ': ' + image.getAttribute("src"));
+        }
+
+        let imageMeh = document.querySelectorAll("img[src='images/meh.jpg']");
+        console.log('src de meh: ' + imageMeh.length + ' ' + imageMeh[0].getAttribute("src"));
+
+     </script>
+    
+</body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/122073949-1ce12500-cdf9-11eb-9f72-aae8a924f7b3.png)
