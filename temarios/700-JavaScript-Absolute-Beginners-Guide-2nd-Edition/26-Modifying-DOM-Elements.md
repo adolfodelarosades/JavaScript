@@ -187,7 +187,7 @@ Hay algo que necesito aclarar antes de continuar. En los ejemplos sobre cómo us
 
 Volviendo a nuestro ejemplo, observe que cambié de usar `getAttribute` y `setAttribute` a usar las propiedades `id` y `className` en su lugar. El resultado final es idéntico. La única diferencia es que tenía una forma directa de establecer estos valores de atributo sin tener que usar `getAttribute` o `setAttribute`. Ahora, antes de continuar, tengo que decir algo extraño: sí ... no podemos usar `class` en JavaScript para referirnos al atributo de clase porque `class` tiene un significado completamente diferente que tiene que ver con tratar con objetos. Es por eso que usamos `className` en su lugar.
 
-> ![tip.jpg](images/tip.jpg)
+> ![tip.jpg](images/tip.jpg) **Tip**
 > 
 > Hay una forma mucho mejor de establecer valores de clase además de usar `className`. De esa manera es a través de la propiedad `classList` mucho más impresionante de la que aprenderá todo en el próximo capítulo.
 
