@@ -347,3 +347,61 @@ Para el desarrollo de front-end, no puedo pensar en demasiados casos en los que 
 En un momento dado, este capítulo se habría centrado en XML. Incluso hoy en día, XML sigue siendo muy popular como formato de archivo para almacenar o comunicar información. Solo en un mundo donde el navegador web es el rey (también conocido como el mundo en el que vivimos) es donde JSON es extremadamente popular. Fuera de los sitios web, las aplicaciones web y los servicios web basados en REST, tratar con datos en formato JSON no es tan popular. ¡Debe tener esto en cuenta cuando se encuentre en situaciones más antiguas y menos centradas en la web!
 
 Si tiene alguna pregunta relacionada con JSON o sobre cualquier otra cosa, diríjase y publique en los foros en https://forum.kirupa.com.
+
+### 🔴 💻 `23-01-JSON.html`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23-01-JSON</title>
+</head>
+<body>
+    <script>
+        //JSON
+        let exampleJSON = {
+            "firstName": "Kirupa",
+            "lastName": "Chinnathambi",
+            "special": {
+                "admin": true,
+                "userID": 203
+            },
+            "devices": [
+                {
+                "type": "laptop",
+                "model": "Macbook Pro"
+                },
+                {
+                "type": "phone",
+                "model": "iPhone XS"
+                }
+            ]
+        };
+
+        //Leer JSON
+        console.log("firstName: ", exampleJSON.firstName);          // Notación de Punto
+        console.log("firstName: ", exampleJSON["firstName"]);       // Notación de Array
+        console.log("lastName:  ", exampleJSON.lastName);
+        console.log("userID:    ", exampleJSON.special.userID);
+        console.log("model:     ", exampleJSON.devices[0].model);   // Notación de Punto en un Array
+
+        //Leer el Array del JSON
+        let devicesArray = exampleJSON.devices;
+
+        for (let i = 0; i < devicesArray.length; i++) {
+            let type = devicesArray[i].type;
+            let model = devicesArray[i].model;
+
+            console.log("device " + i + ":  ");
+            console.log("   type:  ", type);
+            console.log("   model: ", model);
+        }
+    </script>
+</body>
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/122006110-be935280-cdb6-11eb-9521-b44e6592441b.png)
