@@ -207,7 +207,7 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
 * DOM Elements Are Objects—Sort of!
 * Let’s Actually Modify DOM Elements
 
-#### 27. Styling our Content
+#### 27.[Styling our Content](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/27-Styling-our-Content.md)
 
 * Why Would We Set Styles Using JavaScript?
 * A Tale of Two Styling Approaches
