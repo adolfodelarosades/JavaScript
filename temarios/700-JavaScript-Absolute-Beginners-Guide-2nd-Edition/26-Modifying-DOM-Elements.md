@@ -14,7 +14,7 @@ En este punto, sabes un poco qué es el DOM. También vio cómo encontrar elemen
 
 ![279fig01.jpg](images/279fig01.jpg)
 
-Después de todo, ¿qué tiene de divertido tener un trozo gigante de arcilla (o masa para galletas) si no podemos poner nuestras manos sobre él y hacer un lío gigante? De todos modos, además de ser divertido y todo, nos encontraremos modificando el DOM todo el tiempo. Ya sea que usemos JavaScript para cambiar el texto de algún elemento, intercambiar una imagen por otra diferente, mover un elemento de una parte de su documento a otra, establecer un estilo en línea o realizar cualquiera de los millones de cambios que queremos hacer. , modificaremos el DOM. Este tutorial le enseñará los conceptos básicos de cómo hacerlo.
+Después de todo, ¿qué tiene de divertido tener un trozo gigante de arcilla (o masa para galletas) si no podemos poner nuestras manos sobre él y hacer un lío gigante? De todos modos, además de ser divertido y todo, nos encontraremos modificando el DOM todo el tiempo. Ya sea que usemos JavaScript para cambiar el texto de algún elemento, intercambiar una imagen por otra diferente, mover un elemento de una parte de su documento a otra, establecer un estilo en línea o realizar cualquiera de los millones de cambios que queremos hacer, modificaremos el DOM. Este tutorial le enseñará los conceptos básicos de cómo hacerlo.
 
 ¡Adelante!
 
