@@ -43,108 +43,116 @@ Hay muchos casos, especialmente a medida que nuestro contenido se vuelve más in
 La solución que necesitaremos emplear para todos ellos es una que involucre JavaScript. JavaScript no solo nos permite diseñar el elemento con el que estamos interactuando, lo que es más importante, también nos permite diseñar elementos en toda la página. Esta libertad es muy poderosa y va mucho más allá de la capacidad limitada de CSS para diseñar contenido dentro (o muy cerca) de sí mismo.
 
 ## UNA HISTORIA DE DOS ENFOQUES DE ESTILO
-AQUIIII
+
 Como vimos en la introducción, tenemos dos formas de alterar el estilo de un elemento usando JavaScript. Una forma es establecer una propiedad CSS directamente en el elemento. La otra forma es agregando o quitando valores de clase de un elemento que puede resultar en que ciertas reglas de estilo sean aplicadas o ignoradas. Analicemos ambos casos con mayor detalle.
 
-Establecer el estilo directamente
-Cada elemento HTML al que accede a través de JavaScript tiene un objeto de estilo. Este objeto le permite especificar una propiedad CSS y establecer su valor. Por ejemplo, así es como se ve la configuración del color de fondo de un elemento HTML cuyo valor de identificación es superman:
+### Setting el Estilo Directamente
 
-Haga clic aquí para ver la imagen del código
+Cada elemento HTML al que accede a través de JavaScript tiene un objeto `style`. Este objeto le permite especificar una propiedad CSS y establecer su valor. Por ejemplo, así es como se ve la configuración del color de fondo background de un elemento HTML cuyo valor del `id` es **superman**:
 
-let myElement = document.querySelector ("# superman");
-myElement.style.backgroundColor = "# D93600";
+```js
+let myElement = document.querySelector("#superman");
+myElement.style.backgroundColor = "#D93600";
+```
+
 Para afectar muchos elementos, puede hacer algo de la siguiente manera:
 
-Haga clic aquí para ver la imagen del código
-
-let myElements = document.querySelectorAll (". bar");
-para (sea i = 0; i <myElements.length; i ++) {
-  myElements [i] .style.opacity = 0;
+```js
+let myElements = document.querySelectorAll(".bar");
+for (let i = 0; i < myElements.length; i++) {
+   myElements[i].style.opacity = 0;
 }
-En pocas palabras, para diseñar elementos directamente usando JavaScript, el primer paso es acceder al elemento. Nuestro práctico método querySelector de antes es bastante útil aquí. El segundo paso es simplemente encontrar la propiedad CSS que le interesa y darle un valor. Recuerde, muchos valores en CSS son en realidad cadenas. También recuerde que muchos valores requieren una unidad de medida como px o em o algo así para ser reconocidos. También recuerda ... en realidad, lo olvidé.
+```
 
-Por último, algunas propiedades de CSS requieren que se proporcione un valor más complejo con un montón de texto aleatorio seguido del valor que le interesa. Uno de los más populares en este segmento es la propiedad transform. Un enfoque para establecer un valor complejo es utilizar una buena concatenación de cadenas a la antigua:
+En pocas palabras, para diseñar elementos directamente usando JavaScript, el primer paso es acceder al elemento. Nuestro práctico método `querySelector` de antes es bastante útil aquí. El segundo paso es simplemente encontrar la propiedad CSS que le interesa y darle un valor. Recuerde, muchos valores en CSS son en realidad strings. También recuerde que muchos valores requieren una unidad de medida como **px** o **em** o algo así para ser reconocidos. También recuerda ... en realidad, lo olvidé.
 
-Haga clic aquí para ver la imagen del código
+Por último, algunas propiedades de CSS requieren que se proporcione un valor más complejo con un montón de texto aleatorio seguido del valor que le interesa. Uno de los más populares en este segmento es la propiedad `transform`. Un enfoque para establecer un valor complejo es utilizar una buena concatenación de cadenas a la antigua:
 
-myElement.style.transform = "translate3d (" + xPos + "," + yPos +
-"px, 0)";
-Eso puede resultar realmente irritante, ya que hacer un seguimiento de las comillas y demás es algo tedioso y propenso a errores. Una solución menos irritante es utilizar la sintaxis literal de la plantilla:
+```js
+myElement.style.transform = "translate3d(" + xPos + ", " + yPos + "px, 0)";
+```
 
-Haga clic aquí para ver la imagen del código
+Eso puede resultar realmente irritante, ya que hacer un seguimiento de las comillas y demás es algo tedioso y propenso a errores. Una solución menos irritante es utilizar la sintaxis template literal (literal de la plantilla):
 
-myElement.style.transform = `translate3d ($ {xPos} px, $ {yPos} px, 0)`;
+```js
+myElement.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+```
+
 Observe cómo este enfoque le permite seguir proporcionando valores personalizados mientras evita toda la complejidad de la concatenación de cadenas.
 
-ImageTip
+> ![tip.jpg](images/tip.jpg)
+> 
+> **Especial Revestimiento de algunos Nombres de Propiedades CSS**
 
-Especial Revestimiento de algunos nombres de propiedades CSS
+JavaScript es muy exigente con lo que constituye un nombre de propiedad válido. La mayoría de los nombres en CSS obtendrían el sello de aprobación de JavaScript, por lo que puede usarlos directamente desde la carton. Sin embargo, hay algunas cosas a tener en cuenta.
 
-JavaScript es muy exigente con lo que constituye un nombre de propiedad válido. La mayoría de los nombres en CSS obtendrían el sello de aprobación de JavaScript, por lo que puede usarlos directamente desde la caja. Sin embargo, hay algunas cosas a tener en cuenta.
+Para especificar una propiedad CSS en JavaScript que contenga un guión, simplemente elimínelo. Por ejemplo, `background-color` se convierte en `backgroundColor`, la propiedad `border-radius` se transforma en `borderRadius`, y así sucesivamente.
 
-Para especificar una propiedad CSS en JavaScript que contenga un guión, simplemente elimínelo. Por ejemplo, background-color se convierte en backgroundColor, la propiedad border-radius se transforma en borderRadius, y así sucesivamente.
+Además, ciertas palabras en JavaScript están reservadas y no se pueden usar directamente. Un ejemplo de una propiedad CSS que cae en esta categoría especial es `float`. En CSS es una propiedad de diseño. En JavaScript, significa algo más. Para usar una propiedad cuyo nombre está completamente reservado, anteponga **css** a la propiedad, donde `float` se convierte en `cssFloat`.
 
-Además, ciertas palabras en JavaScript están reservadas y no se pueden usar directamente. Un ejemplo de una propiedad CSS que cae en esta categoría especial es flotante. En CSS es una propiedad de diseño. En JavaScript, significa algo más. Para usar una propiedad cuyo nombre está completamente reservado, anteponga css a la propiedad, donde float se convierte en cssFloat.
+### Agregar y Eliminar Clases con JavaScript
 
-Agregar y eliminar clases con JavaScript
 El segundo enfoque implica agregar y eliminar valores de clase que, a su vez, cambian las reglas de estilo que se aplican. Por ejemplo, digamos que tenemos una regla de estilo que tiene el siguiente aspecto:
 
-Haga clic aquí para ver la imagen del código
-
+```css
 .disableMenu {
-  pantalla: ninguna;
+   display: none;
 }
-En HTML, tenemos un menú cuya identificación es desplegable:
+```
 
-Haga clic aquí para ver la imagen del código
 
-<ul id = "dropDown">
-  <li> Uno </li>
-  <li> Dos </li>
-  <li> Tres </li>
-  <li> Cuatro </li>
-  <li> Cinco </li>
-  <li> Seis </li>
+En HTML, tenemos un menú cuyo `id` es **`dropDown`**:
+
+```html
+<ul id="dropDown">
+   <li>One</li>
+   <li>Two</li>
+   <li>Three</li>
+   <li>Four</li>
+   <li>Five</li>
+   <li>Six</li>
 </ul>
-Ahora, si quisiéramos aplicar nuestra regla de estilo .disableMenu a este elemento, todo lo que tendríamos que hacer es agregar disableMenu como un valor de clase al elemento dropDown:
+```
 
-Haga clic aquí para ver la imagen del código
+Ahora, si quisiéramos aplicar nuestra regla de estilo `.disableMenu` a este elemento, todo lo que tendríamos que hacer es agregar **disableMenu** como un valor `class` al elemento **`dropDown`**:
 
-<ul class = "disableMenu" id = "dropDown">
-  <li> Uno </li>
-  <li> Dos </li>
-  <li> Tres </li>
-  <li> Cuatro </li>
-  <li> Cinco </li>
-  <li> Seis </li>
+```html
+<ul class="disableMenu" id="dropDown">
+   <li>One</li>
+   <li>Two</li>
+   <li>Three</li>
+   <li>Four</li>
+   <li>Five</li>
+   <li>Six</li>
 </ul>
-Una forma de lograr esto implica establecer la propiedad className de un elemento, un enfoque que vimos anteriormente. El problema con className es que somos responsables de mantener la lista actual de valores de clase aplicados. Peor aún, la lista de valores de clase se nos devuelve como una cadena. Si tenemos varios valores de clase que queremos agregar, eliminar o simplemente activar / desactivar, tenemos que hacer un montón de trucos relacionados con cadenas propensos a errores que simplemente no son divertidos.
+```
 
-Para ayudar a aliviar algunos de los inconvenientes, ahora tenemos una API mucho más agradable que hace que agregar y eliminar valores de clase de un elemento sea ridículamente fácil. Esta nueva API se conoce cariñosamente como classList, y proporciona un puñado de métodos que harán que trabajar con valores de clase sea pan comido:
+Una forma de lograr esto implica establecer la propiedad `className` de un elemento, un enfoque que vimos anteriormente. El problema con `className` es que somos responsables de mantener la lista actual de valores de clase aplicados. Peor aún, la lista de valores de clase se nos devuelve como un string. Si tenemos varios valores de clase que queremos agregar, eliminar o simplemente activar/desactivar, tenemos que hacer un montón de trucos relacionados con string propensos a errores que simplemente no son divertidos.
 
-agregar
+Para ayudar a aliviar algunos de los inconvenientes, ahora tenemos una API mucho más agradable que hace que agregar y eliminar valores de clase de un elemento sea ridículamente fácil. Esta nueva API se conoce cariñosamente como `classList`, y proporciona un puñado de métodos que harán que trabajar con valores de clase sea pan comido:
 
-retirar
-
-palanca
-
-contiene
+* `add`
+* `remove`
+* `toggle`
+* `contains`
 
 Lo que hacen estos cuatro métodos puede ser bastante evidente por sus nombres, pero veámoslos con más detalle.
 
-Agregar valores de clase
-Para agregar un valor de clase a un elemento, obtenga una referencia al elemento y llame al método add a través de classList:
+### Agregar Class Values
 
-Haga clic aquí para ver la imagen del código
+Para agregar un valor de class a un elemento, obtenga una referencia al elemento y llame al método `add` a través de `classList`:
 
-let divElement = document.querySelector ("# myDiv");
-divElement.classList.add ("barra");
-divElement.classList.add ("foo");
-divElement.classList.add ("zorb");
-divElement.classList.add ("baz");
+```js
+let divElement = document.querySelector("#myDiv");
+divElement.classList.add("bar");
+divElement.classList.add("foo");
+divElement.classList.add("zorb");
+divElement.classList.add("baz");
 
-console.log (divElement.classList);
-Después de que se ejecute este código, nuestro elemento div tendrá los siguientes valores de clase: bar, foo, zorb, baz. La API classList se encarga de garantizar que se agreguen espacios entre los valores de clase. Si especificamos un valor de clase no válido, la API classList se quejará y no lo agregará. Si le decimos al método add que agregue una clase que ya existe en el elemento, nuestro código aún se ejecutará, pero el valor de la clase duplicada no se agregará.
+console.log(divElement.classList);
+```
+
+Después de que se ejecute este código, nuestro elemento `div` tendrá los siguientes valores de clase: **bar**, **foo**, **zorb**, **baz**. La API classList se encarga de garantizar que se agreguen espacios entre los valores de clase. Si especificamos un valor de clase no válido, la API classList se quejará y no lo agregará. Si le decimos al método add que agregue una clase que ya existe en el elemento, nuestro código aún se ejecutará, pero el valor de la clase duplicada no se agregará.
 
 Eliminar valores de clase
 Para eliminar un valor de clase, podemos llamar al método remove en classList:
