@@ -152,49 +152,58 @@ divElement.classList.add("baz");
 console.log(divElement.classList);
 ```
 
-Después de que se ejecute este código, nuestro elemento `div` tendrá los siguientes valores de clase: **bar**, **foo**, **zorb**, **baz**. La API classList se encarga de garantizar que se agreguen espacios entre los valores de clase. Si especificamos un valor de clase no válido, la API classList se quejará y no lo agregará. Si le decimos al método add que agregue una clase que ya existe en el elemento, nuestro código aún se ejecutará, pero el valor de la clase duplicada no se agregará.
+Después de que se ejecute este código, nuestro elemento `div` tendrá los siguientes valores de clase: **bar**, **foo**, **zorb**, **baz**. La API `classList` se encarga de garantizar que se agreguen espacios entre los valores de clase. Si especificamos un valor de clase no válido, la API `classList` se quejará y no lo agregará. Si le decimos al método `add` que agregue una clase que ya existe en el elemento, nuestro código aún se ejecutará, pero el valor de la clase duplicada no se agregará.
 
-Eliminar valores de clase
-Para eliminar un valor de clase, podemos llamar al método remove en classList:
+### Eliminar Class Values
 
-Haga clic aquí para ver la imagen del código
+Para eliminar un valor de clase, podemos llamar al método `remove` en `classList`:
 
-let divElement = document.querySelector ("# myDiv");
-divElement.classList.remove ("foo");
+```js
+let divElement = document.querySelector("#myDiv");
+divElement.classList.remove("foo");
 
-console.log (divElement.classList);
-Después de que se ejecute este código, se eliminará el valor de la clase foo. Lo que nos quedará es solo bar y zorb. Bastante simple, ¿verdad?
+console.log(divElement.classList);
+```
 
-Alternar valores de clase
-Para muchos escenarios de estilo, existe un flujo de trabajo muy común. Primero, verificamos si existe un valor de clase en un elemento. Si el valor existe, lo eliminamos del elemento. Si el valor no existe, agregamos ese valor de clase al elemento. Para simplificar este patrón de alternancia muy común, la API classList le proporciona el método de alternancia:
+Después de que se ejecute este código, se eliminará el valor de la clase **foo**. Lo que nos quedará es solo **bar** y **zorb**. Bastante simple, ¿verdad?
 
-Haga clic aquí para ver la imagen del código
+### Alternar - Toggling Class Values
 
-let divElement = document.querySelector ("# myDiv");
-divElement.classList.toggle ("foo"); // eliminar foo
-divElement.classList.toggle ("foo"); // agregar foo
-divElement.classList.toggle ("foo"); // eliminar foo
+Para muchos escenarios de estilo, existe un flujo de trabajo muy común. Primero, verificamos si existe un valor de clase en un elemento. Si el valor existe, lo eliminamos del elemento. Si el valor no existe, agregamos ese valor de clase al elemento. Para simplificar este patrón de alternancia muy común, la API `classList` le proporciona el método `toggle`:
 
-console.log (divElement.classList);
-El método toggle, como su nombre lo indica, agrega o elimina el valor de clase especificado en el elemento cada vez que se llama. En nuestro caso, la clase foo se elimina la primera vez que se llama al método toggle. La segunda vez, se agrega la clase foo. La tercera vez, se elimina la clase foo. Te dan la imagen.
+```js
+let divElement = document.querySelector("#myDiv");
+divElement.classList.toggle("foo"); // remove foo
+divElement.classList.toggle("foo"); // add foo
+divElement.classList.toggle("foo"); // remove foo
 
-COMPROBAR SI EXISTE UN VALOR DE CLASE
-Lo último que veremos es el método contains:
+console.log(divElement.classList);
+```
 
-Haga clic aquí para ver la imagen del código
+El método `toggle`, como su nombre lo indica, agrega o elimina el valor de clase especificado en el elemento cada vez que se llama. En nuestro caso, la clase **foo** se elimina la primera vez que se llama al método `toggle`. La segunda vez, se agrega la clase **foo**. La tercera vez, se elimina la clase **foo**. Te dan la imagen.
 
-let divElement = document.querySelector ("# myDiv");
+## COMPROBAR SI EXISTE UN CLASS VALUE
 
-if (divElement.classList.contains ("bar") == true) {
-  // hacer algo
+Lo último que veremos es el método `contains`:
+
+```js
+let divElement = document.querySelector("#myDiv");
+
+if (divElement.classList.contains("bar") == true) {
+   // do something
 }
-Este método comprueba si el valor de clase especificado existe en el elemento. Si el valor existe s, te vuelves verdad. Si el valor no existe, obtiene falso.
+```
 
-Ir más lejos
-Como puede ver, la API classList le proporciona casi todo lo que necesita para agregar, eliminar o inspeccionar valores de clase en un elemento con mucha facilidad. El énfasis está en la palabra casi. Para las pocas cosas que la API no proporciona de forma predeterminada, puede conectarse y leer mi artículo completo sobre muchas más cosas que puede hacer con classList: http://bit.ly/kClassList.
+Este método comprueba si el valor de clase especificado existe en el elemento. Si el valor existe, devuelve **true**. Si el valor no existe, obtiene **false**.
 
-El Mínimo Absoluto
+### Ir más lejos
 
-Entonces, ahí lo tiene: dos enfoques basados ​​en JavaScript perfectamente precisos que puede usar para diseñar sus elementos. De estas dos opciones, si tiene la capacidad de modificar su CSS, preferiría que utilizara elementos de estilo agregando y eliminando clases. La simple razón es que este enfoque es mucho más fácil de mantener. Es mucho más fácil agregar y eliminar propiedades de estilo de una regla de estilo en CSS en lugar de agregar y eliminar líneas de JavaScript.
+Como puede ver, la API `classList` le proporciona casi todo lo que necesita para agregar, eliminar o inspeccionar valores de clase en un elemento con mucha facilidad. El énfasis está en la palabra casi. Para las pocas cosas que la API no proporciona de forma predeterminada, puede conectarse y leer mi artículo completo sobre muchas más cosas que puede hacer con `classList`: http://bit.ly/kClassList.
+
+<hr>
+
+### El Mínimo Absoluto
+
+Entonces, ahí lo tiene: dos enfoques basados en JavaScript perfectamente precisos que puede usar para diseñar sus elementos. De estas dos opciones, si tiene la capacidad de modificar su CSS, preferiría que utilizara elementos de estilo adding and removing classes. La simple razón es que este enfoque es mucho más fácil de mantener. Es mucho más fácil agregar y eliminar propiedades de estilo de una regla de estilo en CSS en lugar de agregar y eliminar líneas de JavaScript.
 
 ¿Tienes alguna pregunta? La gente amigable en los foros puede tener una respuesta. ¡Dirígete a https://forum.kirupa.com para preguntar!
