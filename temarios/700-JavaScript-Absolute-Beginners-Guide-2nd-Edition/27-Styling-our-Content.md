@@ -6,42 +6,44 @@
 
 En este capítulo
 
-• Aprenda a cambiar CSS usando JavaScript.
-
-• Comprender los pros y los contras de establecer estilos directamente en lugar de ajustar los valores de clase.
-
-• Use classList para hacer que jugar con los valores de las clases de elementos sea muy sencillo
+* Aprenda a cambiar CSS usando JavaScript.
+* Comprender los pros y los contras de establecer estilos directamente en lugar de ajustar los valores de clase.
+* Use `classList` para hacer que jugar con los valores de las clases de elementos sea muy sencillo
 
 En el capítulo anterior, vimos cómo modificar el contenido de nuestro DOM usando JavaScript. La otra parte de lo que hace que nuestros elementos HTML se destaquen es su apariencia, su estilo. Cuando se trata de diseñar algún contenido, la forma más común es crear una regla de estilo y hacer que su selector apunte a un elemento o elementos. Una regla de estilo se vería de la siguiente manera:
 
-Haga clic aquí para ver la imagen del código
-
-.hombre murciélago {
-  ancho: 100px;
-  altura: 100px;
-  color de fondo: # 333;
+```css
+.batman {
+  width: 100px;
+  height: 100px;
+  background-color: #333;
 }
+```
+
 Un elemento que se vería afectado por esta regla de estilo podría verse así:
 
-Haga clic aquí para ver la imagen del código
+```html
+<div class="batman"></div>
+```
 
-<div class = "batman"> </div>
 En cualquier página web, veremos desde unas pocas hasta muchas MUCHAS reglas de estilo, cada una de las cuales se superpone maravillosamente para diseñar todo lo que vemos. Sin embargo, este no es el único enfoque que podemos utilizar para diseñar contenido con CSS. ¡No sería HTML si no hubiera varias formas de realizar la misma tarea!
 
-Ignorando los estilos en línea, el otro enfoque que podemos utilizar para introducir elementos a la bondad de los estilos CSS implica JavaScript. Podemos usar JavaScript para establecer directamente un estilo en un elemento, y también podemos usar JavaScript para agregar o eliminar valores de clase en elementos que alterarán qué reglas de estilo se aplican.
+Ignorando los estilos en línea, el otro enfoque que podemos utilizar para introducir elementos a la bondad de los estilos CSS implica JavaScript. Podemos usar JavaScript para **establecer directamente un estilo en un elemento**, y también podemos usar JavaScript para **agregar o eliminar valores de clase en elementos** que alterarán qué reglas de estilo se aplican.
 
 En este tutorial, aprenderemos sobre ambos enfoques.
 
 ¡Adelante!
 
-¿POR QUÉ CONFIGURAREMOS ESTILOS CON JAVASCRIPT?
+## ¿POR QUÉ CONFIGURAREMOS ESTILOS CON JAVASCRIPT?
+
 Antes de continuar, probablemente sea útil explicar por qué querríamos usar JavaScript para afectar el estilo de un elemento en primer lugar. En los casos comunes en los que usamos reglas de estilo o estilos en línea para afectar el aspecto de un elemento, el estilo se activa cuando se carga la página. Eso es asombroso, y eso es probablemente lo que queremos la mayor parte del tiempo.
 
-Hay muchos casos, especialmente a medida que nuestro contenido se vuelve más interactivo, en los que queremos que los estilos se activen dinámicamente según la entrada del usuario, algún código que se haya ejecutado en segundo plano y más. En este tipo de escenarios, el modelo CSS que involucra reglas de estilo o estilos en línea no nos ayudará. Si bien los pseudoelectores como hover brindan algo de apoyo, todavía estamos muy limitados en lo que podemos hacer.
+Hay muchos casos, especialmente a medida que nuestro contenido se vuelve más interactivo, en los que queremos que los estilos se activen dinámicamente según la entrada del usuario, algún código que se haya ejecutado en segundo plano y más. En este tipo de escenarios, el modelo CSS que involucra reglas de estilo o estilos en línea no nos ayudará. Si bien los ***pseudoelectores*** como ***hover*** brindan algo de apoyo, todavía estamos muy limitados en lo que podemos hacer.
 
 La solución que necesitaremos emplear para todos ellos es una que involucre JavaScript. JavaScript no solo nos permite diseñar el elemento con el que estamos interactuando, lo que es más importante, también nos permite diseñar elementos en toda la página. Esta libertad es muy poderosa y va mucho más allá de la capacidad limitada de CSS para diseñar contenido dentro (o muy cerca) de sí mismo.
 
-UNA HISTORIA DE DOS ENFOQUES DE ESTILO
+## UNA HISTORIA DE DOS ENFOQUES DE ESTILO
+AQUIIII
 Como vimos en la introducción, tenemos dos formas de alterar el estilo de un elemento usando JavaScript. Una forma es establecer una propiedad CSS directamente en el elemento. La otra forma es agregando o quitando valores de clase de un elemento que puede resultar en que ciertas reglas de estilo sean aplicadas o ignoradas. Analicemos ambos casos con mayor detalle.
 
 Establecer el estilo directamente
