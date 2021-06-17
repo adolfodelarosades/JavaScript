@@ -213,7 +213,7 @@ La JavaScript Absolute Beginner's Guide sirve como un tutorial fácil de entende
 * A Tale of Two Styling Approaches
 * Checking Whether a Class Value Exists
 
-#### 28. Traversing the DOM
+#### 28. [Traversing the DOM](700-JavaScript-Absolute-Beginners-Guide-2nd-Edition/28-Traversing-the-DOM.md)
 
 * Finding Your Way Around
 * Putting It All Together
