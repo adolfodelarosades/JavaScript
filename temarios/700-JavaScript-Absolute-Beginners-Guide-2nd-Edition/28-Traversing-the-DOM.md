@@ -3,22 +3,17 @@
 * Finding Your Way Around
 * Putting It All Together
 
-
-28. Atravesando el DOM
 En este capítulo
 
-• Aprenda a navegar por el árbol DOM.
-
-• Utilice las distintas API que tiene para mover y volver a criar elementos
-
-• Encuentra el hermano, el padre, los hijos y más de un elemento.
+* Aprenda a navegar por el árbol DOM.
+* Utilice las distintas API que tiene para mover y volver a re-parenting (criar) elementos
+* Encuentra el hermano(sibling), el padre(parent), los hijos(children) y más de un elemento.
 
 Como ya se habrá dado cuenta, nuestro DOM parece un árbol gigante, un árbol gigante con elementos colgando peligrosamente de las ramas y tratando de evitar las cosas puntiagudas que ensucian el lugar. Para ser un poco más técnico, los elementos de nuestro DOM están ordenados en una jerarquía como se ilustra en la Figura 28.1 que define lo que veremos eventualmente en el navegador.
 
-Imagen
-FIGURA 28.1
+![28fig01.jpg](images/28fig01.jpg)
 
-El DOM y el navegador son como dos guisantes en una vaina.
+**FIGURA 28.1** *El DOM y el navegador son como dos guisantes en una vaina.*
 
 Esta jerarquía se utiliza para ayudar a organizar nuestros elementos HTML. También se utiliza para ayudar a nuestras reglas de estilo CSS a entender qué estilos aplicar en qué cosas. Desde el ángulo de JavaScript, esta jerarquía agrega un poco de complejidad. Pasaremos una buena cantidad de tiempo tratando de averiguar en qué parte del DOM nos encontramos en este momento y dónde debemos estar. Esto es algo que se hará más evidente cuando busquemos crear nuevos elementos o mover elementos. Esta complejidad es algo con lo que debemos sentirnos cómodos.
 
@@ -26,25 +21,26 @@ Ahí es donde entra en juego este tutorial. Para ayudarlo a comprender cómo nav
 
 ¡Adelante!
 
-Encontrar su camino
+### Encontrar su camino
+
 Antes de que podamos encontrar elementos y hacer cosas increíbles con ellos, primero debemos llegar a donde están los elementos. La forma más fácil de abordar este tema es comenzar desde arriba y deslizarse hacia abajo. Eso es exactamente lo que vamos a hacer.
 
-La vista desde la parte superior de nuestro DOM se compone de nuestra ventana, documento y elementos html como se muestra en la Figura 28.2.
+La vista desde la parte superior de nuestro DOM se compone de nuestra `window`, `document` y elementos `html` como se muestra en la Figura 28.2.
 
-Imagen
-FIGURA 28.2
+![28fig02.jpg](images/28fig02.jpg)
 
-La vista desde lo alto de este árbol nunca cambia.
+**FIGURA 28.2** *La vista desde lo alto de este árbol nunca cambia.*
 
-Debido a la importancia de estas tres cosas, el DOM nos proporciona un fácil acceso a ellas a través de window, document y document.documentElement:
+Debido a la importancia de estas tres cosas, el DOM nos proporciona un fácil acceso a ellas a través de `window`, `document` y `document.documentElement`:
 
-Haga clic aquí para ver la imagen del código
-
-let windowObject = window; // um ....
-dejar documentObject = document; // esto probablemente sea innecesario
+```js
+let windowObject = window; // um....
+let documentObject = document;  // this is probably unnecessary
 let htmlElement = document.documentElement;
-Una cosa a tener en cuenta es que tanto la ventana como el documento son propiedades globales. No tenemos que declararlos explícitamente como lo hice yo. Simplemente agítelos y úselos directamente del recipiente.
+```
 
+Una cosa a tener en cuenta es que tanto la `window` como el `document` son propiedades globales. No tenemos que declararlos explícitamente como lo hice yo. Simplemente agítelos y úselos directamente del recipiente.
+AQUIIIIIIIIIIII
 Una vez que vayamos por debajo del nivel del elemento HTML, nuestro DOM comenzará a diversificarse y se volverá más interesante. En este punto, tenemos varias formas de navegar. Una forma que hemos visto en abundancia es mediante el uso de querySelector y querySelectorAll para obtener con precisión los elementos que nos interesan. Para muchos casos prácticos, estos dos métodos son demasiado limitantes.
 
 A veces, no sabemos adónde queremos ir. Los métodos querySelector y querySelectorAll no nos ayudarán aquí. Solo queremos subirnos al coche y conducir ... y esperamos encontrar lo que estamos buscando. Cuando se trata de navegar por el DOM, nos encontraremos en esta posición todo el tiempo. Ahí es donde las diversas propiedades integradas que proporciona DOM nos ayudarán, y veremos esas propiedades a continuación.
