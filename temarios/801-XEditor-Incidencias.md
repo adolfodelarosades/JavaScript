@@ -19,32 +19,30 @@ when you add elements in the XSL, you have to be very careful. The way you are c
 For this I have prepared a code snippet for you. In addition, here are always the files and I have explained to you what exactly happens here, so that you can also understand here what happens:
 
 ```js
-{code:javascript}
 // file: src/js/config/types_overrides.js
 
 // bold = type to override, in your case it would be cita
 types.bold.finalizeForFrame = function(editor, element) {
-// check if posibles is set on element
-if (!element.getAttribute('posibles')) {
-return;
-}
+   // check if posibles is set on element
+   if (!element.getAttribute('posibles')) {
+      return;
+   }
 
-    // create a new "frame only" element. This element will only be added to the frame.
-var button = document.createElement("button")
-button.type="input";
-button.innerHTML="Click me";
-button.setAttribute("data-frameOnly", "true");
-button.classList.add('rojo');
-button.addEventListener('click', function() {
-    alert("Hello");
-    // msg("Hello");
-    // editor.configObj.configData.openDialog()
-           // here you can execute any logic you want.
-});
+   // create a new "frame only" element. This element will only be added to the frame.
+   var button = document.createElement("button")
+   button.type="input";
+   button.innerHTML="Click me";
+   button.setAttribute("data-frameOnly", "true");
+   button.classList.add('rojo');
+   button.addEventListener('click', function() {
+      alert("Hello");
+      // msg("Hello");
+      // editor.configObj.configData.openDialog()
+      // here you can execute any logic you want.
+   });
 
-element.getDom().appendChild(button);
+   element.getDom().appendChild(button);
 }
-{code}
 ```
 
  Also make sure the `"types_overrides"` will be applied in your `"src/js/index.js" file =>`
@@ -193,19 +191,17 @@ editor.openDocumentByString(editor.documentId, html);
 to open XML you could use:
 
 ```js
-js
 editor.getProvider().transformFromXml(editor.documentId, editor.schema, xml, false).then(function(html) {
-editor.openDocumentByString(editor.documentId, html);
+   editor.openDocumentByString(editor.documentId, html);
 });
 ```
 
 To add a PNG image as icon you have to first create a new CSS Rule in the xeditor.css file:
 
 ```css
-css
 .icon-neptuno {
-background: url(http://es006-ppdapp001:8080/Helios2/images/neptuno.png);
-background-size: contain;
+   background: url(http://es006-ppdapp001:8080/Helios2/images/neptuno.png);
+   background-size: contain;
 }
 ```
 
@@ -266,30 +262,30 @@ I can move to a certain item on the screen.
 ```js
 types.nt.finalizeForFrame = function(editor, element) {
 
-// change value id for new node NT
-var root = editor.document.root;
-var targetElements = root.findChildrenByTypes(false, ['nt']);
-var id = 0;
-if(targetElements.getCount() > 0){
-var lastNT = targetElements.getLast();
-id = lastNT.getAttribute('id');
-++id;
-}else{
-id = 1;
-}
+   // change value id for new node NT
+   var root = editor.document.root;
+   var targetElements = root.findChildrenByTypes(false, ['nt']);
+   var id = 0;
+   if(targetElements.getCount() > 0){
+      var lastNT = targetElements.getLast();
+      id = lastNT.getAttribute('id');
+      ++id;
+   }else{
+      id = 1;
+   }
 
-//create button
-var button = document.createElement("button")
-button.type="input";
-button.innerHTML= id;
-button.title = id;
-button.setAttribute("data-frameOnly", "true");
-button.classList.add('verde');
-button.classList.add('botonXopus');
-button.addEventListener('click', function() {
-element.getDom().scrollIntoView(true);
-});
-element.getDom().append(button);
+   //create button
+   var button = document.createElement("button")
+   button.type="input";
+   button.innerHTML= id;
+   button.title = id;
+   button.setAttribute("data-frameOnly", "true");
+   button.classList.add('verde');
+   button.classList.add('botonXopus');
+   button.addEventListener('click', function() {
+      element.getDom().scrollIntoView(true);
+   });
+   element.getDom().append(button);
 };
 ```
 
@@ -300,40 +296,40 @@ But if instead of using element, I first look for another different element and 
 ```js
 types.np.finalizeForFrame = function(editor, element) {
 
-var root = editor.document.root;
+   var root = editor.document.root;
 
-// Retrieve all NT items to get the max ID
-var ntElements = root.findChildrenByTypes(false, ['nt']);
+   // Retrieve all NT items to get the max ID
+   var ntElements = root.findChildrenByTypes(false, ['nt']);
 
-var firstNT = root.findFirstChildByTypes(true,['nt']);
-console.log("firstNT " + firstNT.getDom());
+   var firstNT = root.findFirstChildByTypes(true,['nt']);
+   console.log("firstNT " + firstNT.getDom());
 
-// read value id for put to button
-var id = 0;
-if(ntElements.getCount() > 0){
-var lastNT = ntElements.getLast();
-id = lastNT.getAttribute('id');
-}else{
-id = 1;
-}
+   // read value id for put to button
+   var id = 0;
+   if(ntElements.getCount() > 0){
+      var lastNT = ntElements.getLast();
+      id = lastNT.getAttribute('id');
+   }else{
+      id = 1;
+   }
 
-//Crea el botón
-var button = document.createElement("button");
-button.type="input";
-button.innerHTML= id;
-button.title = id;
-button.setAttribute("data-frameOnly", "true");
-button.classList.add('verde');
-button.classList.add('botonXopus');
-button.addEventListener('click', function() {
+   //Crea el botón
+   var button = document.createElement("button");
+   button.type="input";
+   button.innerHTML= id;
+   button.title = id;
+   button.setAttribute("data-frameOnly", "true");
+   button.classList.add('verde');
+   button.classList.add('botonXopus');
+   button.addEventListener('click', function() {
 
-//element.getDom().scrollIntoView(true);
-firstNT.getDom().scrollIntoView(true);
-});
+      //element.getDom().scrollIntoView(true);
+      firstNT.getDom().scrollIntoView(true);
+   });
 
-//Obtiene referencia para añadir antes el botón
-var primerHijo = element.findFirstNodeChild();
-element.insertBefore(button, primerHijo);
+   //Obtiene referencia para añadir antes el botón
+   var primerHijo = element.findFirstNodeChild();
+   element.insertBefore(button, primerHijo);
 };
 ```
 
@@ -375,9 +371,6 @@ By calling `fixState` on the root element, a complete validation will be perform
 
 Best wishes,
 Sascha
-
-
-
 
 
 ## ID: 
