@@ -342,6 +342,36 @@ Some clue???
 
 ### Answer
 
+I wrote a simple sample snippet, which does something similar: It selects the last paragraph in our demo document. The following code does the trick:
+
+```js
+// Dummy code to get last paragraph element, which is used in this example as a target
+// This has to be adapted to extract the target element you want to select
+var paras = editor.document.root.findChildrenByTypes(false, ['p']);
+var target = paras.getLast();
+
+// GENERAL LOGIC THAT CAN BE REUSED STARTS HERE
+
+// select element
+// second argument indicates whether start or beginning of element should be selected
+editor.selectionManager.selectElement(target, true);
+
+// sync selection and update editor state
+editor.selectionManager.sync();
+editor.updateState();
+
+// if selection is out of viewport, we'll scroll to it and sync selection again
+var scrollResult = editor.contentFrame.scrollToSelection('middle', true);
+if (scrollResult.selectionCorrected) {
+   editor.updateState();
+   editor.selectionManager.sync();
+}
+```
+
+I hope the comments help clarifying how exactly this works and can be adjusted to your needs.
+
+Best wishes,
+Sascha
 
 ## ID: 4801 - Strange behavior when deleting an Item
 
