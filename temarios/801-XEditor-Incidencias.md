@@ -6,7 +6,7 @@ You can tell me how I can relate the events defined in the XSL with the classes 
 
 I am attaching a file where I describe the problem in detail.
 
-![Questions.docx](801-XEditor-Incidencias/Questions.pdf)
+[Questions.pdf](801-XEditor-Incidencias/Questions.pdf)
 
 
 
