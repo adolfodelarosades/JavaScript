@@ -1,10 +1,10 @@
 # 01 Introducción al curso		
 
-## 1. Introducción 2 min.
-## 2. ¿Cómo funcionará este curso? 3 min.
-## 3. ¿Cómo realizar preguntas?. 5 min.
-## 4. Antes de comenzar con el curso. 2 min.
-## 5. Instalaciones requeridas. 6 min.
+1. Introducción 2 min.
+2. ¿Cómo funcionará este curso? 3 min.
+3. ¿Cómo realizar preguntas?. 5 min.
+4. Antes de comenzar con el curso. 2 min.
+5. Instalaciones requeridas. 6 min.
 
 
 ## 1. Introducción 2 min. :+1:
