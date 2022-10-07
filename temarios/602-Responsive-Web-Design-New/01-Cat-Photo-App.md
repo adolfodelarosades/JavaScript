@@ -197,10 +197,125 @@ La salida es:
 
 
 ## Paso 9
+
+Todos los elementos **`img`** deben tener un atributo **`alt`**. El texto del atributo **`alt`** se usa para que los lectores de pantalla mejoren la accesibilidad y se muestra si la imagen no se carga. Por ejemplo, **`<img src="cat.jpg" alt="A cat">`** tiene un atributo **`alt`** con el texto **`A cat`**.
+
+Dentro del elemento **`img`**, agrega un atributo **`alt`** con este texto:
+
+**`A cute orange cat lying on its back`**
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <h2>Cat Photos</h2>
+         <!-- TODO: Add link to cat photos -->
+         <p>Click here to view more cat photos.</p>
+         <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back">
+      </main>
+   </body>  
+</html>
+```
+
+Esto no altera en nada la salida obtenida ya que la imagen existe y la podemos ver si por ejemplo ponemos **`relaxing-cat2.jpg`** que es una imagen que no existe en la salida que obtenemos es:
+
+![image](https://user-images.githubusercontent.com/23094588/194517260-c009ba09-85c4-41d9-9471-448817984cda.png)
+
+
 ## Paso 10
+
+Puede vincular a otra página con el elemento ancla - anchor (**`a`**). Por ejemplo, **`<a href='https://freecodecamp.org'></a>`** vincularía a **`freecodecamp.org`**.
+
+Agregue un elemento de anclaje después del párrafo que vincula a **`https://freecatphotoapp.com`**. En este punto, el enlace no aparecerá en la vista previa.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <h2>Cat Photos</h2>
+         <!-- TODO: Add link to cat photos -->
+         <p>Click here to view more cat photos.</p>
+         <a href='https://freecatphotoapp.com'></a>
+         <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back">
+      </main>
+   </body>  
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/194518995-7ca44964-8941-4be6-b2cc-e739f24aa9de.png)
+
+
 ## Paso 11
+
+El texto de un enlace debe colocarse entre las etiquetas de apertura y cierre de un elemento ancla (**`a`**). Por ejemplo, **`<a href="https://www.freecodecamp.org">click here to go to freeCodeCamp.org</a>`** es un enlace con el texto **`click here to go to freeCodeCamp.org`**.
+
+Agregue al enlace el texto **`link to cat pictures`** al elemento de anclaje. Esto se convertirá en el texto del enlace.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <h2>Cat Photos</h2>
+         <!-- TODO: Add link to cat photos -->
+         <p>Click here to view more cat photos.</p>
+         <a href='https://freecatphotoapp.com'>link to cat pictures</a>
+         <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back">
+      </main>
+   </body>  
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/194520276-f004d0bc-a086-4474-9fda-2beb9bca792c.png)
+
+
 ## Paso 12
+
+En el paso anterior, convirtió las palabras **`link to cat pictures`** en un enlace colocándolos entre las etiquetas de anclaje (**`a`**) de apertura y cierre. Puede hacer lo mismo con las palabras dentro de un elemento, como un elemento **`p`**.
+
+En el texto de su elemento **`p`**, convierta las palabras **`cat photos`** en un enlace a **`https://freecatphotoapp.com`** colocando estas palabras dentro de las etiquetas de anclaje (**`a`**) de apertura y cierre.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <h2>Cat Photos</h2>
+         <!-- TODO: Add link to cat photos -->
+         <p>Click here to view more <a href='https://freecatphotoapp.com'>cat photos</a>.</p>
+         <a href='https://freecatphotoapp.com'>link to cat pictures</a>
+         <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back">
+      </main>
+   </body>  
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/194521486-35aa9657-7c01-43c4-9640-558fd86044af.png)
+
+
 ## Paso 13
+
+Ahora que convirtió el texto **`cat photos`** dentro del elemento **`p`** en un enlace, no necesita el segundo enlace debajo del elemento **`p`**. Elimine todo el elemento de anclaje debajo del elemento **`p`**.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <h2>Cat Photos</h2>
+         <!-- TODO: Add link to cat photos -->
+         <p>Click here to view more <a href='https://freecatphotoapp.com'>cat photos</a>.</p>
+         <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back">
+      </main>
+   </body>  
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/194522127-56733e8e-be16-4f41-80f9-d8e6ad33240f.png)
+
+
 ## Paso 14
 ## Paso 15
 ## Paso 16
