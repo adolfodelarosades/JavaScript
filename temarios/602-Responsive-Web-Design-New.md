@@ -19,7 +19,7 @@ Finalmente, aprenderá a crear páginas web que respondan a diferentes tamaños 
 4. Aprenda **formularios HTML** mediante la creación de un **Formulario de Registro**.
 5. Proyecto de Certificación
    
-   **Formulario de Encuesta** (Survey Form)
+   * **Formulario de Encuesta** (Survey Form)
    
       Este es uno de los proyectos requeridos para obtener su certificación.
 
@@ -31,7 +31,7 @@ Finalmente, aprenderá a crear páginas web que respondan a diferentes tamaños 
 9. Aprenda la **accesibilidad** mediante la **Creación de un Cuestionario**.
 10. Proyecto de Certificación
 
-   **Página de Tributo**
+   * **Página de Tributo**
    
       Este es uno de los proyectos requeridos para obtener su certificación.
       
@@ -42,7 +42,7 @@ Finalmente, aprenderá a crear páginas web que respondan a diferentes tamaños 
 13. Aprende **diseño web responsivo** construyendo un **Piano**.
 14. Proyecto de Certificación
 
-   **Página de Documentación Técnica**
+   * **Página de Documentación Técnica**
    
       Este es uno de los proyectos requeridos para obtener su certificación.
 
@@ -52,7 +52,7 @@ Finalmente, aprenderá a crear páginas web que respondan a diferentes tamaños 
 16. Aprende **CSS Grid** creando una revista.
 17. Proyecto de Certificación
 
-   **Product Landing Page**
+   * **Product Landing Page**
 
       Este es uno de los proyectos requeridos para obtener su certificación.
 
@@ -62,7 +62,7 @@ Finalmente, aprenderá a crear páginas web que respondan a diferentes tamaños 
 19. Aprende **transformaciones CSS** construyendo un **Pingüino**.
 20. Proyecto de Certificación
 
-   **Personal Portfolio Webpage**
+   * **Personal Portfolio Webpage**
 
       Este es uno de los proyectos requeridos para obtener su certificación.
 
