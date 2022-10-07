@@ -19,7 +19,7 @@ Finalmente, aprenderá a crear páginas web que respondan a diferentes tamaños 
 4. Aprenda **formularios HTML** mediante la creación de un **Formulario de Registro**.
 5. Proyecto de Certificación
    
-   * **Formulario de Encuesta** (Survey Form)
+* **Formulario de Encuesta** (Survey Form)
    
       Este es uno de los proyectos requeridos para obtener su certificación.
 
