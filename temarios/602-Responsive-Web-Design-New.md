@@ -13,12 +13,13 @@ Finalmente, aprenderá a crear páginas web que respondan a diferentes tamaños 
 
 ## Cursos
 
-* Aprende HTML construyendo una aplicación de fotos de gatos.
+* Aprende HTML construyendo una aplicación de fotos de gatos (Cat Photo App).
 * Aprende CSS básico creando un menú de cafetería.
 * Aprenda los colores CSS creando un conjunto de marcadores de colores.
 * Aprenda formularios HTML mediante la creación de un formulario de registro.
 * Proyecto de Certificación
-   * Formulario de encuesta
+   * Formulario de encuesta (Survey Form)
+   
       Este es uno de los proyectos requeridos para obtener su certificación.
 
       Para este proyecto, creará un formulario de encuesta para recopilar datos de sus usuarios.
