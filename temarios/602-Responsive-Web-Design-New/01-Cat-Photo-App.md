@@ -433,8 +433,104 @@ Dentro del segundo elemento **`section`**, agregue un nuevo elemento **`h2`** co
 
 
 ## Paso 19
+
+Cuando agrega un elemento de encabezado de rango inferior a la página, se da a entender que está comenzando una nueva subsección.
+
+Después del último elemento **`h2`** del segundo elemento **`section`**, agregue un elemento **`h3`** con este texto:
+
+**`Things cats love:`**
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <section>
+            <h2>Cat Photos</h2>
+            <!-- TODO: Add link to cat photos -->
+            <p>Click here to view more <a href='https://freecatphotoapp.com' target='_blank'>cat photos</a>.</p>
+            <a href='https://freecatphotoapp.com' target='_blank'><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back"></a>
+         </section>
+         <section>
+            <h2>Cat Lists</h2>
+            <h3>Things cats love:</h3>
+         </section>
+      </main>
+   </body>  
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/194535237-db347e9b-db64-4f10-a65f-817d3c4d7f61.png)
+
+
 ## Paso 20
+
+Después del elemento **`h3`** con el texto **`Things cats love:`**, agregue un elemento de lista desordenada (**`ul`**). Tenga en cuenta que no se mostrará nada en este punto.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <section>
+            <h2>Cat Photos</h2>
+            <!-- TODO: Add link to cat photos -->
+            <p>Click here to view more <a href='https://freecatphotoapp.com' target='_blank'>cat photos</a>.</p>
+            <a href='https://freecatphotoapp.com' target='_blank'><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back"></a>
+         </section>
+         <section>
+            <h2>Cat Lists</h2>
+            <h3>Things cats love:</h3>
+            <ul></ul>
+         </section>
+      </main>
+   </body>  
+</html>
+```
+
 ## Paso 21
+
+Use elementos list item  (**`li`**) para crear elementos en una lista. Aquí hay un ejemplo de elementos de lista en una lista desordenada:
+
+```html
+<ul>
+  <li>milk</li>
+  <li>cheese</li>
+</ul>
+```
+
+Dentro del elemento **`ul`** anida tres elementos de la lista para mostrar tres cosas que les encantan a los gatos:
+
+**`cat nip`** **`laser pointers`** **`lasagna`**
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <section>
+            <h2>Cat Photos</h2>
+            <!-- TODO: Add link to cat photos -->
+            <p>Click here to view more <a href='https://freecatphotoapp.com' target='_blank'>cat photos</a>.</p>
+            <a href='https://freecatphotoapp.com' target='_blank'><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back"></a>
+         </section>
+         <section>
+            <h2>Cat Lists</h2>
+            <h3>Things cats love:</h3>
+            <ul>
+               <li>cat nip</li>
+               <li>laser pointers</li>
+               <li>lasagna</li>
+            </ul>
+         </section>
+      </main>
+   </body>  
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/194536468-aa1c259b-e9af-4f54-88e8-462f76b7c2cc.png)
+
+
 ## Paso 22
 ## Paso 23
 ## Paso 24
