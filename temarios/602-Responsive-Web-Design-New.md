@@ -9,5 +9,5 @@ Primero, creará una ***aplicación de fotos de gatos*** para aprender los conce
 Finalmente, aprenderá a crear páginas web que respondan a diferentes tamaños de pantalla mediante la ***creación de una galería de fotos con Flexbox*** y el ***diseño de un artículo de revista con CSS Grid***.
 
 
-| **Nota**: Algunas extensiones del navegador, como los ad-blockers (bloqueadores de anuncios) y las extensiones del dark mode (modo oscuro), pueden interferir con las pruebas. Si tiene problemas, le recomendamos que deshabilite las extensiones que modifican el contenido o el diseño de las páginas mientras toma el curso.
+> **Nota**: Algunas extensiones del navegador, como los ad-blockers (bloqueadores de anuncios) y las extensiones del dark mode (modo oscuro), pueden interferir con las pruebas. Si tiene problemas, le recomendamos que deshabilite las extensiones que modifican el contenido o el diseño de las páginas mientras toma el curso.
 
