@@ -146,8 +146,56 @@ El elemento **`h2`** y el comentario tienen una sangría de dos espacios más qu
 
 Esto no altera en nada la salida obtenida.
 
-## Paso 
-## Paso 
+## Paso 7
+
+Puede agregar imágenes a su sitio web utilizando el elemento **`img`**. Los elementos **`img`** tienen una etiqueta de apertura sin una etiqueta de cierre. Una etiqueta para ***un elemento sin una etiqueta de cierre se conoce como etiqueta de cierre automático***.
+
+Agregue un elemento **`img`** debajo del elemento **`p`**. En este punto, no aparecerá ninguna imagen en el navegador.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <h2>Cat Photos</h2>
+         <!-- TODO: Add link to cat photos -->
+         <p>Click here to view more cat photos.</p>
+         <img>
+      </main>
+   </body>  
+</html>
+```
+
+Esto no altera en nada la salida obtenida.
+
+## Paso 8
+
+Los ***atributos*** HTML son palabras especiales que se usan dentro de la etiqueta de apertura de un elemento para controlar el comportamiento del elemento. El atributo **`src`** en un elemento **`img`** especifica la URL de la imagen (donde se encuentra la imagen). Un ejemplo de un elemento **`img`** usando un atributo **`<img src="https://www.example.com/the-image.jpg">`**.
+
+Dentro del elemento **`img`** existente, agregue un atributo **`src`** con esta URL:
+
+**`https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg`**
+
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <h2>Cat Photos</h2>
+         <!-- TODO: Add link to cat photos -->
+         <p>Click here to view more cat photos.</p>
+         <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg">
+      </main>
+   </body>  
+</html>
+```
+
+La salida es:
+
+![image](https://user-images.githubusercontent.com/23094588/194514669-1e45e6dd-78e1-49c2-9b5a-658f1a235c62.png)
+
+
 ## Paso 
 ## Paso 
 ## Paso 
