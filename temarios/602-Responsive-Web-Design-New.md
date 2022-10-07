@@ -21,9 +21,9 @@ Finalmente, aprenderá a crear páginas web que respondan a diferentes tamaños 
    
 * **Formulario de Encuesta** (Survey Form)
    
-      Este es uno de los proyectos requeridos para obtener su certificación.
+   Este es uno de los proyectos requeridos para obtener su certificación.
 
-      Para este proyecto, creará un formulario de encuesta para recopilar datos de sus usuarios.
+   Para este proyecto, creará un formulario de encuesta para recopilar datos de sus usuarios.
       
 6. Aprenda el **CSS Box Model** (modelo de caja CSS ) construyendo una **Pintura de Rothko**.
 7. Aprende **CSS Flexbox** construyendo una **Galería de Fotos**.
