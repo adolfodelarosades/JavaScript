@@ -606,9 +606,124 @@ Anide la imagen que acaba de agregar dentro de un elemento **`figure`**.
 </html>
 ```
 
+![image](https://user-images.githubusercontent.com/23094588/194541314-960a2eaa-cd6e-47b3-a953-cbdb186945e3.png)
+
+
 ## Paso 24
+
+Un elemento figure caption (**`figcaption`**) se usa para agregar un título para describir la imagen contenida dentro del elemento **`figure`**. Por ejemplo, **`<figcaption>A cute cat</figcaption>`** agrega la leyenda **`A cute cat`**.
+
+Después de que la imagen esté anidada en el elemento **`figure`**, agregue un elemento **`figcaption`** con el texto:
+
+**`Cats love lasagna.`**
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <section>
+            <h2>Cat Photos</h2>
+            <!-- TODO: Add link to cat photos -->
+            <p>Click here to view more <a href='https://freecatphotoapp.com' target='_blank'>cat photos</a>.</p>
+            <a href='https://freecatphotoapp.com' target='_blank'><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back"></a>
+         </section>
+         <section>
+            <h2>Cat Lists</h2>
+            <h3>Things cats love:</h3>
+            <ul>
+               <li>cat nip</li>
+               <li>laser pointers</li>
+               <li>lasagna</li>
+            </ul>
+            <figure>
+               <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/lasagna.jpg" alt="A slice of lasagna on a plate.">
+               <figcaption>Cats love lasagna.</figcaption>
+            </figure>
+         </section>
+      </main>
+   </body>  
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/194543112-af39f1db-fa00-498f-9ef8-d102dceb73ff.png)
+
+
 ## Paso 25
+
+Enfatice la palabra **`love`** en el elemento **`figcaption`** envolviéndola en un elemento de énfasis **`em`**.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <section>
+            <h2>Cat Photos</h2>
+            <!-- TODO: Add link to cat photos -->
+            <p>Click here to view more <a href='https://freecatphotoapp.com' target='_blank'>cat photos</a>.</p>
+            <a href='https://freecatphotoapp.com' target='_blank'><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back"></a>
+         </section>
+         <section>
+            <h2>Cat Lists</h2>
+            <h3>Things cats love:</h3>
+            <ul>
+               <li>cat nip</li>
+               <li>laser pointers</li>
+               <li>lasagna</li>
+            </ul>
+            <figure>
+               <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/lasagna.jpg" alt="A slice of lasagna on a plate.">
+               <figcaption>Cats <em>love</em> lasagna.</figcaption>
+            </figure>
+         </section>
+      </main>
+   </body>  
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/194543554-f1265097-8e01-480a-8dd6-0da9720d6cec.png)
+
+
 ## Paso 26
+
+Después del elemento **`figure`**, agregue otro elemento **`h3`** con el texto:
+
+**`Top 3 things cats hate:`**
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <section>
+            <h2>Cat Photos</h2>
+            <!-- TODO: Add link to cat photos -->
+            <p>Click here to view more <a href='https://freecatphotoapp.com' target='_blank'>cat photos</a>.</p>
+            <a href='https://freecatphotoapp.com' target='_blank'><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back"></a>
+         </section>
+         <section>
+            <h2>Cat Lists</h2>
+            <h3>Things cats love:</h3>
+            <ul>
+               <li>cat nip</li>
+               <li>laser pointers</li>
+               <li>lasagna</li>
+            </ul>
+            <figure>
+               <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/lasagna.jpg" alt="A slice of lasagna on a plate.">
+               <figcaption>Cats <em>love</em> lasagna.</figcaption>
+            </figure>
+            <h3>Top 3 things cats hate:</h3>
+         </section>
+      </main>
+   </body>  
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/194544307-eb58edc1-a92a-47ef-8db9-78646b6ff343.png)
+
+
 ## Paso 27
 ## Paso 28
 ## Paso 29
