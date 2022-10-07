@@ -317,10 +317,121 @@ Ahora que convirtió el texto **`cat photos`** dentro del elemento **`p`** en un
 
 
 ## Paso 14
+
+Agregue un atributo **`target`** con el valor **`_blank`** a la etiqueta de apertura del elemento ancla (**`a`** ), para que el enlace se abra en una nueva pestaña.
+
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <h2>Cat Photos</h2>
+         <!-- TODO: Add link to cat photos -->
+         <p>Click here to view more <a href='https://freecatphotoapp.com' target='_blank'>cat photos</a>.</p>
+         <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back">
+      </main>
+   </body>  
+</html>
+```
+
+Esto no altera en nada la salida obtenida.
+
+
 ## Paso 15
+
+Convierta la imagen en un enlace rodeándola con las etiquetas de los elementos necesarios. Utilice **`https://freecatphotoapp.com`** como el valor del atributo **`href`** del ancla.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <h2>Cat Photos</h2>
+         <!-- TODO: Add link to cat photos -->
+         <p>Click here to view more <a href='https://freecatphotoapp.com' target='_blank'>cat photos</a>.</p>
+         <a href='https://freecatphotoapp.com' target='_blank'><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back"></a>
+      </main>
+   </body>  
+</html>
+```
+
+Con esto cuando nos pongamos sobre la imagen nos saldra una manita que indica que podemos pulsar en la imagen para ir al enlace linkado.
+
 ## Paso 16
+
+Antes de agregar cualquier contenido nuevo, debe utilizar un elemento **`section`** para separar el contenido de las fotos de gatos del contenido futuro.
+
+Tome todos los elementos ubicados actualmente dentro del elemento **`main`** y anídelos en un elemento **`section`**.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <section>
+            <h2>Cat Photos</h2>
+            <!-- TODO: Add link to cat photos -->
+            <p>Click here to view more <a href='https://freecatphotoapp.com' target='_blank'>cat photos</a>.</p>
+            <a href='https://freecatphotoapp.com' target='_blank'><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back"></a>
+         </section>
+      </main>
+   </body>  
+</html>
+```
+
+Esto no altera en nada la salida obtenida.
+
 ## Paso 17
+
+Es hora de agregar una nueva sección. Agregue un segundo elemento **`section`** debajo del elemento **`section`** existente.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <section>
+            <h2>Cat Photos</h2>
+            <!-- TODO: Add link to cat photos -->
+            <p>Click here to view more <a href='https://freecatphotoapp.com' target='_blank'>cat photos</a>.</p>
+            <a href='https://freecatphotoapp.com' target='_blank'><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back"></a>
+         </section>
+         <section></section>
+      </main>
+   </body>  
+</html>
+```
+
+Esto no altera en nada la salida obtenida.
+
+
 ## Paso 18
+
+Dentro del segundo elemento **`section`**, agregue un nuevo elemento **`h2`** con el texto **`Cat Lists`**.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <section>
+            <h2>Cat Photos</h2>
+            <!-- TODO: Add link to cat photos -->
+            <p>Click here to view more <a href='https://freecatphotoapp.com' target='_blank'>cat photos</a>.</p>
+            <a href='https://freecatphotoapp.com' target='_blank'><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back"></a>
+         </section>
+         <section>
+            <h2>Cat Lists</h2>
+         </section>
+      </main>
+   </body>  
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/194533238-27544c93-f053-4720-bc76-30cfd748f79e.png)
+
+
 ## Paso 19
 ## Paso 20
 ## Paso 21
