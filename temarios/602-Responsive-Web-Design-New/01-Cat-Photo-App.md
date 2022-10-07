@@ -49,7 +49,7 @@ Los elementos de encabezado **`h1`** a **`h6`** se utilizan para indicar la impo
 
 Debajo del elemento **`h1`**, agregue un elemento **`h2`** con este texto:
 
-`Cat Photos`
+**`Cat Photos`**
 
 ```html
 <html>
@@ -63,5 +63,83 @@ Debajo del elemento **`h1`**, agregue un elemento **`h2`** con este texto:
 ![image](https://user-images.githubusercontent.com/23094588/194503537-2df0f7eb-18e8-4950-bb7a-13a4f83ebfbf.png)
 
 
+## Paso 3
+
+El elemento **`p`** se utiliza para crear un párrafo de texto en sitios web. Cree un elemento **`p`** debajo de su elemento **`h2`** y asígnele el siguiente texto:
+
+**`Click here to view more cat photos.`**
 
 
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <h2>Cat Photos</h2>
+      <p>Click here to view more cat photos.</p>
+   </body>  
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/194506142-81faa8ba-d24e-43de-b914-45254e7136ab.png)
+
+
+## Paso 4
+
+Comentar le permite dejar mensajes sin afectar la visualización del navegador. También le permite hacer que el código esté inactivo. Un comentario en HTML comienza con **`<!--`**, contiene cualquier número de líneas de texto y termina con **`-->`**. Por ejemplo, el comentario **`<!-- TODO: Remove h1 -->`** contiene el texto **TODO: Remove h1**.
+
+Agregue un comentario sobre el elemento **`p`** con este texto:
+
+**`TODO: Add link to cat photos`**
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <h2>Cat Photos</h2>
+      <!-- TODO: Add link to cat photos -->
+      <p>Click here to view more cat photos.</p>
+   </body>  
+</html>
+```
+
+La salida no se altera:
+
+![image](https://user-images.githubusercontent.com/23094588/194506142-81faa8ba-d24e-43de-b914-45254e7136ab.png)
+
+## Paso 5
+
+HTML5 tiene algunos elementos que identifican diferentes áreas de contenido. Estos elementos hacen que su HTML sea más fácil de leer y ayudan con la optimización de motores de búsqueda (SEO) y la accesibilidad.
+
+Identifique la sección principal de esta página agregando una etiqueta de apertura **`<main>`** después del elemento **`h1`** y una etiqueta de cierre **`</main>`** después del elemento **`p`**.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+      <h2>Cat Photos</h2>
+      <!-- TODO: Add link to cat photos -->
+      <p>Click here to view more cat photos.</p>
+      </main>
+   </body>  
+</html>
+```
+
+## Paso 6
+
+En el paso anterior, colocó los elementos **`h2`**, comentario y **`p`** dentro del elemento **`main`**. Esto se llama **anidamiento (nesting)**. Los elementos anidados deben colocarse dos o tres espacios más a la derecha del elemento en el que están anidados. Este espacio se denomina **sangría** y se utiliza para facilitar la lectura de HTML.
+
+El elemento **`h2`** y el comentario tienen una sangría de dos espacios más que el elemento principal en el código siguiente. Use la barra espaciadora en su teclado para agregar dos espacios más delante del elemento **`p`** para que también tenga la sangría adecuada.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <h2>Cat Photos</h2>
+         <!-- TODO: Add link to cat photos -->
+         <p>Click here to view more cat photos.</p>
+      </main>
+   </body>  
+</html>
+```
