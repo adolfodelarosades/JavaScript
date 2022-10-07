@@ -13,50 +13,51 @@ Finalmente, aprenderá a crear páginas web que respondan a diferentes tamaños 
 
 ## Cursos
 
-* Aprende HTML construyendo una aplicación de fotos de gatos (Cat Photo App).
-* Aprende CSS básico creando un menú de cafetería.
-* Aprenda los colores CSS creando un conjunto de marcadores de colores.
-* Aprenda formularios HTML mediante la creación de un formulario de registro.
+* Aprende **HTML** construyendo una **aplicación de Fotos de Gatos** (Cat Photo App).
+* Aprende **CSS básico** creando un **Menú de Cafetería**.
+* Aprenda **los colores CSS** creando un **Conjunto de Marcadores de Colores**.
+* Aprenda **formularios HTML** mediante la creación de un **Formulario de Registro**.
 * Proyecto de Certificación
-   * Formulario de encuesta (Survey Form)
+   * **Formulario de Encuesta** (Survey Form)
    
       Este es uno de los proyectos requeridos para obtener su certificación.
 
       Para este proyecto, creará un formulario de encuesta para recopilar datos de sus usuarios.
       
-* Aprenda el modelo de caja CSS construyendo una pintura de Rothko.
-* Aprende CSS Flexbox construyendo una galería de fotos.
-* Aprende tipografía construyendo una etiqueta nutricional.
-* Aprenda la accesibilidad mediante la creación de un cuestionario.
+* Aprenda el **CSS Box Model** (modelo de caja CSS ) construyendo una **Pintura de Rothko**.
+* Aprende **CSS Flexbox** construyendo una **Galería de Fotos**.
+* Aprende **tipografía** construyendo una **Etiqueta Nutricional**.
+* Aprenda la **accesibilidad** mediante la **Creación de un Cuestionario**.
 * Proyecto de Certificación
-   * Página de tributo
+   * **Página de Tributo**
+   
       Este es uno de los proyectos requeridos para obtener su certificación.
       
       Para este proyecto, creará una página de tributo para un tema de su elección, ficticio o real.
 
-* Obtenga más información sobre los pseudoselectores de CSS mediante la creación de un balance general.
-* Aprende CSS intermedio construyendo una pintura de Picasso.
-* Aprende diseño web receptivo construyendo un piano.
+* Obtenga más información sobre los **pseudoselectores de CSS** mediante la **Creación de un Balance General**.
+* Aprende **CSS intermedio** construyendo una **Pintura de Picasso**.
+* Aprende **diseño web responsivo** construyendo un **Piano**.
 * Proyecto de Certificación
-   * Página de documentación técnica
+   * **Página de Documentación Técnica**
+   
       Este es uno de los proyectos requeridos para obtener su certificación.
 
       Para este proyecto, creará una página de documentación técnica que sirva como instrucción o referencia para un tema.
 
-* Aprenda las variables CSS construyendo el horizonte de una ciudad.
-* Aprende CSS Grid creando una revista.
+* Aprenda las **variables CSS** construyendo el **Horizonte de una Ciudad** (City Skyline).
+* Aprende **CSS Grid** creando una revista.
 * Proyecto de Certificación
-   * Página de destino del producto
+   * **Product Landing Page**
 
       Este es uno de los proyectos requeridos para obtener su certificación.
 
       Para este proyecto, creará una página de inicio de producto para comercializar un producto de su elección.
 
-
-* Aprende animación CSS construyendo una rueda de la fortuna, No iniciado
-* Aprende transformaciones CSS construyendo un pingüino, No iniciado
+* Aprende **animación CSS** construyendo una **Rueda de la Fortuna** (Ferris Wheel).
+* Aprende **transformaciones CSS** construyendo un **Pingüino**.
 * Proyecto de Certificación
-   * Página web de cartera personal
+   * **Personal Portfolio Webpage**
 
       Este es uno de los proyectos requeridos para obtener su certificación.
 
