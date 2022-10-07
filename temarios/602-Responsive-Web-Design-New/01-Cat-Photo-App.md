@@ -143,3 +143,70 @@ El elemento **`h2`** y el comentario tienen una sangría de dos espacios más qu
    </body>  
 </html>
 ```
+
+Esto no altera en nada la salida obtenida.
+
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+## Paso 
+
+
