@@ -532,7 +532,80 @@ Dentro del elemento **`ul`** anida tres elementos de la lista para mostrar tres 
 
 
 ## Paso 22
+
+Después de la lista desordenada, agregue una nueva imagen con un valor de atributo **`src`** establecido en:
+
+**`https://cdn.freecodecamp.org/curriculum/cat-photo-app/lasagna.jpg`**
+
+Y su valor de atributo **`alt`** a:
+
+**`A slice of lasagna on a plate.`**
+
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <section>
+            <h2>Cat Photos</h2>
+            <!-- TODO: Add link to cat photos -->
+            <p>Click here to view more <a href='https://freecatphotoapp.com' target='_blank'>cat photos</a>.</p>
+            <a href='https://freecatphotoapp.com' target='_blank'><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back"></a>
+         </section>
+         <section>
+            <h2>Cat Lists</h2>
+            <h3>Things cats love:</h3>
+            <ul>
+               <li>cat nip</li>
+               <li>laser pointers</li>
+               <li>lasagna</li>
+            </ul>
+            <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/lasagna.jpg" alt="A slice of lasagna on a plate.">
+         </section>
+      </main>
+   </body>  
+</html>
+```
+
+![image](https://user-images.githubusercontent.com/23094588/194540691-c4f5f33f-4335-4468-82a0-aff04ab78fb4.png)
+
+
+
 ## Paso 23
+
+El elemento **`figure`** representa contenido independiente y le permitirá asociar una imagen con un pie de foto.
+
+Anide la imagen que acaba de agregar dentro de un elemento **`figure`**.
+
+```html
+<html>
+   <body>
+      <h1>CatPhotoApp</h1>
+      <main>
+         <section>
+            <h2>Cat Photos</h2>
+            <!-- TODO: Add link to cat photos -->
+            <p>Click here to view more <a href='https://freecatphotoapp.com' target='_blank'>cat photos</a>.</p>
+            <a href='https://freecatphotoapp.com' target='_blank'><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back"></a>
+         </section>
+         <section>
+            <h2>Cat Lists</h2>
+            <h3>Things cats love:</h3>
+            <ul>
+               <li>cat nip</li>
+               <li>laser pointers</li>
+               <li>lasagna</li>
+            </ul>
+            <figure>
+               <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/lasagna.jpg" alt="A slice of lasagna on a plate.">
+            </figure>
+         </section>
+      </main>
+   </body>  
+</html>
+```
+
 ## Paso 24
 ## Paso 25
 ## Paso 26
