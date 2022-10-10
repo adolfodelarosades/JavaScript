@@ -2,6 +2,7 @@
  
 Comience con el desarrollo de frontend: desde comprender lo que sucede dentro de un navegador hasta crear sus primeras páginas una **Flashcards** y un **Landing Page**. Este curso le enseñará cómo configurar páginas y crear sitios web modernos que respondan a diferentes navegadores.
 
+![image](https://user-images.githubusercontent.com/23094588/194888292-66355188-0063-434f-9530-afee553cedec.png)
 
 ## 1. Flashcards
 
