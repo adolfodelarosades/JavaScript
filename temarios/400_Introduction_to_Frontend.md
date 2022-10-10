@@ -9,12 +9,12 @@ Comience con el desarrollo de frontend: desde comprender lo que sucede dentro de
 
 Además de crear una landing page de ejemplo de la vida real, también mejorará sus habilidades de HTML y CSS. ¡Obtenga algo de experiencia en la construcción de un sitio web sin JavaScript!
 
-> **First Landing es un proyecto de graduación para el track Introducción a Frontend (HTML/CSS).**
-> Los proyectos de graduación contienen temas centrales para este track. Debe aplicar los temas básicos en las etapas del proyecto para verificar su conocimiento. Se requiere al menos un proyecto de posgrado para completar el track.
+> **First Landing es un proyecto de graduación para el curso Introducción a Frontend (HTML/CSS).**
+> Los proyectos de graduación contienen temas centrales para este curso. Debe aplicar los temas básicos en las etapas del proyecto para verificar su conocimiento. Se requiere al menos un proyecto de posgrado para completar el curso.
 
 Como probablemente haya notado, cuando una empresa lanza un nuevo producto, a menudo viene con una página web para promocionarlo. Esta página se llama **landing page**. En este proyecto, su objetivo es crear una página de este tipo para un nuevo producto. ¡Puedes elegir qué producto quieres lucir en su landing page!
 
-¿Cómo afecta este proyecto al progreso de tu track?
+¿Cómo afecta este proyecto al progreso de tu curso?
 * 60 temas completados
 * 60 temas centrales aplicados (al completar las etapas del proyecto)
 
@@ -43,3 +43,37 @@ Similar al diseño de la barra de navegación, cree un pie de página con los en
 #### 6. Contact Form
 
 Agregue un breve formulario de contacto en el pie de página para que los usuarios interactúen con la página web.
+
+
+## Flashcards
+
+### Los resultados del aprendizaje
+
+Además de obtener una útil aplicación de ayuda para la memoria, aprenderá los conceptos básicos de HTML y CSS. Verá cómo estas dos tecnologías pueden ayudarlo a construir una página web simple con un diseño hermoso.
+
+> **Flashcards es un proyecto de graduación para el curso Introducción a Frontend (HTML/CSS).**
+> Los proyectos de graduación contienen temas centrales para este curso. Debe aplicar los temas básicos en las etapas del proyecto para verificar su conocimiento. Se requiere al menos un proyecto de graduación para completar el curso.
+
+Si es un desarrollador web principiante, necesita conocer los conceptos básicos de CSS y HTML. Este proyecto es ideal para aquellos que necesitan un lugar para comenzar. Su objetivo es crear una página estilizada con tarjetas didácticas, cada una de las cuales contiene una pregunta en un lado y la respuesta en el otro. ¡Puedes elegir cualquier tema que quieras para tus flashcards!
+
+![image](https://user-images.githubusercontent.com/23094588/194886528-eeaa22a3-2426-4fcc-8e9a-29883911c5e9.png)
+
+¿Cómo afecta este proyecto al progreso de tu curso?
+* 60 temas completados
+* 60 temas centrales aplicados (al completar las etapas del proyecto)
+
+### Lo que harás y lo que aprenderás:
+
+
+#### 1. Setting up
+
+Piensa en el contenido de tus flashcards y escribe las preguntas para el anverso. Crea una página web sencilla con el encabezado y el texto de las preguntas.
+
+#### 2. Design
+
+Hagamos la página más atractiva aplicando diferentes estilos. Explorará los temas básicos de CSS y los utilizará en la práctica de inmediato.
+
+#### 3. On the flip side
+
+Agregue el reverso con las respuestas para cada tarjeta y aplique la animación para crear el efecto de "voltear la tarjeta".
+
