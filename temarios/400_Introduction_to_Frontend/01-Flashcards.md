@@ -180,13 +180,74 @@ Todos estos entornos se pueden ejecutar en Windows, Mac OS o GNU/Linux.
 
 En general, el entorno de desarrollo incluye:
 
-1. Un editor de texto, que está diseñado para trabajar con archivos de texto de forma interactiva. Le permite ver el contenido de los archivos de texto y realizar varias acciones como insertar, eliminar y copiar texto, búsqueda contextual, reemplazo, clasificación de cadenas, visualización de códigos de caracteres y conversión de codificaciones, impresión. A menudo contienen funciones adicionales, como el resaltado de sintaxis.
-2. Un traductor (compilador y/o intérprete), que traduce un texto escrito en un lenguaje de programación a código máquina y lo hace inmediatamente antes de iniciar el programa (compilación) o línea por línea (interpretación).
-3. Cree herramientas de automatización, que preparan el código y ponen todo junto.
-4. Un Depurador, que busca errores en el código y los reporta inmediatamente.
+1. Un **editor de texto**, que está diseñado para trabajar con archivos de texto de forma interactiva. Le permite ver el contenido de los archivos de texto y realizar varias acciones como insertar, eliminar y copiar texto, búsqueda contextual, reemplazo, clasificación de cadenas, visualización de códigos de caracteres y conversión de codificaciones, impresión. A menudo contienen funciones adicionales, como el resaltado de sintaxis.
+2. Un **translator (compiler and/or interpreter) - traductor (compilador y/o intérprete)**, que traduce un texto escrito en un lenguaje de programación a código máquina y lo hace inmediatamente antes de iniciar el programa (compilación) o línea por línea (interpretación).
+3. **Build automation tools - Cree herramientas de automatización**, que preparan el código y ponen todo junto.
+4. Un **Debugger - Depurador**, que busca errores en el código y los reporta inmediatamente.
+
+![image](https://user-images.githubusercontent.com/23094588/194907361-cb22ea7e-fec5-4012-af52-0802488991b0.png)
+
+En general, el uso de un IDE lo convierte en un desarrollador más productivo porque proporciona componentes muy unidos con una interfaz de usuario similar. También automatiza algunas tareas rutinarias e incluso le brinda consejos y comentarios. Eso es todo porque el propósito del entorno integrado es combinar varias utilidades en un solo producto. Este enfoque permite a los desarrolladores centrarse en resolver sus problemas principales, mientras que un IDE se ocupa de las operaciones comunes y estándar.
+
+### 4. Conclusión
+
+Para resumir, un IDE es una herramienta especializada que navega a través de sus programas de múltiples archivos, los modifica, los compila, los ejecuta, los depura y también muestra errores de sintaxis; los IDE modernos son gráficos e interactivos; algunos IDE admiten solo un lenguaje, mientras que otros admiten varios lenguajes.
 
 ## 📘 Introducción a los sistemas operativos
 Teoría + Práctica, 6 minutos
+
+¿Cómo puede ser que haya miles de modelos de ordenador diferentes, pero todos pueden ejecutar los mismos programas? ¿Alguna vez has pensado en cómo interactúan los programas con el hardware? Estas y otras características son posibles gracias a los sistemas operativos.
+
+### 1. Sistema operativo
+
+Un **sistema operativo (SO)** es un conjunto de software que gestiona la comunicación entre todas las demás aplicaciones y el hardware. Convierte una computadora en algo más que un montón de piezas de metal, es decir, un sistema complejo que puede realizar diferentes tareas de manera efectiva.
+
+Hoy en día, existen una gran cantidad de sistemas operativos. Para las computadoras personales, las más populares son las distribuciones de **Microsoft Windows**, **macOS** y **Linux**. Los dos principales sistemas operativos móviles son **Android** e **iOS**. Si alguna vez has oído hablar de hervidores inteligentes y frigoríficos inteligentes, incluso ellos tienen su propio sistema operativo.
+
+Por supuesto, los sistemas operativos para tal gama de dispositivos difieren mucho entre sí. Lo que tienen en común son los medios que proporcionan a los programas ya quienes los utilizan.
+
+Por un lado, es solo una ilusión que su navegador favorito sea el mismo en Windows que en macOS. Por otro lado, puede ejecutar la misma aplicación en diferentes computadoras con el mismo sistema operativo.
+
+### 2. Funciones del sistema operativo
+
+Un sistema operativo controla la comunicación entre todo el software y el hardware de la computadora. Un sistema operativo puede otorgar a los programas acceso restringido a unidades de procesador, memoria, discos duros, red, periféricos y otros recursos.
+
+Puede ejecutar un navegador, un reproductor multimedia y otras diez aplicaciones, y su sistema operativo es el que les brinda todos los recursos que necesitan para funcionar correctamente. Al mismo tiempo, este sistema operativo actúa como un árbitro justo, prohibiendo que cualquier aplicación consuma más recursos de los que realmente necesita.
+
+Como mediador entre las aplicaciones y el hardware, el sistema operativo nos permite comunicarnos con el dispositivo sin entrar en detalles sobre sus particularidades o mecánica.
+
+![image](https://user-images.githubusercontent.com/23094588/194911686-c31bd647-356f-43fd-82fd-368645122d58.png)
+
+Cualquier sistema operativo tiene varias funciones esenciales. Aquí hay una lista de algunos de ellos:
+
+* Protección de datos y acceso seguro;
+* Administracion de recursos;
+* Interacción entre hardware y periféricos;
+* Gestión de archivos;
+* Ejecutando otros programas.
+
+Es posible distinguir más funciones de los sistemas operativos modernos, pero las enumeradas anteriormente son suficientes para empezar.
+
+### 3. Componentes de los sistemas operativos
+
+Una parte obligatoria de todos los sistemas operativos, su núcleo, es **el kernel**. Por lo general, es uno de los primeros programas que se carga cuando enciende su computadora. Proporciona todos los medios necesarios para ejecutar los programas que desee.
+
+Por lo general, cuando inicia su sistema operativo, ve la interfaz gráfica de usuario (GUI). Es el tipo de interfaz que permite a los usuarios interactuar con el dispositivo mediante iconos gráficos e indicadores de audio. Otra forma de interactuar con el sistema operativo es usar comandos en un terminal basado en texto conocida como **Command Line Interface (CLI) - Interfaz de Línea de Comandos (CLI)**.
+
+![image](https://user-images.githubusercontent.com/23094588/194912413-e8dada82-f7ad-4023-bd3e-9aaf4879482d.png)
+
+Hay dos tipos de núcleos, conocidos como monolíticos y micronúcleos. Un **monolithic kernel** es un programa grande que realiza la mayoría de las funciones del sistema operativo. Al mismo tiempo, un **microkernel** realiza solo un pequeño subconjunto de las funciones del sistema operativo, pero podemos ampliarlo con módulos adicionales conocidos como **drivers - controladores**.
+
+Hay otras partes importantes del sistema operativo además del kernel y la interfaz gráfica de usuario. Los revisaremos en el siguiente tema. Por ahora, use la siguiente imagen para repasar todo lo que hemos cubierto hasta ahora:
+
+![image](https://user-images.githubusercontent.com/23094588/194912760-99ac75f1-677f-40e7-95ab-7fb798eb9f0b.png)
+
+### 4. Conclusión
+
+El sistema operativo distribuye eficientemente los recursos de la computadora de la manera que hemos descrito anteriormente. Es importante entender que sin el sistema operativo, no sería posible utilizar la computadora.
+
+Ahora conoces las principales funciones de los sistemas operativos y sus elementos esenciales. ¡Pongamos a prueba lo que has aprendido hasta ahora!
+
 
 ## 📘 Descripción general de la línea de comandos
 Teoría + Práctica, 6 minutos
