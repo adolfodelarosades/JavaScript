@@ -2,7 +2,64 @@
  
 Comience con el desarrollo de frontend: desde comprender lo que sucede dentro de un navegador hasta crear sus primeras páginas una **Flashcards** y un **Landing Page**. Este curso le enseñará cómo configurar páginas y crear sitios web modernos que respondan a diferentes navegadores.
 
+🕛 **18 horas** para todas las actividades de aprendizaje
+   **4 semanas** para completar el track si estudias 5 horas a la semana
+📕 **80 temas** con teoría y práctica adaptados a tu nivel
+🗃️ **2 proyectos** a elegir para tu portafolio
+🥇 El certificado de finalización **no está disponible** en la versión beta
+
+## Aprendizaje basado en proyectos con recomendaciones personales
+
+### Aprende a programar mientras creas aplicaciones completas
+
+Su aprendizaje está impulsado por un objetivo práctico establecido por el proyecto. De esta manera, puede ver cómo se aplican las herramientas y los conceptos en la vida real.
+
+**Benefíciese de nuestras recomendaciones que se ajustan a su nivel o elija un proyecto entre 2 proyectos de diferente complejidad.**
+
+* Proyectos fáciles si recién estás comenzando
+* Proyectos medianos para construir sobre los conceptos básicos.
+* Proyectos duros para practicar todos los conceptos básicos y aprender otros nuevos
+* Proyectos desafiantes para perfeccionar su conocimiento con tareas desafiantes
+
+### Podrás completar estos proyectos al final del curso.
+
+Los proyectos de graduación contienen los temas centrales de este curso.
+
 ![image](https://user-images.githubusercontent.com/23094588/194888292-66355188-0063-434f-9530-afee553cedec.png)
+
+### Lo que harás:
+
+En este curso, dominará los conceptos básicos de HTML y CSS y aprenderá a trabajar con:
+
+* Los principales elementos de la página web;
+
+* Archivos multimedia, formularios, tablas y enlaces;
+
+* Estilos básicos de página web;
+
+* Diseño adaptativo.
+
+Al final de este curso, su portfolio mostrará su primera landing page, the online cinema, y un online quiz. Además, aprenderá a trabajar con la herramienta de diseño de interfaz más popular: **Figma**.
+
+## Temas cubiertos por este curso
+
+Un tema consiste en un artículo teórico y algunas tareas prácticas que ayudan a probar la comprensión de un nuevo concepto y aplicarlo de inmediato.
+
+![image](https://user-images.githubusercontent.com/23094588/194897132-14722879-6bfd-4362-96dd-1eb60ff83de3.png)
+
+## No estarás solo en la pista
+
+### Discussion feed
+Haga preguntas, interactúe con la comunidad y aprenda junto con otros.
+
+### Solution examples
+
+Vea las soluciones publicadas por otros estudiantes y aprenda de ellos. Ayude a otros publicando su solución.
+
+### Comunidad
+
+Únase a una comunidad de más de 600.000 estudiantes. Habla de tus estudios, pide ayuda y ayuda a otros a crecer.
+
 
 ## 1. [Flashcards](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/400_Introduction_to_Frontend/01-Flashcards.md)
 
