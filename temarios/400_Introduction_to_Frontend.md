@@ -4,7 +4,7 @@ Comience con el desarrollo de frontend: desde comprender lo que sucede dentro de
 
 ![image](https://user-images.githubusercontent.com/23094588/194888292-66355188-0063-434f-9530-afee553cedec.png)
 
-## 1. Flashcards
+## 1. [Flashcards](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/400_Introduction_to_Frontend/01-Flashcards.md)
 
 ### Los resultados del aprendizaje
 
