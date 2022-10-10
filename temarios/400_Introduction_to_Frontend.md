@@ -10,6 +10,7 @@ Comience con el desarrollo de frontend: desde comprender lo que sucede dentro de
 Además de crear una landing page de ejemplo de la vida real, también mejorará sus habilidades de HTML y CSS. ¡Obtenga algo de experiencia en la construcción de un sitio web sin JavaScript!
 
 > **First Landing es un proyecto de graduación para el track Introducción a Frontend (HTML/CSS).**
+
 > Los proyectos de graduación contienen temas centrales para este track. Debe aplicar los temas básicos en las etapas del proyecto para verificar su conocimiento. Se requiere al menos un proyecto de posgrado para completar el track.
 
 Como probablemente haya notado, cuando una empresa lanza un nuevo producto, a menudo viene con una página web para promocionarlo. Esta página se llama **landing page**. En este proyecto, su objetivo es crear una página de este tipo para un nuevo producto. ¡Puedes elegir qué producto quieres lucir en su landing page!
