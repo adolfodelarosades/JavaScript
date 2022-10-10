@@ -47,17 +47,15 @@ Un tema consiste en un artículo teórico y algunas tareas prácticas que ayudan
 
 ![image](https://user-images.githubusercontent.com/23094588/194897132-14722879-6bfd-4362-96dd-1eb60ff83de3.png)
 
-## No estarás solo en la pista
+## No estarás solo en el curso
 
 ### Discussion feed
 Haga preguntas, interactúe con la comunidad y aprenda junto con otros.
 
 ### Solution examples
-
 Vea las soluciones publicadas por otros estudiantes y aprenda de ellos. Ayude a otros publicando su solución.
 
 ### Comunidad
-
 Únase a una comunidad de más de 600.000 estudiantes. Habla de tus estudios, pide ayuda y ayuda a otros a crecer.
 
 
