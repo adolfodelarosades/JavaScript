@@ -3,7 +3,7 @@
 Comience con el desarrollo de frontend: desde comprender lo que sucede dentro de un navegador hasta crear sus primeras páginas una **Flashcards** y un **Landing Page**. Este curso le enseñará cómo configurar páginas y crear sitios web modernos que respondan a diferentes navegadores.
 
 
-## Flashcards
+## 1. Flashcards
 
 ### Los resultados del aprendizaje
 
@@ -36,7 +36,7 @@ Hagamos la página más atractiva aplicando diferentes estilos. Explorará los t
 Agregue el reverso con las respuestas para cada tarjeta y aplique la animación para crear el efecto de "voltear la tarjeta".
 
 
-## First Landing
+## 2. First Landing
 
 ### Los resultados del aprendizaje
 
