@@ -1,6 +1,6 @@
 # Introducción a la interfaz (HTML/CSS)
  
-Comience con el desarrollo de frontend: desde comprender lo que sucede dentro de un navegador hasta crear su primera landing page (página de destino). Esta pista le enseñará cómo configurar páginas y crear sitios web modernos que respondan a diferentes navegadores.
+Comience con el desarrollo de frontend: desde comprender lo que sucede dentro de un navegador hasta crear sus primeras páginas una **Flashcards** y un **Landing Page**. Este curso le enseñará cómo configurar páginas y crear sitios web modernos que respondan a diferentes navegadores.
 
 
 ## Flashcards
