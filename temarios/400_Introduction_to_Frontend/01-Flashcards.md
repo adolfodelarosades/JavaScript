@@ -165,11 +165,25 @@ Entonces llegó el momento de **Maestro**. Era un producto de **Softlab Munich**
 Como puede ver, la humanidad no llegó de inmediato a los IDE multifuncionales.
 
 ### 2. ¿Qué es un IDE moderno?
+
 Los IDE se crearon para maximizar la productividad del programador a través de componentes estrechamente acoplados con interfaces de usuario simples. Esto permite que el desarrollador realice menos pasos para cambiar entre diferentes modos, a diferencia de los programas de desarrollo discretos. Sin embargo, los IDE gráficos modernos son un paquete de software complejo. Esto significa que uno puede lograr la aceleración necesaria del proceso de trabajo solo después del entrenamiento. De todos modos, aquí tampoco hay grandes dificultades: muchos IDE son bastante interactivos, y las interfaces de diferentes fabricantes suelen ser muy similares, por lo que no es demasiado difícil cambiar de un IDE a otro.
 
-Hay muchos IDE para diferentes lenguajes de programación. Algunos admiten un solo idioma, mientras que otros admiten varios o se pueden ampliar con complementos. Por ejemplo, los IDE que admiten varios idiomas son IntelliJ IDEA, Eclipse, NetBeans, Android Studio, Visual Studio Code. Los IDE para un lenguaje de programación específico son Delphi, Dev-C++, IDLE para Python, PyCharm.
+Hay muchos IDE para diferentes lenguajes de programación. Algunos admiten un solo lenguaje, mientras que otros admiten varios o se pueden ampliar con complementos. Por ejemplo, los IDE que admiten varios lenguajes son [IntelliJ IDEA](https://www.jetbrains.com/help/idea/installation-guide.html), [Eclipse](https://www.eclipse.org/downloads/packages/installer), [NetBeans](https://netbeans.apache.org/download/index.html), [Android Studio](https://developer.android.com/studio), [Visual Studio Code](https://code.visualstudio.com/). Los IDEs para un lenguaje de programación específico son [Delphi](https://www.embarcadero.com/products/delphi/starter/free-download), [Dev-C++](https://sourceforge.net/projects/orwelldevcpp/), [IDLE para Python](https://en.wikipedia.org/wiki/IDLE), [PyCharm](https://www.jetbrains.com/pycharm/download/#section=windows).
 
 Como ejemplo, así es como se ve el IDE de IntelliJ IDEA:
+
+![image](https://user-images.githubusercontent.com/23094588/194906506-a3fdee29-143f-4e2c-93d6-4cce528fa458.png)
+
+Todos estos entornos se pueden ejecutar en Windows, Mac OS o GNU/Linux.
+
+### 3. Componentes IDE
+
+En general, el entorno de desarrollo incluye:
+
+1. Un editor de texto, que está diseñado para trabajar con archivos de texto de forma interactiva. Le permite ver el contenido de los archivos de texto y realizar varias acciones como insertar, eliminar y copiar texto, búsqueda contextual, reemplazo, clasificación de cadenas, visualización de códigos de caracteres y conversión de codificaciones, impresión. A menudo contienen funciones adicionales, como el resaltado de sintaxis.
+2. Un traductor (compilador y/o intérprete), que traduce un texto escrito en un lenguaje de programación a código máquina y lo hace inmediatamente antes de iniciar el programa (compilación) o línea por línea (interpretación).
+3. Cree herramientas de automatización, que preparan el código y ponen todo junto.
+4. Un Depurador, que busca errores en el código y los reporta inmediatamente.
 
 ## 📘 Introducción a los sistemas operativos
 Teoría + Práctica, 6 minutos
