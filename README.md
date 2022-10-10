@@ -10,6 +10,10 @@ Serie de varios cursos JavaScript.
 # Laurence Svekis
 * [101 JavaScript AJAX 30 Projects Fetch Web APIs JSON coding](temarios/101-JavaScript-AJAX-30-Projects-Fetch-Web-APIs-JSON-coding.md)
 
+# JetBrains Academy
+
+* [400 Introduction to Frontend (HTML/CSS)](temarios/400_Introduction_to_Frontend.md)
+
 # OpenWebinars
 
 * [500 Curso de Chrome DevTools: Herramientas para el desarrollo](temarios/500_Curso_de_Chrome_DevTools_Herramientas_para_el_desarrollo.md)
