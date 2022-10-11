@@ -399,6 +399,29 @@ Use the /D switch to change the current drive in addition to changing the curren
 <...>
 ```
 
+Como puede ver, estos son todos los detalles que necesita saber sobre el comando **`cd`**. Llamamos a esta descripción **help manual**.
+
+Hablemos de lo que incluye el **help manual - manual de ayuda**. Primero, establece lo que se supone que debe hacer el comando. Para el comando **`cd`**, dice: *"Displays the name of or changes the current directory".*. Luego devuelve todas las combinaciones de ese comando junto con todos los parámetros posibles que puede usar. También puede notar que en los comandos de Windows no se distingue entre mayúsculas y minúsculas, a diferencia de Linux y macOS. Veamos el ejemplo del manual:
+
+```sh
+CD [/D] [drive:][path]
+```
+
+Entonces, el comando anterior tiene tres partes. **`cd`** es el nombre del comando. **`[/D]`** es una opción y **`[drive:][path]`** es un parámetro. Quizás se pregunte qué significan estos **`[]`** corchetes. Bueno, son solo *notación* que significa que los parámetros son opcionales para los comandos. No debe agregar estos corchetes cuando usa comandos.
+
+Puede leer este [artículo](https://www.lifewire.com/how-to-read-command-syntax-2618082) para Windows o el manual para el [comando `cat`](https://www.hscripts.com/tutorials/linux-commands/cat.html) en Linux/macOS para obtener más información sobre la sintaxis de la línea de comandos y ver los ejemplos.
+
+### 4. Conclusión
+
+Resumamos lo que hemos aprendido hasta ahora:
+
+* Puede utilizar opciones y parámetros para ampliar la funcionalidad de los comandos.
+* Puede pasar diferentes valores con los parámetros.
+* Puede obtener una lista completa de comandos utilizando los comandos **`help`** y **`man`**.
+* Puede abrir un manual de ayuda( help manual) para un comando escribiendo **`help [command_name]`** o **`man [command_name]`**. Este manual explica cómo usar un comando correctamente y qué opciones y parámetros tiene, si los tiene.
+
+Aunque puede sentir que el uso de estos comandos ralentizaría el trabajo del desarrollador y que son menos eficientes, le recomendamos que los pruebe. Tienes que acostumbrarte a estos comandos lo antes posible. Una vez que se acostumbre a trabajar con ellos, encontrará que usarlos es mucho más fácil que recurrir a la GUI en muchas ocasiones.
+
 
 ## 📘 World Wide Web
 Teoría + Práctica, 4 minutos
