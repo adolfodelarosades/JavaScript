@@ -426,7 +426,50 @@ Aunque puede sentir que el uso de estos comandos ralentizaría el trabajo del de
 ## 📘 World Wide Web
 Teoría + Práctica, 4 minutos
 
-## 📘 Protocolo de Transferencia de Hipertexto
+### 1. ¿Qué es la Web?
+
+¿Alguna vez te has preguntado qué imágenes aparecerán en la cabeza de las generaciones futuras en lo que respecta a la era en la que vivimos ahora? Es probable que el siglo XXI genere asociaciones con la llegada de **Internet** y la **World Wide Web**. Su creación provocó cambios importantes no solo en las estructuras militares y científicas, sino también en la vida de la gente común, brindándonos oportunidades que antes solo podían imaginarse.
+
+Con tanta frecuencia se escuchan frases como "La World Wide Web ha engullido nuestro planeta", que la definición de la Web se asume de antemano y se da por supuesta de forma natural. Pero realmente, ¿qué es esta Web y por qué es tan global?
+
+La **World Wide Web** es una colección de recursos de información repartidos por todo el mundo y vinculados entre sí por referencia. A veces este término se abrevia a **WWW**, **W3** o simplemente **Web**.
+
+![image](https://user-images.githubusercontent.com/23094588/195056155-252531dd-0e97-4dac-a824-dfbaf7e5da63.png)
+
+La Web también se llama a veces irónicamente **Wild Wild Web** por analogía con el título de la película **Wild Wild West**: ahora que lo pienso, el parecido es innegable.
+
+Una unidad de datos de hipertexto en el W3 se denomina **web page - página web**. Una página web puede contener texto, archivos multimedia, gráficos y enlaces a otras páginas.
+
+![image](https://user-images.githubusercontent.com/23094588/195056833-1f86e82d-016d-4fd2-9cad-c065312a43ae.png)
+
+Un grupo de páginas web que comparten un tema de contenido común, diseño y enlaces entre sí se denomina **website- sitio web**. Se utilizan programas especiales **browsers (navegadores)** para descargar y navegar por estos sitios web. Los navegadores más populares: **Firefox**, **Chrome**, **Edge**, **Safari**.
+
+A menudo, cuando visita sitios, puede ver "www" en la barra de direcciones del navegador:
+
+![image](https://user-images.githubusercontent.com/23094588/195058544-6ee0ade5-92fb-487f-926b-c9aad708b852.png)
+
+### 2. La historia de la Web
+
+La World Wide Web fue creada en la Organización Europea para la Energía Nuclear (CERN). El desarrollo de la red informática interna estuvo a cargo del científico Tim Berners-Lee. En 1989, fue el primero en sugerir la idea de un sistema de gestión de la información que utilizaba enlaces para consolidar documentos en la red. Él y sus colegas crearon un proyecto prototipo y lo publicaron para su presentación. Los primeros años de las páginas web se basaron exclusivamente en texto hasta que se introdujo **el primer navegador de gráficos NCSA Mosaic en 1993**. El evento permitió que la World Wide Web se transformara de investigación científica a un medio de comunicación.
+
+Inicialmente, Internet solo permitía a los usuarios buscar y leer información. Este período de tiempo se denomina condicionalmente **Web 1.0** (~1991-1999) para proporcionar una presentación general del entorno de Internet en constante cambio.
+
+Pronto, las personas pudieron interactuar entre sí y compartir su contenido. Este período se llama extraoficialmente **Web 2.0** (~1999-2007).
+
+El desarrollo de la World Wide Web continúa hasta el día de hoy y podremos ver qué cambios traerá la **Web 3.0** (~2007-...). Actualmente, la Web 3.0 tiene como objetivo mejorar el análisis de contenido y proporcionar resultados de búsqueda más rápidos y relevantes utilizando inteligencia artificial.
+
+### 3. Internet vs WWW
+
+La mayoría de la gente usa los términos "Internet" y "WWW" indistintamente, pero de hecho, se trata de dos nociones distintas. **Internet** es una red informática mundial, es decir, una infraestructura técnica que conecta millones de ordenadores en todo el mundo. Mientras que W3 se usa para distribuir datos que contienen enlaces a otros datos, Internet conecta computadoras entre sí para proporcionar acceso a la información.
+
+![image](https://user-images.githubusercontent.com/23094588/195059785-d0af6f77-4664-4e24-8938-ad632b269b52.png)
+
+### 4. Conclusión
+
+En pocas palabras, la World Wide Web es una forma de obtener información a través de Internet; sin embargo, Internet también se utiliza para acceder a información que no forma parte de la Web. Documentos de hipertexto: las páginas web son las unidades de la WWW. Pueden incluir contenido diferente y generalmente están unidos por un tema compartido y enlaces a sitios web. Programas específicos llamados navegadores pueden descargar sitios web, para que podamos explorarlos.
+Ahora comprende que la World Wide Web e Internet en realidad significan cosas diferentes. Más importante aún, ahora puedes demostrar tu conocimiento y explicar esta diferencia a tus amigos.
+
+## 📘 HyperText Transfer Protocol- Protocolo de Transferencia de Hipertexto
 Teoría + Práctica, 4 minutos
 
 ## 📘 Desarrollo Web
