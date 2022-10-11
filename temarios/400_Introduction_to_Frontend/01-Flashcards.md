@@ -252,6 +252,74 @@ Ahora conoces las principales funciones de los sistemas operativos y sus element
 ## 📘 Descripción general de la línea de comandos
 Teoría + Práctica, 6 minutos
 
+Mientras trabaja en la computadora, necesita comunicarse con el **Sistema Operativo (SO)** para hacer las cosas por usted. Por ejemplo, si desea abrir un archivo, debe informar al sistema operativo (Windows, Linux o macOS) al respecto. Hay dos formas de interactuar con el sistema operativo: una es más verbal mientras que la otra es más visual, pero ambas definitivamente merecen alguna apreciación. Estos dos métodos son la **Interfaz de Línea de Comandos** y la **Interfaz Gráfica de Usuario**.
+
+### 1. ¿Qué es la línea de comandos?
+
+La **command-line interface - interfaz de línea de comandos** o **CLI** es una forma de interactuar con un sistema operativo a través de comandos de texto. Por otro lado, la **interfaz gráfica de usuario** o **GUI** proporciona una interfaz con muchos íconos y menús. Aquí, le da comandos al sistema operativo haciendo clic en estos íconos o elementos del menú.
+
+En el pasado, las interfaces de línea de comandos eran el único medio de interactuar con una computadora. Pero, ¿por qué usarlo ahora, cuando tiene una interfaz gráfica simple y familiar? Bueno, generalmente las interfaces de línea de comandos son mucho más flexibles y tienen más opciones. Por ejemplo, puede combinar comandos para crear uno nuevo, mientras que no puede hacerlo a través de una interfaz gráfica. Algunos programas pueden incluso tener solo una interfaz de línea de comandos, lo que requiere que el usuario conozca los conceptos básicos de la línea de comandos.
+
+Además, los programas ejecutables por la interfaz de línea de comandos se pueden escribir en un lenguaje de comandos. Se denominan **shell scripts - scripts de shell** en UNIX y sistemas similares a UNIX, como GNU/Linux y macOS, y **batch files - archivos por lotes** en Windows.
+
+Todos los sistemas operativos tienen interfaces de línea de comandos. Las aplicaciones también pueden tenerlo. Además, los lenguajes de programación modernos proporcionan un modo de línea de comandos interactivo, en el que ejecuta el código línea por línea.
+
+### 2. Acceder al intérprete de línea de comandos
+
+Por lo general, no tiene que ir a la ubicación del **command-line interpreter** o **terminal** para abrirlo. Puede abrirlo simplemente buscando **`cmd`** en Windows y **`terminal`** en distribuciones de Linux.
+
+Si te sientes más como un explorador y quieres encontrar la ubicación por tu cuenta, prueba los siguientes caminos:
+
+* Para Windows 10 u 8 en **Start->Windows System->Command Prompt**.
+* Para Windows 7, Vista o XP en **Start->All Programs->Accessories->Command Prompt**.
+* Para Mac OS en **Applications->Utilities->Other->Terminal**. Algunos usuarios de Mac prefieren **iTerm2**, un reemplazo de Terminal, porque es un poco más fácil de usar. Puede encontrar los detalles en el sitio [iTerm official website](https://iterm2.com/downloads.html) e instalarlo en su computadora.
+* Para Linux: depende de su sistema, pero por lo general, la CLI se encuentra en **Applications->Accessories->Terminal** o en **Applications->System->Terminal**. Si no lo encuentra aquí, simplemente busque en Google cómo acceder a la línea de comando en su sistema.
+
+Cuando lo abras, verás una ventana negra (o blanca). Si todo está bien, verá el **command prompt - símbolo del sistema** donde escribirá su comando, un indicador de que su computadora está lista para aceptar comandos. Para Windows, el símbolo del sistema termina con **`>`**, mientras que para Linux y Mac OS, es **`$`**. Para ejecutar un comando, escríbalo y luego presione **`Enter`**.
+
+### 3. Aprendizaje de Comandos
+
+Es hora de aprender algunos comandos importantes. Abramos el intérprete de línea de comandos y escribamos algunos comandos. Cuando lo abras, verás algo similar al siguiente texto.
+
+```sh
+C:\Users\name>
+```
+
+Significa que está en este directorio y puede trabajar en la CLI. Ahora intentemos usarlo.
+
+Imagina que acabas de despertarte en el suelo en una habitación que no te resulta familiar. De hecho, todo te resulta desconocido, no recuerdas nada, ni siquiera tu nombre. Solo hay una computadora con la terminal abierta y esta guía, por lo que decide que podría ser útil averiguar algo. Entonces, ahora escribirá su comando al lado de esta ruta.
+
+Primero, escribe el **`whoami`** y presiona **`Enter`**. Desafortunadamente, no te proporcionará una respuesta profunda y satisfactoria sobre quién eres realmente, pero verás algo como esto:
+
+```sh
+desktop-qd7c3ju\shanika
+```
+
+Bien, ya sabes tu nombre, uno imaginario, por lo menos. Como ya puede adivinar, el comando **`whoami`** solo le ***devuelve el nombre de usuario que usó en su máquina***. Es por eso que ves el resultado anterior.
+
+A continuación, escriba **`dir`** si usa Windows o **`ls`** si usa Linux/macOS y presione **`Enter`**. Ambos comandos devuelven la ***lista de archivos y carpetas en su directorio actual***. Este es uno de los comandos más utilizados por los desarrolladores, especialmente cuando trabajan en servidores.
+
+Si tiene Windows, verá algo similar a la imagen de abajo.
+
+![image](https://user-images.githubusercontent.com/23094588/195019434-401bf736-5488-478b-a0c0-583d37d5ad65.png)
+
+No hay ningún archivo que sea útil para su situación. ¡Pobre de mí!
+
+¿No hay una orden para escapar? Sí, hay uno. Simplemente escriba **`exit`** y estará fuera... del intérprete de línea de comandos porque este comando le permite salir. ¡Buenas noticias, acabas de aprender algunos comandos útiles y completaste la misión, Shanika! Ahora puedes ser libre.
+
+En el sitio [web de SS64](https://ss64.com/), puede encontrar una lista completa de comandos para Windows, así como para Linux y macOS
+
+### 4. Conclusión
+
+Lo importante que debe saber es que las excelentes GUI no han hecho que la CLI quede obsoleta. Sigue siendo una de las maneras más rápidas de hacer su trabajo. Especialmente, si va a ser un desarrollador, es muy importante tener un buen conocimiento de los comandos que están disponibles para usted.
+
+En este tema, presentamos la interfaz de línea de comandos: qué es, dónde se puede encontrar y cómo se puede usar. También probamos varios comandos: **`whoami`**, **`dir`** o **`ls`**, y **`exit`**. Más tarde, aprenderemos los comandos CLI en detalle, ¡pero ahora practiquemos un rato!
+
+
+
+
+
+
 ## 📘 Parámetros y Opciones
 Teoría + Práctica, 6 minutos
 
