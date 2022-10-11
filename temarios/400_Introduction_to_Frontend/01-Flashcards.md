@@ -316,12 +316,89 @@ Lo importante que debe saber es que las excelentes GUI no han hecho que la CLI q
 En este tema, presentamos la interfaz de línea de comandos: qué es, dónde se puede encontrar y cómo se puede usar. También probamos varios comandos: **`whoami`**, **`dir`** o **`ls`**, y **`exit`**. Más tarde, aprenderemos los comandos CLI en detalle, ¡pero ahora practiquemos un rato!
 
 
-
-
-
-
 ## 📘 Parámetros y Opciones
 Teoría + Práctica, 6 minutos
+
+Esperamos que ya sepa cómo abrir el intérprete de línea de comandos y ejecutar algunos comandos básicos. Ahora demos un paso más y aprendamos cómo expandir la funcionalidad de los comandos y cómo obtener más información sobre ellos.
+
+### 1. Comandos con parámetros
+
+A veces, usar un solo comando no es suficiente. Echemos un vistazo al comando **`mkdir`**, que se usa para ***crear una nueva carpeta en el directorio actual***. Si intenta utilizarlo tal como está, obtendrá un error. ¡El terminal necesita saber cómo nombrar una nueva carpeta! Ahí es donde los parámetros son útiles. Un **parámetro** es información adicional que proporciona al comando. En pocas palabras, los parámetros son variables que pueden tomar los comandos.
+
+Ahora, escribe el comando **`mkdir`** con un parámetro **`papers`**. Usamos este comando para crear una carpeta llamada **`papers`**:
+
+```sh
+C:\users\student> mkdir papers
+```
+
+Aunque el directorio actual sigue siendo el mismo, si sigue esta ruta, verá que la nueva carpeta **`papers`** se creó en el directorio de **`student`**.
+
+Todos los ejemplos de este tema son para el sistema operativo Windows, pero los comandos enumerados también son relevantes para Linux y macOS. Tenga en cuenta que el separador de ruta en Windows es una barra diagonal inversa, pero en Linux/macOS es una barra diagonal.
+
+¡Ahora cambiemos nuestra ubicación y vayamos a la carpeta que acaba de crear! Use el comando **`cd`** con la ruta a la carpeta **`papers`** como parámetro.
+
+```sh
+C:\users\student> cd C:\users\student\papers
+C:\users\student\papers>
+```
+
+Otro parámetro útil del comando **`cd`** es **`..`**. Te permite ***ir al directorio principal, el directorio un nivel por encima del actual***.
+
+```sh
+C:\users\student\papers> cd ..
+C:\users\student>
+```
+
+También puede volver a la **carpeta raíz - root folder**, un directorio de nivel superior en el sistema de archivos. Para volver al directorio raíz, puede usar el parámetro **`/`**:
+
+```sh
+C:\users\student> cd /
+C:\
+```
+
+¡Gracias a los comandos y parámetros, parece que hemos vuelto a las raíces! En realidad, sin parámetros, la mayoría de los comandos serían inútiles.
+
+### 2. Opciones
+
+Si busca en Google algo sobre comandos y una terminal, encontrará el término "options". ¡No le tengas miedo! Exploremos brevemente lo que significa.
+
+Las opciones, como sugiere su nombre, suelen ser opcionales y se usan para cambiar de alguna manera el comportamiento común del comando. Si usa Windows y ya está cansado de explorar la unidad actual, puede cambiarla agregando la opción **`/d`** a **`cd`**. No olvide establecer la ruta que desea seguir como parámetro, por ejemplo, **`F:\Codepen snippets`**:
+
+```sh
+C:\users\student\Desktop> cd /d F:\Codepen snippets
+F:\Codepen snippets>
+```
+
+Ahora ves que con opciones y parámetros puedes transformar un simple comando en algo complicado.
+
+Para resumir: ¿qué son esencialmente opciones y parámetros? Ambos son solo dos tipos particulares de argumentos. Mientras que una **option** cambia el comportamiento de un comando, un **parameter** se usa para asignar información a un comando o una de sus opciones. Una de las diferencias clave entre ellos es que la cantidad de valores posibles en las opciones está limitada y bloqueada en el código, mientras que con los parámetros los usuarios tienen más libertad ya que no tienen tales limitaciones.
+
+### 3. Help Manual
+
+Nadie puede recordar todos los comandos, opciones y parámetros existentes. No te preocupes por eso. El comando **`help`** está ahí para usted. Escríbalo en Windows y obtendrá una lista de comandos disponibles para usted.
+
+Para Linux y macOS, la forma de obtener información sobre los comandos depende del shell que utilice. La forma más sencilla para Linux es un indicador **`--help`**. También existe el comando **`man`**, abreviatura de manual. Puede usar el comando **`man`** en Linux de forma similar al comando de ayuda en Windows: **`man mkdir`**.
+
+Eso no es todo. El comando **`help`** puede tomar cualquier comando como parámetro y devolver todas las opciones disponibles. Intentemos. Usaremos el comando más simple que hemos aprendido hasta ahora, el comando **`cd`**.
+
+```sh
+C:\users\student> help cd
+
+Displays the name of or changes the current directory.
+ 
+CD [/D] [drive:][path]
+CD [..]
+
+   ..  Specifies that you want to change to the parent directory.
+
+Type CD drive: to display the current directory in the specified drive.
+Type CD without parameters to display the current drive and directory.
+
+Use the /D switch to change the current drive in addition to changing the current directory for a drive.
+
+<...>
+```
+
 
 ## 📘 World Wide Web
 Teoría + Práctica, 4 minutos
