@@ -472,6 +472,43 @@ Ahora comprende que la World Wide Web e Internet en realidad significan cosas di
 ## 📘 HyperText Transfer Protocol- Protocolo de Transferencia de Hipertexto
 Teoría + Práctica, 4 minutos
 
+### 1. ¿Qué es HTTP?
+
+Cada vez que decides ver las fotos de tus amigos en las redes sociales o dejarles un mensaje, ver un video gracioso con gatitos, o encontrar el significado de un término desconocido en el buscador, el dispositivo (cliente) desde el que navegas por Internet envía una solicitud(request) al servidor y recibe una respuesta(response) de este.
+
+Un **cliente** es un cliente de un servicio y un **servidor** es una computadora que sirve a los usuarios u otras computadoras. Se puede ubicar remotamente, a decenas de miles de kilómetros de ti. La tecnología cuando la carga de la red se distribuye entre los servidores y los clientes del servicio se denomina **Client-Server Architecture - Arquitectura Cliente-Servidor**.
+
+![image](https://user-images.githubusercontent.com/23094588/195063052-d0a29c5b-4d8e-4779-b506-597858c9e2ba.png)
+
+El intercambio de datos entre el cliente y el servidor se realiza a través de **HTTP**. HTTP significa **HyperText Transfer Protocol - Protocolo de Transferencia de Hipertexto**. Un **protocolo** es un conjunto de reglas y convenciones que define una forma uniforme de intercambiar datos entre diferentes programas y manejar errores. Al igual que un mesero en un restaurante, acepta sus solicitudes, las lleva al servidor para que las procese y luego regresa con una respuesta.
+
+### 2. Breve historial de HTTP
+
+HTTP fue desarrollado por un científico y empleado del CERN, **Tim Berners-Lee**, el ideólogo de la World Wide Web.
+
+El trabajo en el protocolo continuó durante dos años y, en marzo de 1991, se utilizó HTTP como tecnología para ayudar a acceder a documentos en Internet y facilitar la navegación por hipertexto. Esta fue la versión 0.9 del Protocolo. Fue diseñado para optimizar la comunicación (solicitud-respuesta) entre el cliente y el servidor en la red.
+
+Actualmente, la versión más reciente del Protocolo es **HTTP/3.0**, pero la versión más común sigue siendo **HTTP/2.0**, lanzada en 2015. Antes de eso,**HTTP/1.1** (lanzado en 1999) se usó durante dieciséis años. Este estándar satisfizo a todos durante muchos años debido a sus innovaciones: con la llegada de HTTP/1.1, la transferencia de solicitudes del cliente al servidor se aceleró enormemente.
+
+No todos los sitios han cambiado a **HTTP/2** todavía, pero los navegadores admiten estándares nuevos y antiguos.
+
+### 3. ¿Qué es HTTPS?
+
+A pesar de la gran funcionalidad y popularidad de HTTP, existe un inconveniente: los datos se transmiten de forma no segura. Esta falla puede ser crítica cuando se trata de pagar compras por Internet o enviar datos de pasaporte: ningún usuario quiere que se filtre su información confidencial.
+
+Para hacer que el espacio de Internet sea más seguro, los programadores decidieron desarrollar un complemento sobre HTTP, que ayuda a evitar la intercepción de datos mediante el cifrado. La extensión **HTTP** se llama **HTTPS** y significa **HyperText Transfer Protocol Secure**.
+
+HTTPS proporciona una conexión segura entre el navegador del usuario y el servidor web. A menudo, la ventana del navegador muestra una barra de direcciones verde o un candado que indica la transferencia de datos encriptados. También puede consultar la barra de direcciones de su navegador web para ver si tiene una conexión segura. Debería empezar con **`https://`**:
+
+![image](https://user-images.githubusercontent.com/23094588/195066177-ef8cb9df-1993-4230-ac98-71ad78dc3415.png)
+
+Todos los navegadores modernos admiten HTTPS. Los usuarios de Internet no necesitan configurar esta extensión por separado: se habilita automáticamente si es necesario.
+
+Actualmente, los navegadores más populares como Chrome, Firefox, Safari y Edge marcan todas las conexiones a través de HTTP como inseguras.
+
+En resumen, el Protocolo de transferencia de hipertexto es un conjunto de normas que hace posible el intercambio de datos entre el cliente y el servidor en la red. La última versión del protocolo es HTTP/2.0, pero la versión anterior, HTTP/1.1, todavía está en uso. Una extensión del protocolo HTTPS agregó cifrado a la transferencia de datos y aumentó la seguridad de las transmisiones.
+
+
 ## 📘 Desarrollo Web
 Teoría + Práctica, 4 minutos
 
