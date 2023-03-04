@@ -46,7 +46,7 @@ Si no estas seguro, hay varias clases habilitadas de forma gratuita para que pue
 
 ### 8 secciones • 44 clases • 9h 21m de duración total
 
-### Primeros pasos en jQuery 6 clases • 1h 1m
+### 01 Primeros pasos en jQuery 6 clases • 1h 1m
 
 * Introducción 01:34
 * Preparando nuestro ambiente de trabajo 13:29
@@ -55,7 +55,7 @@ Si no estas seguro, hay varias clases habilitadas de forma gratuita para que pue
 * Selectores y encadenamiento 14:52
 * replaceWith, children y Find 13:01
 
-### Eventos 5 clases • 56m
+### 02 Eventos 5 clases • 56m
 
 * Eventos 17:51
 * Acordeones 13:57
@@ -63,7 +63,7 @@ Si no estas seguro, hay varias clases habilitadas de forma gratuita para que pue
 * Tarea: Tabla de multiplicar 01:28
 * Resolución de la Tarea y un extra! 07:28
 
-### Objetos de JavaScript 7 clases • 1h 24m
+### 03 Objetos de JavaScript 7 clases • 1h 24m
 
 * Objetos 101 20:46
 * Objetos 202 08:54
@@ -73,14 +73,14 @@ Si no estas seguro, hay varias clases habilitadas de forma gratuita para que pue
 * Tarea - Tienda de Ropa 01:27
 * Tarea: Venta de camisetas 03:33
 
-### Animaciones 4 clases • 1h 20m
+### 04 Animaciones 4 clases • 1h 20m
 
 * Animaciones 101 18:23
 * Animaciones 201 11:40
 * Animaciones avanzadas - TweenMax de Greensock - Introducción 22:22
 * Slideshow desde cero! 27:28
 
-### jQuery Plugins 9 clases • 2h 52m
+### 05 jQuery Plugins 9 clases • 2h 52m
 
 * Introducción a los plugins y trabajos que realizaremos. 01:57
 * Slideshow a plugin - Parte 1 17:50
@@ -92,14 +92,14 @@ Si no estas seguro, hay varias clases habilitadas de forma gratuita para que pue
 * Tarea: Crear una notificación pequeña basado en la imagen adjunta. 3 páginas
 * Resolviendo la Tarea 08:05
 
-### Peticiones y manejo de información externa 4 clases • 34m
+### 06 Peticiones y manejo de información externa 4 clases • 34m
 
 * Trabajando con JSON 15:14
 * Leer arreglos en formato JSON y construir una tabla. 11:45
 * Tarea: Aplicación del Clima 03:30
 * Resolución de la tarea del API del clima. 03:13
 
-### Profundizando en peticiones AJAX 8 clases • 1h 11m
+### 07 Profundizando en peticiones AJAX 8 clases • 1h 11m
 
 * Instalando Xampp en OSx 04:24
 * Instalando Xampp en Windows 04:41
