@@ -46,7 +46,7 @@ Si no estas seguro, hay varias clases habilitadas de forma gratuita para que pue
 
 ### 8 secciones • 44 clases • 9h 21m de duración total
 
-### [01 Primeros pasos en jQuery] 6(https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/200-jQuery-De-cero-a-avanzado-Legacy/01-Primeros-pasos-en-jQuery.md) clases • 1h 1m
+### [01 Primeros pasos en jQuery](https://github.com/adolfodelarosades/JavaScript/blob/main/temarios/200-jQuery-De-cero-a-avanzado-Legacy/01-Primeros-pasos-en-jQuery.md) 6 clases • 1h 1m
 
 * Introducción 01:34
 * Preparando nuestro ambiente de trabajo 13:29
