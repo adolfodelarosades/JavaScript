@@ -11,6 +11,9 @@
 
 ## Preparando nuestro ambiente de trabajo 13:29
 
+* Instalar un Editor de Texto, en mi caso VSC.
+* Descargar [JQuery](https://jquery.com/)
+
 ## Error muy común del jQuery 08:08
 
 ## Alto - Usemos Bootstrap - Introducción 10:06
