@@ -25,9 +25,11 @@ La última versión a fecha del 04/03/2023 es la **v3.6.3**, en momento del curs
 
 Las versiones superiores a 2.X no son compatibles con Internet Explorer 6, 7 y 8 en esos casos se usaría alguna versión 1.X
 
-Vamos a descargar la versión 2.X (jQuery Core 2.2.4) o podemos usar un CDN.
+Vamos a descargar la versión 2.X (jQuery Core 2.2.4) 
 
 <img width="1275" alt="image" src="https://user-images.githubusercontent.com/23094588/222904401-1671cffb-b037-4b70-842c-12e22c72ba5e.png">
+
+o podemos usar un CDN
 
 ```js
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
@@ -44,6 +46,13 @@ Vamos a descargar la versión 2.X (jQuery Core 2.2.4) o podemos usar un CDN.
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>  
 ```
+
+Vamos a crear la siguiente estructura para nuestro primer ejemplo.
+
+<img width="754" alt="image" src="https://user-images.githubusercontent.com/23094588/222905621-44a92c6e-2aaa-4d6a-a496-72d27dd2c24b.png">
+
+
+
 
 
 ## Error muy común del jQuery 08:08
