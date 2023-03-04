@@ -52,6 +52,9 @@ Vamos a crear la siguiente estructura para nuestro primer ejemplo.
 <img width="754" alt="image" src="https://user-images.githubusercontent.com/23094588/222905621-44a92c6e-2aaa-4d6a-a496-72d27dd2c24b.png">
 
 
+Vea la sección donde se usa JQuery. JQuery es como cualquier otra función de JS.
+
+<img width="958" alt="image" src="https://user-images.githubusercontent.com/23094588/222906027-65198093-b154-4bf4-95a4-f4429059dce2.png">
 
 
 
