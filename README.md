@@ -10,6 +10,10 @@ Serie de varios cursos JavaScript.
 # Laurence Svekis
 * [101 JavaScript AJAX 30 Projects Fetch Web APIs JSON coding](temarios/101-JavaScript-AJAX-30-Projects-Fetch-Web-APIs-JSON-coding.md)
 
+# JQuery
+
+* [200 jQuery: De cero a avanzado (Legacy)](temarios/200-jQuery-De-cero-a-avanzado-Legacy.md)
+
 # JetBrains Academy
 
 * [400 Introduction to Frontend (HTML/CSS)](temarios/400_Introduction_to_Frontend.md)
