@@ -52,10 +52,47 @@ Vamos a crear la siguiente estructura para nuestro primer ejemplo.
 <img width="754" alt="image" src="https://user-images.githubusercontent.com/23094588/222905621-44a92c6e-2aaa-4d6a-a496-72d27dd2c24b.png">
 
 
-Vea la sección donde se usa JQuery. JQuery es como cualquier otra función de JS.
+Vea la sección **`<script>...</script>`**, vemos como se defina una función y como invocarla. La sentencia **`jQuery();`**  es como llamar a una función cualquier.
 
 <img width="958" alt="image" src="https://user-images.githubusercontent.com/23094588/222906027-65198093-b154-4bf4-95a4-f4429059dce2.png">
 
+Vamos a usar solo **`jQuery();`** haciendo lo siguiente:
+
+```js
+jQuery('ul').css('color', 'red');
+```
+
+Le estamos diciendo a jQuery que búsque en la página todos los elementos **`ul`**  y aplicale el CSS para asignarle color rojo. En el programa solo hay un elemento **`ul`** por lo que al ejecutar el programa el listado se pintara de color rojo.
+
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/23094588/223570449-31e3103a-015a-433d-aa1c-886846ada9c1.png">
+
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/23094588/223570520-bbed3880-d83a-464a-b65f-f54688ab04f5.png">
+
+```htm
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lección 01</title>
+
+    <script src="js/lib/jquery-2.2.4.min.js"></script>
+</head>
+<body>
+    <ul>
+        <li>Hola 1</li>
+        <li>Hola 2</li>
+        <li>Hola 3</li>
+    </ul>
+
+    <script>
+        jQuery('ul').css('color', 'red');
+    </script>
+    
+</body>
+</html>
+```
 
 
 ## Error muy común del jQuery 08:08
