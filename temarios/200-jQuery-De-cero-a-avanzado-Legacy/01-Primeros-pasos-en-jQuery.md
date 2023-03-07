@@ -94,6 +94,193 @@ Le estamos diciendo a jQuery que búsque en la página todos los elementos **`ul
 </html>
 ```
 
+Si abrimos las herramientas del desarrollador podemos ver lo siguiente:
+
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/23094588/223571173-b5d52ff7-edff-4b2d-aed4-c5582eed5966.png">
+
+Vemos que sobre el elemento **'ul'** se ha aplicado el estilo para asignarle un color rojo.
+
+Es recomendable que los estilos se manejen através de un archivo CSS o por lo menos una sección CSS dentro del archivo HTML como veremos a continuación.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lección 01</title>
+
+    <script src="js/lib/jquery-2.2.4.min.js"></script>
+
+    <style>
+        .textoVerde{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>Hola 1</li>
+        <li>Hola 2</li>
+        <li>Hola 3</li>
+    </ul>
+
+    <script>
+        jQuery('ul').addClass('textoVerde');
+    </script>
+    
+</body>
+</html>
+```
+
+En la sección CSS **`<style>`** hemos definido lo que se conoce como una **clase** llamada **`textoVerde`** donde definimos el color verde y con jQuery añadimos la clase **`textoVerde`** al elemento **`ul`** en lugar de cambiar su CSS como lo teniamos anteriormente.
+
+Al recargar el navegador tenemos:
+
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/23094588/223573310-c2da90e5-7531-44d9-ba81-32ad04ae288f.png">
+
+Podemos ver en la pestaña **Elements** ya no tenemos un estilo sino una clase que es algo más recomendable.
+
+Vamos a realizar otro ejercicio, vamos a añadir una nueva lista y la vamos a pintar en negritas.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lección 01</title>
+
+    <script src="js/lib/jquery-2.2.4.min.js"></script>
+
+    <style>
+        .textoVerde{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>Hola 1</li>
+        <li>Hola 2</li>
+        <li>Hola 3</li>
+    </ul>
+
+    <ul>
+        <li>Negritas 1</li>
+        <li>Negritas 2</li>
+        <li>Negritas 3</li>
+    </ul>
+
+    <script>
+        jQuery('ul').addClass('textoVerde');
+        jQuery('ul').css('font-weight','bold');
+    </script>
+    
+</body>
+</html>
+```
+
+Una forma de hacerlo es usando jQuery para cambiar el CSS indicando el atributo **`font-weight`** con valor **`bold`** si recargamos el navegador tenemos:
+
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/23094588/223580351-91681af6-277e-4f81-a23e-4cb49f7a2657.png">
+
+Vemos que las dos listas se pintan en negritas ya que jQuery busca todos los elementos **`ul`** y los modifica según se indique. Otra cosa que vemos es que cada elemento **`ul`** tiene una clase y estilo asignado, ya vimos que es mejor asignar una clase en lugar del estilo, vamos a cambiar el CSS por una clase.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lección 01</title>
+
+    <script src="js/lib/jquery-2.2.4.min.js"></script>
+
+    <style>
+        .textoVerde{
+            color: green;
+        }
+        .negrita{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>Hola 1</li>
+        <li>Hola 2</li>
+        <li>Hola 3</li>
+    </ul>
+
+    <ul>
+        <li>Negritas 1</li>
+        <li>Negritas 2</li>
+        <li>Negritas 3</li>
+    </ul>
+
+    <script>
+        jQuery('ul').addClass('textoVerde');
+        jQuery('ul').addClass('negrita');
+    </script>
+    
+</body>
+</html>
+```
+
+Al recargar el navegador tenemos:
+
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/23094588/223581183-30bcf8c3-a0e2-4c30-9c32-a01aa4041f62.png">
+
+Ahora podemos ver que los elementos **`ul`** tienen asignadas las clases **`textoVerde`** y **`negrita`**, pero realmente no es necesario crear una clase para cada atributo que se quiera modificar, podríamos tener una única clase con ambas caracteristicas.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lección 01</title>
+
+    <script src="js/lib/jquery-2.2.4.min.js"></script>
+
+    <style>
+        .textoVerde{
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>Hola 1</li>
+        <li>Hola 2</li>
+        <li>Hola 3</li>
+    </ul>
+
+    <ul>
+        <li>Negritas 1</li>
+        <li>Negritas 2</li>
+        <li>Negritas 3</li>
+    </ul>
+
+    <script>
+        jQuery('ul').addClass('textoVerde');
+    </script>
+    
+</body>
+</html>
+```
+
+Al recargar el navegador tenemos:
+
+<img width="1512" alt="image" src="https://user-images.githubusercontent.com/23094588/223581871-62d80f5c-ab1b-428c-a3f3-126b42fa2486.png">
+
+Vemos que ahora los elementos **`ul`** tienen una sola clase que modifica tanto el color como el estilo del texto.
 
 ## Error muy común del jQuery 08:08
 
